@@ -4,6 +4,12 @@ Contains resources and scriptlets designed for use with Brave's [adblock-rust](h
 
 Custom resources should be added to the `resources` directory, and a corresponding entry should be added to the `metadata.json` file.
 
+## Using
+
+This package can be imported as a library, exposing the function `readResources` which will produce the correctly formatted list of resources for use with [adblock-rust](https://github.com/brave/adblock-rust).
+
+Alternatively, `npm run build` will write all resources to `dist/resources.json` for future use.
+
 ## Metadata format
 
 `metadata.json` is a list of elements of the following format:

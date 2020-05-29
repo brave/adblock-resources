@@ -4,6 +4,7 @@
   "description": "Custom resources and scriptlets used for Brave's adblocker",
   "main": "index.js",
   "scripts": {
+    "build": "node build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
