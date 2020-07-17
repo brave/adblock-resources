@@ -1,12 +1,13 @@
 const { readResources } = require('.')
 
 const tap = require('tap')
-const { Engine } = require('adblock-rs')
+const { Engine, FilterSet } = require('adblock-rs')
 
 tap.test('resources are parsed OK by adblock-rust', childTest => {
     const resources = readResources()
 
-    const engine = new Engine([])
+    const filterSet = new FilterSet()
+    const engine = new Engine(filterSet)
 
     resources.forEach(resource => {
         try {
