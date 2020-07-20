@@ -61,12 +61,5 @@
         "title": "Disconnect rules",
         "format": "Standard",
         "support_url": "https://github.com/brave/adblock-lists"
-    },
-    {
-        "uuid": "E55EAE71-8068-4903-A426-0F9EB3B332AC",
-        "url": "https://easylist-downloads.adblockplus.org/fanboy-notifications.txt",
-        "title": "Notification List",
-        "format": "Standard",
-        "support_url": "https://easylist.to/"
     }
 ]
