@@ -1,5 +1,47 @@
 [
     {
+        "uuid": "AAB94120-6CD9-4A96-9480-D6D323C73909",
+        "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters.txt",
+        "title": "uBlock Origin Filters",
+        "format": "Standard",
+        "support_url": "https://github.com/uBlockOrigin/uAssets"
+    },
+    {
+        "uuid": "9F1AFA33-F034-4AE9-A927-6C293867EAF1",
+        "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-2020.txt",
+        "title": "uBlock Origin 2020 Filters",
+        "format": "Standard",
+        "support_url": "https://github.com/uBlockOrigin/uAssets"
+    },
+    {
+        "uuid": "4dda991a-cf59-4acf-82dc-c93bf38fbb31",
+        "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/badware.txt",
+        "title": "uBlock Origin filters - Badware risks",
+        "format": "Standard",
+        "support_url": "https://github.com/uBlockOrigin/uAssets"
+    },
+    {
+        "uuid": "744e5fb2-5446-4578-a097-68efd098ed5e",
+        "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/privacy.txt",
+        "title": "uBlock Origin filters – Privacy",
+        "format": "Standard",
+        "support_url": "https://github.com/uBlockOrigin/uAssets"
+    },
+    {
+        "uuid": "e3efec89-1902-4378-b49d-79de6e06aa1a",
+        "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/resource-abuse.txt",
+        "title": "uBlock Origin filters – Resource abuse",
+        "format": "Standard",
+        "support_url": "https://github.com/uBlockOrigin/uAssets"
+    },
+    {
+        "uuid": "200392E7-9A0F-40DF-86EB-6AF7E4071322",
+        "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/unbreak.txt",
+        "title": "uBlock Origin filters - Unbreak",
+        "format": "Standard",
+        "support_url": "https://github.com/uBlockOrigin/uAssets"
+    },
+    {
         "uuid": "67F880F5-7602-4042-8A3D-01481FD7437A",
         "url": "https://easylist.to/easylist/easylist.txt",
         "title": "EasyList",
@@ -14,32 +56,18 @@
         "support_url": "https://easylist.to/"
     },
     {
-        "uuid": "200392E7-9A0F-40DF-86EB-6AF7E4071322",
-        "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/unbreak.txt",
-        "title": "uBlock Unbreak",
+        "uuid": "56b195f1-4b7b-4070-94c1-b720a650c8bc",
+        "url": "https://gitlab.com/curben/urlhaus-filter/raw/master/urlhaus-filter-online.txt",
+        "title": "URLhaus Malicious URL Blocklist",
         "format": "Standard",
-        "support_url": "https://github.com/gorhill/uBlock"
+        "support_url": "https://gitlab.com/curben/urlhaus-filter"
     },
     {
-        "uuid": "AAB94120-6CD9-4A96-9480-D6D323C73909",
-        "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters.txt",
-        "title": "uBlockOrigin Filters",
+        "uuid": "40e22155-6b6d-43fc-a407-6844af78025a",
+        "url": "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblockplus&showintro=1&mimetype=plaintext",
+        "title": "Peter Lowe's Ad and tracking server list",
         "format": "Standard",
-        "support_url": "https://github.com/uBlockOrigin/uAssets"
-    },
-    {
-        "uuid": "9F1AFA33-F034-4AE9-A927-6C293867EAF1",
-        "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-2020.txt",
-        "title": "uBlockOrigin 2020 Filters",
-        "format": "Standard",
-        "support_url": "https://github.com/uBlockOrigin/uAssets"
-    },
-    {
-        "uuid": "744e5fb2-5446-4578-a097-68efd098ed5e",
-        "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/privacy.txt",
-        "title": "uBlock filters – Privacy",
-        "format": "Standard",
-        "support_url": "https://github.com/uBlockOrigin/uAssets"
+        "support_url": "https://pgl.yoyo.org/adservers/"
     },
     {
         "uuid": "2FBEB0BC-E2E1-4170-BAA9-05E76AAB5BA5",
@@ -49,24 +77,10 @@
         "support_url": "https://github.com/brave/adblock-lists"
     },
     {
-        "uuid": "BCDF774A-7845-4121-B7EB-77EB66CEDF84",
-        "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/coin-miners.txt",
-        "title": "NoCoin Filter List",
+        "uuid": "9752d6b2-9e5d-4d56-a7e8-c2ee0f181ea3",
+        "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-social.txt",
+        "title": "Brave Social",
         "format": "Standard",
         "support_url": "https://github.com/brave/adblock-lists"
-    },
-    {
-        "uuid": "9FA0665A-8FC0-4590-A80A-3FF6117A1258",
-        "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-disconnect.txt",
-        "title": "Disconnect rules",
-        "format": "Standard",
-        "support_url": "https://github.com/brave/adblock-lists"
-    },
-    {
-        "uuid": "E55EAE71-8068-4903-A426-0F9EB3B332AC",
-        "url": "https://easylist-downloads.adblockplus.org/fanboy-notifications.txt",
-        "title": "Notification List",
-        "format": "Standard",
-        "support_url": "https://easylist.to/"
     }
 ]
