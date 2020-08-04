@@ -1,2 +1,14 @@
 [
+    {
+        "name": "sdk-init",
+        "aliases": [],
+        "kind": {"mime":"application/javascript"},
+        "resourcePath": "sdk-init.js"
+    },
+    {
+        "name": "sdk-run",
+        "aliases": [],
+        "kind": {"mime":"application/javascript"},
+        "resourcePath": "sdk-run.js"
+    }
 ]
