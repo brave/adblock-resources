@@ -57,7 +57,7 @@
     },
     {
         "uuid": "56b195f1-4b7b-4070-94c1-b720a650c8bc",
-        "url": "https://gitlab.com/curben/urlhaus-filter/raw/master/urlhaus-filter-online.txt",
+        "url": "https://raw.githubusercontent.com/curbengh/urlhaus-filter/master/urlhaus-filter-online.txt",
         "title": "URLhaus Malicious URL Blocklist",
         "format": "Standard",
         "support_url": "https://gitlab.com/curben/urlhaus-filter"
