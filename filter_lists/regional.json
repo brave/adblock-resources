@@ -297,6 +297,17 @@
         "desc": "Removes advertisements from Dutch websites"
     },
     {
+        "uuid": "8BEDBAA8-4FE2-4FEA-82F2-81B8124A4A74",
+        "url": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/NorwegianList.txt",
+        "title": "Dandelion Sprout's Nordic Filters",
+        "format": "Standard",
+        "langs": ["nb", "nn", "no", "da", "is"],
+        "support_url": "https://github.com/DandelionSprout/adfilt/issues",
+        "component_id": "kcffflkhcncgnbmgdhcgjfogpoacfied",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAocZlfkzlHWHXKsez5tmC4fFn4sJcjP67IlACrJIla8GgWQ6ipDCntH6Qq9zACQeePL5jocESzqh9vzdFdgY66puCk8dnLz3VOciDMLABwwf76runOrWVEEBUyDK+tq07tdHRz7V7QohRuvRoqRvdnXdbi/mcZGApuF+UjXVhs7OVGZSVsS9nriFkm1RF6BAv4/9wB0XhfCODaX/5bI34V1TbteN6d2iBKrDD7e7RxJCFBz9uCmHjR+yrxyZFBxDkgcH9FrXm+7tOGXuLmJljZ6frazp2Eg75aDLkC1O3FQgYqUP5H0Kdyexi6HmizYpQ4hW1Zhlv2hqeArAs42s1XwIDAQAB",
+        "desc": "Removes advertisements from Norwegian, Danish and Icelandic websites"
+    },
+    {
         "uuid": "BF9234EB-4CB7-4CED-9FCB-F1FD31B0666C",
         "url": "https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-adblock-filters/adblock.txt",
         "title": "Oficjalne Polskie Filtry do AdBlocka, uBlocka Origin i AdGuarda",
