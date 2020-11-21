@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+git diff HEAD --name-only --diff-filter=ACM | grep '\(resources\|metadata\).json$' | xargs npm run prepush --quiet
