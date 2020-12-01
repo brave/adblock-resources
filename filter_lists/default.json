@@ -77,6 +77,13 @@
         "support_url": "https://github.com/brave/adblock-lists"
     },
     {
+        "uuid": "BCB1AFD7-7563-4BD4-B1F1-AEA01D38E982",
+        "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-specific.txt",
+        "title": "Brave Specific",
+        "format": "Standard",
+        "support_url": "https://github.com/brave/adblock-lists"
+    },
+    {
         "uuid": "9752d6b2-9e5d-4d56-a7e8-c2ee0f181ea3",
         "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-social.txt",
         "title": "Brave Social",
