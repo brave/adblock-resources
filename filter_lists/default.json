@@ -14,6 +14,13 @@
         "support_url": "https://github.com/uBlockOrigin/uAssets"
     },
     {
+        "uuid": "0E51623E-A758-4C44-B988-6F01336C480A",
+        "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-2021.txt",
+        "title": "uBlock Origin 2021 Filters",
+        "format": "Standard",
+        "support_url": "https://github.com/uBlockOrigin/uAssets"
+    },
+    {
         "uuid": "4dda991a-cf59-4acf-82dc-c93bf38fbb31",
         "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/badware.txt",
         "title": "uBlock Origin filters - Badware risks",
