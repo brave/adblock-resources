@@ -155,7 +155,7 @@
     },
     {
         "uuid": "6C0F4C7F-969B-48A0-897A-14583015A587",
-        "url": "https://www.void.gr/kargig/void-gr-filters.txt",
+        "url": "https://raw.githubusercontent.com/kargig/greek-adblockplus-filter/master/void-gr-filters.txt",
         "title": "Greek AdBlock Filter",
         "format": "Standard",
         "langs": ["el"],
