@@ -100,7 +100,7 @@
     },
     {
         "uuid": "AC023D22-AE88-4060-A978-4FEEEC4221693",
-        "url": "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
+        "url": "https://secure.fanboy.co.nz/fanboy-cookiemonster_ubo.txt",
         "title": "Easylist-Cookie List - Filter Obtrusive Cookie Notices",
         "format": "Standard",
         "langs": [],
@@ -111,7 +111,7 @@
     },
     {
         "uuid": "67E792D4-AE03-4D1A-9EDE-80E01C81F9B8",
-        "url": "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
+        "url": "https://secure.fanboy.co.nz/fanboy-annoyance_ubo.txt",
         "title": "Fanboy Annoyances List",
         "format": "Standard",
         "langs": [],
