@@ -105,13 +105,6 @@
         "support_url": "https://github.com/brave/adblock-lists"
     },
     {
-        "uuid": "08ac2f6d-f7c5-4670-a8ec-9b2591bdfd0d",
-        "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-ios-specific.txt",
-        "title": "Brave iOS-Specific Rules",
-        "format": "Standard",
-        "support_url": "https://github.com/brave/adblock-lists"
-    },
-    {
         "uuid": "49254a7e-396e-4d1f-af48-f5730e22e1ce",
         "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-android-specific.txt",
         "title": "Brave Android-Specific Rules",
