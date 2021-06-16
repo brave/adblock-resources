@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "node build",
-    "test": "node verify"
+    "test": "node verify",
+    "prepush": "npm run test",
+    "postinstall": "if [ -d .git-hooks ]; then for file in `ls .git-hooks`; do ln -sf ../../.git-hooks/${file} .git/hooks/${file}; done fi"
   },
   "repository": {
     "type": "git",
