@@ -110,5 +110,12 @@
         "title": "Brave Android-Specific Rules",
         "format": "Standard",
         "support_url": "https://github.com/brave/adblock-lists"
+    },
+    {
+        "uuid": "b0433353-1144-473c-8e25-19fb035024b7",
+        "url": "https://raw.githubusercontent.com/brave-experiments/sugarcoat-pipeline/main/brave/collated_sugarcoat_rules.txt",
+        "title": "SugarCoat Rules",
+        "format": "Standard",
+        "support_url": "https://github.com/brave-experiments/sugarcoat-pipeline"
     }
 ]
