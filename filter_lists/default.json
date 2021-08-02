@@ -113,7 +113,7 @@
     },
     {
         "uuid": "b0433353-1144-473c-8e25-19fb035024b7",
-        "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-sugarcoat.txt",
+        "url": "https://raw.githubusercontent.com/brave/adblock-lists/sugarcoat-rules/brave-lists/brave-sugarcoat.txt",
         "title": "SugarCoat Rules",
         "format": "Standard",
         "support_url": "https://github.com/brave-experiments/sugarcoat-pipeline"
