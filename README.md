@@ -58,6 +58,6 @@ The `filter_lists/*.json` files are lists of elements, each describing a filter 
 
 - `format` is either ABP/uBO-style format ("Standard", most common) or IP address and hostname ("Hosts").
 
-- `include_redirect_urls` permits parsing of `redirect-url` filter option. This has security implications and should usually be `false`.
+- `include_redirect_urls` permits parsing of `redirect-url` filter option. This has security implications. This field is optional and defaults to `false`. 
 
 - `support_url` is somewhere a user can ask for help with the filter list.
