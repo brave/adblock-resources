@@ -1,2 +1,66 @@
 [
+    {
+        "name": "sugarcoat-EXc2f2c81d843441bfbe3ef094a9cff39d-libraryCode_source.min-b2d095f00aca850075d265f4a81c8fb7.min",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "sugarcoat-EXc2f2c81d843441bfbe3ef094a9cff39d-libraryCode_source.min-b2d095f00aca850075d265f4a81c8fb7.min.js"
+    },
+    {
+        "name": "sugarcoat-analytics-a14946c73def6bdaa93155f58435a82e.min",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "sugarcoat-analytics-a14946c73def6bdaa93155f58435a82e.min.js"
+    },
+    {
+        "name": "sugarcoat-analytics.a113b136ebdce01cf16d-7f8d3e5b8a25cb57ea68a3cdbc78a58b.min",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "sugarcoat-analytics.a113b136ebdce01cf16d-7f8d3e5b8a25cb57ea68a3cdbc78a58b.min.js"
+    },
+    {
+        "name": "sugarcoat-cmp2-a52bcd9059a7d75c4d5b8f66db49a380.min",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "sugarcoat-cmp2-a52bcd9059a7d75c4d5b8f66db49a380.min.js"
+    },
+    {
+        "name": "sugarcoat-gpt-83c6e054eb06b453d56c97b9ddd181d6.min",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "sugarcoat-gpt-83c6e054eb06b453d56c97b9ddd181d6.min.js"
+    },
+    {
+        "name": "sugarcoat-launch-EN3932511771fb4e5e9dd852ae89372b59.min-7754fade75bed02e4097bf3d7fff178c.min",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "sugarcoat-launch-EN3932511771fb4e5e9dd852ae89372b59.min-7754fade75bed02e4097bf3d7fff178c.min.js"
+    },
+    {
+        "name": "sugarcoat-launch-ENbb9d0de7cc374dc99259df2c4b823cef.min-2eb9609b74432d652877d41a51a8d2ba.min",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "sugarcoat-launch-ENbb9d0de7cc374dc99259df2c4b823cef.min-2eb9609b74432d652877d41a51a8d2ba.min.js"
+    },
+    {
+        "name": "sugarcoat-moatheader-7754008b0da848856cddb20094976335.min",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "sugarcoat-moatheader-7754008b0da848856cddb20094976335.min.js"
+    }
 ]
