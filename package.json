@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "node build",
-    "test": "node verify"
+    "test": "node verify",
+    "generateMetadata": "node generateMetadataJsonFromScriptResources.js"
   },
   "repository": {
     "type": "git",
