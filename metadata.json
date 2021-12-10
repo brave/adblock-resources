@@ -3,6 +3,6 @@
     "name": "brave-fix",
     "aliases": ["bf"],
     "kind": {"mime":"application/javascript"},
-    "resourcePath": "resources/brave-fix.js"
+    "resourcePath": "brave-fix.js"
 }
 ]
