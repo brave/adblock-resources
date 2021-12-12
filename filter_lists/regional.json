@@ -66,6 +66,17 @@
         "desc": "Removes advertisements from Czech and Slovak websites"
     },
     {
+        "uuid": "2BF6F16F-3214-4F55-B148-8DBB52389D1A",
+        "url": "https://raw.githubusercontent.com/tomasko126/easylistczechandslovak/master/filters_ublock.txt",
+        "title": "CZE, SVK: EasyList Czech and Slovak (Supplemental uBO list)",
+        "format": "Standard",
+        "langs": ["cs", "sk"],
+        "support_url": "https://github.com/tomasko126/easylistczechandslovak",
+        "component_id": "ockdpoalbdhldgdlolfjnadgjjhnndin",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAutAjsoNQ56kvX8cbv68I5TJkU/xsw0t4iWndmxW0yU0nqJob7EoEh+0QzwluFv5jFrJAej42bX/DFmO+dVm7SpZA3vXCeWbN/tx1Ek9JGDETCwuVedY674uhpuUSIF86jbrNvKay3qHiVzsT1I5azokko6QMr18IdsWA1akFjk0FWOIOBKrnjHzLOrzGPTbkQBeQ/7cTz6Th8lI0Us/SXb50HK61IYsk5eO0BuQt7sIAeRXhCpzy/1h1ZOHzQ5omc/4W/smlsNfhv60q4qZ+UTOibqH2ZYOzHwx64On1m+kxRK2j0SFyyDCKEC0Mz0iB8a3/vhkJDXtmwA5ENLVkVwIDAQAB",
+        "desc": "Removes advertisements from Czech and Slovak websites (Supplemental uBO list)"
+    },
+    {
         "uuid": "E71426E7-E898-401C-A195-177945415F38",
         "url": "https://easylist-downloads.adblockplus.org/easylistgermany.txt",
         "title": "EasyList Germany",
