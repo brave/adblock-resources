@@ -10,7 +10,9 @@ This package can be imported as a library, exposing the function `readResources`
 
 Alternatively, `npm run build` will write all resources to `dist/resources.json` for future use.
 
-Use `npm run verify` after modifying the resources or metadata file to ensure the format can be accepted by `adblock-rust`.
+To generate `metadata.json` automatically from files in `resources/`, run `npm run generateMetadata`.
+
+Use `npm run test` after modifying the resources or metadata file to ensure the format can be accepted by `adblock-rust`.
 
 ## Metadata format
 
