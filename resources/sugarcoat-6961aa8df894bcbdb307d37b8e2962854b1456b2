@@ -1,0 +1,682 @@
+{
+    const $___mock_17c58e97fbec9bf3 = {};
+    (exports => {
+        'use strict';
+        const xhrUnsent = 0;
+        const xhrOpened = 1;
+        const xhrHeadersReceived = 2;
+        const xhrLoading = 3;
+        const xhrDone = 4;
+        const xhrDeferredHandleSymbol = Symbol('deferredHandle');
+        const xhrOnLoadStartSymbol = Symbol('onloadstart');
+        const xhrOnProgressSymbol = Symbol('onprogress');
+        const xhrOnAbortSymbol = Symbol('onabort');
+        const xhrOnErrorSymbol = Symbol('onerror');
+        const xhrOnLoadSymbol = Symbol('onload');
+        const xhrOnTimeoutSymbol = Symbol('ontimeout');
+        const xhrOnLoadEndSymbol = Symbol('onloadend');
+        const xhrOnReadyStateChangeSymbol = Symbol('onreadystatechange');
+        const xhrReadyStateSymbol = Symbol('readyState');
+        const xhrTimeoutSymbol = Symbol('timeout');
+        const xhrWithCredentialsSymbol = Symbol('withCredentials');
+        const xhrUploadSymbol = Symbol('upload');
+        const xhrResponseTypeSymbol = Symbol('responseType');
+        const defineEvent = (obj, symbol) => {
+            const type = symbol.description.substring(2);
+            Object.defineProperty(obj, symbol, {
+                configurable: false,
+                enumerable: false,
+                value: null,
+                writable: true
+            });
+            obj.addEventListener(type, function (event) {
+                const handler = this[symbol];
+                if (handler) {
+                    handler.call(this, event);
+                }
+            });
+        };
+        const changeReadyState = (xhr, readyState) => {
+            xhr[xhrReadyStateSymbol] = readyState;
+            xhr.dispatchEvent(new Event('readystatechange'));
+        };
+        let isSealed = true;
+        class XMLHttpRequestEventTarget extends EventTarget {
+            constructor() {
+                super();
+                if (!(this instanceof XMLHttpRequest) && !(this instanceof XMLHttpRequestUpload)) {
+                    throw new TypeError('Illegal constructor');
+                }
+                defineEvent(this, xhrOnLoadStartSymbol);
+                defineEvent(this, xhrOnProgressSymbol);
+                defineEvent(this, xhrOnAbortSymbol);
+                defineEvent(this, xhrOnErrorSymbol);
+                defineEvent(this, xhrOnLoadSymbol);
+                defineEvent(this, xhrOnTimeoutSymbol);
+                defineEvent(this, xhrOnLoadEndSymbol);
+            }
+            get onloadstart() {
+                return this[xhrOnLoadStartSymbol];
+            }
+            set onloadstart(value) {
+                this[xhrOnLoadStartSymbol] = value;
+            }
+            get onprogress() {
+                return this[xhrOnProgressSymbol];
+            }
+            set onprogress(value) {
+                this[xhrOnProgressSymbol] = value;
+            }
+            get onabort() {
+                return this[xhrOnAbortSymbol];
+            }
+            set onabort(value) {
+                this[xhrOnAbortSymbol] = value;
+            }
+            get onerror() {
+                return this[xhrOnErrorSymbol];
+            }
+            set onerror(value) {
+                this[xhrOnErrorSymbol] = value;
+            }
+            get ontimeout() {
+                return this[xhrOnTimeoutSymbol];
+            }
+            set ontimeout(value) {
+                this[xhrOnTimeoutSymbol] = value;
+            }
+            get onloadend() {
+                return this[xhrOnLoadEndSymbol];
+            }
+            set onloadend(value) {
+                this[xhrOnLoadEndSymbol] = value;
+            }
+        }
+        exports.XMLHttpRequestEventTarget = {
+            configurable: true,
+            enumerable: true,
+            value: XMLHttpRequestEventTarget,
+            writable: true
+        };
+        class XMLHttpRequestUpload extends XMLHttpRequestEventTarget {
+            constructor() {
+                if (isSealed) {
+                    throw new TypeError('Illegal constructor');
+                }
+                super();
+            }
+        }
+        exports.XMLHttpRequestUpload = {
+            configurable: true,
+            enumerable: true,
+            value: XMLHttpRequestUpload,
+            writable: true
+        };
+        class XMLHttpRequest extends XMLHttpRequestEventTarget {
+            constructor() {
+                super();
+                isSealed = false;
+                const xhrUpload = new XMLHttpRequestUpload();
+                isSealed = true;
+                Object.defineProperty(this, xhrDeferredHandleSymbol, {
+                    configurable: false,
+                    enumerable: false,
+                    value: null,
+                    writable: true
+                });
+                defineEvent(this, xhrOnReadyStateChangeSymbol);
+                Object.defineProperty(this, xhrReadyStateSymbol, {
+                    configurable: false,
+                    enumerable: false,
+                    value: xhrUnsent,
+                    writable: true
+                });
+                Object.defineProperty(this, xhrTimeoutSymbol, {
+                    configurable: false,
+                    enumerable: false,
+                    value: 0,
+                    writable: true
+                });
+                Object.defineProperty(this, xhrWithCredentialsSymbol, {
+                    configurable: false,
+                    enumerable: false,
+                    value: false,
+                    writable: true
+                });
+                Object.defineProperty(this, xhrUploadSymbol, {
+                    configurable: false,
+                    enumerable: false,
+                    value: xhrUpload,
+                    writable: false
+                });
+                Object.defineProperty(this, xhrResponseTypeSymbol, {
+                    configurable: false,
+                    enumerable: false,
+                    value: '',
+                    writable: true
+                });
+            }
+            get onreadystatechange() {
+                return this[xhrOnReadyStateChangeSymbol];
+            }
+            set onreadystatechange(value) {
+                this[xhrOnReadyStateChangeSymbol] = value;
+            }
+            get readyState() {
+                return this[xhrReadyStateSymbol];
+            }
+            open(method, url) {
+                switch (this[xhrReadyStateSymbol]) {
+                case xhrUnsent:
+                case xhrDone: {
+                        changeReadyState(this, xhrOpened);
+                        break;
+                    }
+                }
+            }
+            setRequestHeader(name, value) {
+            }
+            setTrustToken(trustToken) {
+            }
+            get timeout() {
+                return this[xhrTimeoutSymbol];
+            }
+            set timeout(value) {
+                this[xhrTimeoutSymbol] = value;
+            }
+            get withCredentials() {
+                return this[xhrWithCredentialsSymbol];
+            }
+            set withCredentials(value) {
+                switch (this[xhrReadyStateSymbol]) {
+                case xhrUnsent:
+                case xhrOpened: {
+                        break;
+                    }
+                default: {
+                        throw new DOMException('Failed to set the \'withCredentials\' property on \'XMLHttpRequest\': The value may only be set if the object\'s state is UNSENT or OPENED.');
+                    }
+                }
+                this[xhrWithCredentialsSymbol] = !!value;
+            }
+            get upload() {
+                return this[xhrUploadSymbol];
+            }
+            send() {
+                if (this[xhrReadyStateSymbol] === xhrOpened && this[xhrDeferredHandleSymbol] === null) {
+                    this[xhrDeferredHandleSymbol] = setTimeout(() => {
+                        this[xhrDeferredHandleSymbol] = null;
+                        changeReadyState(this, xhrDone);
+                        this.dispatchEvent(new ProgressEvent('error'));
+                        this.dispatchEvent(new ProgressEvent('loadend'));
+                    }, 0);
+                } else {
+                    throw new DOMException('Failed to execute \'send\' on \'XMLHttpRequest\': The object\'s state must be OPENED.');
+                }
+            }
+            abort() {
+                if (this[xhrReadyStateSymbol] === xhrOpened && this[xhrDeferredHandleSymbol] !== null) {
+                    clearTimeout(this[xhrDeferredHandleSymbol]);
+                    this[xhrDeferredHandleSymbol] = null;
+                    changeReadyState(this, xhrUnsent);
+                    this.dispatchEvent(new ProgressEvent('abort'));
+                    this.dispatchEvent(new ProgressEvent('loadend'));
+                }
+            }
+            get responseURL() {
+                return '';
+            }
+            get status() {
+                return 0;
+            }
+            get statusText() {
+                return '';
+            }
+            getResponseHeader(name) {
+                return null;
+            }
+            overrideMimeType(mime) {
+            }
+            get responseType() {
+                return this[xhrResponseTypeSymbol];
+            }
+            set responseType(value) {
+                switch (this[xhrReadyStateSymbol]) {
+                case xhrDone: {
+                        throw new DOMException('Failed to set the \'responseType\' property on \'XMLHttpRequest\': The response type cannot be set if the object\'s state is LOADING or DONE.');
+                    }
+                }
+                switch (value) {
+                case '':
+                case 'arraybuffer':
+                case 'blob':
+                case 'document':
+                case 'json':
+                case 'text': {
+                        this[xhrResponseTypeSymbol] = value;
+                        break;
+                    }
+                }
+            }
+            get response() {
+                const responseType = this[xhrResponseTypeSymbol];
+                return responseType === '' || responseType === 'text' ? '' : null;
+            }
+            get responseText() {
+                const responseType = this[xhrResponseTypeSymbol];
+                if (responseType === '' || responseType === 'text') {
+                    return '';
+                } else {
+                    throw new DOMException('Failed to read the \'responseText\' property from \'XMLHttpRequest\': The value is only accessible if the object\'s \'responseType\' is \'\' or \'text\' (was \'arraybuffer\').');
+                }
+            }
+            get responseXML() {
+                return null;
+            }
+        }
+        Object.defineProperty(XMLHttpRequest, 'UNSENT', {
+            configurable: false,
+            enumerable: true,
+            value: xhrUnsent
+        });
+        Object.defineProperty(XMLHttpRequest, 'OPENED', {
+            configurable: false,
+            enumerable: true,
+            value: xhrOpened
+        });
+        Object.defineProperty(XMLHttpRequest, 'HEADERS_RECEIVED', {
+            configurable: false,
+            enumerable: true,
+            value: xhrHeadersReceived
+        });
+        Object.defineProperty(XMLHttpRequest, 'LOADING', {
+            configurable: false,
+            enumerable: true,
+            value: xhrLoading
+        });
+        Object.defineProperty(XMLHttpRequest, 'DONE', {
+            configurable: false,
+            enumerable: true,
+            value: xhrDone
+        });
+        exports.XMLHttpRequest = {
+            configurable: true,
+            enumerable: true,
+            value: XMLHttpRequest,
+            writable: true
+        };
+    })($___mock_17c58e97fbec9bf3);
+    const $___mock_9c7fd5f1f501bdbe = {};
+    (exports => {
+        'use strict';
+        let isSealed = false;
+        class Storage {
+            constructor() {
+                if (isSealed) {
+                    throw new TypeError('Illegal constructor');
+                }
+            }
+            get length() {
+                return Object.keys(this).length;
+            }
+            key(index) {
+                const keys = Object.keys(this);
+                if (index < 0 || index >= keys.length) {
+                    return null;
+                }
+                return keys[index];
+            }
+            getItem(key) {
+                return Object.prototype.hasOwnProperty.call(this, key) ? this[key] : null;
+            }
+            setItem(key, value) {
+                this[key] = String(value);
+            }
+            removeItem(key) {
+                delete this[key];
+            }
+            clear() {
+                const keys = Object.keys(this);
+                for (const key of keys) {
+                    delete this[key];
+                }
+            }
+        }
+        exports.Storage = {
+            configurable: true,
+            enumerable: true,
+            value: Storage,
+            writable: true
+        };
+        const localStorage = new Storage();
+        exports.localStorage = {
+            configurable: true,
+            enumerable: true,
+            get() {
+                return localStorage;
+            }
+        };
+        const sessionStorage = new Storage();
+        exports.sessionStorage = {
+            configurable: true,
+            enumerable: true,
+            get() {
+                return sessionStorage;
+            }
+        };
+        isSealed = true;
+    })($___mock_9c7fd5f1f501bdbe);
+    (function () {
+        Marketing.bindDependencyImmediate(function () {
+            var Bootstrapper = window['Marketing'];
+            var ensightenOptions = Marketing.ensightenOptions;
+            try {
+                Marketing.UDO.perfTimingStart('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+                if (dell_marketing_util.getParameterByName('mdebug', location.search) == 'true') {
+                    dell_marketing_util.getDpid = function () {
+                        return new Date().getTime();
+                    };
+                    Marketing.gEvent('DC-9632645/sales0/csb_test+transactions', 'purchase');
+                    document.querySelectorAll('iframe').forEach(function (key) {
+                        if (key.src.includes('type=sales'))
+                            key.contentWindow.postMessage(JSON.stringify(Marketing), '*');
+                    });
+                }
+                Marketing.UDO.perfTimingEnd('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+            } catch (e) {
+                dell_marketing_util.debug(e);
+            }
+        }, 3600311, [3617682], 636142, [619404]);
+        Marketing.bindDependencyDOMParsed(function () {
+            var Bootstrapper = window['Marketing'];
+            var ensightenOptions = Marketing.ensightenOptions;
+            try {
+                Marketing.UDO.perfTimingStart('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+                (function (w, d, t, r, u) {
+                    var f, n, i;
+                    w[u] = w[u] || [], f = function () {
+                        const $___old_0459ef582a98300e = {}.constructor.getOwnPropertyDescriptor(window, 'XMLHttpRequest'), $___old_614a6fca65dfdae7 = {}.constructor.getOwnPropertyDescriptor(window, 'localStorage');
+                        try {
+                            if ($___old_0459ef582a98300e)
+                                ({}.constructor.defineProperty(window, 'XMLHttpRequest', $___mock_17c58e97fbec9bf3.XMLHttpRequest));
+                            if ($___old_614a6fca65dfdae7)
+                                ({}.constructor.defineProperty(window, 'localStorage', $___mock_9c7fd5f1f501bdbe.localStorage));
+                            return function () {
+                                var o = { ti: '5102261' };
+                                o.q = w[u], w[u] = new UET(o), w[u].push('pageLoad');
+                            }.apply(this, arguments);
+                        } finally {
+                            if ($___old_0459ef582a98300e)
+                                ({}.constructor.defineProperty(window, 'XMLHttpRequest', $___old_0459ef582a98300e));
+                            if ($___old_614a6fca65dfdae7)
+                                ({}.constructor.defineProperty(window, 'localStorage', $___old_614a6fca65dfdae7));
+                        }
+                    }, n = d.createElement(t), n.src = r, n.async = 1, n.onload = n.onreadystatechange = function () {
+                        var s = this.readyState;
+                        s && s !== 'loaded' && s !== 'complete' || (f(), n.onload = n.onreadystatechange = null);
+                    }, i = d.getElementsByTagName(t)[0], i.parentNode.insertBefore(n, i);
+                }(window, document, 'script', '//bat.bing.com/bat.js', 'uetq'));
+                Marketing.UDO.perfTimingEnd('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+            } catch (e) {
+                dell_marketing_util.debug(e);
+            }
+        }, 3605242, [3606329], 695874, [610323]);
+        Marketing.bindDependencyDOMParsed(function () {
+            var Bootstrapper = window['Marketing'];
+            var ensightenOptions = Marketing.ensightenOptions;
+            try {
+                Marketing.UDO.perfTimingStart('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+                if (Marketing.UDO.priorconsent) {
+                    var c = Marketing.scDataObj.country;
+                    if (c === 'us')
+                        Marketing.insertScript('//vt.myvisualiq.net/2/TxUQNHSKvGWIiMj1Oh3tfw%3D%3D/vt-288.js');
+                    if (c === 'ca')
+                        Marketing.insertScript('//vt.myvisualiq.net/2/TxUQNHSKvGWIiMj1Oh3tfw%3D%3D/vt-289.js');
+                    if (c === 'br')
+                        Marketing.insertScript('//vt.myvisualiq.net/2/wQQtTiizl4SixrhITyTqbg%3D%3D/vt-286.js');
+                    if (c === 'uk')
+                        Marketing.insertScript('//vt.myvisualiq.net/2/ami7eWD7Ma9qku9HDG232w%3D%3D/vt-213.js');
+                    if (c === 'jp')
+                        Marketing.insertScript('//vt.myvisualiq.net/2/6%2BxT%2BO3z1zh14yulJBDN6g%3D%3D/vt-287.js');
+                    if (c === 'au')
+                        Marketing.insertScript('//vt.myvisualiq.net/2/ipeeyHht4npQEiziCWaYzw%3D%3D/vt-299.js');
+                    if (c === 'nz')
+                        Marketing.insertScript('//vt.myvisualiq.net/2/ipeeyHht4npQEiziCWaYzw%3D%3D/vt-301.js');
+                    if (c === 'in')
+                        Marketing.insertScript('//vt.myvisualiq.net/2/uBF%2BndJT7n0r9WysNI1Vww%3D%3D/vt-298.js');
+                    if (c === 'fr')
+                        Marketing.insertScript('//vt.myvisualiq.net/2/GXOdN%2BWugY3N3n4a5LAkNQ%3D%3D/vt-300.js');
+                    if (c === 'de')
+                        Marketing.insertScript('//vt.myvisualiq.net/2/v9BJOGcgl4wfjn7pXBhunA%3D%3D/vt-302.js');
+                }
+                Marketing.UDO.perfTimingEnd('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+            } catch (e) {
+                dell_marketing_util.debug(e);
+            }
+        }, 3593365, [
+            3506924,
+            3606329
+        ], 621919, [
+            610310,
+            610323
+        ]);
+        Marketing.bindDOMParsed(function () {
+            var Bootstrapper = window['Marketing'];
+            var ensightenOptions = Marketing.ensightenOptions;
+            try {
+                Marketing.UDO.perfTimingStart('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+                if (Marketing.UDO.priorconsent)
+                    Marketing.imageRequest('https://px.ads.linkedin.com/collect/?pid=7513&fmt=gif');
+                Marketing.UDO.perfTimingEnd('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+            } catch (e) {
+                dell_marketing_util.debug(e);
+            }
+        }, 3593287, 619089);
+        Marketing.bindDependencyImmediate(function () {
+            var Bootstrapper = window['Marketing'];
+            var ensightenOptions = Marketing.ensightenOptions;
+            Marketing.UDO.fl_loaded = false;
+            if (Marketing.UDO.priorconsent) {
+                Marketing.loadScriptCallback('https://www.googletagmanager.com/gtag/js?id=DC-9632645', function () {
+                    dell_marketing_util.custom_marketing_event('fl_loaded');
+                    Marketing.UDO.fl_loaded = true;
+                });
+                window.dataLayer = window.dataLayer || [];
+                window.gtag = function () {
+                    dataLayer.push(arguments);
+                };
+                gtag('js', new Date());
+                gtag('config', 'DC-9632645');
+                gtag('config', 'DC-9632921');
+                gtag('config', 'DC-9632648');
+                var cflv_master_setup = function () {
+                    return {
+                        allow_custom_scripts: true,
+                        u1: Marketing.UDO.language,
+                        u10: Marketing.UDO.cseg,
+                        u11: Marketing.UDO.deals,
+                        u12: Marketing.UDO.device,
+                        u13: Marketing.UDO.discount,
+                        u14: Marketing.UDO.family,
+                        u15: Marketing.UDO.ogid,
+                        u16: Marketing.UDO.ordercode,
+                        u17: Marketing.UDO.platform,
+                        u18: Marketing.UDO.prodcat,
+                        u19: Marketing.UDO.product,
+                        u2: Marketing.UDO.segment,
+                        u20: Marketing.UDO.promoid,
+                        u21: Marketing.UDO.type,
+                        u22: dell_marketing_util.getParameterByName('dgc', location.toString().toLowerCase()),
+                        u23: Marketing.UDO.gacd,
+                        u24: dell_marketing_util.getParameterByName('lid', location.toString().toLowerCase()),
+                        u25: Marketing.UDO.ven1,
+                        u26: Marketing.UDO.ven2,
+                        u28: dell_marketing_util.getParameterByName('tfcid', location.toString().toLowerCase()),
+                        u29: Marketing.UDO.revenue,
+                        u3: Marketing.UDO.currency,
+                        u30: Marketing.UDO.usdrev,
+                        u35: Marketing.UDO.dpid,
+                        u36: Marketing.UDO.land,
+                        u37: Marketing.UDO.serialprodlist,
+                        u38: Marketing.UDO.cjevent,
+                        u4: Marketing.UDO.country,
+                        u5: Marketing.UDO.accountid,
+                        u6: Marketing.UDO.category,
+                        u7: Marketing.UDO.categorypath,
+                        u8: Marketing.UDO.cid,
+                        u9: Marketing.UDO.coupon
+                    };
+                };
+                Marketing.UDO.readData();
+                var cflv_master = cflv_master_setup();
+                cflv_master['u31'] = '';
+                var adobe_mcmid = dell_marketing_util.getCookie('AMCV_4DD80861515CAB990A490D45%40AdobeOrg');
+                if (adobe_mcmid)
+                    cflv_master['u31'] = adobe_mcmid.split('MCMID|')[1].split('|')[0];
+                Marketing.gEvent = Marketing.gEvent || function (idString, eventType) {
+                    window.addEventListener('fl_loaded', function () {
+                        var cflv = cflv_master;
+                        if (eventType === 'purchase') {
+                            cflv['value'] = Marketing.UDO.usdrev || Marketing.UDO.revenue;
+                            cflv['transaction_id'] = dell_marketing_util.getDpid();
+                        }
+                        cflv['send_to'] = idString;
+                        gtag('event', eventType, cflv);
+                    });
+                    if (Marketing.UDO.fl_loaded) {
+                        cflv_master = cflv_master_setup();
+                        var cflv = cflv_master;
+                        if (eventType === 'purchase') {
+                            cflv['value'] = Marketing.UDO.usdrev || Marketing.UDO.revenue;
+                            cflv['transaction_id'] = dell_marketing_util.getDpid();
+                        }
+                        cflv['send_to'] = idString;
+                        gtag('event', eventType, cflv);
+                    }
+                };
+            }
+        }, 3617682, [3606329], 619404, [610323]);
+        Marketing.bindDependencyImmediate(function () {
+            var Bootstrapper = window['Marketing'];
+            var ensightenOptions = Marketing.ensightenOptions;
+            Marketing.UDO.g_download = function (idString, eventType) {
+                window.addEventListener('hve', function (e) {
+                    Marketing.UDO.hveoverlay = false;
+                    if (e.detail.type === 'download')
+                        Marketing.gEvent(idString, eventType);
+                });
+                if (Marketing.UDO.hveoverlay)
+                    Marketing.gEvent(idString, eventType);
+            };
+            Marketing.UDO.g_share = function (idString, eventType) {
+                window.addEventListener('hve', function (e) {
+                    if (e.detail.type === 'share')
+                        Marketing.gEvent(idString, eventType);
+                });
+            };
+            Marketing.UDO.g_mpv = function (idString, eventType) {
+                if (sessionStorage.enspagecountFLT == 3)
+                    Marketing.gEvent(idString, eventType);
+            };
+            Marketing.UDO.g_bc_start = function (idString, eventType) {
+                if (typeof videojs !== 'undefined' && videojs.players)
+                    for (var v in videojs.players)
+                        videojs.players[v].ready(function () {
+                            var myplayer = this, userVideo = !myplayer.el_.hasAttribute('muted');
+                            if (userVideo)
+                                myplayer.on('start', function () {
+                                    if (!myplayer.video_start) {
+                                        myplayer.video_50_percent = false;
+                                        myplayer.video_80_percent = false;
+                                        Marketing.gEvent(idString, eventType);
+                                    }
+                                });
+                        });
+                else
+                    window.addEventListener('hve', function _handler(e) {
+                        if (e.detail.type === 'brightcove') {
+                            Marketing.UDO.g_bc_start(idString, eventType);
+                            window.removeEventListener('hve', _handler);
+                        }
+                    });
+            };
+            Marketing.UDO.g_bc_50 = function (idString, eventType) {
+                window.addEventListener('brightcove50', function (e) {
+                    Marketing.gEvent(idString, eventType);
+                });
+            };
+            Marketing.UDO.g_bc_80 = function (idString, eventType) {
+                window.addEventListener('brightcove80', function (e) {
+                    Marketing.gEvent(idString, eventType);
+                });
+            };
+            Marketing.UDO.g_bc_end = function (idString, eventType) {
+                if (typeof videojs !== 'undefined' && videojs.players)
+                    for (var v in videojs.players)
+                        videojs.players[v].ready(function () {
+                            var myplayer = this, userVideo = !myplayer.el_.hasAttribute('muted');
+                            if (userVideo)
+                                myplayer.on('ended', function () {
+                                    Marketing.gEvent(idString, eventType);
+                                    myplayer.video_start = false;
+                                });
+                        });
+                else
+                    window.addEventListener('hve', function _handler(e) {
+                        if (e.detail.type === 'brightcove') {
+                            Marketing.UDO.g_bc_end(idString, eventType);
+                            window.removeEventListener('hve', _handler);
+                        }
+                    });
+            };
+            Marketing.UDO.g_contactus = function (idString, eventType) {
+                window.addEventListener('hve', function (e) {
+                    if (e.detail.type === 'contactus')
+                        Marketing.gEvent(idString, eventType);
+                });
+            };
+            Marketing.UDO.g_chat = function (idString, eventType) {
+                window.addEventListener('hve', function (e) {
+                    if (e.detail.type === 'chat')
+                        Marketing.gEvent(idString, eventType);
+                });
+            };
+            Marketing.UDO.g_addtocart = function (idString, eventType) {
+                if (dell_marketing_util.getscMap('wacontroller') === 'contents' || dell_marketing_util.getscMap('workflowstep') === 'cart')
+                    Marketing.gEvent(idString, eventType);
+            };
+            Marketing.UDO.g_checkout = function (idString, eventType) {
+                if (dell_marketing_util.getscMap('wacontroller') === 'confirmation')
+                    Marketing.gEvent(idString, eventType);
+            };
+            Marketing.UDO.g_podcast_listen = function (idString, eventType) {
+                window.addEventListener('hve', function (e) {
+                    if (e.detail.type === 'podcast_listen')
+                        Marketing.gEvent(idString, eventType);
+                });
+            };
+            Marketing.UDO.g_podcast_subscribe = function (idString, eventType) {
+                window.addEventListener('hve', function (e) {
+                    if (e.detail.type === 'podcast_subscribe')
+                        Marketing.gEvent(idString, eventType);
+                });
+            };
+            Marketing.UDO.g_rfq_submit = function (idString, eventType) {
+                window.addEventListener('hve', function (e) {
+                    if (e.detail.type === 'rfq_submit')
+                        Marketing.gEvent(idString, eventType);
+                });
+            };
+            Marketing.UDO.g_ion_submit = function (idString, eventType) {
+                if (/liveball.*completed/gi.test(dell_marketing_util.getscMap('pagename')))
+                    Marketing.gEvent(idString, eventType);
+            };
+            Marketing.UDO.g_gated_submit = function (idString, eventType) {
+                window.addEventListener('hve', function (e) {
+                    if (e.detail.type === 'gated_submit')
+                        Marketing.gEvent(idString, eventType);
+                });
+            };
+        }, 3475193, [3617682], 620818, [619404]);
+    }())
+}

@@ -1,8 +1,50 @@
 [
-{
-    "name": "brave-fix",
-    "aliases": ["bf"],
-    "kind": {"mime":"application/javascript"},
-    "resourcePath": "brave-fix.js"
-}
+    {
+        "name": "brave-fix",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "brave-fix.js"
+    },
+    {
+        "name": "sugarcoat-1a975df104c71223d9989552eacf10a7f5b81a06",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "sugarcoat-1a975df104c71223d9989552eacf10a7f5b81a06"
+    },
+    {
+        "name": "sugarcoat-40c18b40d446c3c7ea5002e4f29c8402e6b2d27f",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "sugarcoat-40c18b40d446c3c7ea5002e4f29c8402e6b2d27f"
+    },
+    {
+        "name": "sugarcoat-6961aa8df894bcbdb307d37b8e2962854b1456b2",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "sugarcoat-6961aa8df894bcbdb307d37b8e2962854b1456b2"
+    },
+    {
+        "name": "sugarcoat-76e80ab4b8c8152cebc693828c51edf38ad8a11a",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "sugarcoat-76e80ab4b8c8152cebc693828c51edf38ad8a11a"
+    },
+    {
+        "name": "sugarcoat-89d88c8924fa57b73f2c12c7469afb4a8ac7ad38",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "sugarcoat-89d88c8924fa57b73f2c12c7469afb4a8ac7ad38"
+    }
 ]
