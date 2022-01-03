@@ -8,38 +8,6 @@
         "resourcePath": "async-sugarcoat-04394153a7ce417b88e3fe1790a4e6a269bfebe5.js"
     },
     {
-        "name": "async-sugarcoat-1290d064f0a1f106f4c14d0dbd0aca60",
-        "aliases": [],
-        "kind": {
-            "mime": "application/javascript"
-        },
-        "resourcePath": "async-sugarcoat-1290d064f0a1f106f4c14d0dbd0aca60.js"
-    },
-    {
-        "name": "async-sugarcoat-7754008b0da848856cddb20094976335",
-        "aliases": [],
-        "kind": {
-            "mime": "application/javascript"
-        },
-        "resourcePath": "async-sugarcoat-7754008b0da848856cddb20094976335.js"
-    },
-    {
-        "name": "async-sugarcoat-7754fade75bed02e4097bf3d7fff178c",
-        "aliases": [],
-        "kind": {
-            "mime": "application/javascript"
-        },
-        "resourcePath": "async-sugarcoat-7754fade75bed02e4097bf3d7fff178c.js"
-    },
-    {
-        "name": "async-sugarcoat-83c6e054eb06b453d56c97b9ddd181d6",
-        "aliases": [],
-        "kind": {
-            "mime": "application/javascript"
-        },
-        "resourcePath": "async-sugarcoat-83c6e054eb06b453d56c97b9ddd181d6.js"
-    },
-    {
         "name": "async-sugarcoat-8a459c41783885dc83d30f5b7da2359091f4e607",
         "aliases": [],
         "kind": {
@@ -48,40 +16,8 @@
         "resourcePath": "async-sugarcoat-8a459c41783885dc83d30f5b7da2359091f4e607.js"
     },
     {
-        "name": "async-sugarcoat-968076ccecd06aaae1ffcb1e3d26399f",
-        "aliases": [],
-        "kind": {
-            "mime": "application/javascript"
-        },
-        "resourcePath": "async-sugarcoat-968076ccecd06aaae1ffcb1e3d26399f.js"
-    },
-    {
-        "name": "async-sugarcoat-98b6f7fecfa3da111e10acf06f266ed7980b4b85",
-        "aliases": [],
-        "kind": {
-            "mime": "application/javascript"
-        },
-        "resourcePath": "async-sugarcoat-98b6f7fecfa3da111e10acf06f266ed7980b4b85.js"
-    },
-    {
-        "name": "async-sugarcoat-a8badcefe5197e12ea29f0f5d0db1cc9",
-        "aliases": [],
-        "kind": {
-            "mime": "application/javascript"
-        },
-        "resourcePath": "async-sugarcoat-a8badcefe5197e12ea29f0f5d0db1cc9.js"
-    },
-    {
-        "name": "async-sugarcoat-dd32890a88dc14e37c80777ca67c1e2e",
-        "aliases": [],
-        "kind": {
-            "mime": "application/javascript"
-        },
-        "resourcePath": "async-sugarcoat-dd32890a88dc14e37c80777ca67c1e2e.js"
-    },
-    {
         "name": "brave-fix",
-        "aliases": ["bf"],
+        "aliases": [],
         "kind": {
             "mime": "application/javascript"
         },
