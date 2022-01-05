@@ -17,7 +17,7 @@
     },
     {
         "name": "brave-fix",
-        "aliases": [],
+        "aliases": ["bf"],
         "kind": {
             "mime": "application/javascript"
         },
