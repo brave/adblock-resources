@@ -1,8 +1,26 @@
 [
-{
-    "name": "brave-fix",
-    "aliases": ["bf"],
-    "kind": {"mime":"application/javascript"},
-    "resourcePath": "brave-fix.js"
-}
+    {
+        "name": "async-sugarcoat-04394153a7ce417b88e3fe1790a4e6a269bfebe5",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "async-sugarcoat-04394153a7ce417b88e3fe1790a4e6a269bfebe5.js"
+    },
+    {
+        "name": "async-sugarcoat-8a459c41783885dc83d30f5b7da2359091f4e607",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "async-sugarcoat-8a459c41783885dc83d30f5b7da2359091f4e607.js"
+    },
+    {
+        "name": "brave-fix",
+        "aliases": ["bf"],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "brave-fix.js"
+    }
 ]
