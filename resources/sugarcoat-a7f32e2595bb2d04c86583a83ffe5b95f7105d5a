@@ -1,0 +1,483 @@
+{
+    const $___mock_4e975f98d84242ed = {};
+    (exports => {
+        'use strict';
+        let isSealed = false;
+        class Storage {
+            constructor() {
+                if (isSealed) {
+                    throw new TypeError('Illegal constructor');
+                }
+            }
+            get length() {
+                return Object.keys(this).length;
+            }
+            key(index) {
+                const keys = Object.keys(this);
+                if (index < 0 || index >= keys.length) {
+                    return null;
+                }
+                return keys[index];
+            }
+            getItem(key) {
+                return Object.prototype.hasOwnProperty.call(this, key) ? this[key] : null;
+            }
+            setItem(key, value) {
+                this[key] = String(value);
+            }
+            removeItem(key) {
+                delete this[key];
+            }
+            clear() {
+                const keys = Object.keys(this);
+                for (const key of keys) {
+                    delete this[key];
+                }
+            }
+        }
+        exports.Storage = {
+            configurable: true,
+            enumerable: true,
+            value: Storage,
+            writable: true
+        };
+        const localStorage = new Storage();
+        exports.localStorage = {
+            configurable: true,
+            enumerable: true,
+            get() {
+                return localStorage;
+            }
+        };
+        const sessionStorage = new Storage();
+        exports.sessionStorage = {
+            configurable: true,
+            enumerable: true,
+            get() {
+                return sessionStorage;
+            }
+        };
+        isSealed = true;
+    })($___mock_4e975f98d84242ed);
+    (function () {
+        Marketing.bindDependencyDOMParsed(function () {
+            var Bootstrapper = window['Marketing'];
+            var ensightenOptions = Marketing.ensightenOptions;
+            try {
+                Marketing.UDO.perfTimingStart('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+                var geoLocation = [
+                    'au',
+                    'nz',
+                    'in',
+                    'sg',
+                    'my',
+                    'jp',
+                    'kr',
+                    'tw',
+                    'hk'
+                ];
+                var firePixel = function (pixelID) {
+                    var scriptUrl = pixelID + '&s1=' + encodeURIComponent(window.location.href) + '&s2=' + encodeURIComponent(document.referrer) + '&s3=' + Marketing.UDO.promoid + '&s4=&s5=' + Marketing.UDO.prodcat + '&s6=&s7=' + Marketing.UDO.ordercode + '&s8=' + encodeURIComponent(Marketing.UDO.category) + '&s9=' + encodeURIComponent(Marketing.UDO.family) + '&s10=' + Marketing.UDO.product + '&v1=' + Marketing.UDO.revenue + '&v2=' + Marketing.UDO.deals + '&v3=&v4=&v5=' + Marketing.scDataObj.country + '&v6=' + Marketing.scDataObj.language + '&v7=' + Marketing.UDO.cseg + '&v8=' + Marketing.scDataObj.segment + '&v9=' + Marketing.UDO.platform + '&v10=' + Marketing.UDO.dpid;
+                    Marketing.insertScript('//pixel.mathtag.com/event/js?' + scriptUrl);
+                };
+                if (Marketing.UDO.country == 'us') {
+                    firePixel('mt_id=776221&mt_adid=129805');
+                    if (Marketing.scDataObj.cms == 'olr')
+                        window.addEventListener('udoReady', function () {
+                            firePixel('mt_id=776221&mt_adid=129805');
+                        });
+                }
+                if (Marketing.UDO.country == 'in' && Marketing.scDataObj.cms != 'dellemc' && Marketing.scDataObj.cms != 'delltech')
+                    firePixel('mt_id=769817&mt_adid=141629');
+                if (geoLocation.indexOf(Marketing.UDO.country) > -1 && Marketing.scDataObj.cms != 'compuindia') {
+                    firePixel('mt_id=1324676&mt_adid=189166&mt_exem=&mt_excl=');
+                    if ((Marketing.UDO.country == 'au' || Marketing.UDO.country == 'sg' || Marketing.UDO.country == 'my') && Marketing.scDataObj.cms == 'olr') {
+                        if (Marketing.UDO.promoid == '100')
+                            firePixel('mt_id=1558422&mt_adid=189166&mt_exem=&mt_excl=');
+                        window.addEventListener('udoReady', function () {
+                            firePixel('mt_id=1324676&mt_adid=189166&mt_exem=&mt_excl=');
+                            if (Marketing.UDO.promoid == '100')
+                                firePixel('mt_id=1558422&mt_adid=189166&mt_exem=&mt_excl=');
+                        });
+                    }
+                }
+                Marketing.UDO.perfTimingEnd('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+            } catch (e) {
+                dell_marketing_util.debug(e);
+            }
+        }, 3644298, [3606329], 630680, [610323]);
+        Marketing.bindDependencyDOMParsed(function () {
+            var Bootstrapper = window['Marketing'];
+            var ensightenOptions = Marketing.ensightenOptions;
+            try {
+                Marketing.UDO.perfTimingStart('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+                var marketingscDataObj = Marketing.scDataObj;
+                var marketingUDO = Marketing.UDO;
+                if (marketingscDataObj.segment == 'bsd') {
+                    if (marketingUDO.promoid == '2')
+                        Marketing.imageRequest('//r.turn.com/r/beacon?b2=1DPQkbMPobrPtu1E7F4a-tv6iuNNeEJauQtnGxAiqpafnoOTocNvFwEE4YgHHkvbxL4jJGyNK0ZmhCLXGy2tKw&cid=');
+                    if (marketingscDataObj.categoryid == 'pcaas' && marketingscDataObj.page == 'campaign' || marketingscDataObj.categoryid == 'poweredge-tower-server-deals' && marketingscDataObj.page == 'deals' || (marketingscDataObj.categoryid == 'xps-laptops' || marketingscDataObj.categoryid == '8141' || marketingscDataObj.categoryid == 'optiplex-desktops' || marketingscDataObj.categoryid == 'vostro-laptops') && marketingscDataObj.page == 'productdetails') {
+                        Marketing.imageRequest('//r.turn.com/r/beacon?b2=Heu7d2f1JunfAv4ifSfOLbqN0J45Ipb_K64KmVPycB2fnoOTocNvFwEE4YgHHkvbbwxzeCFRWt9LBz6FFIK6mQ&cid=');
+                        Marketing.imageRequest('//r.turn.com/r/beacon?b2=OpuCTdgmwi8KEzQGFh_l6sklkCMEdtFf3LvniQRx2rCfnoOTocNvFwEE4YgHHkvb9xNDUrjF6vd8tP5T8eyWqw&cid=');
+                    }
+                    if (marketingscDataObj.categoryid == 'small-business-central' && marketingscDataObj.page == 'campaign')
+                        Marketing.imageRequest('//r.turn.com/r/beacon?b2=bx92ne6J6DEc8GN2R1Mtju88gR-DBsDB7iRYGAPlxeefnoOTocNvFwEE4YgHHkvb8p4tY5MYkPEoIUEuTGjGFQ&cid=');
+                    if (marketingscDataObj.page == 'confirmation')
+                        Marketing.imageRequest('//r.turn.com/r/beacon?b2=4yZtKsnwzmjv5gHFq-r-tINntvUvdI1Zm-9D4clTmuCfnoOTocNvFwEE4YgHHkvb-r7cYD6noeJ-ljnFx_yWeg&cid=');
+                }
+                if (marketingscDataObj.segment == 'dhs') {
+                    if (marketingUDO.promoid == '2')
+                        Marketing.imageRequest('//r.turn.com/r/beacon?b2=qG-vMk7SHB3Tfb8MlqsW9pYmYKImtXkEzlZq48o3IvefnoOTocNvFwEE4YgHHkvbdFz9KIWLmIas3RnGuPuIRw&cid=');
+                    if (marketingUDO.promoid == '4')
+                        Marketing.imageRequest('//r.turn.com/r/beacon?b2=bbF829HEKCaFG_5LyXfAGd96P1thMezDPqzVrXhqIAOfnoOTocNvFwEE4YgHHkvb66dQNZKx69q-ZVJtSAaeRg&cid=');
+                    if (marketingscDataObj.page == 'confirmation')
+                        Marketing.imageRequest('//r.turn.com/r/beacon?b2=-7_opcGMxXQ7pGZ0WPtFj84PYtq--ib6DgmjqwNXcuWfnoOTocNvFwEE4YgHHkvbUN5xNEhHRZ3eG_mA_UynBw&cid=&bprice=' + marketingUDO.revenue);
+                }
+                if (marketingscDataObj.segment == 'eep') {
+                    if (marketingUDO.promoid == '2')
+                        Marketing.imageRequest('//r.turn.com/r/beacon?b2=1SK7hNl4JEWSH8BHhiaA1OmIF19p_a0i5NyMQpVNflqfnoOTocNvFwEE4YgHHkvbqUM3muj8MT6r7V_-tW1YNw&cid=');
+                    if (marketingUDO.promoid == '4')
+                        Marketing.imageRequest('//r.turn.com/r/beacon?b2=AMHpT6tWQ6AlJ5GQarjy9MW1w2Dh3zCXJGeQHCj-_OmfnoOTocNvFwEE4YgHHkvbeK1aKZ1yZifwlT0w7cUnWw&cid=');
+                    if (marketingscDataObj.page == 'confirmation')
+                        Marketing.imageRequest('//r.turn.com/r/beacon?b2=gM9M5d2LbChqrgEmJP8od3YWKz-yjenm5KVJfjZV8IOfnoOTocNvFwEE4YgHHkvbjvlj_BaBM4VjxPJH6-aGzw&cid=&bprice=' + marketingUDO.revenue);
+                }
+                if (marketingscDataObj.categoryid.includes('game') || marketingscDataObj.categoryid.includes('gaming') || marketingscDataObj.categoryid.includes('g-series') || marketingscDataObj.page.includes('alienware') || marketingscDataObj.categoryid.includes('alienware') || window.location.href.includes('gaming')) {
+                    if (marketingUDO.promoid == '2' || marketingUDO.promoid == '3' || marketingUDO.promoid == '13')
+                        Marketing.imageRequest('//r.turn.com/r/beacon?b2=5Z9oReu5eUFDdjlbzEt2B6vcF6D_mAyI5hGDbe3M_oSfnoOTocNvFwEE4YgHHkvbHzBmyIBMMoj8Vg-q4wtVhA&cid=');
+                    if (marketingUDO.category.includes('deals'))
+                        Marketing.imageRequest('//r.turn.com/r/beacon?b2=9CbfyviWCMkhJiFZhC26kicHJ9r29cGoCkhrUUby5YmfnoOTocNvFwEE4YgHHkvb1wBIHgmLTuc0P0v0xrE-Sw&cid=');
+                    if (marketingscDataObj.page == 'confirmation')
+                        Marketing.imageRequest('//r.turn.com/r/beacon?b2=kTrBKobVZxWcadalx8ATUfts_cRYDAQapDEM5JtSRKufnoOTocNvFwEE4YgHHkvbvdOJI7yM8nNm1jyO41XBdg&cid=&bprice=' + marketingUDO.revenue);
+                }
+                Marketing.UDO.perfTimingEnd('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+            } catch (e) {
+                dell_marketing_util.debug(e);
+            }
+        }, 3600273, [3606329], 631928, [610323]);
+        Marketing.bindDependencyDOMParsed(function () {
+            var Bootstrapper = window['Marketing'];
+            var ensightenOptions = Marketing.ensightenOptions;
+            try {
+                Marketing.UDO.perfTimingStart('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+                var marketingscDataObj = Marketing.scDataObj;
+                var marketingUDO = Marketing.UDO;
+                var pix_id = '', type = '';
+                var siteUrl = window.location.origin + window.location.pathname;
+                if (marketingUDO.segment == 'bsd') {
+                    if (marketingUDO.promoid == '9') {
+                        pix_id = '6746c68c-de6e-a200-8bf1-966b4678c2c4';
+                        type = '10';
+                    }
+                    if (marketingUDO.promoid == '3') {
+                        pix_id = '7173bde5-b3f6-a515-042f-8ec0e3849d79';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '7' && marketingscDataObj.module.includes('configurator')) {
+                        pix_id = '98f00cdb-2465-6795-5522-8cb8cff9eda1';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '4') {
+                        pix_id = '8aa379a1-eb57-ff9c-14a3-f80f73286f5e';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '5') {
+                        pix_id = '1e9dde17-e149-bb51-dbf2-3d45f3dd465f';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '2') {
+                        pix_id = '75255aed-d1a8-0486-12a7-150fbe34d0af';
+                        type = '55';
+                    }
+                    if (marketingUDO.promoid == '7' && marketingscDataObj.module.includes('productdetail')) {
+                        pix_id = '543f7a78-a0a5-afd8-58f9-39e87d6e69fa';
+                        type = '54';
+                    }
+                }
+                if (marketingUDO.segment == 'eep') {
+                    if (marketingUDO.promoid == '9') {
+                        pix_id = '5a78c63c-5286-70e1-6abf-a027bb3dc3c2';
+                        type = '10';
+                    }
+                    if (marketingUDO.promoid == '3') {
+                        pix_id = '171ab4f6-0184-be75-7e9c-845fedf10e7b';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '7' && marketingscDataObj.module.includes('configurator')) {
+                        pix_id = '98ec6eb0-3e30-adea-c70d-fda51efdf817';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '4') {
+                        pix_id = 'c373b38d-f4b6-e519-130f-90be08bd134c';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '5') {
+                        pix_id = '0b63d287-09c7-c9b8-85cf-4c91d87764e9';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '2') {
+                        pix_id = 'c6ee3706-ab08-bcb2-6130-75f1d0c4b157';
+                        type = '55';
+                    }
+                    if (marketingUDO.promoid == '7' && marketingscDataObj.module.includes('productdetail')) {
+                        pix_id = '8f197917-c26d-7566-fa90-571aff48fbed';
+                        type = '54';
+                    }
+                }
+                if (marketingUDO.segment == 'dhs') {
+                    if (marketingUDO.promoid == '9') {
+                        pix_id = 'afce6942-d624-1702-c3a3-b5d39fba1ca3';
+                        type = '10';
+                    }
+                    if (marketingUDO.promoid == '3') {
+                        pix_id = '160046f7-7a25-6e01-13a5-2ccb590660d4';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '7' && marketingscDataObj.module.includes('configurator')) {
+                        pix_id = '4564ecea-ad3c-3e54-ecf3-ae8714ac9b37';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '4') {
+                        pix_id = 'b9f7a35b-78b9-5887-ff13-9da4be228d79';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '5') {
+                        pix_id = '1f03a7de-e6f3-7747-094b-091af4790062';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '2') {
+                        pix_id = 'a45f6ef5-fb81-c0fa-0cd0-489f1afb3072';
+                        type = '55';
+                    }
+                    if (marketingUDO.promoid == '7' && marketingscDataObj.module.includes('productdetail')) {
+                        pix_id = 'af142662-30a7-51a8-208f-76eabbf3e29c';
+                        type = '54';
+                    }
+                }
+                if (marketingUDO.category.includes('alienware') || siteUrl.includes('alienwarearena.com')) {
+                    if (marketingUDO.promoid == '9') {
+                        pix_id = '08c2d6df-21cf-0f9c-18f2-8d5907a457b1';
+                        type = '10';
+                    }
+                    if (marketingUDO.promoid == '3') {
+                        pix_id = 'fca8c8e1-129c-8094-cff2-ce11fedc81ac';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '7' && marketingscDataObj.module.includes('configurator')) {
+                        pix_id = '0a0aa3bd-8625-45c8-0d6b-2e890aa6b0ee';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '4') {
+                        pix_id = '3d61efdc-625a-2f40-c1bd-251cab2879cd';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '2') {
+                        pix_id = '4e028564-7a2b-9adc-70a9-06b40e14e124';
+                        type = '55';
+                    }
+                    if (marketingUDO.promoid == '7' && marketingscDataObj.module.includes('productdetail')) {
+                        pix_id = '03596ace-43bd-b1ae-2f81-263ab41c1486';
+                        type = '54';
+                    }
+                    if (marketingUDO.promoid == '1' || siteUrl.includes('alienwarearena.com')) {
+                        pix_id = '11750a8a-6580-fd5f-28c1-9af61bc43188';
+                        type = '4';
+                    }
+                }
+                if (marketingUDO.category.includes('gam')) {
+                    if (marketingUDO.promoid == '9') {
+                        pix_id = 'de2efbf5-87ed-e8b4-921f-50542f32c780';
+                        type = '10';
+                    }
+                    if (marketingUDO.promoid == '13') {
+                        pix_id = '24e02bdc-db12-54b7-f520-f1c0c9d661fb';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '7' && marketingscDataObj.module.includes('configurator')) {
+                        pix_id = 'd2d0c3cc-1625-dcdf-5875-54413fd5c0af';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '4') {
+                        pix_id = 'd588329f-5c99-5212-58b0-5b6af0a5af6b';
+                        type = '4';
+                    }
+                    if (marketingUDO.promoid == '2') {
+                        pix_id = 'eb6530e5-53c9-84e1-b718-609bd7b56c29';
+                        type = '55';
+                    }
+                    if (marketingUDO.promoid == '7' && marketingscDataObj.module.includes('productdetail')) {
+                        pix_id = '608577c2-688f-2da9-8645-10a3b209b624';
+                        type = '54';
+                    }
+                }
+                if (pix_id && type) {
+                    var _pix = document.getElementById('_pix_id_' + pix_id);
+                    if (!_pix)
+                        Marketing.imageRequest('//s.amazon-adsystem.com/iui3?d=forester-did&ex-fargs=%3Fid%3D' + pix_id + '%26type%3D' + type + '%26m%3D1&ex-fch=416613&ex-src=' + siteUrl + '&ex-hargs=v%3D1.0%3Bc%3D5267592560401%3Bp%3D' + pix_id.toUpperCase());
+                }
+                Marketing.UDO.perfTimingEnd('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+            } catch (e) {
+                dell_marketing_util.debug(e);
+            }
+        }, 3600264, [3606329], 662728, [610323]);
+        Marketing.bindDependencyDOMParsed(function () {
+            var Bootstrapper = window['Marketing'];
+            var ensightenOptions = Marketing.ensightenOptions;
+            try {
+                Marketing.UDO.perfTimingStart('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+                var firePixel = function () {
+                    const $___old_4f2d5cc53194da13 = {}.constructor.getOwnPropertyDescriptor(window, 'sessionStorage');
+                    try {
+                        if ($___old_4f2d5cc53194da13)
+                            ({}.constructor.defineProperty(window, 'sessionStorage', $___mock_4e975f98d84242ed.sessionStorage));
+                        return function () {
+                            var udo = Marketing.UDO;
+                            var cachebuster = Math.random() * 1000000;
+                            if (Marketing.UDO.promoid == '100' || location.href.includes('thankyou'))
+                                Marketing.imageRequest('//t.myvisualiq.net/activity_pixel?pt=i&et=a&r=' + cachebuster + '&ago=212&ao=1018&px=1129&ord=' + udo.dpid + '&revenue=' + udo.revenue + '&u1=' + udo.ogid + '&u2=' + udo.dpid + '&othercookie_id=' + udo.mcmid);
+                            else
+                                Marketing.insertScript('//vt.myvisualiq.net/2/4OjfMMv3zSMk2KODUE8leQ%3D%3D/vt-335.js');
+                            var hvePixel = '//t.myvisualiq.net/activity_pixel?pt=i&et=a&r=' + cachebuster + '&ago=212&ao=1018&px=1130&ord=' + udo.dpid + '&revenue=' + udo.revenue + '&u1=' + udo.gacd + '&othercookie_id=' + udo.mcmid;
+                            udo.hve_bcove(hvePixel);
+                            udo.hve_chat(hvePixel);
+                            udo.hve_contactUs(hvePixel);
+                            udo.hve_download(hvePixel);
+                            udo.hve_mpv(hvePixel);
+                            udo.hve_rfq_submit(hvePixel);
+                            udo.hve_social(hvePixel);
+                            udo.hve_ytube(hvePixel);
+                        }.apply(this, arguments);
+                    } finally {
+                        if ($___old_4f2d5cc53194da13)
+                            ({}.constructor.defineProperty(window, 'sessionStorage', $___old_4f2d5cc53194da13));
+                    }
+                };
+                firePixel();
+                if (Marketing.scDataObj.cms == 'olr')
+                    window.addEventListener('udoReady', function () {
+                        firePixel();
+                    });
+                Marketing.UDO.perfTimingEnd('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+            } catch (e) {
+                dell_marketing_util.debug(e);
+            }
+        }, 3644309, [3606329], 683751, [610323]);
+        Marketing.bindDependencyDOMParsed(function () {
+            var Bootstrapper = window['Marketing'];
+            var ensightenOptions = Marketing.ensightenOptions;
+            try {
+                Marketing.UDO.perfTimingStart('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+                if (Marketing.UDO.promoid !== '100') {
+                    window.a9 = {};
+                    a9.eventType = 'visitor';
+                    a9.segmentNumber = '0';
+                    a9.segmentName = 'Site Visitor';
+                    if (/alienware/i.test(Marketing.UDO.category || Marketing.UDO.family || Marketing.UDO.product)) {
+                        a9.clientName = 'Dell%20Alienware';
+                        a9.clientID = '793863';
+                    } else if (Marketing.UDO.segment == 'dhs') {
+                        a9.clientName = 'Dell%20Consumer';
+                        a9.clientID = '793873';
+                    }
+                    if (JSON.stringify(a9) !== '{}' && a9.clientName && a9.clientID && a9.eventType && a9.segmentNumber && a9.segmentName)
+                        Marketing.insertScript('//a.tribalfusion.com/pixel/tags/' + a9.clientName + '/' + a9.clientID + '/pixel.js');
+                }
+                Marketing.UDO.perfTimingEnd('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+            } catch (e) {
+                dell_marketing_util.debug(e);
+            }
+        }, 3582474, [3606329], 692718, [610323]);
+        Marketing.bindDependencyDOMParsed(function () {
+            var Bootstrapper = window['Marketing'];
+            var ensightenOptions = Marketing.ensightenOptions;
+            try {
+                Marketing.UDO.perfTimingStart('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+                var marketingUDO = Marketing.UDO;
+                var marketingscDataObj = Marketing.scDataObj;
+                (function (w, d, t, r, u) {
+                    w[u] = w[u] || [];
+                    w[u].push({
+                        'projectId': '10000',
+                        'properties': { 'pixelId': '10094623' }
+                    });
+                    var s = d.createElement(t);
+                    s.src = r;
+                    s.async = true;
+                    s.onload = s.onreadystatechange = function () {
+                        var y, rs = this.readyState, c = w[u];
+                        if (rs && rs != 'complete' && rs != 'loaded')
+                            return;
+                        try {
+                            y = YAHOO.ywa.I13N.fireBeacon;
+                            w[u] = [];
+                            w[u].push = function (p) {
+                                y([p]);
+                            };
+                            y(c);
+                        } catch (e) {
+                        }
+                    };
+                    var scr = d.getElementsByTagName(t)[0], par = scr.parentNode;
+                    if (Marketing.scDataObj.page != 'confirmation' || Marketing.scDataObj.page == 'confirmation')
+                        par.insertBefore(s, scr);
+                }(window, document, 'script', 'https://s.yimg.com/wi/ytc.js', 'dotq'));
+                window.dotq = window.dotq || [];
+                var ecValue = '', qstringParam = {};
+                if (marketingscDataObj.categoryid.includes('gam') || marketingscDataObj.categoryid.includes('g-series') || marketingscDataObj.page.includes('alienware') || marketingscDataObj.categoryid.includes('alienware'))
+                    ecValue = marketingUDO.promoid == '100' ? 'gaming' : 'gam';
+                else if (marketingUDO.segment == 'dhs')
+                    ecValue = marketingUDO.promoid == '100' ? 'consumerconversion' : 'con';
+                else if (marketingUDO.segment == 'bsd')
+                    ecValue = marketingUDO.promoid == '100' ? 'purchase' : 'sbrtg';
+                else if (marketingUDO.segment == 'eep')
+                    ecValue = marketingUDO.promoid == '100' ? 'mppconversion' : 'member';
+                if (marketingUDO.promoid == '100')
+                    if (marketingUDO.segment == 'dhs' || marketingUDO.segment == 'bsd')
+                        qstringParam = {
+                            'et': 'custom',
+                            'ec': ecValue,
+                            'ea': 'Purchase',
+                            'product_id': marketingUDO.ordercode,
+                            'gv': marketingUDO.revenue
+                        };
+                    else
+                        qstringParam = {
+                            'et': 'custom',
+                            'ec': ecValue,
+                            'gv': marketingUDO.revenue
+                        };
+                else
+                    qstringParam = {
+                        'et': 'custom',
+                        'ec': ecValue
+                    };
+                if (marketingUDO.promoid == '7')
+                    if (marketingUDO.segment == 'dhs' || marketingUDO.segment == 'bsd')
+                        qstringParam = {
+                            'et': 'custom',
+                            'ea': 'ViewProduct',
+                            'product_id': marketingUDO.ordercode,
+                            'ec': ecValue
+                        };
+                if (marketingUDO.promoid == '9')
+                    if (marketingUDO.segment == 'dhs' || marketingUDO.segment == 'bsd')
+                        qstringParam = {
+                            'et': 'custom',
+                            'ea': 'AddToCart',
+                            'product_id': marketingUDO.ordercode,
+                            'ec': ecValue
+                        };
+                if (ecValue !== '')
+                    window.dotq.push({
+                        'projectId': '10000',
+                        'properties': {
+                            'pixelId': '10094623',
+                            'qstrings': qstringParam
+                        }
+                    });
+                Marketing.UDO.perfTimingEnd('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+            } catch (e) {
+                dell_marketing_util.debug(e);
+            }
+        }, 3593300, [3606329], 632317, [610323]);
+    }())
+}
