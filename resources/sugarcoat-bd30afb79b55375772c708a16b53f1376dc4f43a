@@ -1,0 +1,1045 @@
+{
+    const $___mock_5bdfad4490c3d520 = {};
+    (exports => {
+        'use strict';
+        let isSealed = false;
+        class Storage {
+            constructor() {
+                if (isSealed) {
+                    throw new TypeError('Illegal constructor');
+                }
+            }
+            get length() {
+                return Object.keys(this).length;
+            }
+            key(index) {
+                const keys = Object.keys(this);
+                if (index < 0 || index >= keys.length) {
+                    return null;
+                }
+                return keys[index];
+            }
+            getItem(key) {
+                return Object.prototype.hasOwnProperty.call(this, key) ? this[key] : null;
+            }
+            setItem(key, value) {
+                this[key] = String(value);
+            }
+            removeItem(key) {
+                delete this[key];
+            }
+            clear() {
+                const keys = Object.keys(this);
+                for (const key of keys) {
+                    delete this[key];
+                }
+            }
+        }
+        exports.Storage = {
+            configurable: true,
+            enumerable: true,
+            value: Storage,
+            writable: true
+        };
+        const localStorage = new Storage();
+        exports.localStorage = {
+            configurable: true,
+            enumerable: true,
+            get() {
+                return localStorage;
+            }
+        };
+        const sessionStorage = new Storage();
+        exports.sessionStorage = {
+            configurable: true,
+            enumerable: true,
+            get() {
+                return sessionStorage;
+            }
+        };
+        isSealed = true;
+    })($___mock_5bdfad4490c3d520);
+    (function () {
+        window.Adform.Tracking.TrackingPointId = 59896835;
+        window.Adform.Tracking.TrackingPointName = 'Sky_Corporate_Unique';
+        Adform.Tracking.CreateIframeElement('https://track.adform.net/serving/container/?pm=124076&lid=59896835&ctype=0&media=0&PageName=Sky_Corporate_Unique&sysvars=%7c%7c%7c%7c&itm=eyJpZCI6IiIsInN2ODYiOiJodHRwczovL3d3dy5za3kuaXQvIiwic3Y4NyI6ImNvcnBvcmF0ZSIsInN2ODgiOiJob21lIiwic3Y4OSI6IndlYiIsInN2OTIiOiIiLCJzdjkzIjoic2t5OmhvbWUifQ&rnd=1544458046&cpref=&loc=https%3a%2f%2fwww.sky.it%2f', null, {
+            '__ADFSV65__': '',
+            '__ADFSV60__': '',
+            '__ADFSV66__': '',
+            '__ADFSV86__': 'https://www.sky.it/'
+        });
+        try {
+            if ('corporate' == 'corporate' && ('home' == 'tv' && !'https://www.sky.it/'.match('primafila') || 'home' == 'offerte')) {
+                adf.track(124076, 'Analisi_Organico_Branding');
+            }
+            ;
+            (function () {
+                if ('corporate' == 'corporate' && ('home' !== 'landing-new' && 'home' !== 'callmenow-new')) {
+                    adf.track(124076, 'Sky_Organic_Corporate');
+                }
+            }());
+            (function () {
+                __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                    if (vendorConsents.grants['5f1aada6b8e05c306c0597d7'].vendorGrant == false) {
+                        return;
+                    } else {
+                        (function () {
+                            var adfScript = document.createElement('script');
+                            adfScript.src = '//dmp.adform.net/audiencetag/adformat.js';
+                            adfScript.onload = retrieve_segments;
+                            document.head.appendChild(adfScript);
+                        }());
+                        function retrieve_segments() {
+                            window.AdformAT = window.AdformAT || function (q, fn) {
+                                fn = function () {
+                                    q.push([].slice.call(arguments));
+                                    return fn;
+                                };
+                                fn.q = q;
+                                return fn;
+                            }([]);
+                            var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJBZGZvcm0uRE1QLkNsYWltczo6RGF0YVByb3ZpZGVycyI6IlsxMDE5MF0iLCJpc3MiOiJkbXAtYXBpLmFkZm9ybS5jb20iLCJhdWQiOiJhdWRpZW5jZV90YWdfY29uc3VtZXJfdjEiLCJleHAiOjE5MTk0MjMxMTAsIm5iZiI6MTYwNDA2MzA1MH0.WayAEr_9hRqUX89VivEJ46hqJfk7ouY4GuiGrATbMjo';
+                            AdformAT('init', token);
+                            AdformAT('cookieSegments', function (status, response) {
+                                if (JSON.stringify(response).indexOf('BB_Clienti_Interazioni_Clienti') > -1 || JSON.stringify(response).indexOf('BB_Clienti_Interazioni_ACQ_Trading') > -1 || JSON.stringify(response).indexOf('BB_Clienti_Interazioni_ACQ_Branding') > -1) {
+                                    Floodlight_pixel();
+                                }
+                            });
+                        }
+                        ;
+                        function Floodlight_pixel() {
+                            (function () {
+                                var axel = Math.random() + '';
+                                var a = axel * 10000000000000;
+                                new Image().src = 'https://ad.doubleclick.net/ddm/activity/src=10155279;type=invmedia;cat=skywi0;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;npa=;gdpr=0;gdpr_consent=;ord=' + a + '?';
+                            }());
+                        }
+                        ;
+                    }
+                });
+            }());
+            __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                if (vendorConsents.grants['5e7e1298b8e05c54a85c52d2'].vendorGrant == false) {
+                    return;
+                } else {
+                    fbq('track', 'ACQ_ViewContent');
+                }
+            });
+            __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                if (vendorConsents.grants['5f369a02b8e05c308701f829'].vendorGrant == false) {
+                    return;
+                } else {
+                    if ('https://www.sky.it/'.match('landing-new') || 'https://www.sky.it/'.match('callmenow-new')) {
+                        var _pix = document.getElementById('_pix_id_9324e26c-8905-f264-87d3-4b55d805cb90');
+                        if (!_pix) {
+                            var protocol = '//';
+                            var a = Math.random() * 1000000000000000000;
+                            _pix = document.createElement('iframe');
+                            _pix.style.display = 'none';
+                            _pix.setAttribute('src', protocol + 'aax-eu.amazon-adsystem.com/s/iu3?d=generic&ex-fargs=%3Fid%3D9324e26c-8905-f264-87d3-4b55d805cb90%26type%3DUNKNOWN%26m%3D35691&ex-fch=416613&ex-src=https://www.sky.it/&ex-hargs=v%3D1.0%3Bc%3D5650113350602%3Bp%3D9324E26C-8905-F264-87D3-4B55D805CB90' + '&cb=' + a);
+                            _pix.setAttribute('id', '_pix_id_9324e26c-8905-f264-87d3-4b55d805cb90');
+                            document.body.appendChild(_pix);
+                        }
+                        ;
+                    }
+                }
+            });
+            var list = [
+                'https://www.sky.it/acquista/index.html',
+                'https://www.sky.it/come-vedere/index.html',
+                'https://www.sky.it/come-vedere/skyq-fibra.html',
+                'https://www.sky.it/content/newaol/promozioni/crosspage_restyling.html',
+                'https://www.sky.it/offerte  https://www.sky.it/offerte/abbonamento-calcio',
+                'https://www.sky.it/offerte/abbonamento-calcio/satellite',
+                'https://www.sky.it/offerte/abbonamento-cinema',
+                'https://www.sky.it/offerte/abbonamento-cinema/satellite',
+                'https://www.sky.it/offerte/abbonamento-digitale-terrestre',
+                'https://www.sky.it/offerte/abbonamento-intrattenimento-plus',
+                'https://www.sky.it/offerte/abbonamento-sport',
+                'https://www.sky.it/offerte/abbonamento-sport/satellite',
+                'https://www.sky.it/offerte/abbonamento-sport-cinema',
+                'https://www.sky.it/pacchetti-offerte/index.html',
+                'https://www.sky.it/pacchetti-offerte/intrattenimento-plus/nuovi-clienti.html',
+                'https://www.sky.it/pacchetti-offerte/sky-cinema.html',
+                'https://www.sky.it/pacchetti-offerte/sky-tv.html',
+                'https://www.sky.it/pacchetti-offerte/sky-tv/serie-tv.html',
+                'https://www.sky.it/tv',
+                'https://www.sky.it/tv/sky-calcio',
+                'https://www.sky.it/tv/sky-cinema',
+                'https://www.sky.it/tv/sky-famiglia',
+                'https://www.sky.it/tv/sky-sport',
+                'https://www.sky.it/tv/sky-tv',
+                'https://www.sky.it/tv/sky-tv/serie-tv',
+                'https://www.sky.it/offerte/abbonamento-tv',
+                'https://www.sky.it/offerte/configuratore-abbonamento-sky',
+                'https://www.sky.it/tv/sky-tv/serie-tv/speravo-de-mori-prima'
+            ];
+            __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                if (vendorConsents.grants['5f369a02b8e05c308701f829'].vendorGrant == false) {
+                    return;
+                } else {
+                    if (list.includes('https://www.sky.it/')) {
+                        var _pix = document.getElementById('_pix_id_3cb3632b-586c-6700-139f-861cabdad238');
+                        if (!_pix) {
+                            var protocol = '//';
+                            var a = Math.random() * 1000000000000000000;
+                            _pix = document.createElement('iframe');
+                            _pix.style.display = 'none';
+                            _pix.setAttribute('src', protocol + 'aax-eu.amazon-adsystem.com/s/iu3?d=generic&ex-fargs=%3Fid%3D3cb3632b-586c-6700-139f-861cabdad238%26type%3DUNKNOWN%26m%3D35691&ex-fch=416613&ex-src=https://www.sky.it/&ex-hargs=v%3D1.0%3Bc%3D5650113350602%3Bp%3D3CB3632B-586C-6700-139F-861CABDAD238' + '&cb=' + a);
+                            _pix.setAttribute('id', '_pix_id_3cb3632b-586c-6700-139f-861cabdad238');
+                            document.body.appendChild(_pix);
+                        }
+                    }
+                }
+            });
+            __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                if (vendorConsents.grants['5e7e1298b8e05c485246cd06'].vendorGrant == false) {
+                    return;
+                } else {
+                    (function (w, d, t, r, u) {
+                        var f, n, i;
+                        w[u] = w[u] || [], f = function () {
+                            var o = { ti: '30000782' };
+                            o.q = w[u], w[u] = new UET(o), w[u].push('pageLoad');
+                        }, n = d.createElement(t), n.src = r, n.async = 1, n.onload = n.onreadystatechange = function () {
+                            var s = this.readyState;
+                            s && s !== 'loaded' && s !== 'complete' || (f(), n.onload = n.onreadystatechange = null);
+                        }, i = d.getElementsByTagName(t)[0], i.parentNode.insertBefore(n, i);
+                    }(window, document, 'script', '//bat.bing.com/bat.js', 'uetq'));
+                }
+            });
+            (function () {
+                if ('' !== '') {
+                    var tp = new Image();
+                    tp.src = 'https://track.adform.net/Serving/TrackPoint/?pm=124076&ADFPageName=Sky%20%E2%80%93%20Cliente%20Riconosciuto%20Analytics&ADFdivider=|&itm={\'itms\':[{sv13:\'\'}]}';
+                    __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                        if (vendorConsents.grants['5f1aada6b8e05c306c0597d7'].vendorGrant == false) {
+                            return;
+                        } else {
+                            (function () {
+                                var s = document.createElement('script');
+                                s.type = 'text/javascript';
+                                s.async = true;
+                                s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-1020504674';
+                                var x = document.getElementsByTagName('script')[0];
+                                x.parentNode.insertBefore(s, x);
+                                s.onload = function () {
+                                    window.dataLayer = window.dataLayer || [];
+                                    function gtag() {
+                                        dataLayer.push(arguments);
+                                    }
+                                    gtag('js', new Date());
+                                    gtag('config', 'AW-1020504674');
+                                    gtag('event', 'conversion', { 'send_to': 'AW-1020504674/UaANCLDKwt4BEOLUzuYD' });
+                                };
+                            }());
+                        }
+                    });
+                    __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                        if (vendorConsents.grants['5e7e1298b8e05c54a85c52d2'].vendorGrant == false) {
+                            return;
+                        } else {
+                            !function (f, b, e, v, n, t, s) {
+                                if (f.fbq)
+                                    return;
+                                n = f.fbq = function () {
+                                    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+                                };
+                                if (!f._fbq)
+                                    f._fbq = n;
+                                n.push = n;
+                                n.loaded = !0;
+                                n.version = '2.0';
+                                n.queue = [];
+                                t = b.createElement(e);
+                                t.async = !0;
+                                t.src = v;
+                                s = b.getElementsByTagName(e)[0];
+                                s.parentNode.insertBefore(t, s);
+                            }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+                            fbq('init', '769114966468130');
+                            fbq('track', 'Cliente Riconosciuto Analytics');
+                        }
+                    });
+                    __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                        if (vendorConsents.grants['5e7e1298b8e05c485246cd06'].vendorGrant == false) {
+                            return;
+                        } else {
+                            (function (w, d, t, r, u) {
+                                var f, n, i;
+                                w[u] = w[u] || [], f = function () {
+                                    var o = { ti: '30004123' };
+                                    o.q = w[u], w[u] = new UET(o), w[u].push('pageLoad');
+                                }, n = d.createElement(t), n.src = r, n.async = 1, n.onload = n.onreadystatechange = function () {
+                                    var s = this.readyState;
+                                    s && s !== 'loaded' && s !== 'complete' || (f(), n.onload = n.onreadystatechange = null);
+                                }, i = d.getElementsByTagName(t)[0], i.parentNode.insertBefore(n, i);
+                            }(window, document, 'script', '//bat.bing.com/bat.js', 'uetq'));
+                        }
+                    });
+                }
+            }());
+            __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                if (vendorConsents.grants['60dc4ceecc52eb4336e0ba02'].vendorGrant == false) {
+                    return;
+                } else {
+                    (function (w, d, s) {
+                        var js = d.createElement(s);
+                        js.async = true;
+                        js.src = '//cdn.fanplayr.com/customers/sky/adaptor/adaptor.js';
+                        var fjs = d.getElementsByTagName(s)[0];
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(window, document, 'script'));
+                }
+            });
+            __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                if (vendorConsents.grants['60c36fd126b4ae05d420203a'].vendorGrant == false) {
+                    return;
+                } else {
+                    if ('https://www.sky.it/' == 'https://www.sky.it/landing-new/abbonarsi/provasky') {
+                        var adfIframe = document.createElement('iframe');
+                        adfIframe.src = 'https://vf.r3f.technology/vf/sync/tags/394';
+                        adfIframe.style.display = 'none';
+                        document.body.appendChild(adfIframe);
+                    }
+                    ;
+                }
+                ;
+            });
+            __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                if (vendorConsents.grants['5f1aada6b8e05c306c0597d7'].vendorGrant == false) {
+                    return;
+                } else {
+                    var adfScript = document.createElement('script');
+                    adfScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-673603015';
+                    document.head.appendChild(adfScript);
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() {
+                        dataLayer.push(arguments);
+                    }
+                    gtag('js', new Date());
+                    gtag('config', 'AW-673603015');
+                }
+            });
+            __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                if (vendorConsents.grants['5f1aada6b8e05c306c0597d7'].vendorGrant == false) {
+                    return;
+                } else {
+                    var adfScript = document.createElement('script');
+                    adfScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-1048265226';
+                    document.head.appendChild(adfScript);
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() {
+                        dataLayer.push(arguments);
+                    }
+                    gtag('js', new Date());
+                    gtag('config', 'AW-1048265226');
+                    if ('https://www.sky.it/' == 'https://www.sky.it/offerte') {
+                        gtag('event', 'conversion', {
+                            'send_to': 'AW-1048265226/LGBTCOz-oPUBEIqE7fMD',
+                            'value': 1,
+                            'currency': 'EUR',
+                            'aw_remarketing_only': true
+                        });
+                    }
+                    ;
+                }
+            });
+            __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                if (vendorConsents.grants['5f1aada6b8e05c306c0597d7'].vendorGrant == false) {
+                    return;
+                } else {
+                    var adfScript = document.createElement('script');
+                    adfScript.src = 'https://www.googletagmanager.com/gtag/js?id=DC-3917886';
+                    document.head.appendChild(adfScript);
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() {
+                        dataLayer.push(arguments);
+                    }
+                    gtag('js', new Date());
+                    gtag('config', 'DC-3917886');
+                }
+            });
+            __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                if (vendorConsents.grants['5e7e1298b8e05c54a85c52d2'].vendorGrant == false) {
+                    return;
+                } else {
+                    !function (f, b, e, v, n, t, s) {
+                        if (f.fbq)
+                            return;
+                        n = f.fbq = function () {
+                            n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+                        };
+                        if (!f._fbq)
+                            f._fbq = n;
+                        n.push = n;
+                        n.loaded = !0;
+                        n.version = '2.0';
+                        n.queue = [];
+                        t = b.createElement(e);
+                        t.async = !0;
+                        t.src = v;
+                        s = b.getElementsByTagName(e)[0];
+                        s.parentNode.insertBefore(t, s);
+                    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+                    fbq('init', '769114966468130');
+                    fbq('track', 'PageView');
+                }
+                ;
+            });
+            __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                if (vendorConsents.grants['5fca0529a22863819f134946'].vendorGrant == false) {
+                    return;
+                } else {
+                    (function () {
+                        var nameTP = window.Adform.Tracking.TrackingPointName;
+                        var valueID = '';
+                        if (nameTP == 'Sky_Corporate_Unique' && valueID !== '') {
+                            return;
+                        }
+                        if (window.ADFORM_prevent_double_activation) {
+                            return;
+                        }
+                        window.ADFORM_prevent_double_activation = true;
+                        var awMastertag = document.createElement('script');
+                        awMastertag.setAttribute('defer', 'defer');
+                        awMastertag.src = 'https://www.dwin1.com/20730.js';
+                        awMastertag.style.display = 'none';
+                        document.getElementsByTagName('body')[0].appendChild(awMastertag);
+                    }());
+                }
+            });
+            (function () {
+                if ('home' == 'landing-new' || 'home' == 'callmenow-new') {
+                    adf.track(124076, 'Sky_Landing_Page');
+                }
+            }());
+            if (window.Adform.Tracking.Vars.Order) {
+                if (window.Adform.Tracking.Vars.Order.sv1) {
+                    if (window.Adform.Tracking.Vars.Order.sv1.search('1') != -1) {
+                        var adfimage = new Image();
+                        adfimage.src = 'https://track.adform.net/Serving/TrackPoint/?pm=124076&lid=3980045';
+                        document.getElementsByTagName('body')[0].appendChild(adfimage);
+                    }
+                }
+                if (window.Adform.Tracking.Vars.Order.sv2) {
+                    if (window.Adform.Tracking.Vars.Order.sv2.search('1') != -1) {
+                        var adfimage1 = new Image();
+                        adfimage1.src = 'https://track.adform.net/Serving/TrackPoint/?pm=124076&lid=3980046';
+                        document.getElementsByTagName('body')[0].appendChild(adfimage1);
+                    }
+                }
+                if (window.Adform.Tracking.Vars.Order.sv3) {
+                    if (window.Adform.Tracking.Vars.Order.sv3.search('1') != -1) {
+                        var adfimage2 = new Image();
+                        adfimage2.src = 'https://track.adform.net/Serving/TrackPoint/?pm=124076&lid=3980047';
+                        document.getElementsByTagName('body')[0].appendChild(adfimage2);
+                    }
+                }
+                if (window.Adform.Tracking.Vars.Order.sv4) {
+                    if (window.Adform.Tracking.Vars.Order.sv4.search('1') != -1) {
+                        var adfimage3 = new Image();
+                        adfimage3.src = 'https://track.adform.net/Serving/TrackPoint/?pm=124076&lid=3980048';
+                        document.getElementsByTagName('body')[0].appendChild(adfimage3);
+                    }
+                }
+                if (window.Adform.Tracking.Vars.Order.sv5) {
+                    if (window.Adform.Tracking.Vars.Order.sv5.search('1') != -1) {
+                        var adfimage4 = new Image();
+                        adfimage4.src = 'https://track.adform.net/Serving/TrackPoint/?pm=124076&lid=3980049';
+                        document.getElementsByTagName('body')[0].appendChild(adfimage4);
+                    }
+                }
+                if (window.Adform.Tracking.Vars.Order.sv6) {
+                    if (window.Adform.Tracking.Vars.Order.sv6.search('1') != -1) {
+                        var adfimage5 = new Image();
+                        adfimage5.src = 'https://track.adform.net/Serving/TrackPoint/?pm=124076&lid=3980050';
+                        document.getElementsByTagName('body')[0].appendChild(adfimage5);
+                    }
+                }
+                if (window.Adform.Tracking.Vars.Order.sv7) {
+                    if (window.Adform.Tracking.Vars.Order.sv7.search('1') != -1) {
+                        var adfimage6 = new Image();
+                        adfimage6.src = 'https://track.adform.net/Serving/TrackPoint/?pm=124076&lid=3980051';
+                        document.getElementsByTagName('body')[0].appendChild(adfimage6);
+                    }
+                }
+                if (window.Adform.Tracking.Vars.Order.sv8) {
+                    if (window.Adform.Tracking.Vars.Order.sv8.search('1') != -1) {
+                        var adfimage7 = new Image();
+                        adfimage7.src = 'https://track.adform.net/Serving/TrackPoint/?pm=124076&lid=3980052';
+                        document.getElementsByTagName('body')[0].appendChild(adfimage7);
+                    }
+                }
+                if (window.Adform.Tracking.Vars.Order.sv9) {
+                    if (window.Adform.Tracking.Vars.Order.sv9.search('1') != -1) {
+                        var adfimage8 = new Image();
+                        adfimage8.src = 'https://track.adform.net/Serving/TrackPoint/?pm=124076&lid=3980053';
+                        document.getElementsByTagName('body')[0].appendChild(adfimage8);
+                    }
+                }
+                if (window.Adform.Tracking.Vars.Order.sv10) {
+                    if (window.Adform.Tracking.Vars.Order.sv10.search('1') != -1) {
+                        var adfimage9 = new Image();
+                        adfimage9.src = 'https://track.adform.net/Serving/TrackPoint/?pm=124076&lid=3980054';
+                        document.getElementsByTagName('body')[0].appendChild(adfimage9);
+                    }
+                }
+                if (window.Adform.Tracking.Vars.Order.sv11) {
+                    if (window.Adform.Tracking.Vars.Order.sv11.search('1') != -1) {
+                        var adfimage10 = new Image();
+                        adfimage10.src = 'https://track.adform.net/Serving/TrackPoint/?pm=124076&lid=3980055';
+                        document.getElementsByTagName('body')[0].appendChild(adfimage10);
+                    }
+                }
+                if (window.Adform.Tracking.Vars.Order.sv12) {
+                    if (window.Adform.Tracking.Vars.Order.sv12.search('1') != -1) {
+                        var adfimage11 = new Image();
+                        adfimage11.src = 'https://track.adform.net/Serving/TrackPoint/?pm=124076&lid=3980056';
+                        document.getElementsByTagName('body')[0].appendChild(adfimage11);
+                    }
+                }
+                if (window.Adform.Tracking.Vars.Order.sv14) {
+                    if (window.Adform.Tracking.Vars.Order.sv14.search('1') != -1) {
+                        var adfimage12 = new Image();
+                        adfimage12.src = 'https://track.adform.net/Serving/TrackPoint/?pm=124076&lid=4295007';
+                        document.getElementsByTagName('body')[0].appendChild(adfimage12);
+                    }
+                }
+            }
+            adf.Container(124076, 11004533);
+            __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                if (vendorConsents.grants['5f1aada6b8e05c306c0597d7'].vendorGrant == false) {
+                    return;
+                } else {
+                    var google_conversion_id = 1012307471;
+                    var google_conversion_label = 'U87LCNC3p3wQj6za4gM';
+                    var google_custom_params = window.google_tag_params;
+                    var google_remarketing_only = true;
+                    var adfScript = document.createElement('script');
+                    adfScript.src = '//www.googleadservices.com/pagead/conversion.js';
+                    document.head.appendChild(adfScript);
+                }
+            });
+            __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                if (vendorConsents.grants['5f1aada6b8e05c306c0597d7'].vendorGrant == false) {
+                    return;
+                } else {
+                    var google_conversion_id = 1048265226;
+                    var google_conversion_label = '2G9nCMHHy34QioTt8wM';
+                    var google_custom_params = window.google_tag_params;
+                    var google_remarketing_only = true;
+                    var adfScript = document.createElement('script');
+                    adfScript.src = '//www.googleadservices.com/pagead/conversion.js';
+                    document.head.appendChild(adfScript);
+                }
+            });
+            var _qevents = _qevents || [];
+            (function () {
+                var elem = document.createElement('script');
+                elem.src = (document.location.protocol == 'https:' ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                elem.async = true;
+                elem.type = 'text/javascript';
+                var scpt = document.getElementsByTagName('script')[0];
+                scpt.parentNode.insertBefore(elem, scpt);
+            }());
+            _qevents.push({
+                qacct: 'p-BZSYSpSSPmj6q',
+                labels: '_fp.event.Purchase Cart Confirmation ,_fp.pcat.INSERT+PRODUCT+CATEGORY,_fp.customer.INSERT+CUSTOMER+TYPE',
+                orderid: 'INSERT+ORDER+ID',
+                event: 'refresh'
+            });
+            (function () {
+                var value = 'https://www.sky.it/';
+                if (value == 'https://www.sky.it/tv/skyq/fibra') {
+                    adf.track(124076, 'www.sky.it|corporate|come-vedere|skyq-fibra|sky:come-vedere:skyq-fibra');
+                }
+            }());
+            (function () {
+                var value = 'https://www.sky.it/';
+                if (value == 'https://www.sky.it/offerte') {
+                    adf.track(124076, 'www.sky.it|corporate|acquista|home|sky:acquista:home');
+                }
+            }());
+            (function () {
+                var value = 'https://www.sky.it/';
+                if (value == 'https://www.sky.it/tv') {
+                    adf.track(124076, 'www.sky.it|corporate|pacchetti-offerte|index|sky:pacchetti-offerte:index');
+                }
+            }());
+            (function () {
+                var value = 'https://www.sky.it/';
+                if (value == 'https://www.sky.it/tv/sky-cinema') {
+                    adf.track(124076, 'www.sky.it|corporate|pacchetti e offerte|sky cinema|sky:pacchetti e offerte:sky cinema');
+                }
+            }());
+            (function () {
+                var value = 'https://www.sky.it/';
+                if (value == 'https://www.sky.it/tv/sky-tv') {
+                    adf.track(124076, 'www.sky.it|corporate|pacchetti e offerte|sky tv|sky:pacchetti e offerte:sky tv');
+                }
+            }());
+            (function () {
+                var value = 'https://www.sky.it/';
+                if (value == 'https://www.sky.it/tv/sky-tv/serie-tv') {
+                    adf.track(124076, 'www.sky.it|sky:pacchetti-offerte:sky-tv:serie-tv');
+                }
+            }());
+            (function () {
+                var value = 'https://www.sky.it/';
+                if (value == 'https://www.sky.it/offerte/abbonamento-intrattenimento-plus') {
+                    adf.track(124076, 'www.sky.it|corporate|pacchetti-offerte|intrattenimento-plus|sky:pacchetti-offerte:intrattenimento-plus:nuovi-clienti');
+                }
+            }());
+            (function () {
+                var value = 'https://www.sky.it/';
+                if (value == 'https://www.sky.it/tv/sky-famiglia') {
+                    adf.track(124076, 'sky.it|offerta-sky|pacchetti-canali|sky-famiglia');
+                }
+            }());
+            (function () {
+                var value = 'https://www.sky.it/';
+                if (value == 'https://www.sky.it/offerte/abbonamento-cinema') {
+                    adf.track(124076, 'www.sky.it|corporate|landing|abbonarsi|sky:landing:abbonarsi:cinema');
+                }
+            }());
+            (function () {
+                var value = 'https://www.sky.it/';
+                if (value == 'https://www.sky.it/offerte/abbonamento-digitale-terrestre') {
+                    adf.track(124076, 'www.sky.it|corporate|landing|abbonarsi|sky:landing:abbonarsi:sky-digitale-terrestre');
+                }
+            }());
+            (function () {
+                var value = 'https://www.sky.it/';
+                if (value == 'https://www.sky.it/offerte/abbonamento-sport/cinema') {
+                    adf.track(124076, 'www.sky.it|corporate|pacchetti e offerte|sky sport|sky:pacchetti e offerte:sky sport');
+                }
+            }());
+            (function () {
+                var value = 'https://www.sky.it/';
+                if (value == 'https://www.sky.it/landing-new/abbonarsi/serietv') {
+                    adf.track(124076, 'LP_Brand_serieTV');
+                }
+            }());
+            (function () {
+                var value = 'https://www.sky.it/';
+                if (value == 'https://www.sky.it/landing-new/abbonarsi/parasite') {
+                    adf.track(124076, 'LP_Brand_parasite');
+                }
+            }());
+            (function () {
+                var value = 'https://www.sky.it/';
+                if (value == 'https://www.sky.it/landing-new/abbonarsi/promoskycalcio') {
+                    adf.track(124076, 'LP_Calcio_desk_giu20');
+                }
+            }());
+            (function () {
+                var value = 'https://www.sky.it/';
+                if (value == 'https://www.sky.it/callmenow-new/res/promoskycalciomobile') {
+                    adf.track(124076, 'LP_Calcio_mobile_giu20');
+                }
+            }());
+            (function () {
+                if ('https://www.sky.it/' == 'https://www.sky.it/landing-new/abbonarsi/serietv' || 'https://www.sky.it/' == 'https://www.sky.it/landing-new/abbonarsi/cinemabrand' || 'https://www.sky.it/' == 'https://www.sky.it/landing-new/abbonarsi/gangsoflondon' || 'https://www.sky.it/' == 'https://www.sky.it/landing-new/abbonarsi/skysport' || 'https://www.sky.it/' == 'https://www.sky.it/landing-new/abbonarsi/parasite') {
+                    adf.track(124076, 'LP_Brand_serieTV');
+                }
+            }());
+            if ('https://www.sky.it/'.match('landing-new') || 'https://www.sky.it/'.match('callmenow-new')) {
+                window._qevents = window._qevents || [];
+                (function () {
+                    var elem = document.createElement('script');
+                    elem.src = (document.location.protocol == 'https:' ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                    elem.async = true;
+                    elem.type = 'text/javascript';
+                    var scpt = document.getElementsByTagName('script')[0];
+                    scpt.parentNode.insertBefore(elem, scpt);
+                }());
+                _qevents.push({
+                    qacct: 'p-BZSYSpSSPmj6q',
+                    labels: '_fp.event.Upper Funnel Fibra',
+                    event: 'refresh'
+                });
+            }
+            __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                if (vendorConsents.grants['5f1aada6b8e05c306c0597d7'].vendorGrant == false) {
+                    return;
+                } else {
+                    if ('https://www.sky.it/' == 'https://www.sky.it/callmenow-new/res/skynetflixmobile') {
+                        var axel = Math.random() + '';
+                        var a = axel * 10000000000000;
+                        var adfIframe = document.createElement('iframe');
+                        adfIframe.src = 'https://10019337.fls.doubleclick.net/activityi;src=10019337;type=invmedia;cat=sky_t0;u1=[LP];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;npa=;gdpr=0;gdpr_consent=;ord=' + a + '?';
+                        adfIframe.style.display = 'none';
+                        document.body.appendChild(adfIframe);
+                    }
+                }
+            });
+            if ('https://www.sky.it/' == 'https://www.sky.it/') {
+                window._qevents = window._qevents || [];
+                try {
+                    (function () {
+                        const $___old_ab80b3c3f6a69399 = {}.constructor.getOwnPropertyDescriptor(window, 'localStorage');
+                        try {
+                            if ($___old_ab80b3c3f6a69399)
+                                ({}.constructor.defineProperty(window, 'localStorage', $___mock_5bdfad4490c3d520.localStorage));
+                            return function () {
+                                var prefix = '', hash = 'zPcSoWwHHncJOHGcWdVm', rtbhTags = [];
+                                rtbhTags.push('pr_' + hash + '_offer_C-https://www.sky.it/');
+                                var key = '__rtbhouse.lid', lid = window.localStorage.getItem(key);
+                                if (!lid) {
+                                    lid = '';
+                                    var pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                                    for (var i = 0; i < 20; i++)
+                                        lid += pool.charAt(Math.floor(Math.random() * pool.length));
+                                    window.localStorage.setItem(key, lid);
+                                }
+                                rtbhTags.push('pr_' + hash + '_lid_' + lid);
+                                var ifr = document.createElement('iframe'), sr = encodeURIComponent(document.referrer ? document.referrer : ''), su = encodeURIComponent(document.location.href ? document.location.href : ''), ifrsrc = 'https://' + prefix + 'creativecdn.com/tags?type=iframe', tmstmp = encodeURIComponent('' + Date.now());
+                                for (var i = 0; i < rtbhTags.length; i++) {
+                                    ifrsrc += '&id=' + encodeURIComponent(rtbhTags[i]);
+                                }
+                                ifrsrc += '&su=' + su + '&sr=' + sr + '&ts=' + tmstmp;
+                                ifr.setAttribute('src', ifrsrc);
+                                ifr.setAttribute('width', '1');
+                                ifr.setAttribute('height', '1');
+                                ifr.setAttribute('scrolling', 'no');
+                                ifr.setAttribute('frameBorder', '0');
+                                ifr.setAttribute('style', 'display:none');
+                                ifr.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+                                if (document.body) {
+                                    document.body.appendChild(ifr);
+                                } else {
+                                    window.addEventListener('DOMContentLoaded', function () {
+                                        document.body.appendChild(ifr);
+                                    });
+                                }
+                            }.apply(this, arguments);
+                        } finally {
+                            if ($___old_ab80b3c3f6a69399)
+                                ({}.constructor.defineProperty(window, 'localStorage', $___old_ab80b3c3f6a69399));
+                        }
+                    }());
+                } catch (e) {
+                }
+            }
+            if ('https://www.sky.it/' == 'landing-new' || 'callmenow-new') {
+                window._qevents = window._qevents || [];
+                try {
+                    (function () {
+                        const $___old_94b9db13673ca650 = {}.constructor.getOwnPropertyDescriptor(window, 'localStorage');
+                        try {
+                            if ($___old_94b9db13673ca650)
+                                ({}.constructor.defineProperty(window, 'localStorage', $___mock_5bdfad4490c3d520.localStorage));
+                            return function () {
+                                var prefix = '', hash = 'zPcSoWwHHncJOHGcWdVm', rtbhTags = [];
+                                rtbhTags.push('pr_' + hash + '_offer_C-https://www.sky.it/');
+                                var key = '__rtbhouse.lid', lid = window.localStorage.getItem(key);
+                                if (!lid) {
+                                    lid = '';
+                                    var pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                                    for (var i = 0; i < 20; i++)
+                                        lid += pool.charAt(Math.floor(Math.random() * pool.length));
+                                    window.localStorage.setItem(key, lid);
+                                }
+                                rtbhTags.push('pr_' + hash + '_lid_' + lid);
+                                var ifr = document.createElement('iframe'), sr = encodeURIComponent(document.referrer ? document.referrer : ''), su = encodeURIComponent(document.location.href ? document.location.href : ''), ifrsrc = 'https://' + prefix + 'creativecdn.com/tags?type=iframe', tmstmp = encodeURIComponent('' + Date.now());
+                                for (var i = 0; i < rtbhTags.length; i++) {
+                                    ifrsrc += '&id=' + encodeURIComponent(rtbhTags[i]);
+                                }
+                                ifrsrc += '&su=' + su + '&sr=' + sr + '&ts=' + tmstmp;
+                                ifr.setAttribute('src', ifrsrc);
+                                ifr.setAttribute('width', '1');
+                                ifr.setAttribute('height', '1');
+                                ifr.setAttribute('scrolling', 'no');
+                                ifr.setAttribute('frameBorder', '0');
+                                ifr.setAttribute('style', 'display:none');
+                                ifr.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+                                if (document.body) {
+                                    document.body.appendChild(ifr);
+                                } else {
+                                    window.addEventListener('DOMContentLoaded', function () {
+                                        document.body.appendChild(ifr);
+                                    });
+                                }
+                            }.apply(this, arguments);
+                        } finally {
+                            if ($___old_94b9db13673ca650)
+                                ({}.constructor.defineProperty(window, 'localStorage', $___old_94b9db13673ca650));
+                        }
+                    }());
+                } catch (e) {
+                }
+            }
+            (function () {
+                if ('https://www.sky.it/' == 'https://extra.sky.it/concorsi/Tennis2021/') {
+                    adf.track(124076, 'Extra - Atterraggio Musetti', { sv13: '' });
+                }
+            }());
+            (function () {
+                if ('https://www.sky.it/' == 'https://www.sky.it/tv/skyq-new1') {
+                    adf.track(124076, 'Test Performance - Visit Pre 2', { sv13: '' });
+                }
+            }());
+            (function () {
+                if ('https://www.sky.it/' == 'https://www.sky.it/tv/skyq-new2') {
+                    adf.track(124076, 'Test Performance - Visit Post', { sv13: '' });
+                }
+            }());
+            function init() {
+                if ('https://www.sky.it/' == 'https://www.sky.it/tv/skyq-new3') {
+                    adf.track(124076, 'Test Performance - Visit Post Defer', { sv13: '' });
+                }
+            }
+            if (document.readyState != 'loading') {
+                init();
+            } else {
+                document.addEventListener('DOMContentLoaded', init);
+            }
+            if ('corporate' == 'corporate' && 'home' == 'multilocator' && '' == 'brescia') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-632175985/NoPmCMmFnqQDEPH6uK0C',
+                    'value': 1,
+                    'currency': 'EUR',
+                    'aw_remarketing_only': true
+                });
+            } else if ('corporate' == 'corporate' && 'home' == 'multilocator' && '' == 'bergamo') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-632175985/NoPmCMmFnqQDEPH6uK0C',
+                    'value': 1,
+                    'currency': 'EUR',
+                    'aw_remarketing_only': true
+                });
+            } else if ('corporate' == 'corporate' && 'home' == 'multilocator' && '' == 'perugia') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-632175985/NoPmCMmFnqQDEPH6uK0C',
+                    'value': 1,
+                    'currency': 'EUR',
+                    'aw_remarketing_only': true
+                });
+            } else if ('corporate' == 'corporate' && 'home' == 'multilocator' && '' == 'cagliari') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-632175985/NoPmCMmFnqQDEPH6uK0C',
+                    'value': 1,
+                    'currency': 'EUR',
+                    'aw_remarketing_only': true
+                });
+            } else if ('corporate' == 'corporate' && 'home' == 'multilocator' && '' == 'monza') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-632175985/NoPmCMmFnqQDEPH6uK0C',
+                    'value': 1,
+                    'currency': 'EUR',
+                    'aw_remarketing_only': true
+                });
+            } else if ('corporate' == 'corporate' && 'home' == 'multilocator' && '' == 'salerno') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-632175985/NoPmCMmFnqQDEPH6uK0C',
+                    'value': 1,
+                    'currency': 'EUR',
+                    'aw_remarketing_only': true
+                });
+            } else if ('corporate' == 'corporate' && 'home' == 'multilocator' && '' == 'reggio-emilia') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-632175985/NoPmCMmFnqQDEPH6uK0C',
+                    'value': 1,
+                    'currency': 'EUR',
+                    'aw_remarketing_only': true
+                });
+            } else if ('corporate' == 'corporate' && 'home' == 'multilocator' && '' == 'lecce') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-632175985/NoPmCMmFnqQDEPH6uK0C',
+                    'value': 1,
+                    'currency': 'EUR',
+                    'aw_remarketing_only': true
+                });
+            } else if ('corporate' == 'corporate' && 'home' == 'multilocator' && '' == 'vicenza') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-632175985/NoPmCMmFnqQDEPH6uK0C',
+                    'value': 1,
+                    'currency': 'EUR',
+                    'aw_remarketing_only': true
+                });
+            }
+            ;
+            (function () {
+                var segmentNames = [
+                    'SKY_INB_BB_DTH_NO_CALCIO_OPX_HI_19_90',
+                    'SKY_INB_BB_DTH_NO_CALCIO_OPX',
+                    'ALL_1',
+                    'ATTRIBUTO_17_0',
+                    'ATTRIBUTO_17_1',
+                    'ATTRIBUTO_18_0',
+                    'BB_CLIENTI_COVERAGE_MANUALE_DSP',
+                    'ATTRIBUTO_18_1',
+                    'ATTRIBUTO_19_0',
+                    'ATTRIBUTO_19_1',
+                    'ATTRIBUTO_21_0',
+                    'ATTRIBUTO_21_1',
+                    'HD_READY_DSP',
+                    'Anzianita_oltre 1',
+                    'Anzianita_entro 1',
+                    'Anzianita_oltre 3',
+                    'BB_CLIENTI_COVERAGE_ALL_MIN1',
+                    'BB_CLIENTI_COVERAGE_ALL_MAG1',
+                    'BB_CLIENTI_COVERAGE_ALL_MAG3',
+                    'BB_CLIENTI_COVERAGE_ALL_MAG6',
+                    'BB_CLIENTI_COVERAGE_ALL_MAG10',
+                    'Anzianita_oltre 6',
+                    'Anzianita_oltre 10',
+                    'BB_CLIENTI_RTG_LP_14GG',
+                    'BB_CLIENTI_COVERAGE_LUGLIO_PT_1_3',
+                    'BB_CLIENTI_COVERAGE_LUGLIO_PT_2_3',
+                    'BB_CLIENTI_COVERAGE_OF_VULA_AB_TEST_TECH_ALL',
+                    'BB_CLIENTI_COVERAGE_OF_VULA_ALL',
+                    'BB_CLIENTI_COVERAGE_LUGLIO_PT_3_3',
+                    'BB_CLIENTI_COVERAGE_LUGLIO_PT_4_3',
+                    'BB_CLIENTI_COVERAGE_VULA_ALL',
+                    'HD_NO_DSP',
+                    'EXTRA_SI_DISDETTA_MEDIOALTA',
+                    'EXTRA_SI_CLIENTI_MAG1_DISDETTA_MEDIOALTA',
+                    'EXTRA_NO_CLIENTI_MAG1_DISDETTA_MEDIOALTA',
+                    'EXTRA_NO_CLIENTI_MAG1',
+                    'BB_CLIENTI_COVERAGE_ALL',
+                    'SKYQ_N_DSP',
+                    'SP_Y_DSP',
+                    'CA_Y_DSP',
+                    'DCSS_READY_DSP',
+                    'BB_CLIENTI_COVERAGE_LUGLIO_PT_1_3_SKYQ_N',
+                    'BB_CLIENTI_COVERAGE_LUGLIO_PT_2_3_SKYQ_N',
+                    'BB_CLIENTI_COVERAGE_LUGLIO_PT_3_3_SKYQ_N',
+                    'BB_CLIENTI_COVERAGE_LUGLIO_PT_4_3_SKYQ_N',
+                    'BB_CLIENTI_COVERAGE_ALL_SKYQ_N',
+                    'BB_CLIENTI_COVERAGE_MANUALE_DSP_SKYQ_N',
+                    'BB_CLIENTI_COVERAGE_LUGLIO_PT_5_3',
+                    'BB_CLIENTI_COVERAGE_LUGLIO_PT_5_3_MAG10',
+                    'BB_CLIENTI_COVERAGE_LUGLIO_PT_5_3_MIN10',
+                    'BB_CLIENTI_COVERAGE_VULA_MAG_50_ALL',
+                    'DIGITAL_BB_PREV_SPORT_2021_03_25',
+                    'RTG_LP_Extra_Primissime_21GG',
+                    'DIGITAL_BB_PREV_SPORT_2021-03-25',
+                    'CI_N_DSP',
+                    'BB_CLIENTI_COVERAGE_LUGLIO',
+                    'CI_N_DSP_only_NPP',
+                    'CI_N_DSP_only_Legacy',
+                    'NO_SPORT_SI_RESISTANT',
+                    'NO_SPORT_NO_RESISTANT',
+                    'BB_CLIENTI_LISTA_19_90_05_02_2022'
+                ];
+                var segmentRegex = new RegExp(segmentNames.join('|'), 'g');
+                (function () {
+                    var adfScript = document.createElement('script');
+                    adfScript.src = '//dmp.adform.net/audiencetag/adformat.js';
+                    adfScript.onload = retrieve_segments;
+                    document.head.appendChild(adfScript);
+                }());
+                function retrieve_segments() {
+                    window.AdformAT = window.AdformAT || function (q, fn) {
+                        fn = function () {
+                            q.push([].slice.call(arguments));
+                            return fn;
+                        };
+                        fn.q = q;
+                        return fn;
+                    }([]);
+                    var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJBZGZvcm0uRE1QLkNsYWltczo6RGF0YVByb3ZpZGVycyI6IlsxMDE5MF0iLCJpc3MiOiJkbXAtYXBpLmFkZm9ybS5jb20iLCJhdWQiOiJhdWRpZW5jZV90YWdfY29uc3VtZXJfdjEiLCJleHAiOjE4OTg2OTE5NDMsIm5iZiI6MTU4MzMzMTg4M30.MiwW_ePOlv5vLYBvXKwSeolT1gsaH5ry4oYUTwP1Bwc';
+                    AdformAT('init', token);
+                    AdformAT('cookieSegments', function (status, response) {
+                        var segmentResponse = JSON.stringify(response);
+                        if (segmentResponse.match('ALL_1')) {
+                            dmpAllGoogleAdsPixel();
+                        }
+                        if (segmentResponse.match(segmentRegex)) {
+                            fbBasePixel('769114966468130');
+                            for (var i = 0; i < segmentNames.length; i++) {
+                                if (segmentResponse.indexOf(segmentNames[i]) > -1) {
+                                    fbq('track', 'Sky_Clienti_DMP_' + segmentNames[i]);
+                                }
+                            }
+                        }
+                        ;
+                    });
+                }
+                ;
+                function fbBasePixel(fbid) {
+                    __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                        if (vendorConsents.grants['5e7e1298b8e05c54a85c52d2'].vendorGrant == false) {
+                            return;
+                        } else {
+                            !function (f, b, e, v, n, t, s) {
+                                if (f.fbq)
+                                    return;
+                                n = f.fbq = function () {
+                                    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+                                };
+                                if (!f._fbq)
+                                    f._fbq = n;
+                                n.push = n;
+                                n.loaded = !0;
+                                n.version = '2.0';
+                                n.queue = [];
+                                t = b.createElement(e);
+                                t.async = !0;
+                                t.src = v;
+                                s = b.getElementsByTagName(e)[0];
+                                s.parentNode.insertBefore(t, s);
+                            }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+                            fbq('init', fbid);
+                            fbq('track', 'PageView');
+                        }
+                    });
+                }
+                ;
+                function dmpAllGoogleAdsPixel() {
+                    __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                        if (vendorConsents.grants['5f1aada6b8e05c306c0597d7'].vendorGrant == false) {
+                            return;
+                        } else {
+                            var adfScript = document.createElement('script');
+                            adfScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-1020504674';
+                            document.head.appendChild(adfScript);
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag() {
+                                dataLayer.push(arguments);
+                            }
+                            gtag('js', new Date());
+                            gtag('config', 'AW-1020504674');
+                            gtag('event', 'conversion', { 'send_to': 'AW-1020504674/zFwSCLjvsNUBEOLUzuYD' });
+                        }
+                    });
+                }
+            }());
+            if ('https://www.sky.it/' == 'https://www.sky.it/landing-new/abbonarsi/newdigitaleterrestre' || 'https://www.sky.it/' == 'https://www.sky.it/callmenow-new/res/newdigitaleterrestre-mobile' || 'https://www.sky.it/' == 'https://www.sky.it/callmenow-new/res/digitaleterrestre-calcio-mobile' || 'https://www.sky.it/' == 'https://www.sky.it/landing-new/abbonarsi/digitaleterrestre-calcio') {
+                window._qevents = window._qevents || [];
+                (function () {
+                    var elem = document.createElement('script');
+                    elem.src = (document.location.protocol == 'https:' ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                    elem.async = true;
+                    elem.type = 'text/javascript';
+                    var scpt = document.getElementsByTagName('script')[0];
+                    scpt.parentNode.insertBefore(elem, scpt);
+                }());
+                _qevents.push({
+                    qacct: 'p-BZSYSpSSPmj6q',
+                    labels: '_fp.event.Upper Funnel DTT',
+                    event: 'refresh'
+                });
+            }
+            if ('https://www.sky.it/' == 'https://www.sky.it/acquista/index.html' || 'https://www.sky.it/' == 'https://www.sky.it/come-vedere/index.html ' || 'https://www.sky.it/' == 'https://www.sky.it/come-vedere/skyq-fibra.html' || 'https://www.sky.it/' == 'https://www.sky.it/content/newaol/promozioni/crosspage_restyling.html' || 'https://www.sky.it/' == 'https://www.sky.it/offerte' || 'https://www.sky.it/' == 'https://www.sky.it/offerte/abbonamento-calcio' || 'https://www.sky.it/' == 'https://www.sky.it/offerte/abbonamento-calcio/satellite' || 'https://www.sky.it/' == 'https://www.sky.it/offerte/abbonamento-cinema' || 'https://www.sky.it/' == 'https://www.sky.it/offerte/abbonamento-cinema/satellite' || 'https://www.sky.it/' == 'https://www.sky.it/offerte/abbonamento-digitale-terrestre' || 'https://www.sky.it/' == 'https://www.sky.it/offerte/abbonamento-intrattenimento-plus' || 'https://www.sky.it/' == 'https://www.sky.it/offerte/abbonamento-sport' || 'https://www.sky.it/' == 'https://www.sky.it/offerte/abbonamento-sport/satellite' || 'https://www.sky.it/' == 'https://www.sky.it/offerte/abbonamento-sport-cinema' || 'https://www.sky.it/' == 'https://www.sky.it/pacchetti-offerte/index.html' || 'https://www.sky.it/' == 'https://www.sky.it/pacchetti-offerte/intrattenimento-plus/nuovi-clienti.html' || 'https://www.sky.it/' == 'https://www.sky.it/pacchetti-offerte/sky-cinema.html' || 'https://www.sky.it/' == 'https://www.sky.it/pacchetti-offerte/sky-tv.html ' || 'https://www.sky.it/' == 'https://www.sky.it/pacchetti-offerte/sky-tv/serie-tv.html ' || 'https://www.sky.it/' == 'https://www.sky.it/tv' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-calcio' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-cinema' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-famiglia' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-sport' || 'https://www.sky.it/' == 'https://www.sky.it/offerte/configuratore-abbonamento-sky' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-tv' || 'https://www.sky.it/' == 'https://www.sky.it/offerte/abbonamento-tv' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-tv/serie-tv' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-tv/serie-tv/speravo-de-mori-prima' || 'https://www.sky.it/' == 'https://www.sky.it/offerte/prova-skyq' || 'https://www.sky.it/' == 'https://www.sky.it/tv/skyq' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-sport/europei-2020' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-tv/serie-tv/anna' || 'https://www.sky.it/' == 'https://www.sky.it/offerte/abbonamento-intrattenimento-plus-calcio' || 'https://www.sky.it/' == 'https://www.sky.it/tv/intrattenimento-plus' || 'https://www.sky.it/' == 'https://abbonamento.sky.it/newaol/crosspage' || 'https://www.sky.it/' == 'https://www.sky.it/offerte/abbonamento-intrattenimento-plus-calcio' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-tv/serie-tv/gomorra' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-tv-intrattenimento' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-cinema-famiglia' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-tv/masterchef' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-tv/serie-tv/a-casa-tutti-bene-la-serie' || 'https://www.sky.it/' == 'https://www.sky.it/offerte/fatti-un-regalo-con-sky' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-cinema-famiglia' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-tv-intrattenimento' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-tv/pechino-express' || 'https://www.sky.it/' == 'https://www.sky.it/tv/sky-tv/serie-tv/il-re' || 'https://www.sky.it/' == 'https://www.sky.it/tv/skyq/amazon-prime-video') {
+                window._qevents = window._qevents || [];
+                (function () {
+                    var elem = document.createElement('script');
+                    elem.src = (document.location.protocol == 'https:' ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                    elem.async = true;
+                    elem.type = 'text/javascript';
+                    var scpt = document.getElementsByTagName('script')[0];
+                    scpt.parentNode.insertBefore(elem, scpt);
+                }());
+                _qevents.push({
+                    qacct: 'p-BZSYSpSSPmj6q',
+                    labels: '_fp.event.Organic visitatori',
+                    event: 'refresh'
+                });
+            }
+        } catch (e) {
+        }
+    }())
+}

@@ -1,0 +1,137 @@
+{
+    const $___mock_a70f8fe5757aed29 = {};
+    (exports => {
+        'use strict';
+        let isSealed = false;
+        class Storage {
+            constructor() {
+                if (isSealed) {
+                    throw new TypeError('Illegal constructor');
+                }
+            }
+            get length() {
+                return Object.keys(this).length;
+            }
+            key(index) {
+                const keys = Object.keys(this);
+                if (index < 0 || index >= keys.length) {
+                    return null;
+                }
+                return keys[index];
+            }
+            getItem(key) {
+                return Object.prototype.hasOwnProperty.call(this, key) ? this[key] : null;
+            }
+            setItem(key, value) {
+                this[key] = String(value);
+            }
+            removeItem(key) {
+                delete this[key];
+            }
+            clear() {
+                const keys = Object.keys(this);
+                for (const key of keys) {
+                    delete this[key];
+                }
+            }
+        }
+        exports.Storage = {
+            configurable: true,
+            enumerable: true,
+            value: Storage,
+            writable: true
+        };
+        const localStorage = new Storage();
+        exports.localStorage = {
+            configurable: true,
+            enumerable: true,
+            get() {
+                return localStorage;
+            }
+        };
+        const sessionStorage = new Storage();
+        exports.sessionStorage = {
+            configurable: true,
+            enumerable: true,
+            get() {
+                return sessionStorage;
+            }
+        };
+        isSealed = true;
+    })($___mock_a70f8fe5757aed29);
+    (function () {
+        Marketing.bindDependencyDOMParsed(function () {
+            var Bootstrapper = window['Marketing'];
+            var ensightenOptions = Marketing.ensightenOptions;
+            try {
+                Marketing.UDO.perfTimingStart('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+                var firePixel = function () {
+                    const $___old_b7a6fa86afba6fba = {}.constructor.getOwnPropertyDescriptor(window, 'sessionStorage');
+                    try {
+                        if ($___old_b7a6fa86afba6fba)
+                            ({}.constructor.defineProperty(window, 'sessionStorage', $___mock_a70f8fe5757aed29.sessionStorage));
+                        return function () {
+                            !function (f, b, e, v, n, t, s) {
+                                if (f.fbq)
+                                    return;
+                                n = f.fbq = function () {
+                                    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+                                };
+                                if (!f._fbq)
+                                    f._fbq = n;
+                                n.push = n;
+                                n.loaded = !0;
+                                n.version = '2.0';
+                                n.queue = [];
+                                t = b.createElement(e);
+                                t.async = !0;
+                                t.src = v;
+                                s = b.getElementsByTagName(e)[0];
+                                s.parentNode.insertBefore(t, s);
+                            }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+                            fbq('init', '641890776746393');
+                            var udoMappings = {
+                                'content_ids': Marketing.UDO.ordercode.split('|').length > 1 ? Marketing.UDO.ordercode.split('|').join(', ') : Marketing.UDO.ordercode,
+                                'content_type': 'product',
+                                'currency': Marketing.UDO.currency.toUpperCase(),
+                                'value': Marketing.UDO.revenue ? Marketing.UDO.revenue : '1',
+                                'family': Marketing.UDO.family.split('|').length > 1 ? Marketing.UDO.family.split('|').join(', ') : Marketing.UDO.family
+                            };
+                            fbq('track', 'PageView');
+                            if (Marketing.UDO.promoid == '4')
+                                fbq('track', 'Deals', udoMappings);
+                            else if (Marketing.scDataObj.module.includes('serviceselection'))
+                                fbq('track', 'Customize', udoMappings);
+                            else if (Marketing.UDO.promoid == '7')
+                                fbq('track', 'ViewContent', udoMappings);
+                            else if (Marketing.UDO.promoid == '8')
+                                fbq('track', 'Accessories', udoMappings);
+                            else if (Marketing.UDO.promoid == '9')
+                                fbq('track', 'AddToCart', udoMappings);
+                            else if (Marketing.UDO.promoid == '100' || location.href.includes('thankyou'))
+                                fbq('track', 'Purchase', udoMappings);
+                            Marketing.UDO.hve_mpv('https://www.facebook.com/tr?id=641890776746393&ev=TotalHVEs&noscript=1');
+                            Marketing.UDO.hve_mpv('https://www.facebook.com/tr?id=641890776746393&ev=MultiPageView&noscript=1');
+                            Marketing.UDO.hve_download('https://www.facebook.com/tr?id=641890776746393&ev=TotalHVEs&noscript=1');
+                            Marketing.UDO.hve_download('https://www.facebook.com/tr?id=641890776746393&ev=Download&noscript=1');
+                            Marketing.UDO.hve_bc_80('https://www.facebook.com/tr?id=641890776746393&ev=TotalHVEs&noscript=1');
+                            Marketing.UDO.hve_bc_80('https://www.facebook.com/tr?id=641890776746393&ev=Video80&noscript=1');
+                            Marketing.UDO.hve_contactUs('https://www.facebook.com/tr?id=641890776746393&ev=TotalHVEs&noscript=1');
+                        }.apply(this, arguments);
+                    } finally {
+                        if ($___old_b7a6fa86afba6fba)
+                            ({}.constructor.defineProperty(window, 'sessionStorage', $___old_b7a6fa86afba6fba));
+                    }
+                };
+                firePixel();
+                if (Marketing.scDataObj.cms == 'olr')
+                    window.addEventListener('udoReady', function () {
+                        firePixel();
+                    });
+                Marketing.UDO.perfTimingEnd('ruleId-' + this.id + '-deploymentId-' + this.deploymentId);
+            } catch (e) {
+                dell_marketing_util.debug(e);
+            }
+        }, 3666594, [3606329], 700962, [610323]);
+    }())
+}
