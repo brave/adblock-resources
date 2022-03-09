@@ -1,0 +1,132 @@
+var walmericLastLead, diffMinutes;
+{
+    const $___mock_66c8372c6a8ccc7b = {};
+    (exports => {
+        'use strict';
+        let isSealed = false;
+        class Storage {
+            constructor() {
+                if (isSealed) {
+                    throw new TypeError('Illegal constructor');
+                }
+            }
+            get length() {
+                return Object.keys(this).length;
+            }
+            key(index) {
+                const keys = Object.keys(this);
+                if (index < 0 || index >= keys.length) {
+                    return null;
+                }
+                return keys[index];
+            }
+            getItem(key) {
+                return Object.prototype.hasOwnProperty.call(this, key) ? this[key] : null;
+            }
+            setItem(key, value) {
+                this[key] = String(value);
+            }
+            removeItem(key) {
+                delete this[key];
+            }
+            clear() {
+                const keys = Object.keys(this);
+                for (const key of keys) {
+                    delete this[key];
+                }
+            }
+        }
+        exports.Storage = {
+            configurable: true,
+            enumerable: true,
+            value: Storage,
+            writable: true
+        };
+        const localStorage = new Storage();
+        exports.localStorage = {
+            configurable: true,
+            enumerable: true,
+            get() {
+                return localStorage;
+            }
+        };
+        const sessionStorage = new Storage();
+        exports.sessionStorage = {
+            configurable: true,
+            enumerable: true,
+            get() {
+                return sessionStorage;
+            }
+        };
+        isSealed = true;
+    })($___mock_66c8372c6a8ccc7b);
+    const $___old_5cae59f6e30f7eb4 = {}.constructor.getOwnPropertyDescriptor(window, 'sessionStorage');
+    try {
+        if ($___old_5cae59f6e30f7eb4)
+            ({}.constructor.defineProperty(window, 'sessionStorage', $___mock_66c8372c6a8ccc7b.sessionStorage));
+        (function () {
+            diffMinutes = $___var_b88ad4f85d31c56e;
+            ({}.constructor.defineProperty(diffMinutes, 'name', {
+                configurable: true,
+                enumerable: false,
+                value: 'diffMinutes',
+                writable: false
+            }));
+            var $___var_6c3f936176578b9a = sessionStorage.getItem('walmericLastLead');
+            walmericLastLead = $___var_6c3f936176578b9a;
+            if (walmericLastLead == null) {
+                walmericLastLead = new Date(2022, 0, 1);
+            }
+            if (typeof timeBetweentCheck != 'number') {
+                var timeBetweentCheck = 300;
+                var timeScriptLoad = 5000;
+                if (navigator.cookieEnabled) {
+                    var walmericCookiesEnabledInterval = setInterval(function () {
+                        if (diffMinutes(new Date(), new Date(walmericLastLead)) > 2) {
+                            __tcfapi('getCustomVendorConsents', 2, function (vendorConsents, success) {
+                                if (vendorConsents.grants['61e14b8b48c16b06bf535254'].vendorGrant == true) {
+                                    timeScriptLoad = 5000 * 60 * 60 * 24;
+                                    clearInterval(walmericCookiesEnabledInterval);
+                                    window.idTagDelio = '29842f94d414949bf95fb2e6109142cfef1fb2a78114c2c536a36bf5a65b953a0740be0d17b7cef8793648c81b5b3d72f89b06c77952f2cba717581a521e4ffd6d804bdd92fda7033fc70de310c3849c059205b71ed88065127e2d50a2df5575a96c1c0f11856830bea42104bdcc2c1b';
+                                    var script = document.createElement('script');
+                                    script.type = 'text/javascript';
+                                    script.src = 'https://t.womtp.com/slider/c/delio-lm/dfi/init.js';
+                                    var head = document.getElementsByTagName('head')[0];
+                                    head.appendChild(script);
+                                    var securityOffInterval = true;
+                                    var walmericCloseInterval = setInterval(function () {
+                                        if (typeof window.DFI === 'object' && typeof DFI.addLead === 'function') {
+                                            if (typeof window.dataLayerWalmeric != 'object' || typeof window.dataLayerWalmeric.privacy_policy != 'string') {
+                                                window.dataLayerWalmeric = { 'privacy_policy': 'no conferma' };
+                                            }
+                                            if (window.dataLayerWalmeric['privacy_policy'] === 'conferma' && securityOffInterval) {
+                                                securityOffInterval = false;
+                                                console.log('addlead');
+                                                if (diffMinutes(new Date(), new Date(walmericLastLead)) > 4 && timeBetweentCheck === 300) {
+                                                    sessionStorage.setItem('walmericLastLead', new Date());
+                                                    DFI.addLead(window.dataLayerWalmeric);
+                                                    timeBetweentCheck = 300 * 1000 * 1000;
+                                                    clearInterval(walmericCloseInterval);
+                                                }
+                                            } else if (window.dataLayerWalmeric['privacy_policy'] != 'conferma') {
+                                                securityOffInterval = true;
+                                            }
+                                        }
+                                    }, timeBetweentCheck);
+                                }
+                            });
+                        }
+                    }, timeScriptLoad);
+                }
+            }
+            function $___var_b88ad4f85d31c56e(now, last) {
+                var diff = (now.getTime() - last.getTime()) / 1000;
+                diff /= 60;
+                return Math.abs(Math.round(diff));
+            }
+        }())
+    } finally {
+        if ($___old_5cae59f6e30f7eb4)
+            ({}.constructor.defineProperty(window, 'sessionStorage', $___old_5cae59f6e30f7eb4));
+    }
+}
