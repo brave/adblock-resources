@@ -17,11 +17,19 @@
     },
     {
         "name": "brave-fix",
-        "aliases": ["bf"],
+        "aliases": [],
         "kind": {
             "mime": "application/javascript"
         },
         "resourcePath": "brave-fix.js"
+    },
+    {
+        "name": "de-amp",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "de-amp.js"
     },
     {
         "name": "touch-fix",
