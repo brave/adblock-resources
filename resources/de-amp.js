@@ -1,5 +1,5 @@
 (function () {
-  if (deAmpEnabled) {
+  if (typeof deAmpEnabled !== 'undefined' && deAmpEnabled) {
     const selector = 'a'
     const attr = 'jsaction'
     let timer
@@ -54,4 +54,4 @@
 
     self.addEventListener('DOMContentLoaded', start, { once: true })
   }
-})()
+})();
