@@ -1,5 +1,25 @@
 (function () {
-  if (typeof deAmpEnabled !== 'undefined' && deAmpEnabled) {
+  let isDeAmpEnabled
+  try {
+    isDeAmpEnabled = !!deAmpEnabled
+  } catch {
+    isDeAmpEnabled = false
+  }
+  if (isDeAmpEnabled) {
+    // Polyfill for requestIdleCallback
+    // https://github.com/pladaria/requestidlecallback-polyfill/blob/master/index.js
+    window.requestIdleCallback = window.requestIdleCallback ||
+    (callBack => {
+      const start = Date.now()
+      return setTimeout(() => {
+        callBack({
+          didTimeout: false,
+          timeRemaining: () => {
+            return Math.max(0, 50 - (Date.now() - start))
+          }
+        })
+      }, 1)
+    })
     const selector = 'a'
     const attr = 'jsaction'
     let timer
@@ -54,4 +74,4 @@
 
     self.addEventListener('DOMContentLoaded', start, { once: true })
   }
-})();
+})(); // eslint-disable-line
