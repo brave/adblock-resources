@@ -6,7 +6,7 @@
     const rmattr = () => {
       timer = undefined
       try {
-        const nodes = Array.from(document.querySelectorAll(selector))
+        const nodes = document.querySelectorAll(selector)
         for (const node of nodes) {
           node.removeAttribute(attr)
         }
