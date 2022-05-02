@@ -1,12 +1,12 @@
 (function () {
   if (typeof deAmpEnabled !== 'undefined' && deAmpEnabled) {
-    const selector = 'a'
     const attr = 'jsaction'
+    const selector = `a[data-amp-title][${attr}]`
     let timer
     const rmattr = () => {
       timer = undefined
       try {
-        const nodes = document.querySelectorAll(selector)
+        const nodes = Array.from(document.querySelectorAll(selector))
         for (const node of nodes) {
           node.removeAttribute(attr)
         }
