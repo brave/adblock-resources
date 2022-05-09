@@ -1,7 +1,7 @@
 (function () {
   if (typeof deAmpEnabled !== 'undefined' && deAmpEnabled) {
-    const selector = 'a'
     const attr = 'jsaction'
+    const selector = `a[data-amp-title][${attr}]`
     let timer
     const rmattr = () => {
       timer = undefined
