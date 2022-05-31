@@ -297,17 +297,6 @@
         "desc": "Removes advertisements from Lithuanian websites"
     },
     {
-        "uuid": "15B64333-BAF9-4B77-ADC8-935433CD6F4C",
-        "url": "https://notabug.org/latvian-list/adblock-latvian/raw/master/lists/latvian-list.txt",
-        "title": "Latvian List",
-        "format": "Standard",
-        "langs": ["lv"],
-        "support_url": "https://notabug.org/latvian-list/adblock-latvian",
-        "component_id": "hmabmnondepbfogenlfklniehjedmicd",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAst1posKDpKt3WLU07CziowQnBKYXzH2i/sDdJfMuTcKSNQvn9dxbHVLhg8Ih7NmN6SSJTRgb2PughdVNPXqlT3/jGioDC0gN8kBrBoN2YWgIW2wdvTCPvBOfwTOhGueQY6AtE7zD/3m9v6Wfcw07Rj84Su0qI1Zadmq2pBWo5z82vOAI2yV83YGDbnyK1JaFeLToYQmj+bMEojoZ4Lk4PbFmopVh1GkeOdCKtVN2NTIy43N/w0tS0wlLxjwTyZ6RIcK3VOhQXBqcpwKpKm/4WDksTvNRLZ8e526z/nqaasM/meS22hURh6NPtIOdy6/TspTzFPiRdj2xgNfQZ9oRxwIDAQAB",
-        "desc": "Removes advertisements from Latvian websites"
-    },
-    {
         "uuid": "9D644676-4784-4982-B94D-C9AB19098D2A",
         "url": "https://easylist-downloads.adblockplus.org/easylistdutch.txt",
         "title": "EasyList Dutch",
