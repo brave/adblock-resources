@@ -77,17 +77,6 @@
         "desc": "Removes advertisements from German websites"
     },
     {
-        "uuid": "9EF6A21C-5014-4199-95A2-A82491274203",
-        "url": "https://adblock.dk/block.csv",
-        "title": "Schacks Adblock Plus liste",
-        "format": "Standard",
-        "langs": ["da"],
-        "support_url": "https://henrik.schack.dk/adblock/",
-        "component_id": "facajiciiepdpjnoifonbfgcnlbpbieo",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxvmMjXthrTjGl0WDrL+4qYSVao5vKPGerr2VeUiZ1o94+P0IJyZzq3d7UP2nOvhveGl15YYxYss+sD/sUkUW57XMx+H4TF5OzGCwV8nkz4VoMIfEU6CKgYmRGHV2VoMdIHG7R++jX20+GAoeBw+aBx9+AHlBouf1kvqbkutVh+Bre1cVa6YsgsPVcmhiEp7wjz2yB23f44+pBIQgWlKWn7z9e1osG4LUCGk6gavtRoNGS3TAUf1Sq9EUibFJVmBjujVoiQKD8GIFKmLM9Fxl1Q+xgG2PCCSBz5lSesHkphDpwhszedurpKbWsnsRPqbqR3GmpceKQheWL/Y56tf2gwIDAQAB",
-        "desc": "Removes advertisements from Danish websites"
-    },
-    {
         "uuid": "0783DBFD-B5E0-4982-9B4A-711BDDB925B7",
         "url": "https://adblock.ee/list.php",
         "title": "Eesti saitidele kohandatud filter",
@@ -295,17 +284,6 @@
         "component_id": "dkbmlhggeoegbkimcafbfhjibdknflnj",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqCK9nqZcPjszbCmHXHMyLgwzSJGFHLIRKGF/QP4GRhdCh+gsiE4Y317mNx9Q0ogbrvsmYGzI7z+Vzfh0BSOEYVs3bl1dCNENPyf+f8kXWySoHY1/u8jMyeJsIPFrIhzjoypGYgqmjFTSnTAYhTPKv6fQ6KHUsNn/5WdKis1h/yPQSFWw7PX7wJubyD3UsE6mtWegpR9sv8mJdaFGvCnTvxm0NRxuAlP+3yINKmnTal82KpPTXh3o4ehNUsGQb8ibcMT0jFmq7VcD53gxojmta/AhBjP1LmByPkUMe8yCYKpnW3zMg1LS4JNcWiS8H2ApUUSW/9wUKMZI+3gidakP2QIDAQAB",
         "desc": "Removes advertisements from Lithuanian websites"
-    },
-    {
-        "uuid": "15B64333-BAF9-4B77-ADC8-935433CD6F4C",
-        "url": "https://notabug.org/latvian-list/adblock-latvian/raw/master/lists/latvian-list.txt",
-        "title": "Latvian List",
-        "format": "Standard",
-        "langs": ["lv"],
-        "support_url": "https://notabug.org/latvian-list/adblock-latvian",
-        "component_id": "hmabmnondepbfogenlfklniehjedmicd",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAst1posKDpKt3WLU07CziowQnBKYXzH2i/sDdJfMuTcKSNQvn9dxbHVLhg8Ih7NmN6SSJTRgb2PughdVNPXqlT3/jGioDC0gN8kBrBoN2YWgIW2wdvTCPvBOfwTOhGueQY6AtE7zD/3m9v6Wfcw07Rj84Su0qI1Zadmq2pBWo5z82vOAI2yV83YGDbnyK1JaFeLToYQmj+bMEojoZ4Lk4PbFmopVh1GkeOdCKtVN2NTIy43N/w0tS0wlLxjwTyZ6RIcK3VOhQXBqcpwKpKm/4WDksTvNRLZ8e526z/nqaasM/meS22hURh6NPtIOdy6/TspTzFPiRdj2xgNfQZ9oRxwIDAQAB",
-        "desc": "Removes advertisements from Latvian websites"
     },
     {
         "uuid": "9D644676-4784-4982-B94D-C9AB19098D2A",
