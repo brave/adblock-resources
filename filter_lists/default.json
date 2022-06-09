@@ -85,42 +85,42 @@
     },
     {
         "uuid": "2FBEB0BC-E2E1-4170-BAA9-05E76AAB5BA5",
-        "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-unbreak.txt",
+        "url": "https://raw.githubusercontent.com/brave/adblock-lists/no-more-redirect-rule-workaround/brave-unbreak.txt",
         "title": "Brave Unbreak",
         "format": "Standard",
         "support_url": "https://github.com/brave/adblock-lists"
     },
     {
         "uuid": "BCB1AFD7-7563-4BD4-B1F1-AEA01D38E982",
-        "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-specific.txt",
+        "url": "https://raw.githubusercontent.com/brave/adblock-lists/no-more-redirect-rule-workaround/brave-lists/brave-specific.txt",
         "title": "Brave Specific",
         "format": "Standard",
         "support_url": "https://github.com/brave/adblock-lists"
     },
     {
         "uuid": "9752d6b2-9e5d-4d56-a7e8-c2ee0f181ea3",
-        "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-social.txt",
+        "url": "https://raw.githubusercontent.com/brave/adblock-lists/no-more-redirect-rule-workaround/brave-lists/brave-social.txt",
         "title": "Brave Social",
         "format": "Standard",
         "support_url": "https://github.com/brave/adblock-lists"
     },
     {
         "uuid": "805662ef-a1aa-4948-9f6e-72603823e886",
-        "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-unbreak.txt",
+        "url": "https://raw.githubusercontent.com/brave/adblock-lists/no-more-redirect-rule-workaround/brave-lists/brave-unbreak.txt",
         "title": "Brave Unbreak",
         "format": "Standard",
         "support_url": "https://github.com/brave/adblock-lists"
     },
     {
         "uuid": "49254a7e-396e-4d1f-af48-f5730e22e1ce",
-        "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-android-specific.txt",
+        "url": "https://raw.githubusercontent.com/brave/adblock-lists/no-more-redirect-rule-workaround/brave-lists/brave-android-specific.txt",
         "title": "Brave Android-Specific Rules",
         "format": "Standard",
         "support_url": "https://github.com/brave/adblock-lists"
     },
     {
         "uuid": "b0433353-1144-473c-8e25-19fb035024b7",
-        "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-sugarcoat.txt",
+        "url": "https://raw.githubusercontent.com/brave/adblock-lists/no-more-redirect-rule-workaround/brave-lists/brave-sugarcoat.txt",
         "title": "SugarCoat Rules",
         "format": "Standard",
         "support_url": "https://github.com/brave-experiments/sugarcoat-pipeline"
