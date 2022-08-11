@@ -63,3 +63,23 @@ The `filter_lists/*.json` files are lists of elements, each describing a filter 
 - `include_redirect_urls` permits parsing of `redirect-url` filter option. This has security implications. This field is optional and defaults to `false`. 
 
 - `support_url` is somewhere a user can ask for help with the filter list.
+
+### Regional-list-specific fields
+
+In addition to the above, regional lists have a few extra fields:
+
+```json
+{
+    ...
+    "langs": ["ar"],
+    "component_id": "lfgnenkkneohplacnfabidofpgcdpofm",
+    "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqNcRp37CBZCXe1vbmXyobycPxHyEKNIgNl6p0XBBxtcZcQOijpY70GjCRzgCL7m1+FBo4MR3FXLiF2aPn/QsUR8t7+zfw3XzBVos4Ssexkqpd4/4ciASwTXpbuyFOq4Z5dcgJ1afeT9Zj5bmh4ekLpgJ1NzVwCMhEKk6cmSKIaGVo5EEydtlor2nkUJrSFuZA6tYZ++4BOfhhCtzrvXTZjg7mTlB6ca21NL4oLwtqvJMtF8ddoumh619BB5wOqxLzntC/oWyOxf00V5HDC7e/DRj9J8jLRFLd4EQUO4Mk+kG3MNy0ph9cqdw6zFR7a2H3LGkl4ejsifM1mUDuJL0cwIDAQAB",
+    "desc": "This is a regional list that blocks some unwanted items"
+}
+```
+
+- `langs` is a list of _locale codes_ for the given list, allowing it to be preselected in-browser by users in the corresponding regions. Note that despite the name, it should not list _language codes_.
+
+- `component_id` and `base64_public_key` are constants generated per-list such that the lists can be served in CRX components created by [brave-core-crx-packager](https://github.com/brave/brave-core-crx-packager).
+
+- `desc` is a short description of the list that may eventually be displayed in the `brave://adblock` UI.
