@@ -188,11 +188,11 @@
     },
     {
         "uuid": "C3C2F394-D7BB-4BC2-9793-E0F13B2B5971",
-        "url": "https://raw.githubusercontent.com/farrokhi/adblock-iran/master/filter.txt",
-        "title": "IRN: AdBlock Iran Filter",
+        "url": "https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlocker.txt",
+        "title": "IRN: PersianBlocker Filter",
         "format": "Standard",
         "langs": ["fa"],
-        "support_url": "https://github.com/farrokhi/adblock-iran",
+        "support_url": "https://github.com/MasterKia/PersianBlocker",
         "component_id": "dbcccdegkijbppmeaihneimbghfghkdl",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm3AZE2ne7R55X2j6RxAQHAZKl1hNPgwLOFsYpfAJ6m0uXmKJspguWxatJ9jDBbYLmtXnwX2WORILq1+r4kFtTcN8GNYe7/7o5yDLucI/W9d2vCjmEg95v50MzVQZSwd2gNZVZtL1s0S6pBwX0zI+6kHIFr2xqGV/FNE8L75f30rriQ0xKmenI1OWjyn8gNqIp4mKZW6XxkMRRS9+e0ynDi4ysQA9Ub5YHJxm0t62eqTmIyemgRhP6Rdbi0+GXbqFPjDfC26rtD3wy5f3aYL1V+2ADpdDyCeNlwCH7+vC7LWujqNTgK8wVJ4eH5VbUKC1e9cm/T57OsHJMDC5fbUuswIDAQAB",
         "desc": "Removes advertisements from Persian websites"
@@ -284,6 +284,17 @@
         "component_id": "dkbmlhggeoegbkimcafbfhjibdknflnj",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqCK9nqZcPjszbCmHXHMyLgwzSJGFHLIRKGF/QP4GRhdCh+gsiE4Y317mNx9Q0ogbrvsmYGzI7z+Vzfh0BSOEYVs3bl1dCNENPyf+f8kXWySoHY1/u8jMyeJsIPFrIhzjoypGYgqmjFTSnTAYhTPKv6fQ6KHUsNn/5WdKis1h/yPQSFWw7PX7wJubyD3UsE6mtWegpR9sv8mJdaFGvCnTvxm0NRxuAlP+3yINKmnTal82KpPTXh3o4ehNUsGQb8ibcMT0jFmq7VcD53gxojmta/AhBjP1LmByPkUMe8yCYKpnW3zMg1LS4JNcWiS8H2ApUUSW/9wUKMZI+3gidakP2QIDAQAB",
         "desc": "Removes advertisements from Lithuanian websites"
+    },
+    {
+        "uuid": "15B64333-BAF9-4B77-ADC8-935433CD6F4C",
+        "url": "https://raw.githubusercontent.com/Latvian-List/adblock-latvian/master/lists/latvian-list.txt",
+        "title": "Latvian List",
+        "format": "Standard",
+        "langs": ["lv"],
+        "support_url": "https://github.com/Latvian-List/adblock-latvian",
+        "component_id": "hmabmnondepbfogenlfklniehjedmicd",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAst1posKDpKt3WLU07CziowQnBKYXzH2i/sDdJfMuTcKSNQvn9dxbHVLhg8Ih7NmN6SSJTRgb2PughdVNPXqlT3/jGioDC0gN8kBrBoN2YWgIW2wdvTCPvBOfwTOhGueQY6AtE7zD/3m9v6Wfcw07Rj84Su0qI1Zadmq2pBWo5z82vOAI2yV83YGDbnyK1JaFeLToYQmj+bMEojoZ4Lk4PbFmopVh1GkeOdCKtVN2NTIy43N/w0tS0wlLxjwTyZ6RIcK3VOhQXBqcpwKpKm/4WDksTvNRLZ8e526z/nqaasM/meS22hURh6NPtIOdy6/TspTzFPiRdj2xgNfQZ9oRxwIDAQAB",
+        "desc": "Removes advertisements from Latvian websites"
     },
     {
         "uuid": "9D644676-4784-4982-B94D-C9AB19098D2A",
