@@ -121,6 +121,17 @@
         "desc": "Removes Social Elements"
     },
     {
+        "uuid": "2F3DCE16-A19A-493C-A88F-2E110FBD37D6",
+        "url": "https://secure.fanboy.co.nz/fanboy-mobile-notifications.txt",
+        "title": "Fanboy's Mobile Notifications List",
+        "format": "Standard",
+        "langs": [],
+        "support_url": "https://forums.lanik.us/",
+        "component_id": "ldbgldhcahahpffloggbbmjllggnkenk",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm42LAwZhmXBZ23uRGC8btPLv16YUr+9NPd8X4R1TVIMwujFBmAAVDVKR2UT7Ma5FfmdVimr/LxIv3v8DtAlnH5KZCd76Rtq5iYxMlPmCS0QKE42zRK/3u0ezN+/U9xAKHZQviw/Jn+go0biuiEmxzbFlAHNvdqaGtvHwBz24/DzWr+sRYbS2ttk31E1PVWF0un+n4ivTyYRZ6J6DLN3Cl+nPMYrmoyKGVbVLZcWHdftGjs2CGvyIYwlpo/03B1NahA1BrZvEvuL+xuqp68Nx7LAG2MHGeHTFkKYtcqr9gQR+W4EsKrQKCCJ0NEe4VralIVxn0Zi8wOQ4a6127uP7vwIDAQAB",
+        "desc": "Suppress \"switch to app\" notifications and prompts on mobile"
+    },
+    {
         "uuid": "1C6D8556-3400-4358-B9AD-72689D7B2C46",
         "url": "https://raw.githubusercontent.com/finnish-easylist-addition/finnish-easylist-addition/master/Finland_adb.txt",
         "title": "Finnish Addition to Easylist",
