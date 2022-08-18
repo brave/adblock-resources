@@ -22,7 +22,6 @@ tap.test('resources are parsed OK by adblock-rust', childTest => {
 
 tap.test('default filter lists are correctly formatted', childTest => {
     defaultLists.forEach(list => {
-        tap.ok(list.uuid !== undefined && typeof list.uuid === 'string')
         tap.ok(list.url !== undefined && typeof list.url === 'string')
         tap.ok(list.title !== undefined && typeof list.title === 'string')
         let supportedFormat = false
