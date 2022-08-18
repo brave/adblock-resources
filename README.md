@@ -43,7 +43,6 @@ The `filter_lists/*.json` files are lists of elements, each describing a filter 
 
 ```json
 {
-    "uuid": "49254a7e-396e-4d1f-af48-f5730e22e1ce",
     "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/new-list.txt",
     "title": "New Filter Rules",
     "format": "Standard",
@@ -51,8 +50,6 @@ The `filter_lists/*.json` files are lists of elements, each describing a filter 
     "support_url": "https://github.com/brave/adblock-lists"
 }
 ```
-
-- `uuid` is a unique identifier used by the browser to identify a filter list, should be generated.
 
 - `url` is the URL where the filter list is actually located and can be downloaded from. Filter list should be a list of rules in the format specified in `format` in a `.txt` file.
 
