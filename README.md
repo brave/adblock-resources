@@ -60,3 +60,16 @@ The `filter_lists/*.json` files are lists of elements, each describing a filter 
 - `include_redirect_urls` permits parsing of `redirect-url` filter option. This has security implications. This field is optional and defaults to `false`. 
 
 - `support_url` is somewhere a user can ask for help with the filter list.
+
+## Adding a new list
+
+The `generate_component.sh` script can be used to help create a new filter list component.
+It will generate:
+- A public key (corresponding to the `base64_public_key` field)
+- A component ID (corresponding to the `component_id` field)
+- The component's private key (in a new PEM file)
+
+The script should be run with no arguments.
+The resulting PEM file will be named `ad-block-updater-<component_id>.pem`.
+This file should be uploaded as a secret to Brave's `Extension Developers` vault in 1Password.
+Once it is uploaded, devops will also need to sync it the with Jenkins so that it can be used to build the component.
