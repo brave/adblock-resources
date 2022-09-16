@@ -32,6 +32,22 @@
         "resourcePath": "de-amp.js"
     },
     {
+        "name": "cbs",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "cbs.js"
+    },
+    {
+        "name": "cbs0",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "cbs0.js"
+    },
+    {
         "name": "touch-fix",
         "aliases": [],
         "kind": {
