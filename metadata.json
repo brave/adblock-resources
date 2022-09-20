@@ -48,6 +48,14 @@
         "resourcePath": "cbs0.js"
     },
     {
+        "name": "nbc",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "nbc.js"
+    },
+    {
         "name": "touch-fix",
         "aliases": [],
         "kind": {
