@@ -32,14 +32,6 @@
         "resourcePath": "de-amp.js"
     },
     {
-        "name": "nbc",
-        "aliases": [],
-        "kind": {
-            "mime": "application/javascript"
-        },
-        "resourcePath": "nbc.js"
-    },
-    {
         "name": "touch-fix",
         "aliases": [],
         "kind": {
