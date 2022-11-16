@@ -61,14 +61,14 @@
     },
     {
         "uuid": "92AA0D3B-34AC-4657-9A5C-DBAD339AF8E2",
-        "url": "https://raw.githubusercontent.com/cjx82630/cjxlist/master/cjxlist.txt",
-        "title": "CJX's EasyList Lite (main focus on Chinese sites)",
+        "url": "https://filters.adtidy.org/extension/ublock/filters/224.txt",
+        "title": "AdGuard Chinese List",
         "format": "Standard",
         "langs": [],
-        "support_url": "https://github.com/cjx82630/cjxlist",
+        "support_url": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
         "component_id": "lgfeompbgommiobcenmodekodmdajcal",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtAMyjMBZCbqNIuO01ZFJ5iKmcNFuJHXIUqhO9s6j6XnBAfak/OOk4s9k3maXyhaynXVpYATQyRHR0OEpmsQawFgKCmVm1LB68jxJ5Hh1ZITG1UyfznYnozkjBtzdkMGKeuZFBaHo5PPueHVO7yJDHvU3UFW4vCJ01twXiH4y0qaYjL1CPr58J9U0oKxptsfwEC53WcDq6mKtAKRpyxN6vbtFJ5/li2yC0Ms+8Xe3Xv5ovniM/4vNf3Jn1w0jzgrDRcW2VhxpydsH6q7oaR2igIzJ+XG6/k0g29CJhfT85dJNF31TwqvoI+Ju6hjZrEmSHmC7gbY7gN3ak+DbUrQxjwIDAQAB",
-        "desc": "Removes additional advertisements on Chinese websites, may break some websites",
+        "desc": "Removes advertisements on Chinese websites",
         "list_text_component": {
             "component_id": "fbljdmoohhbifebddjnbbljgencmpjlb",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnqEZcpRqGk/mgGi5UC2hZSMDJTesTp/trL+T56MTsS2Ld6ktt7NOSoAeUNLjVO2kc840jwtUkgBTO93SOkaC4j4GuVU1mH6hGaGrvAGCEQgcBIIBBsCB1HUUFmWMlaOK/tRrysZ/ugummrhVicxdzYUK370dK2dj13WN68AR4Q2Hvo9gEdbhlG1o0YiGew5zF0BvmqoMK0owZIxGs5Gqq3enGqURU2FtlDBu7Tmfnr/Ep5l1KOSG87Gk2wlYR5KhkX1N6p2/EI167udioZK9CndnxqEIVq+DuYR0obwouV8lzxInZ07ojD5kW3O+WSlcRLCzCaRPFhQMMi7sLLxqzQIDAQAB"
@@ -256,11 +256,11 @@
     },
     {
         "uuid": "4C07DB6B-6377-4347-836D-68702CF1494A",
-        "url": "https://secure.fanboy.co.nz/fanboy-indian.txt",
-        "title": "Fanboy's India Filters",
+        "url": "https://easylist-downloads.adblockplus.org/indianlist.txt",
+        "title": "IndianList",
         "format": "Standard",
         "langs": ["in"],
-        "support_url": "https://www.fanboy.co.nz/filters.html",
+        "support_url": "https://github.com/mediumkreation/IndianList",
         "component_id": "jnnbjhbkmgggeoplhadmppaeddmeapla",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1KcZJ8dK2ANtw8x19l0g1i2sSsg/G6AJNLORsw+Uz9g6sx7pUJo8TpjyITiwO366C6q/I2KwFpuc0NgGvWs6nLMEX6yaGO8tnrza36Dj7GFTQA9+H0TQxuZdcOfZqP8UakA6exGOl0anzAt/HQB1Gf6ipKilS0M4PAnPwlVaTRmdKxQwqHQrpfWSiKRB3MBG/OT48y9SXKToP+NAIIfVRC7TxPVJ0zIu41UDfU3Mx6zKOBcRfTnhmUT9XIEv2lAfRDyEDXTGg3nSNluZM4Bu4iQKpxj+x7oZDpQMkrpVBZdjpIRMPiD6aMKCo3GULoH15Fb7re5RZLJIxcu0+B8lPwIDAQAB",
         "desc": "Removes advertisements from Hindi websites",
