@@ -38,5 +38,37 @@
             "mime": "application/javascript"
         },
         "resourcePath": "touch-fix.js"
+    },
+    {
+        "name": "brave-set-local-storage-item",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "brave-set-local-storage-item.js"
+    },
+    {
+        "name": "brave-set-session-storage-item",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "brave-set-session-storage-item.js"
+    },
+    {
+        "name": "brave-set-cookie",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "brave-set-cookie.js"
+    },
+    {
+        "name": "brave-set-cookie-reload",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "brave-set-cookie-reload.js"
     }
 ]
