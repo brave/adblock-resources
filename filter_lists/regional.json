@@ -15,6 +15,21 @@
         }
     },
     {
+        "uuid": "F61D6B7B-4110-4EA4-9C81-38FB4CE90AEC",
+        "url": "https://raw.githubusercontent.com/blocklistproject/Lists/master/porn.txt",
+        "title": "Blocklists Anti-porn list",
+        "format": "Standard",
+        "langs": [],
+        "support_url": "https://github.com/blocklistproject/Lists",
+        "component_id": "llncepohmekfljgcdgnlikjindhabpom",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4vDS5+s0ImGnynie+7tavH69T65aWhZ5VSSaaplycMbt4kYT9RIadrJM8SFyvfybCeluDavGQSxmgX+egFVIbrGeZjl/BvfOWQXZ9qfPdbL0NAAgCSwzsaLag/Mpeg17R2rbMJnEz9zPyT/ZCjXwq5JVtyWx+Bgnxl2T/0zOYAqbVta+nm/dEO0TUQBjEP8YcHItsj/zsOdhXfsPHjIs/hlaJkbUwBw5ziFj01lmBIzwd5LLUlnFmeKDduYibMO/bNnKXZDMTwgBH+rSSErARyLjACkjl0xFBsJJA4gMQ1IFC7vGzUAFxIpU/DJsJymxWaSUcY6Np0Ew+RMNygn9hwIDAQAB",
+        "desc": "Blocks access to porn websites",
+        "list_text_component": {
+            "component_id": "lbnibkdpkdjnookgfeogjdanfenekmpe",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvLwepAP2UzEBpQraDyQ4rbGWmswgYLEyvEssFGmZ9uAHj3jtP2vE2w4AwpIsyg6zaD2Wx7fsgPTHxb1hZrT7lMK7RJzzrAeINlfbNwzxte7lkedxLdEaq+HrQunnBK9MY1fSonVmMohYCi7Gk+loUrGnQpuspVI6VJJ4N34sb8qiKueyx5+IyQpIBNPclhGs22yxohHN15r9sOcqsZ9XwNR1r7wZHE+pK1gu0a70zoY0WPPXFHZSHlbCz4VxLWeHwWdnx3yVOkgVOiacilCuutcptl+09IVFYHxTjquOZHZHcLFM78nju1K4R4V3IlEaXjxnYTfo+VJBQniBD/T81wIDAQAB"
+        }
+    },
+    {
         "uuid": "FD176DD1-F9A0-4469-B43E-B1764893DD5C",
         "url": "https://stanev.org/abp/adblock_bg.txt",
         "title": "Bulgarian Adblock list",
@@ -177,6 +192,21 @@
         "list_text_component": {
             "component_id": "bfpgedeaaibpoidldhjcknekahbikncb",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA310+gKMk4QUl7K23eSXHDukkg1Ped5At02N11zRHJf52mTFy6jnUgA7vo1hkARNHHJDwI9dSyfYsAtrw9qgo/V9ygDBkgShHyYC7c08pgUkdlciaZepj633yuMyyFK9lo3PEF+f1kOodE/Vq4ybJTChDcotuT5bAi57d1Jiizgv5Rz4W9ZvqsWOVbiclQTY+28wTpfuCLznV7mrx7kvm1D2aQaLaJ2R/936DkXRqUn8Ty9GGGaHqx9HK2JgB5RjwFk0esarZyua0kRB5JwMUGu+TsEiGgDpCbRka3nfxItwhoWGBYPwdapkdUr7l3RdeTCLUWmCBdkpmDMhbrG3ctQIDAQAB"
+        }
+    },
+    {
+        "uuid": "1ED1870B-997C-4BfE-AEBC-B67D679BAF3B",
+        "url": "https://raw.githubusercontent.com/easylist/easylist/master/fanboy-addon/fanboy_chatapps_third-party.txt",
+        "title": "Fanboy's Anti-chat apps List",
+        "format": "Standard",
+        "langs": [],
+        "support_url": "https://forums.lanik.us/",
+        "component_id": "obkanklfclekjgmfajnammibdjcbeklo",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu3bU/oJ+EYAfClmZsUjMjasCBbw+9YqkeLdsX3xtJuZ4N4o9ELvjytMoCi2dsl+BDo94C5zheZOEtLvQi/C/z70uP0bbNU+uST8R+hMgtcVq91dRaUmZUpfeBiYA6fK8svko4VK1dKX5ruvicwuE1jp3MsfKwGzplWsjUcolVjzS0JH0VRJu1Kl7uW/sMbCfVWfg+6YIhpHNGxgaZF48U0lChMHw4h4YH7Mf34QHDKp1p6KD/VaACmmdlDepq8LmzRT+T8PF4XIS+YVdFkSf6BwdP+APCFLAWkkBctUsgzQk5oqrnlm0KekIszp8UEgd0gyLgC3Rj7qh5XVSYFn3HwIDAQAB",
+        "desc": "Suppress website chat apps",
+        "list_text_component": {
+            "component_id": "cjoooeeofnfjohnalnghhmdlalopplja",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv1O0sayAdmrsaqTddCEZwwHvpjjCbR/2qYj0xh9FsFMS17yIHpZRTZw8F8b0NFDAb/hIuIpNeaBXZUN/oPG9eWv4GoV0fDIr9UST5WzB+zPBYgSV1S8TkqLnkDvE5sTmzG98sd3VL/L7PeijOCidcKnSyG5hkP+UNHmKUaRnLlUTM/ificlkjR8IKMNFrC+e4PjHkF+EtBFLKR9Qb9iEJHEjDbjEgtozDs3IrGGsrK3WF4A6iqD5zMX50FvUAqPkAhm9jnfyISarfwkI5WlhQ/mmA0c/U5lXFg5v7MoLR05ns9G40jqOc8jFmzVaayBVF/7RaR9wxVlxEzzMDoA37QIDAQAB"
         }
     },
     {
