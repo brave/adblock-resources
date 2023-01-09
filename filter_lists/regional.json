@@ -16,7 +16,7 @@
     },
     {
         "uuid": "F61D6B7B-4110-4EA4-9C81-38FB4CE90AEC",
-        "url": "https://raw.githubusercontent.com/blocklistproject/Lists/master/porn.txt",
+        "url": "https://raw.githubusercontent.com/blocklistproject/Lists/master/adguard/porn-ags.txt",
         "title": "Blocklists Anti-porn list",
         "format": "Standard",
         "langs": [],
