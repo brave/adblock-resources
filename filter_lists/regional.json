@@ -180,6 +180,20 @@
         }
     },
     {
+        "uuid": "690FF3B4-8B6B-4709-8505-fEC6643D7BD9",
+        "url": "https://secure.fanboy.co.nz/fanboy-newsletter.txt",
+        "title": "Fanboy's Anti-Newsletter List",
+        "langs": [],
+        "support_url": "https://forums.lanik.us/",
+        "component_id": "jniglbhheddihbcebineofiaophapfcm",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvKrGZC8Go3yIWQUdbOJs6mcAftW6rzmZEO51woVeBgEtBO7KWkMqxbVF0XROE/gsQPThCtFLjG7Wl5vLxNHK/8TgCeju/4qB4hVcXkss+aZ49KvgFzb1aGlm7n42aOpnpJ2WOCsnnHbJAPSHA/k3KixUT+xl772QdHE4YWueWQSHSuhdOZ9L9e9NErDtD94qwTxeYuDNC4xBHp+CXLG4kBah515by4kJ5242exRaK/OcYWGAXHSnZDqQ2/fMmM1wfrKsiln25+lSBmYLBDjqVwPxr3nMdEqE2Qurqmqee9wGCVNEjjkoNbyGTgh9t+eBJoOF1YM9kAAYTCbCMbMXIwIDAQAB",
+        "desc": "Suppress website newsletter popups",
+        "list_text_component": {
+            "component_id": "kdddfellohomdnfkdhombbddhojklibj",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr2V5xKHqddrLQr8mNlL4UQGUYfK62ftOlacYb23wPWfW1We4jIOHtYqHg81D7gYckSBejkLh2HqmGa6RxehFTQf8g/L8G1dgzQ10VrQF4STNJiva/EkhcEJHai279biESL6HLVTDun2BnXENxCUR7hc8hDM4xw2ZlaqMMUtFJwhQW96dzbLVG3yP7k8TDwX1dRaAa/Pe+Ie7OYhIUQp4I3rWn3GmhfKBxQalHce/7lQpZwCP8Q/Tz7D8GzvMu+dYm5LnP7LUfC2SdSM0jm3qqwKkWlT1W05tsce4vk2cnxwUUWOAh60TSzQ1d1DX/PfJBUzQG6gkWRMxGNLi+T4i9QIDAQAB"
+        }
+    },
+    {
         "uuid": "2F3DCE16-A19A-493C-A88F-2E110FBD37D6",
         "url": "https://secure.fanboy.co.nz/fanboy-mobile-notifications.txt",
         "title": "Fanboy's Mobile Notifications List",
