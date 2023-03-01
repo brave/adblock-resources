@@ -270,7 +270,7 @@
     },
     {
         "uuid": "EDEEE15A-6FA9-4FAC-8CA8-3565508EAAC3",
-        "url": "https://raw.githubusercontent.com/hufilter/hufilter/master/hufilter.txt",
+        "url": "https://raw.githubusercontent.com/hufilter/hufilter/master/hufilter-ublock.txt",
         "title": "Hufilter",
         "format": "Standard",
         "langs": ["hu"],
@@ -675,7 +675,7 @@
     },
     {
         "uuid": "1BE19EFD-9191-4560-878E-30ECA72B5B3C",
-        "url": "https://adguard.com/filter-rules.html?id=13",
+        "url": "https://filters.adtidy.org/extension/ublock/filters/13.txt",
         "title": "Adguard Turkish Filter",
         "format": "Standard",
         "langs": ["tr"],
@@ -690,7 +690,7 @@
     },
     {
         "uuid": "6A0209AC-9869-4FD6-A9DF-039B4200D52C",
-        "url": "https://raw.githubusercontent.com/abpvn/abpvn/master/filter/abpvn.txt",
+        "url": "https://raw.githubusercontent.com/abpvn/abpvn/master/filter/abpvn_ublock.txt",
         "title": "ABPVN List",
         "format": "Standard",
         "langs": ["vi"],
