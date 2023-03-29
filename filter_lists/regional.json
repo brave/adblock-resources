@@ -748,5 +748,20 @@
             "component_id": "phdmgpanpejkbmbljlhcehpadabljfbk",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv1vkW0NQdDtdNQt/BZ9M803R3dHx3ow0XN3rCh4vo9lXpiJot7RIxTSo2qKUWHype4g0MCL/NIiFq6jY0rdBpCP5hv6GmFf6r8uZsurWA/FVH7hzY1tcJ1t5zBZUufamlWQjeUdCkflsrP6p07JK3SR1WFi8xcTT2uQ8Yrkb6ioq5C1mBOljbVPJuYzk99acKu55lvWG2uKH9aDuHd0OuK8+CJycWVDdeFoGXuGHlTfURDbmgnv2P23jctE0viEH+vuk5ecofhmBG0rXpbF/fqJJYQu6DINIyc4E9NQ8W2ryutTBo7r9ZbW68uiAe+7UVrMkFagjl66xK0WXNcGBlwIDAQAB"
         }
-     }
+     },
+     {
+        "uuid": "78672887-A098-4D2C-B0CB-A3DEC4834DA7",
+        "url": "https://gitlab.com/magnolia1234/bypass-paywalls-clean-filters/-/raw/main/bpc-paywall-filter.txt",
+        "title": "Bypass Paywalls Clean filters",
+        "format": "Standard",
+        "langs": [],
+        "support_url": "https://gitlab.com/magnolia1234/bypass-paywalls-clean-filters",
+        "component_id": "gemhdipceojibnafnnnjnkijihoonobj",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6uj1pHwtluCMMXvrq5MJL5ZQKVeeC5u0uA4IdF8sNzlwa2mhdCR8hpmaFBl4vfvCRjjpdp86AvQmQjXThHdNHwQRFAmEOxoyjpLNbCeGT7jzQfGSEwfhmoRnm8nAYj3/tCb9RM/RdcJGimAYDlDygBEtZSTLM/qa4ehPw4Twabh79zFL69rXnabBPqNosGHwrEMrBTqlMwJnHFa7WbrarZtUen9sxgqkhx3+yKTS2b5K2aKwyLk4lCljKViBlsJl42FS4oV5odDIxKdYXhYlqohntZcnf8PMEgd8WE/o7D3MnB/T5J3UyhKkf+YtxMP8zORNxUKAaKCbYIQMp5K4XQIDAQAB",
+        "desc": "Bypass Paywalls filters",
+        "list_text_component": {
+            "component_id": "mjhbdghipcamfoojbeikdojibeelbmil",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4p2Fx/w0R4RVscwM1bobz4jcc40AkE+Ccp9azcUreKZWa3I75hv4G9MQOp9xHvxXVxcIVqRiGDdSyyDHCe+YMbYMQJhGdTEItPx5c3IZ/Lq35gJXLBb5+dqW+g5lp9I8+19YN5GLnkVU2snMosJ+ie6rkQaE2zoFOiPf7Uiode5FroCsgDh+OZpOeXkbbOWUBgNY3zaAZ9PY00k4R327Qk01LUfhokfgZxcvxOofIuIR992q5xxPreMHat2ZBDbEuLAuNda6/cJqhn6M4cCyHJh4+bv9GjcBGtd/QGiXD/s48fPfm453wYjd+DAtmLwBjQOsw4gcPmt5gTui6eAkOQIDAQAB"
+         }
+    }
 ]
