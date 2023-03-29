@@ -718,5 +718,35 @@
             "component_id": "pnoagbonokhdnppohfeemefhjbbofplk",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0BMvGe5WudkwwjswOQ61mbs6L/NNWKQK3kyw10Ew2oRWR5Jggr9IRFc3nT7tIvYZ0l/6tbOzoqM07Z3AW7ASK+am8TL3gw4nxZuduCdEJreJdlTKHxa7/Q0eYyNrTzVyu2zsiSZUFMtrWEhPdptnE15pA4NW7cy2rOWkTyG+nLZzDP1JEov3ZHia42B9RorQLN60dLLhYZl0E073FCra3Tv3wyNwnzvVskcPC9ljRSxH34UYCkjvZH8yHSZE9e/Oda2Tza3HxTy2Dm3Iu1PpfjJBYJCd76ZChlf0Pwb4hvE4YjmZd2EGXNnSpVjUrKDpSSaBORbURkm8tRXFRCs66QIDAQAB"
         }
-    }
+    },
+    {
+        "uuid": "BD308B90-D3BB-4041-9114-22E096B0BA77",
+        "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/yt-distracting.txt",
+        "title": "YouTube Mobile Distractions list",
+        "format": "Standard",
+        "langs": [],
+        "support_url": "https://github.com/brave/adblock-lists",
+        "component_id": "lklpombomaoagfjekkmiggppobeeeklg",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmREMTDVEwlJKAm1PUCTZDdcO4TjT7jZn1NiQHPcRUUlA23bK1QI+NwevgJzIz2VpnA8AdHhNeQzYDypEpow5B3MmRr5g5tC57uVuy9qmq8/i5sPFg6zhCL5bxFmHEAU/VdDuYrCYYaNEqwdWpKP9CBoNLezJwRfgCJNjXRpSgQAATVDvxbZYgB11McQTrEqsqXra2wTlrr3t4V5aTyRYghImGFa7Ka4o7APq2q7jhtCnU0/tq8g8ykg+AFlpdlv3YgNEzD4c4UicruRS1C6U2pR6n/eDvnzZleiHo4eSi2HRZS7ayMeZrdi10zowWq8qqNT4pgkDb26vpF2tzT+oGwIDAQAB",
+        "desc": "Removes Youtube Distractions (Mobile)",
+        "list_text_component": {
+            "component_id": "cpapfkpkeaajehipopnaiihfmbfbnkdp",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA11xzFtkVM4xI3AeJ281iUJUmDGSjWXdNDJkP0Mv7LNdc1fa8hQuc/gOKdU9S6UjxA3HEpHMucIFKMcQZ07A9MUjiP+B/fwxrTrfwqFKyePQkrd05HjhwDgzmfBpCgx9nQjDubEamzsb0yUKj+gL3D13f4tBi7pb5GHhGAY3smwZP0Dp+ydO5ec9fs1AdgLX6kK/mTuCr+oMf9ZOkTp8KxMS6MyN/NhsMG4Jis+mOuRdoBzvF7y7p/BUm3ewVJZ2KtMz2W6/v966kpaPX+PDdKK2qdGcIClq1nFgKB8dcjorPq6xjJhvflwAtXqYXfMD2h/7Pkdz6aHZc8NmVAg4R7wIDAQAB"
+        }
+    },
+    {
+        "uuid": "2D57ADED-3531-419A-9DED-7F8868BC1561",
+        "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/yt-recommended.txt",
+        "title": "YouTube Mobile Recommendations list",
+        "format": "Standard",
+        "langs": [],
+        "support_url": "https://github.com/brave/adblock-lists",
+        "component_id": "ghjoffpbhhecdjeffpjeejdpjfckigle",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4cZnKXdtGkGBM0pXfgCNp+jaMHVRKMPwp78lfS+B3lPaM8+f6WzzOMTBm4p8NGrDVtw+Ej+z4zLuYPFDtPMIOlpASBhMwjay5NA0dkeLgTz00GYS7a/gTE3uMAz9w3s5m9JzBDWasgN0fnMkPGhs1jCc037Ji+Ox2dGcqNctqPH3I+ODdPiCAZyrgLZxJZOn4bkzlqjaBuwiWdhaHlorwntu7+OkYWXfs+xCFWULWtnAXBZLAQ0z6b+fpAHacHEJxEJPEvY2zAKNq/1BOMNNW0YssjJ4qR01DLsdAAG1JrN5UPVk6ecBOSp/HfDUSEAwemGOIpfxtZS0Os3QZShWBwIDAQAB",
+        "desc": "Youtube Recommended list (Mobile)",
+        "list_text_component": {
+            "component_id": "phdmgpanpejkbmbljlhcehpadabljfbk",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv1vkW0NQdDtdNQt/BZ9M803R3dHx3ow0XN3rCh4vo9lXpiJot7RIxTSo2qKUWHype4g0MCL/NIiFq6jY0rdBpCP5hv6GmFf6r8uZsurWA/FVH7hzY1tcJ1t5zBZUufamlWQjeUdCkflsrP6p07JK3SR1WFi8xcTT2uQ8Yrkb6ioq5C1mBOljbVPJuYzk99acKu55lvWG2uKH9aDuHd0OuK8+CJycWVDdeFoGXuGHlTfURDbmgnv2P23jctE0viEH+vuk5ecofhmBG0rXpbF/fqJJYQu6DINIyc4E9NQ8W2ryutTBo7r9ZbW68uiAe+7UVrMkFagjl66xK0WXNcGBlwIDAQAB"
+        }
+     }
 ]
