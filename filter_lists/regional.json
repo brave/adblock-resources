@@ -722,7 +722,7 @@
     {
         "uuid": "BD308B90-D3BB-4041-9114-22E096B0BA77",
         "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/yt-distracting.txt",
-        "title": "Youtube distracting list",
+        "title": "YouTube Mobile Distractions list",
         "format": "Standard",
         "langs": [],
         "support_url": "https://github.com/brave/adblock-lists",
@@ -737,7 +737,7 @@
     {
         "uuid": "2D57ADED-3531-419A-9DED-7F8868BC1561",
         "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/yt-recommended.txt",
-        "title": "Youtube Recommended list",
+        "title": "YouTube Mobile Recommendations list",
         "format": "Standard",
         "langs": [],
         "support_url": "https://github.com/brave/adblock-lists",
