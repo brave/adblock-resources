@@ -304,7 +304,7 @@
         },
         "sources": [
             {
-                "url": "https://raw.githubusercontent.com/finnish-easylist-addition/finnish-easylist-addition/master/Finland_adb.txt",
+                "url": "https://raw.githubusercontent.com/finnish-easylist-addition/finnish-easylist-addition/gh-pages/Finland_adb.txt",
                 "format": "Standard",
                 "support_url": "https://github.com/finnish-easylist-addition/finnish-easylist-addition"
             }
