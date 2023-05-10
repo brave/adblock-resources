@@ -20,7 +20,7 @@
     },
     {
         "uuid": "F61D6B7B-4110-4EA4-9C81-38FB4CE90AEC",
-        "title": "Blocklists Anti-porn list",
+        "title": "Blocklists Anti-Porn",
         "desc": "Blocks access to porn websites",
         "langs": [],
         "component_id": "llncepohmekfljgcdgnlikjindhabpom",
@@ -39,7 +39,7 @@
     },
     {
         "uuid": "FD176DD1-F9A0-4469-B43E-B1764893DD5C",
-        "title": "Bulgarian Adblock list",
+        "title": "Bulgarian",
         "desc": "Removes advertisements on Bulgarian websites",
         "langs": ["bg"],
         "component_id": "coofeapfgmpkchclgdphgpmfhmnplbpn",
@@ -77,7 +77,7 @@
     },
     {
         "uuid": "CC98E4BA-9257-4386-A1BC-1BBF6980324F",
-        "title": "CJX's Annoyance List",
+        "title": "CJX's Annoyance",
         "desc": "Removes additional advertisements on Chinese websites, may break some websites",
         "langs": [],
         "component_id": "llpoppgpcimnmhgehpipdmamalmpfbjd",
@@ -96,7 +96,7 @@
     },
     {
         "uuid": "92AA0D3B-34AC-4657-9A5C-DBAD339AF8E2",
-        "title": "AdGuard Chinese List",
+        "title": "AdGuard Chinese",
         "desc": "Removes advertisements on Chinese websites",
         "langs": [],
         "component_id": "lgfeompbgommiobcenmodekodmdajcal",
@@ -115,7 +115,7 @@
     },
     {
         "uuid": "7CCB6921-7FDA-4A9B-B70A-12DD0A8F08EA",
-        "title": "CZE, SVK: EasyList Czech and Slovak",
+        "title": "EasyList Czech and Slovak",
         "desc": "Removes advertisements from Czech and Slovak websites",
         "langs": ["cs", "sk"],
         "component_id": "omkkefoeihpbpebhhbhmjekpnegokpbj",
@@ -153,7 +153,7 @@
     },
     {
         "uuid": "0783DBFD-B5E0-4982-9B4A-711BDDB925B7",
-        "title": "Eesti saitidele kohandatud filter",
+        "title": "Eesti Saitidele Kohandatud",
         "desc": "Removes advertisements from Estonian websites",
         "langs": ["et"],
         "component_id": "fnpjliiiicbbpkfihnggnmobcpppjhlj",
@@ -172,7 +172,7 @@
     },
     {
         "uuid": "AC023D22-AE88-4060-A978-4FEEEC4221693",
-        "title": "Easylist-Cookie List - Filter Obtrusive Cookie Notices",
+        "title": "EasyList Cookie",
         "desc": "Removes obtrusive cookie law notices",
         "langs": [],
         "component_id": "lfgnenkkneohplacnfabidofpgcdpofm",
@@ -198,7 +198,7 @@
     },
     {
         "uuid": "67E792D4-AE03-4D1A-9EDE-80E01C81F9B8",
-        "title": "Fanboy Annoyances List",
+        "title": "Fanboy's Annoyances",
         "desc": "Removes Web annoyances",
         "langs": [],
         "component_id": "kfhcejhgfapmkapakabicnjhpglajkao",
@@ -217,7 +217,7 @@
     },
     {
         "uuid": "7911A1CB-304E-4CDB-ABB3-E2A94A37E4DD",
-        "title": "Fanboy Social List",
+        "title": "Fanboy's Social",
         "desc": "Removes Social Elements",
         "langs": [],
         "component_id": "jkmfbjpchgojnebkdleeiplnaagomnll",
@@ -236,7 +236,7 @@
     },
     {
         "uuid": "690FF3B4-8B6B-4709-8505-FEC6643D7BD9",
-        "title": "Fanboy's Anti-Newsletter List",
+        "title": "Fanboy's Anti-Newsletter",
         "desc": "Suppress website newsletter popups",
         "langs": [],
         "component_id": "jniglbhheddihbcebineofiaophapfcm",
@@ -255,7 +255,7 @@
     },
     {
         "uuid": "2F3DCE16-A19A-493C-A88F-2E110FBD37D6",
-        "title": "Fanboy's Mobile Notifications List",
+        "title": "Fanboy's Mobile Notifications",
         "desc": "Suppress \"switch to app\" notifications and prompts on mobile",
         "langs": [],
         "component_id": "ldbgldhcahahpffloggbbmjllggnkenk",
@@ -274,7 +274,7 @@
     },
     {
         "uuid": "1ED1870B-997C-4BFE-AEBC-B67D679BAF3B",
-        "title": "Fanboy's Anti-chat apps List",
+        "title": "Fanboy's Anti-chat Apps",
         "desc": "Suppress website chat apps",
         "langs": [],
         "component_id": "obkanklfclekjgmfajnammibdjcbeklo",
@@ -293,7 +293,7 @@
     },
     {
         "uuid": "1C6D8556-3400-4358-B9AD-72689D7B2C46",
-        "title": "Finnish Addition to Easylist",
+        "title": "EasyList Finnish",
         "desc": "Removes advertisements from Finnish websites",
         "langs": ["fi"],
         "component_id": "kdcalgmhljnckmnfcboeabeepgnlaemf",
@@ -331,7 +331,7 @@
     },
     {
         "uuid": "6C0F4C7F-969B-48A0-897A-14583015A587",
-        "title": "Greek AdBlock Filter",
+        "title": "Greek AdBlock",
         "desc": "Removes advertisements from Greek websites",
         "langs": ["el"],
         "component_id": "pmgkiiodjlmmpimpmphjhkodjnjfkeke",
@@ -407,7 +407,7 @@
     },
     {
         "uuid": "C3C2F394-D7BB-4BC2-9793-E0F13B2B5971",
-        "title": "IRN: PersianBlocker Filter",
+        "title": "PersianBlocker",
         "desc": "Removes advertisements from Persian websites",
         "langs": ["fa"],
         "component_id": "dbcccdegkijbppmeaihneimbghfghkdl",
@@ -426,7 +426,7 @@
     },
     {
         "uuid": "48796273-E783-431E-B864-44D3DCEA66DC",
-        "title": "Icelandic ABP List",
+        "title": "Icelandic",
         "desc": "Removes advertisements from Icelandic websites",
         "langs": ["is"],
         "component_id": "njhlaafgablgnekjaodhgbaomabjibaf",
@@ -483,7 +483,7 @@
     },
     {
         "uuid": "A0E9F361-A01F-4C0E-A52D-2977A1AD4BFB",
-        "title": "ABP X Files",
+        "title": "NoAds X Files Italian",
         "desc": "Removes additional advertisements from Italian websites, may break some websites",
         "langs": [],
         "component_id": "agfanagdjcijocanbeednbhclejcjlfo",
@@ -502,7 +502,7 @@
     },
     {
         "uuid": "03F91310-9244-40FA-BCF6-DA31B832F34D",
-        "title": "Adguard Japanese filters (日本用フィルタ)",
+        "title": "Adguard Japanese filters 日本用フィルタ",
         "desc": "Removes advertisements from Japanese websites",
         "langs": ["ja", "jp"],
         "component_id": "ghnjmapememheddlfgmklijahiofgkea",
@@ -559,7 +559,7 @@
     },
     {
         "uuid": "4E8B1A63-DEBE-4B8B-AD78-3811C632B353",
-        "title": "Adblock Plus Lithuania",
+        "title": "EasyList Lithuania",
         "desc": "Removes advertisements from Lithuanian websites",
         "langs": ["lt"],
         "component_id": "dkbmlhggeoegbkimcafbfhjibdknflnj",
@@ -578,7 +578,7 @@
     },
     {
         "uuid": "15B64333-BAF9-4B77-ADC8-935433CD6F4C",
-        "title": "Latvian List",
+        "title": "Latvian",
         "desc": "Removes advertisements from Latvian websites",
         "langs": ["lv"],
         "component_id": "hmabmnondepbfogenlfklniehjedmicd",
@@ -616,7 +616,7 @@
     },
     {
         "uuid": "8BEDBAA8-4FE2-4FEA-82F2-81B8124A4A74",
-        "title": "Dandelion Sprout's Nordic Filters",
+        "title": "Dandelion Sprout's Nordic",
         "desc": "Removes advertisements from Norwegian, Danish and Icelandic websites",
         "langs": ["nb", "nn", "no", "da", "is"],
         "component_id": "kcffflkhcncgnbmgdhcgjfogpoacfied",
@@ -635,7 +635,7 @@
     },
     {
         "uuid": "BF9234EB-4CB7-4CED-9FCB-F1FD31B0666C",
-        "title": "Oficjalne Polskie Filtry do AdBlocka, uBlocka Origin i AdGuarda",
+        "title": "Oficjalne Polskie Filtry do AdBlocka",
         "desc": "Removes advertisements from Polish websites",
         "langs": ["pl"],
         "component_id": "paoecjnjjbclkgbempaeemcbeldldlbo",
@@ -673,7 +673,7 @@
     },
     {
         "uuid": "CB3A9B4A-C9F3-40FA-A6B8-5219ED5FA9ED",
-        "title": "Oficjalne Polskie Filtry Przeciwko Alertom o Adblocku - Uzupełnienie",
+        "title": "Oficjalne Polskie Filtry Przeciwko Alertom o Adblocku Uzupełnienie",
         "desc": "Defuses anti-adblock from Polish websites",
         "langs": ["pl"],
         "component_id": "ndgeclhidhlfgmjdcapejaldbahmkgbi",
@@ -692,7 +692,7 @@
     },
     {
         "uuid": "AD3E8454-F376-11E8-8EB2-F2801F1B9FD1",
-        "title": "Romanian Ad (ROad) Block List Light",
+        "title": "Romanian Ad (ROad)",
         "desc": "Removes advertisements from Romanian websites",
         "langs": ["ro"],
         "component_id": "hojdjlebfkngledgkgecohjkjjojaekd",
@@ -711,7 +711,7 @@
     },
     {
         "uuid": "80470EEC-970F-4F2C-BF6B-4810520C72E6",
-        "title": "RU AdList (Дополнительная региональная подписка)",
+        "title": "RU AdList Дополнительная региональная подписка",
         "desc": "Removes advertisements from Russian websites",
         "langs": ["ru", "uk", "be"],
         "component_id": "enkheaiicpeffbfgjiklngbpkilnbkoi",
@@ -730,7 +730,7 @@
     },
     {
         "uuid": "1088D292-2369-4D40-9BDF-C7DC03C05966",
-        "title": "Adguard Russian Filter",
+        "title": "Adguard Russian",
         "desc": "Removes additional advertisements from Russian websites, may break some websites",
         "langs": [],
         "component_id": "dmoefgliihlcfplldbllllbofegmojne",
@@ -749,7 +749,7 @@
     },
     {
         "uuid": "DABC6490-70E5-46DD-8BE2-358FB9A37C85",
-        "title": "BitBlock List (Дополнительная подписка фильтров)",
+        "title": "BitBlock Дополнительная подписка фильтров",
         "desc": "Removes additional advertisements from Russian websites, may break some websites",
         "langs": [],
         "component_id": "fmcofgdkijoanfaodpdfjipdgnjbiolk",
@@ -806,7 +806,7 @@
     },
     {
         "uuid": "418D293D-72A8-4A28-8718-A1EE40A45AAF",
-        "title": "Slovenian List",
+        "title": "Slovenian",
         "desc": "Removes advertisements from Slovenian websites",
         "langs": ["sl"],
         "component_id": "lddghfaofadfpaajgncgkbjhalgohfkd",
@@ -825,7 +825,7 @@
     },
     {
         "uuid": "7DC2AC80-5BBC-49B8-B473-A31A1145CAC1",
-        "title": "Frellwit's Filter List",
+        "title": "Frellwit's Swedish",
         "desc": "Removes advertisements from Swedish websites",
         "langs": ["sv"],
         "component_id": "oimfmeehpinnecjghphifehbbnddjkmf",
@@ -863,7 +863,7 @@
     },
     {
         "uuid": "1BE19EFD-9191-4560-878E-30ECA72B5B3C",
-        "title": "Adguard Turkish Filter",
+        "title": "Adguard Turkish",
         "desc": "Removes advertisements from Turkish websites",
         "langs": ["tr"],
         "component_id": "oooemoeokehlgldpjjhcgbndjcekllim",
@@ -882,7 +882,7 @@
     },
     {
         "uuid": "6A0209AC-9869-4FD6-A9DF-039B4200D52C",
-        "title": "ABPVN List",
+        "title": "ABPVN",
         "desc": "Removes advertisements from Vietnamese websites",
         "langs": ["vi"],
         "component_id": "cklgijeopkpaadeipkhdaodemoenlene",
@@ -901,7 +901,7 @@
     },
     {
         "uuid": "319A754E-065A-465F-B09D-3F2C7BF1E67B",
-        "title": "uBlock Annoyances List (used with Fanboy Annoyances List)",
+        "title": "uBlock Annoyances (used with Fanboy's Annoyances)",
         "desc": "Removes Web Annoyances, Supplemental uBO list",
         "langs": [],
         "component_id": "bfoofkaohomljmodljoameijbaichadj",
@@ -920,7 +920,7 @@
     },
     {
         "uuid": "BD308B90-D3BB-4041-9114-22E096B0BA77",
-        "title": "YouTube Mobile Distractions list",
+        "title": "YouTube Mobile Distractions",
         "desc": "Removes Youtube Distractions (Mobile)",
         "langs": [],
         "component_id": "lklpombomaoagfjekkmiggppobeeeklg",
@@ -939,7 +939,7 @@
     },
     {
         "uuid": "2D57ADED-3531-419A-9DED-7F8868BC1561",
-        "title": "YouTube Mobile Recommendations list",
+        "title": "YouTube Mobile Recommendations",
         "desc": "Youtube Recommended list (Mobile)",
         "langs": [],
         "component_id": "ghjoffpbhhecdjeffpjeejdpjfckigle",
@@ -958,7 +958,7 @@
      },
      {
         "uuid": "78672887-A098-4D2C-B0CB-A3DEC4834DA7",
-        "title": "Bypass Paywalls Clean filters",
+        "title": "Bypass Paywalls Clean Filters",
         "desc": "Bypass Paywalls filters",
         "langs": [],
         "component_id": "gemhdipceojibnafnnnjnkijihoonobj",
