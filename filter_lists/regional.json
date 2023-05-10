@@ -1,5 +1,202 @@
 [
     {
+        "uuid": "AC023D22-AE88-4060-A978-4FEEEC4221693",
+        "title": "EasyList Cookie",
+        "desc": "Removes obtrusive cookie law notices",
+        "langs": [],
+        "component_id": "lfgnenkkneohplacnfabidofpgcdpofm",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqNcRp37CBZCXe1vbmXyobycPxHyEKNIgNl6p0XBBxtcZcQOijpY70GjCRzgCL7m1+FBo4MR3FXLiF2aPn/QsUR8t7+zfw3XzBVos4Ssexkqpd4/4ciASwTXpbuyFOq4Z5dcgJ1afeT9Zj5bmh4ekLpgJ1NzVwCMhEKk6cmSKIaGVo5EEydtlor2nkUJrSFuZA6tYZ++4BOfhhCtzrvXTZjg7mTlB6ca21NL4oLwtqvJMtF8ddoumh619BB5wOqxLzntC/oWyOxf00V5HDC7e/DRj9J8jLRFLd4EQUO4Mk+kG3MNy0ph9cqdw6zFR7a2H3LGkl4ejsifM1mUDuJL0cwIDAQAB",
+        "list_text_component": {
+            "component_id": "cdbbhgbmjhfnhnmgeddbliobbofkgdhe",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4txGiQ3yLerqLDucoT7AeFjSShvHcUlEbW4XTf5Fg8qi9GzXVXSS1PLZZSYX94fIch+0gd0bFBsSuN5vJVjR/xIyYaS29uvav5WJ/p3zt+mqW1eDarQ3CS0rsqWHjeTQJjaqw/TY7zS7/QJFspQro6/tOAPivWXYHV7kWVUtpuX8vcLLM11mexxKUEcbTrFwTmF3aOZcQnCTTR1NFV46v9MxnBj86RZQ9v/APjDIt9d9l8/bvq5Jp4w+8sv5ctb6nxSBSrhyVlbYe2eVrdVwOrcKijGA1ROfEk4A/R8knajBl6ihiXlGteVqIOrka3onyB0y8UTP++a7TZey85yXUwIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://secure.fanboy.co.nz/fanboy-cookiemonster_ubo.txt",
+                "title": "EasyList-Cookie",
+                "format": "Standard",
+                "support_url": "https://forums.lanik.us/"
+            },
+            {
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-cookie-specific.txt",
+                "title": "Brave additions to EasyList-Cookie",
+                "format": "Standard",
+                "support_url": "https://github.com/brave/adblock-lists"
+            }
+        ]
+    },
+    {
+        "uuid": "67E792D4-AE03-4D1A-9EDE-80E01C81F9B8",
+        "title": "Fanboy's Annoyances",
+        "desc": "Removes Web annoyances",
+        "langs": [],
+        "component_id": "kfhcejhgfapmkapakabicnjhpglajkao",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs5oODJ9Xh552zkLYW8nkCkzOQ0qBNGbhxf7sXwtJsOgQJ8D+DypeYWal+g63B28OX/xJ3Mwnd4WF0JWeN+i3CxBSidSwCPN6c7/DZF4xUyzpo1uvQnnBL6uYgzBYR6JJ904OVHFEgRM7MIdgve2Z9PyaWvNEEg8I2vqPDyBIu8GAy0UjG9edQLCAgQrmejpxBGXuB6b87FILMryW7ejbUjh39hFhpzu1pmsG1wi4jWX1xzaqUiF5xRPbuBx64BWsAzern4p8XdjH3mXgwJiHItBngcDh1tHKjD7Ke5LmY9gJf9TIXkrBPmiu0SAfVhcwmfj/VuWYa8R06cSaCRZF2QIDAQAB",
+        "list_text_component": {
+            "component_id": "omoaeaghhgmiojkeaemjkpkmelmalbgo",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy/xbKx4WIC1LApciemKEs4rUz8MspYGqLzmhQwIsp6qOqMKiYA9pqOtUXx2TYRPkZODISGSsoqvTZ6Uv7Aerq0Bu06UiDy+H4yU0jFZPVDKsMfj9Ky0DAy7ocuetTIps5Aewx5S0S8g9zeI14PluhqsXlTMLQAqkFeUSsML0qHo94Zgx4T1AwHH8IjvsHB1456OCRjxlTICGL0hEwZdEV2rVYWXtkLzEDZ6guPmvEVKZIhey1DG9fXV57SFCLmBC2eTlv0rYDqqgK6KSUeqyAIHV4eiaqIPMgsRFVnE9JD/Q9xrjeAuFc3pslx4YKI+iuXgfa/8jGpPuKqcDX51F/QIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://secure.fanboy.co.nz/fanboy-annoyance_ubo.txt",
+                "format": "Standard",
+                "support_url": "https://forums.lanik.us/"
+            }
+        ]
+    },
+    {
+        "uuid": "7911A1CB-304E-4CDB-ABB3-E2A94A37E4DD",
+        "title": "Fanboy's Social",
+        "desc": "Removes Social Elements",
+        "langs": [],
+        "component_id": "jkmfbjpchgojnebkdleeiplnaagomnll",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1COQ5BWnYkWTrXeLhmaFQPHhCGbQ8gXNjd55TQxl2ne07PpSd6We1LeowFPuMrgXyIyhzW+MRxndFYhjMsUyJ34N+GGpDBf1u6zKWkbtprVgFhWDrlzmfuGq0o1SFkOo5bA2h4MhjBIJG55SuM0Bj6hYNtQqqQbcu8wC+L2glP7XtJUawUbZCr2eGFEDxBJA+g4HOgGAhAbgM+1xrL3IMsDTI1QChPjotTRxlUzARVWYMJN/r1Dmu8+pkmsgNfvVcmbLxqPpqhlKV49VtlB0QI0tZMYSIqui5B6qku6XJk7SUt1w0jZ+A5LpcQtDyAnlcnFwi6wqsujhPZ9Y4rr4GQIDAQAB",
+        "list_text_component": {
+            "component_id": "nbkknaieglghmocpollinelcggiehfco",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs6ib1E68QTHuz/TdEn+ck++Okbcf5xDfQjkhpTb59fnjm0rjII6MV3rWLEj5dkOvpAVzDzFCcyC/JJ/SYIY7nFRQl+ptttd1nLWNu7qewFGh2tezwuEMzPlzQr+KK93Yh0dooCC9KniR/0+kpYeGqBC8tBGz8f4KoV+/zTfkD/47pztflCxNJfrAj4P0GDQhvz8lBtnm6Pa7tGOMhksnMsYWRWsYs6uvjsfd+3uYbiCYa7lEMjZZKy7dHg8hPSUeGZo28kTqYFXufH5jY3q7Luk+dQey1+m1X97KLPOtmwaLFCFqWBha5qFMg/mgzczlaphReFUycwrYVjjOICKrYwIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://easylist-downloads.adblockplus.org/fanboy-social.txt",
+                "format": "Standard",
+                "support_url": "https://forums.lanik.us/"
+            }
+        ]
+    },
+    {
+        "uuid": "690FF3B4-8B6B-4709-8505-FEC6643D7BD9",
+        "title": "Fanboy's Anti-Newsletter",
+        "desc": "Suppress website newsletter popups",
+        "langs": [],
+        "component_id": "jniglbhheddihbcebineofiaophapfcm",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvKrGZC8Go3yIWQUdbOJs6mcAftW6rzmZEO51woVeBgEtBO7KWkMqxbVF0XROE/gsQPThCtFLjG7Wl5vLxNHK/8TgCeju/4qB4hVcXkss+aZ49KvgFzb1aGlm7n42aOpnpJ2WOCsnnHbJAPSHA/k3KixUT+xl772QdHE4YWueWQSHSuhdOZ9L9e9NErDtD94qwTxeYuDNC4xBHp+CXLG4kBah515by4kJ5242exRaK/OcYWGAXHSnZDqQ2/fMmM1wfrKsiln25+lSBmYLBDjqVwPxr3nMdEqE2Qurqmqee9wGCVNEjjkoNbyGTgh9t+eBJoOF1YM9kAAYTCbCMbMXIwIDAQAB",
+        "list_text_component": {
+            "component_id": "kdddfellohomdnfkdhombbddhojklibj",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr2V5xKHqddrLQr8mNlL4UQGUYfK62ftOlacYb23wPWfW1We4jIOHtYqHg81D7gYckSBejkLh2HqmGa6RxehFTQf8g/L8G1dgzQ10VrQF4STNJiva/EkhcEJHai279biESL6HLVTDun2BnXENxCUR7hc8hDM4xw2ZlaqMMUtFJwhQW96dzbLVG3yP7k8TDwX1dRaAa/Pe+Ie7OYhIUQp4I3rWn3GmhfKBxQalHce/7lQpZwCP8Q/Tz7D8GzvMu+dYm5LnP7LUfC2SdSM0jm3qqwKkWlT1W05tsce4vk2cnxwUUWOAh60TSzQ1d1DX/PfJBUzQG6gkWRMxGNLi+T4i9QIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://secure.fanboy.co.nz/fanboy-newsletter.txt",
+                "format": "Standard",
+                "support_url": "https://forums.lanik.us/"
+            }
+        ]
+    },
+    {
+        "uuid": "2F3DCE16-A19A-493C-A88F-2E110FBD37D6",
+        "title": "Fanboy's Mobile Notifications",
+        "desc": "Suppress \"switch to app\" notifications and prompts on mobile",
+        "langs": [],
+        "component_id": "ldbgldhcahahpffloggbbmjllggnkenk",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm42LAwZhmXBZ23uRGC8btPLv16YUr+9NPd8X4R1TVIMwujFBmAAVDVKR2UT7Ma5FfmdVimr/LxIv3v8DtAlnH5KZCd76Rtq5iYxMlPmCS0QKE42zRK/3u0ezN+/U9xAKHZQviw/Jn+go0biuiEmxzbFlAHNvdqaGtvHwBz24/DzWr+sRYbS2ttk31E1PVWF0un+n4ivTyYRZ6J6DLN3Cl+nPMYrmoyKGVbVLZcWHdftGjs2CGvyIYwlpo/03B1NahA1BrZvEvuL+xuqp68Nx7LAG2MHGeHTFkKYtcqr9gQR+W4EsKrQKCCJ0NEe4VralIVxn0Zi8wOQ4a6127uP7vwIDAQAB",
+        "list_text_component": {
+            "component_id": "bfpgedeaaibpoidldhjcknekahbikncb",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA310+gKMk4QUl7K23eSXHDukkg1Ped5At02N11zRHJf52mTFy6jnUgA7vo1hkARNHHJDwI9dSyfYsAtrw9qgo/V9ygDBkgShHyYC7c08pgUkdlciaZepj633yuMyyFK9lo3PEF+f1kOodE/Vq4ybJTChDcotuT5bAi57d1Jiizgv5Rz4W9ZvqsWOVbiclQTY+28wTpfuCLznV7mrx7kvm1D2aQaLaJ2R/936DkXRqUn8Ty9GGGaHqx9HK2JgB5RjwFk0esarZyua0kRB5JwMUGu+TsEiGgDpCbRka3nfxItwhoWGBYPwdapkdUr7l3RdeTCLUWmCBdkpmDMhbrG3ctQIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://secure.fanboy.co.nz/fanboy-mobile-notifications.txt",
+                "format": "Standard",
+                "support_url": "https://forums.lanik.us/"
+            }
+        ]
+    },
+    {
+        "uuid": "1ED1870B-997C-4BFE-AEBC-B67D679BAF3B",
+        "title": "Fanboy's Anti-chat Apps",
+        "desc": "Suppress website chat apps",
+        "langs": [],
+        "component_id": "obkanklfclekjgmfajnammibdjcbeklo",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu3bU/oJ+EYAfClmZsUjMjasCBbw+9YqkeLdsX3xtJuZ4N4o9ELvjytMoCi2dsl+BDo94C5zheZOEtLvQi/C/z70uP0bbNU+uST8R+hMgtcVq91dRaUmZUpfeBiYA6fK8svko4VK1dKX5ruvicwuE1jp3MsfKwGzplWsjUcolVjzS0JH0VRJu1Kl7uW/sMbCfVWfg+6YIhpHNGxgaZF48U0lChMHw4h4YH7Mf34QHDKp1p6KD/VaACmmdlDepq8LmzRT+T8PF4XIS+YVdFkSf6BwdP+APCFLAWkkBctUsgzQk5oqrnlm0KekIszp8UEgd0gyLgC3Rj7qh5XVSYFn3HwIDAQAB",
+        "list_text_component": {
+            "component_id": "cjoooeeofnfjohnalnghhmdlalopplja",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv1O0sayAdmrsaqTddCEZwwHvpjjCbR/2qYj0xh9FsFMS17yIHpZRTZw8F8b0NFDAb/hIuIpNeaBXZUN/oPG9eWv4GoV0fDIr9UST5WzB+zPBYgSV1S8TkqLnkDvE5sTmzG98sd3VL/L7PeijOCidcKnSyG5hkP+UNHmKUaRnLlUTM/ificlkjR8IKMNFrC+e4PjHkF+EtBFLKR9Qb9iEJHEjDbjEgtozDs3IrGGsrK3WF4A6iqD5zMX50FvUAqPkAhm9jnfyISarfwkI5WlhQ/mmA0c/U5lXFg5v7MoLR05ns9G40jqOc8jFmzVaayBVF/7RaR9wxVlxEzzMDoA37QIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/easylist/easylist/master/fanboy-addon/fanboy_chatapps_third-party.txt",
+                "format": "Standard",
+                "support_url": "https://forums.lanik.us/"
+            }
+        ]
+    },
+    {
+        "uuid": "319A754E-065A-465F-B09D-3F2C7BF1E67B",
+        "title": "uBlock Annoyances (used with Fanboy's Annoyances)",
+        "desc": "Removes Web Annoyances, Supplemental uBO list",
+        "langs": [],
+        "component_id": "bfoofkaohomljmodljoameijbaichadj",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx6oamYGdGGq5ZITZdjTfIYUdkUFDfer3SBG2Dp/PLpCktna778IR28lrwrA9mlQQDCwmWezRNaX9n/hIEemPwq8Fijp3v2rlXwj2xoskwxNPuHB9qETUZh1K2owZkLngrLR8UJP0kOcpCGCxiQ9Pn8kBoeNsDOx1yHnVmU89UUqGYNwIeSUDcrOdi8f3CZUgtOxMNy5+3s1lrmgWnt8gEpQptBS7G4Ptn7sYtX9HfMW+c8AEluoxtRyB2hcGMb9wZ8fUbYbvLtu5agSJlXi67hSHa5tSAQCCZO4Fd4Xvv5TX3AIaz0dFwJNbGp9HLzm974TfaqFkVWFZ5FdlRvD71QIDAQAB",
+        "list_text_component": {
+            "component_id": "pnoagbonokhdnppohfeemefhjbbofplk",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0BMvGe5WudkwwjswOQ61mbs6L/NNWKQK3kyw10Ew2oRWR5Jggr9IRFc3nT7tIvYZ0l/6tbOzoqM07Z3AW7ASK+am8TL3gw4nxZuduCdEJreJdlTKHxa7/Q0eYyNrTzVyu2zsiSZUFMtrWEhPdptnE15pA4NW7cy2rOWkTyG+nLZzDP1JEov3ZHia42B9RorQLN60dLLhYZl0E073FCra3Tv3wyNwnzvVskcPC9ljRSxH34UYCkjvZH8yHSZE9e/Oda2Tza3HxTy2Dm3Iu1PpfjJBYJCd76ZChlf0Pwb4hvE4YjmZd2EGXNnSpVjUrKDpSSaBORbURkm8tRXFRCs66QIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/annoyances.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/uBlockOrigin/uAssets"
+            }
+        ]
+    },
+    {
+        "uuid": "BD308B90-D3BB-4041-9114-22E096B0BA77",
+        "title": "YouTube Mobile Distractions",
+        "desc": "Removes Youtube Distractions (Mobile)",
+        "langs": [],
+        "component_id": "lklpombomaoagfjekkmiggppobeeeklg",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmREMTDVEwlJKAm1PUCTZDdcO4TjT7jZn1NiQHPcRUUlA23bK1QI+NwevgJzIz2VpnA8AdHhNeQzYDypEpow5B3MmRr5g5tC57uVuy9qmq8/i5sPFg6zhCL5bxFmHEAU/VdDuYrCYYaNEqwdWpKP9CBoNLezJwRfgCJNjXRpSgQAATVDvxbZYgB11McQTrEqsqXra2wTlrr3t4V5aTyRYghImGFa7Ka4o7APq2q7jhtCnU0/tq8g8ykg+AFlpdlv3YgNEzD4c4UicruRS1C6U2pR6n/eDvnzZleiHo4eSi2HRZS7ayMeZrdi10zowWq8qqNT4pgkDb26vpF2tzT+oGwIDAQAB",
+        "list_text_component": {
+            "component_id": "cpapfkpkeaajehipopnaiihfmbfbnkdp",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA11xzFtkVM4xI3AeJ281iUJUmDGSjWXdNDJkP0Mv7LNdc1fa8hQuc/gOKdU9S6UjxA3HEpHMucIFKMcQZ07A9MUjiP+B/fwxrTrfwqFKyePQkrd05HjhwDgzmfBpCgx9nQjDubEamzsb0yUKj+gL3D13f4tBi7pb5GHhGAY3smwZP0Dp+ydO5ec9fs1AdgLX6kK/mTuCr+oMf9ZOkTp8KxMS6MyN/NhsMG4Jis+mOuRdoBzvF7y7p/BUm3ewVJZ2KtMz2W6/v966kpaPX+PDdKK2qdGcIClq1nFgKB8dcjorPq6xjJhvflwAtXqYXfMD2h/7Pkdz6aHZc8NmVAg4R7wIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/yt-distracting.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/brave/adblock-lists"
+            }
+        ]
+    },
+    {
+        "uuid": "2D57ADED-3531-419A-9DED-7F8868BC1561",
+        "title": "YouTube Mobile Recommendations",
+        "desc": "Youtube Recommended list (Mobile)",
+        "langs": [],
+        "component_id": "ghjoffpbhhecdjeffpjeejdpjfckigle",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4cZnKXdtGkGBM0pXfgCNp+jaMHVRKMPwp78lfS+B3lPaM8+f6WzzOMTBm4p8NGrDVtw+Ej+z4zLuYPFDtPMIOlpASBhMwjay5NA0dkeLgTz00GYS7a/gTE3uMAz9w3s5m9JzBDWasgN0fnMkPGhs1jCc037Ji+Ox2dGcqNctqPH3I+ODdPiCAZyrgLZxJZOn4bkzlqjaBuwiWdhaHlorwntu7+OkYWXfs+xCFWULWtnAXBZLAQ0z6b+fpAHacHEJxEJPEvY2zAKNq/1BOMNNW0YssjJ4qR01DLsdAAG1JrN5UPVk6ecBOSp/HfDUSEAwemGOIpfxtZS0Os3QZShWBwIDAQAB",
+        "list_text_component": {
+            "component_id": "phdmgpanpejkbmbljlhcehpadabljfbk",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv1vkW0NQdDtdNQt/BZ9M803R3dHx3ow0XN3rCh4vo9lXpiJot7RIxTSo2qKUWHype4g0MCL/NIiFq6jY0rdBpCP5hv6GmFf6r8uZsurWA/FVH7hzY1tcJ1t5zBZUufamlWQjeUdCkflsrP6p07JK3SR1WFi8xcTT2uQ8Yrkb6ioq5C1mBOljbVPJuYzk99acKu55lvWG2uKH9aDuHd0OuK8+CJycWVDdeFoGXuGHlTfURDbmgnv2P23jctE0viEH+vuk5ecofhmBG0rXpbF/fqJJYQu6DINIyc4E9NQ8W2ryutTBo7r9ZbW68uiAe+7UVrMkFagjl66xK0WXNcGBlwIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/yt-recommended.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/brave/adblock-lists"
+            }
+        ]
+     },
+     {
+        "uuid": "78672887-A098-4D2C-B0CB-A3DEC4834DA7",
+        "title": "Bypass Paywalls Clean Filters",
+        "desc": "Bypass Paywalls filters",
+        "langs": [],
+        "component_id": "gemhdipceojibnafnnnjnkijihoonobj",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6uj1pHwtluCMMXvrq5MJL5ZQKVeeC5u0uA4IdF8sNzlwa2mhdCR8hpmaFBl4vfvCRjjpdp86AvQmQjXThHdNHwQRFAmEOxoyjpLNbCeGT7jzQfGSEwfhmoRnm8nAYj3/tCb9RM/RdcJGimAYDlDygBEtZSTLM/qa4ehPw4Twabh79zFL69rXnabBPqNosGHwrEMrBTqlMwJnHFa7WbrarZtUen9sxgqkhx3+yKTS2b5K2aKwyLk4lCljKViBlsJl42FS4oV5odDIxKdYXhYlqohntZcnf8PMEgd8WE/o7D3MnB/T5J3UyhKkf+YtxMP8zORNxUKAaKCbYIQMp5K4XQIDAQAB",
+        "list_text_component": {
+            "component_id": "mjhbdghipcamfoojbeikdojibeelbmil",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4p2Fx/w0R4RVscwM1bobz4jcc40AkE+Ccp9azcUreKZWa3I75hv4G9MQOp9xHvxXVxcIVqRiGDdSyyDHCe+YMbYMQJhGdTEItPx5c3IZ/Lq35gJXLBb5+dqW+g5lp9I8+19YN5GLnkVU2snMosJ+ie6rkQaE2zoFOiPf7Uiode5FroCsgDh+OZpOeXkbbOWUBgNY3zaAZ9PY00k4R327Qk01LUfhokfgZxcvxOofIuIR992q5xxPreMHat2ZBDbEuLAuNda6/cJqhn6M4cCyHJh4+bv9GjcBGtd/QGiXD/s48fPfm453wYjd+DAtmLwBjQOsw4gcPmt5gTui6eAkOQIDAQAB"
+         },
+        "sources": [
+            {
+                "url": "https://gitlab.com/magnolia1234/bypass-paywalls-clean-filters/-/raw/main/bpc-paywall-filter.txt",
+                "format": "Standard",
+                "support_url": "https://gitlab.com/magnolia1234/bypass-paywalls-clean-filters"
+            }
+        ]
+    },
+    {
         "uuid": "9FCEECEC-52B4-4487-8E57-8781E82C91D0",
         "title": "Liste AR",
         "desc": "Removes advertisements on Arabic websites",
@@ -167,127 +364,6 @@
                 "url": "https://adblock.ee/list.php",
                 "format": "Standard",
                 "support_url": "https://adblock.ee/"
-            }
-        ]
-    },
-    {
-        "uuid": "AC023D22-AE88-4060-A978-4FEEEC4221693",
-        "title": "EasyList Cookie",
-        "desc": "Removes obtrusive cookie law notices",
-        "langs": [],
-        "component_id": "lfgnenkkneohplacnfabidofpgcdpofm",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqNcRp37CBZCXe1vbmXyobycPxHyEKNIgNl6p0XBBxtcZcQOijpY70GjCRzgCL7m1+FBo4MR3FXLiF2aPn/QsUR8t7+zfw3XzBVos4Ssexkqpd4/4ciASwTXpbuyFOq4Z5dcgJ1afeT9Zj5bmh4ekLpgJ1NzVwCMhEKk6cmSKIaGVo5EEydtlor2nkUJrSFuZA6tYZ++4BOfhhCtzrvXTZjg7mTlB6ca21NL4oLwtqvJMtF8ddoumh619BB5wOqxLzntC/oWyOxf00V5HDC7e/DRj9J8jLRFLd4EQUO4Mk+kG3MNy0ph9cqdw6zFR7a2H3LGkl4ejsifM1mUDuJL0cwIDAQAB",
-        "list_text_component": {
-            "component_id": "cdbbhgbmjhfnhnmgeddbliobbofkgdhe",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4txGiQ3yLerqLDucoT7AeFjSShvHcUlEbW4XTf5Fg8qi9GzXVXSS1PLZZSYX94fIch+0gd0bFBsSuN5vJVjR/xIyYaS29uvav5WJ/p3zt+mqW1eDarQ3CS0rsqWHjeTQJjaqw/TY7zS7/QJFspQro6/tOAPivWXYHV7kWVUtpuX8vcLLM11mexxKUEcbTrFwTmF3aOZcQnCTTR1NFV46v9MxnBj86RZQ9v/APjDIt9d9l8/bvq5Jp4w+8sv5ctb6nxSBSrhyVlbYe2eVrdVwOrcKijGA1ROfEk4A/R8knajBl6ihiXlGteVqIOrka3onyB0y8UTP++a7TZey85yXUwIDAQAB"
-        },
-        "sources": [
-            {
-                "url": "https://secure.fanboy.co.nz/fanboy-cookiemonster_ubo.txt",
-                "title": "EasyList-Cookie",
-                "format": "Standard",
-                "support_url": "https://forums.lanik.us/"
-            },
-            {
-                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-cookie-specific.txt",
-                "title": "Brave additions to EasyList-Cookie",
-                "format": "Standard",
-                "support_url": "https://github.com/brave/adblock-lists"
-            }
-        ]
-    },
-    {
-        "uuid": "67E792D4-AE03-4D1A-9EDE-80E01C81F9B8",
-        "title": "Fanboy's Annoyances",
-        "desc": "Removes Web annoyances",
-        "langs": [],
-        "component_id": "kfhcejhgfapmkapakabicnjhpglajkao",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs5oODJ9Xh552zkLYW8nkCkzOQ0qBNGbhxf7sXwtJsOgQJ8D+DypeYWal+g63B28OX/xJ3Mwnd4WF0JWeN+i3CxBSidSwCPN6c7/DZF4xUyzpo1uvQnnBL6uYgzBYR6JJ904OVHFEgRM7MIdgve2Z9PyaWvNEEg8I2vqPDyBIu8GAy0UjG9edQLCAgQrmejpxBGXuB6b87FILMryW7ejbUjh39hFhpzu1pmsG1wi4jWX1xzaqUiF5xRPbuBx64BWsAzern4p8XdjH3mXgwJiHItBngcDh1tHKjD7Ke5LmY9gJf9TIXkrBPmiu0SAfVhcwmfj/VuWYa8R06cSaCRZF2QIDAQAB",
-        "list_text_component": {
-            "component_id": "omoaeaghhgmiojkeaemjkpkmelmalbgo",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy/xbKx4WIC1LApciemKEs4rUz8MspYGqLzmhQwIsp6qOqMKiYA9pqOtUXx2TYRPkZODISGSsoqvTZ6Uv7Aerq0Bu06UiDy+H4yU0jFZPVDKsMfj9Ky0DAy7ocuetTIps5Aewx5S0S8g9zeI14PluhqsXlTMLQAqkFeUSsML0qHo94Zgx4T1AwHH8IjvsHB1456OCRjxlTICGL0hEwZdEV2rVYWXtkLzEDZ6guPmvEVKZIhey1DG9fXV57SFCLmBC2eTlv0rYDqqgK6KSUeqyAIHV4eiaqIPMgsRFVnE9JD/Q9xrjeAuFc3pslx4YKI+iuXgfa/8jGpPuKqcDX51F/QIDAQAB"
-        },
-        "sources": [
-            {
-                "url": "https://secure.fanboy.co.nz/fanboy-annoyance_ubo.txt",
-                "format": "Standard",
-                "support_url": "https://forums.lanik.us/"
-            }
-        ]
-    },
-    {
-        "uuid": "7911A1CB-304E-4CDB-ABB3-E2A94A37E4DD",
-        "title": "Fanboy's Social",
-        "desc": "Removes Social Elements",
-        "langs": [],
-        "component_id": "jkmfbjpchgojnebkdleeiplnaagomnll",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1COQ5BWnYkWTrXeLhmaFQPHhCGbQ8gXNjd55TQxl2ne07PpSd6We1LeowFPuMrgXyIyhzW+MRxndFYhjMsUyJ34N+GGpDBf1u6zKWkbtprVgFhWDrlzmfuGq0o1SFkOo5bA2h4MhjBIJG55SuM0Bj6hYNtQqqQbcu8wC+L2glP7XtJUawUbZCr2eGFEDxBJA+g4HOgGAhAbgM+1xrL3IMsDTI1QChPjotTRxlUzARVWYMJN/r1Dmu8+pkmsgNfvVcmbLxqPpqhlKV49VtlB0QI0tZMYSIqui5B6qku6XJk7SUt1w0jZ+A5LpcQtDyAnlcnFwi6wqsujhPZ9Y4rr4GQIDAQAB",
-        "list_text_component": {
-            "component_id": "nbkknaieglghmocpollinelcggiehfco",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs6ib1E68QTHuz/TdEn+ck++Okbcf5xDfQjkhpTb59fnjm0rjII6MV3rWLEj5dkOvpAVzDzFCcyC/JJ/SYIY7nFRQl+ptttd1nLWNu7qewFGh2tezwuEMzPlzQr+KK93Yh0dooCC9KniR/0+kpYeGqBC8tBGz8f4KoV+/zTfkD/47pztflCxNJfrAj4P0GDQhvz8lBtnm6Pa7tGOMhksnMsYWRWsYs6uvjsfd+3uYbiCYa7lEMjZZKy7dHg8hPSUeGZo28kTqYFXufH5jY3q7Luk+dQey1+m1X97KLPOtmwaLFCFqWBha5qFMg/mgzczlaphReFUycwrYVjjOICKrYwIDAQAB"
-        },
-        "sources": [
-            {
-                "url": "https://easylist-downloads.adblockplus.org/fanboy-social.txt",
-                "format": "Standard",
-                "support_url": "https://forums.lanik.us/"
-            }
-        ]
-    },
-    {
-        "uuid": "690FF3B4-8B6B-4709-8505-FEC6643D7BD9",
-        "title": "Fanboy's Anti-Newsletter",
-        "desc": "Suppress website newsletter popups",
-        "langs": [],
-        "component_id": "jniglbhheddihbcebineofiaophapfcm",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvKrGZC8Go3yIWQUdbOJs6mcAftW6rzmZEO51woVeBgEtBO7KWkMqxbVF0XROE/gsQPThCtFLjG7Wl5vLxNHK/8TgCeju/4qB4hVcXkss+aZ49KvgFzb1aGlm7n42aOpnpJ2WOCsnnHbJAPSHA/k3KixUT+xl772QdHE4YWueWQSHSuhdOZ9L9e9NErDtD94qwTxeYuDNC4xBHp+CXLG4kBah515by4kJ5242exRaK/OcYWGAXHSnZDqQ2/fMmM1wfrKsiln25+lSBmYLBDjqVwPxr3nMdEqE2Qurqmqee9wGCVNEjjkoNbyGTgh9t+eBJoOF1YM9kAAYTCbCMbMXIwIDAQAB",
-        "list_text_component": {
-            "component_id": "kdddfellohomdnfkdhombbddhojklibj",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr2V5xKHqddrLQr8mNlL4UQGUYfK62ftOlacYb23wPWfW1We4jIOHtYqHg81D7gYckSBejkLh2HqmGa6RxehFTQf8g/L8G1dgzQ10VrQF4STNJiva/EkhcEJHai279biESL6HLVTDun2BnXENxCUR7hc8hDM4xw2ZlaqMMUtFJwhQW96dzbLVG3yP7k8TDwX1dRaAa/Pe+Ie7OYhIUQp4I3rWn3GmhfKBxQalHce/7lQpZwCP8Q/Tz7D8GzvMu+dYm5LnP7LUfC2SdSM0jm3qqwKkWlT1W05tsce4vk2cnxwUUWOAh60TSzQ1d1DX/PfJBUzQG6gkWRMxGNLi+T4i9QIDAQAB"
-        },
-        "sources": [
-            {
-                "url": "https://secure.fanboy.co.nz/fanboy-newsletter.txt",
-                "format": "Standard",
-                "support_url": "https://forums.lanik.us/"
-            }
-        ]
-    },
-    {
-        "uuid": "2F3DCE16-A19A-493C-A88F-2E110FBD37D6",
-        "title": "Fanboy's Mobile Notifications",
-        "desc": "Suppress \"switch to app\" notifications and prompts on mobile",
-        "langs": [],
-        "component_id": "ldbgldhcahahpffloggbbmjllggnkenk",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm42LAwZhmXBZ23uRGC8btPLv16YUr+9NPd8X4R1TVIMwujFBmAAVDVKR2UT7Ma5FfmdVimr/LxIv3v8DtAlnH5KZCd76Rtq5iYxMlPmCS0QKE42zRK/3u0ezN+/U9xAKHZQviw/Jn+go0biuiEmxzbFlAHNvdqaGtvHwBz24/DzWr+sRYbS2ttk31E1PVWF0un+n4ivTyYRZ6J6DLN3Cl+nPMYrmoyKGVbVLZcWHdftGjs2CGvyIYwlpo/03B1NahA1BrZvEvuL+xuqp68Nx7LAG2MHGeHTFkKYtcqr9gQR+W4EsKrQKCCJ0NEe4VralIVxn0Zi8wOQ4a6127uP7vwIDAQAB",
-        "list_text_component": {
-            "component_id": "bfpgedeaaibpoidldhjcknekahbikncb",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA310+gKMk4QUl7K23eSXHDukkg1Ped5At02N11zRHJf52mTFy6jnUgA7vo1hkARNHHJDwI9dSyfYsAtrw9qgo/V9ygDBkgShHyYC7c08pgUkdlciaZepj633yuMyyFK9lo3PEF+f1kOodE/Vq4ybJTChDcotuT5bAi57d1Jiizgv5Rz4W9ZvqsWOVbiclQTY+28wTpfuCLznV7mrx7kvm1D2aQaLaJ2R/936DkXRqUn8Ty9GGGaHqx9HK2JgB5RjwFk0esarZyua0kRB5JwMUGu+TsEiGgDpCbRka3nfxItwhoWGBYPwdapkdUr7l3RdeTCLUWmCBdkpmDMhbrG3ctQIDAQAB"
-        },
-        "sources": [
-            {
-                "url": "https://secure.fanboy.co.nz/fanboy-mobile-notifications.txt",
-                "format": "Standard",
-                "support_url": "https://forums.lanik.us/"
-            }
-        ]
-    },
-    {
-        "uuid": "1ED1870B-997C-4BFE-AEBC-B67D679BAF3B",
-        "title": "Fanboy's Anti-chat Apps",
-        "desc": "Suppress website chat apps",
-        "langs": [],
-        "component_id": "obkanklfclekjgmfajnammibdjcbeklo",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu3bU/oJ+EYAfClmZsUjMjasCBbw+9YqkeLdsX3xtJuZ4N4o9ELvjytMoCi2dsl+BDo94C5zheZOEtLvQi/C/z70uP0bbNU+uST8R+hMgtcVq91dRaUmZUpfeBiYA6fK8svko4VK1dKX5ruvicwuE1jp3MsfKwGzplWsjUcolVjzS0JH0VRJu1Kl7uW/sMbCfVWfg+6YIhpHNGxgaZF48U0lChMHw4h4YH7Mf34QHDKp1p6KD/VaACmmdlDepq8LmzRT+T8PF4XIS+YVdFkSf6BwdP+APCFLAWkkBctUsgzQk5oqrnlm0KekIszp8UEgd0gyLgC3Rj7qh5XVSYFn3HwIDAQAB",
-        "list_text_component": {
-            "component_id": "cjoooeeofnfjohnalnghhmdlalopplja",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv1O0sayAdmrsaqTddCEZwwHvpjjCbR/2qYj0xh9FsFMS17yIHpZRTZw8F8b0NFDAb/hIuIpNeaBXZUN/oPG9eWv4GoV0fDIr9UST5WzB+zPBYgSV1S8TkqLnkDvE5sTmzG98sd3VL/L7PeijOCidcKnSyG5hkP+UNHmKUaRnLlUTM/ificlkjR8IKMNFrC+e4PjHkF+EtBFLKR9Qb9iEJHEjDbjEgtozDs3IrGGsrK3WF4A6iqD5zMX50FvUAqPkAhm9jnfyISarfwkI5WlhQ/mmA0c/U5lXFg5v7MoLR05ns9G40jqOc8jFmzVaayBVF/7RaR9wxVlxEzzMDoA37QIDAQAB"
-        },
-        "sources": [
-            {
-                "url": "https://raw.githubusercontent.com/easylist/easylist/master/fanboy-addon/fanboy_chatapps_third-party.txt",
-                "format": "Standard",
-                "support_url": "https://forums.lanik.us/"
             }
         ]
     },
@@ -896,82 +972,6 @@
                 "url": "https://raw.githubusercontent.com/abpvn/abpvn/master/filter/abpvn_ublock.txt",
                 "format": "Standard",
                 "support_url": "https://abpvn.com/"
-            }
-        ]
-    },
-    {
-        "uuid": "319A754E-065A-465F-B09D-3F2C7BF1E67B",
-        "title": "uBlock Annoyances (used with Fanboy's Annoyances)",
-        "desc": "Removes Web Annoyances, Supplemental uBO list",
-        "langs": [],
-        "component_id": "bfoofkaohomljmodljoameijbaichadj",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx6oamYGdGGq5ZITZdjTfIYUdkUFDfer3SBG2Dp/PLpCktna778IR28lrwrA9mlQQDCwmWezRNaX9n/hIEemPwq8Fijp3v2rlXwj2xoskwxNPuHB9qETUZh1K2owZkLngrLR8UJP0kOcpCGCxiQ9Pn8kBoeNsDOx1yHnVmU89UUqGYNwIeSUDcrOdi8f3CZUgtOxMNy5+3s1lrmgWnt8gEpQptBS7G4Ptn7sYtX9HfMW+c8AEluoxtRyB2hcGMb9wZ8fUbYbvLtu5agSJlXi67hSHa5tSAQCCZO4Fd4Xvv5TX3AIaz0dFwJNbGp9HLzm974TfaqFkVWFZ5FdlRvD71QIDAQAB",
-        "list_text_component": {
-            "component_id": "pnoagbonokhdnppohfeemefhjbbofplk",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0BMvGe5WudkwwjswOQ61mbs6L/NNWKQK3kyw10Ew2oRWR5Jggr9IRFc3nT7tIvYZ0l/6tbOzoqM07Z3AW7ASK+am8TL3gw4nxZuduCdEJreJdlTKHxa7/Q0eYyNrTzVyu2zsiSZUFMtrWEhPdptnE15pA4NW7cy2rOWkTyG+nLZzDP1JEov3ZHia42B9RorQLN60dLLhYZl0E073FCra3Tv3wyNwnzvVskcPC9ljRSxH34UYCkjvZH8yHSZE9e/Oda2Tza3HxTy2Dm3Iu1PpfjJBYJCd76ZChlf0Pwb4hvE4YjmZd2EGXNnSpVjUrKDpSSaBORbURkm8tRXFRCs66QIDAQAB"
-        },
-        "sources": [
-            {
-                "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/annoyances.txt",
-                "format": "Standard",
-                "support_url": "https://github.com/uBlockOrigin/uAssets"
-            }
-        ]
-    },
-    {
-        "uuid": "BD308B90-D3BB-4041-9114-22E096B0BA77",
-        "title": "YouTube Mobile Distractions",
-        "desc": "Removes Youtube Distractions (Mobile)",
-        "langs": [],
-        "component_id": "lklpombomaoagfjekkmiggppobeeeklg",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmREMTDVEwlJKAm1PUCTZDdcO4TjT7jZn1NiQHPcRUUlA23bK1QI+NwevgJzIz2VpnA8AdHhNeQzYDypEpow5B3MmRr5g5tC57uVuy9qmq8/i5sPFg6zhCL5bxFmHEAU/VdDuYrCYYaNEqwdWpKP9CBoNLezJwRfgCJNjXRpSgQAATVDvxbZYgB11McQTrEqsqXra2wTlrr3t4V5aTyRYghImGFa7Ka4o7APq2q7jhtCnU0/tq8g8ykg+AFlpdlv3YgNEzD4c4UicruRS1C6U2pR6n/eDvnzZleiHo4eSi2HRZS7ayMeZrdi10zowWq8qqNT4pgkDb26vpF2tzT+oGwIDAQAB",
-        "list_text_component": {
-            "component_id": "cpapfkpkeaajehipopnaiihfmbfbnkdp",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA11xzFtkVM4xI3AeJ281iUJUmDGSjWXdNDJkP0Mv7LNdc1fa8hQuc/gOKdU9S6UjxA3HEpHMucIFKMcQZ07A9MUjiP+B/fwxrTrfwqFKyePQkrd05HjhwDgzmfBpCgx9nQjDubEamzsb0yUKj+gL3D13f4tBi7pb5GHhGAY3smwZP0Dp+ydO5ec9fs1AdgLX6kK/mTuCr+oMf9ZOkTp8KxMS6MyN/NhsMG4Jis+mOuRdoBzvF7y7p/BUm3ewVJZ2KtMz2W6/v966kpaPX+PDdKK2qdGcIClq1nFgKB8dcjorPq6xjJhvflwAtXqYXfMD2h/7Pkdz6aHZc8NmVAg4R7wIDAQAB"
-        },
-        "sources": [
-            {
-                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/yt-distracting.txt",
-                "format": "Standard",
-                "support_url": "https://github.com/brave/adblock-lists"
-            }
-        ]
-    },
-    {
-        "uuid": "2D57ADED-3531-419A-9DED-7F8868BC1561",
-        "title": "YouTube Mobile Recommendations",
-        "desc": "Youtube Recommended list (Mobile)",
-        "langs": [],
-        "component_id": "ghjoffpbhhecdjeffpjeejdpjfckigle",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4cZnKXdtGkGBM0pXfgCNp+jaMHVRKMPwp78lfS+B3lPaM8+f6WzzOMTBm4p8NGrDVtw+Ej+z4zLuYPFDtPMIOlpASBhMwjay5NA0dkeLgTz00GYS7a/gTE3uMAz9w3s5m9JzBDWasgN0fnMkPGhs1jCc037Ji+Ox2dGcqNctqPH3I+ODdPiCAZyrgLZxJZOn4bkzlqjaBuwiWdhaHlorwntu7+OkYWXfs+xCFWULWtnAXBZLAQ0z6b+fpAHacHEJxEJPEvY2zAKNq/1BOMNNW0YssjJ4qR01DLsdAAG1JrN5UPVk6ecBOSp/HfDUSEAwemGOIpfxtZS0Os3QZShWBwIDAQAB",
-        "list_text_component": {
-            "component_id": "phdmgpanpejkbmbljlhcehpadabljfbk",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv1vkW0NQdDtdNQt/BZ9M803R3dHx3ow0XN3rCh4vo9lXpiJot7RIxTSo2qKUWHype4g0MCL/NIiFq6jY0rdBpCP5hv6GmFf6r8uZsurWA/FVH7hzY1tcJ1t5zBZUufamlWQjeUdCkflsrP6p07JK3SR1WFi8xcTT2uQ8Yrkb6ioq5C1mBOljbVPJuYzk99acKu55lvWG2uKH9aDuHd0OuK8+CJycWVDdeFoGXuGHlTfURDbmgnv2P23jctE0viEH+vuk5ecofhmBG0rXpbF/fqJJYQu6DINIyc4E9NQ8W2ryutTBo7r9ZbW68uiAe+7UVrMkFagjl66xK0WXNcGBlwIDAQAB"
-        },
-        "sources": [
-            {
-                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/yt-recommended.txt",
-                "format": "Standard",
-                "support_url": "https://github.com/brave/adblock-lists"
-            }
-        ]
-     },
-     {
-        "uuid": "78672887-A098-4D2C-B0CB-A3DEC4834DA7",
-        "title": "Bypass Paywalls Clean Filters",
-        "desc": "Bypass Paywalls filters",
-        "langs": [],
-        "component_id": "gemhdipceojibnafnnnjnkijihoonobj",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6uj1pHwtluCMMXvrq5MJL5ZQKVeeC5u0uA4IdF8sNzlwa2mhdCR8hpmaFBl4vfvCRjjpdp86AvQmQjXThHdNHwQRFAmEOxoyjpLNbCeGT7jzQfGSEwfhmoRnm8nAYj3/tCb9RM/RdcJGimAYDlDygBEtZSTLM/qa4ehPw4Twabh79zFL69rXnabBPqNosGHwrEMrBTqlMwJnHFa7WbrarZtUen9sxgqkhx3+yKTS2b5K2aKwyLk4lCljKViBlsJl42FS4oV5odDIxKdYXhYlqohntZcnf8PMEgd8WE/o7D3MnB/T5J3UyhKkf+YtxMP8zORNxUKAaKCbYIQMp5K4XQIDAQAB",
-        "list_text_component": {
-            "component_id": "mjhbdghipcamfoojbeikdojibeelbmil",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4p2Fx/w0R4RVscwM1bobz4jcc40AkE+Ccp9azcUreKZWa3I75hv4G9MQOp9xHvxXVxcIVqRiGDdSyyDHCe+YMbYMQJhGdTEItPx5c3IZ/Lq35gJXLBb5+dqW+g5lp9I8+19YN5GLnkVU2snMosJ+ie6rkQaE2zoFOiPf7Uiode5FroCsgDh+OZpOeXkbbOWUBgNY3zaAZ9PY00k4R327Qk01LUfhokfgZxcvxOofIuIR992q5xxPreMHat2ZBDbEuLAuNda6/cJqhn6M4cCyHJh4+bv9GjcBGtd/QGiXD/s48fPfm453wYjd+DAtmLwBjQOsw4gcPmt5gTui6eAkOQIDAQAB"
-         },
-        "sources": [
-            {
-                "url": "https://gitlab.com/magnolia1234/bypass-paywalls-clean-filters/-/raw/main/bpc-paywall-filter.txt",
-                "format": "Standard",
-                "support_url": "https://gitlab.com/magnolia1234/bypass-paywalls-clean-filters"
             }
         ]
     }
