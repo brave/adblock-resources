@@ -24,20 +24,20 @@
         "resourcePath": "brave-fix.js"
     },
     {
-        "name": "de-amp",
+        "name": "brave-set-cookie-reload",
         "aliases": [],
         "kind": {
             "mime": "application/javascript"
         },
-        "resourcePath": "de-amp.js"
+        "resourcePath": "brave-set-cookie-reload.js"
     },
     {
-        "name": "touch-fix",
+        "name": "brave-set-cookie",
         "aliases": [],
         "kind": {
             "mime": "application/javascript"
         },
-        "resourcePath": "touch-fix.js"
+        "resourcePath": "brave-set-cookie.js"
     },
     {
         "name": "brave-set-local-storage-item",
@@ -56,19 +56,19 @@
         "resourcePath": "brave-set-session-storage-item.js"
     },
     {
-        "name": "brave-set-cookie",
+        "name": "de-amp",
         "aliases": [],
         "kind": {
             "mime": "application/javascript"
         },
-        "resourcePath": "brave-set-cookie.js"
+        "resourcePath": "de-amp.js"
     },
     {
-        "name": "brave-set-cookie-reload",
+        "name": "touch-fix",
         "aliases": [],
         "kind": {
             "mime": "application/javascript"
         },
-        "resourcePath": "brave-set-cookie-reload.js"
+        "resourcePath": "touch-fix.js"
     }
 ]
