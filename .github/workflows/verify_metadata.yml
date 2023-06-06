@@ -1,9 +1,6 @@
 name: Verify Metadata
 
 on:
-  push:
-    branches:
-      - aka/verify-metadata
   pull_request:
     branches:
       - master
