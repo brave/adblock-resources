@@ -31,4 +31,8 @@ jobs:
         run: |
           npm run build
           npm run generateMetadata
+
+      - name: Check for any drift via git diff
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
           git diff --no-ext-diff --exit-code metadata.json
