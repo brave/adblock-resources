@@ -126,5 +126,25 @@
                 "support_url": "https://github.com/brave-experiments/sugarcoat-pipeline"
             }
         ]
+    },
+    {
+        "uuid": "E99CBD02-FFD1-4651-9BDD-6A9ED7B87819",
+        "title": "Brave \"Exception-exception\" list",
+        "desc": "Default filters that still take effect in standard blocking mode regardless of any first-party status",
+        "langs": [],
+        "component_id": "olkgheogegnkboeffagjdkcknbgapndj",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5jKS0xNXFJYZ7gd66cMXZM7unn54kNoe13VazhNA2zsdnJHpSIiwjB5pDviDX9thenoCXUrFfQpt52Jy+a4Waxc6NpVLUCYwM2PcuZ0KUxljWQNZ8t8CYox2F+NuuKQBRrt4hzF0e1ke36hr0F1MzwhZg3xTGi7/uuMooM5+cgt+wjElzQkd2+u1yyqiDVOzY3275RLsKrxiu809IPfarULeK+ixz71gcS2S4cq71K6n/rcu3ir0OLewtV2G1Iak+CAJCgBPpCDW++teUExLZj+9mats+FGcNLYf1GgPu0DE2W1wpr/zpPSO9RBKuqy2x6cGYHBCXCmQFzFQEC6bwIDAQAB",
+        "list_text_component": {
+            "component_id": "adcocjohghhfpidemphmcmlmhnfgikei",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtvmLp4MOseThuH/vFSc7kjr+CDCzR/ieGI8TJZyFQhzA1SKWRl4y0wB+HGkmoq0KPOzKNZq6hxK7jdm/r/nxxOjqutPoUEL+ysxePErMTse2XeWu3psGSTEjPFdQTPEwH8MF2SwXXneOraD0V/GSiCCvlx8yKIXNX7V9ujMo+QoD6hPGslKUZQJAg+OaZ7pAfq5cOuWXNN6jv12UL0eMt6Dhl31yEu4kZWeTkiccHqdlB/KvPiqXTrV+qd3Tjvsk6kmUlexu3/zlOwVDz5H/kPuOGvW7kYaW22NWQ9TH6fjffgVcSgHDbZETDiP8fHd76kyi1SZ5YJ09XHTE+i9ikQIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-firstparty.txt",
+                "title": "Brave First-Party Specific Filters",
+                "format": "Standard",
+                "support_url": "https://github.com/brave/adblock-lists"
+            }
+        ]
     }
 ]
