@@ -3,6 +3,18 @@
     const attr = 'jsaction'
     const selector = `a[data-amp-title][${attr}]`
     let timer
+    const idleCallback = (_ => {
+      if (self.requestIdleCallback) {
+        return (callback, timeout) => {
+          return self.requestIdleCallback(callback, { timeout })
+        }
+      }
+
+      // Fallback to setTimeout when requestIdleCallback doesn't exist.
+      return (callback, timeout) => {
+        return self.setTimeout(callback, timeout)
+      }
+    })()
     const rmattr = () => {
       timer = undefined
       try {
@@ -38,7 +50,8 @@
       if (skip) {
         return
       }
-      timer = self.requestIdleCallback(rmattr, { timeout: 17 })
+
+      timer = idleCallback(rmattr, 17)
     }
 
     const start = () => {
