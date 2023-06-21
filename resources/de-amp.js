@@ -11,8 +11,8 @@
       }
 
       // Fallback to setTimeout when requestIdleCallback doesn't exist.
-      return (callback, timeout) => {
-        return self.setTimeout(callback, timeout)
+      return (callback) => {
+        return self.setTimeout(callback, 0)
       }
     })()
     const rmattr = () => {
