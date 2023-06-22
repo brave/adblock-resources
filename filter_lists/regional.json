@@ -673,7 +673,7 @@
     },
     {
         "uuid": "9D644676-4784-4982-B94D-C9AB19098D2A",
-        "title": "EasyList Dutch",
+        "title": "EasyDutch",
         "desc": "Removes advertisements from Dutch websites",
         "langs": ["nl"],
         "component_id": "fbmjnabmpmfnfknjmbegjmjigmelggmf",
@@ -684,9 +684,9 @@
         },
         "sources": [
             {
-                "url": "https://easylist-downloads.adblockplus.org/easylistdutch.txt",
+                "url": "https://raw.githubusercontent.com/EasyDutch-uBO/EasyDutch/gh-pages/EasyDutch.all.txt",
                 "format": "Standard",
-                "support_url": "https://forums.lanik.us/viewforum.php?f=100"
+                "support_url": "https://github.com/EasyDutch-uBO/EasyDutch"
             }
         ]
     },
