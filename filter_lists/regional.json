@@ -559,9 +559,9 @@
     },
     {
         "uuid": "A0E9F361-A01F-4C0E-A52D-2977A1AD4BFB",
-        "title": "NoAds X Files Italian",
-        "desc": "Removes additional advertisements from Italian websites, may break some websites",
-        "langs": [],
+        "title": "Macedonian filters",
+        "desc": "Removes advertisements from Macedonian websites",
+        "langs": ["mk"],
         "component_id": "agfanagdjcijocanbeednbhclejcjlfo",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsorIQuFuMI5OaGYaYTu6+kZC4j3qPoWRoD7F9GS0IJC+VEk3XQ7UTsRXlrIxP9obmC7+pByP6hknBUzvKKS9I1v2voIqjUoydWOozbfoVoRhTLN3UiDnoDueXqXiv1MGLzY/ZcsxsxAlIiTcE7+/KdM6pJ72Mn/aLKU3escIJ5E5qOHJOFDLW9587JeWOzexaCOrtiZMclE0KWbUi7qB3Bz3auF6piSzoNGeI1NMwHSSAwhDOQ3UK09aqRKhyfBq6ugrrYyRAr3FWqmMBWkiTsr6SzrbQg3wcGbD+GDvoQmqVf8dH/WYG+srR6PyJdYH5mOQs6Yg+nu1gvwQ46Z74QIDAQAB",
         "list_text_component": {
@@ -570,9 +570,9 @@
         },
         "sources": [
             {
-                "url": "https://raw.githubusercontent.com/gioxx/xfiles/master/filtri.txt",
+                "url": "https://raw.githubusercontent.com/DeepSpaceHarbor/Macedonian-adBlock-Filters/master/Filters",
                 "format": "Standard",
-                "support_url": "https://xfiles.noads.it/"
+                "support_url": "https://github.com/DeepSpaceHarbor/Macedonian-adBlock-Filters"
             }
         ]
     },
