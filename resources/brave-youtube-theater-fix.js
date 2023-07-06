@@ -7,14 +7,17 @@
   const storeKey = 'brave::wide'
   const cookieKey = 'wide'
   // If we have a localStorage value, set it as a cookie.
-  if (localStorage[storeKey] !== undefined) {
-    await cookieStore.set(cookieKey, localStorage[storeKey])
+  if (localStorage.getItem(storeKey) !== null) {
+    // The cookie object is stored as a string. Parse it.
+    const cookieObj = JSON.parse(localStorage.getItem(storeKey))
+    await cookieStore.set(cookieObj)
   }
   // Persist the cookie value to localStorage every second.
   setInterval(async _ => {
     try {
       const wideCookie = await cookieStore.get(cookieKey)
-      localStorage[storeKey] = wideCookie
+      // We have to stringify the cookie object to store it in localStorage.
+      localStorage.setItem(storeKey, JSON.stringify(wideCookie))
     } catch (e) {
       // swallow error from no cookie existing
     }
