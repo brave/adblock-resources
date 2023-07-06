@@ -12,14 +12,19 @@
     const cookieObj = JSON.parse(localStorage.getItem(storeKey))
     await cookieStore.set(cookieObj)
   }
+
   // Persist the cookie value to localStorage every second.
   setInterval(async _ => {
     try {
       const wideCookie = await cookieStore.get(cookieKey)
       // We have to stringify the cookie object to store it in localStorage.
-      localStorage.setItem(storeKey, JSON.stringify(wideCookie))
+      if (wideCookie) {
+        localStorage.setItem(storeKey, JSON.stringify(wideCookie))
+      } else {
+        localStorage.removeItem(storeKey)
+      }
     } catch (e) {
       // swallow error from no cookie existing
     }
   }, 1000)
-})();
+})()
