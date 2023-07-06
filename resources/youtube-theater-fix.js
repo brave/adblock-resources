@@ -9,7 +9,7 @@
     if (localStorage[storeKey] !== undefined) {
         await cookieStore.set(cookieKey, localStorage[storeKey])
     }
-    setInterval(_ => {
+    setInterval(async _ => {
         try {
             const wideCookie = await cookieStore(cookieKey)
             localStorage[storeKey] = wideCookie.value
