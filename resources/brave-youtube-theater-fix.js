@@ -6,11 +6,19 @@
   }
   const storeKey = 'brave::wide'
   const cookieKey = 'wide'
-  // If we have a localStorage value, set it as a cookie.
-  if (localStorage.getItem(storeKey) !== null) {
+
+  const wideCookie = await cookieStore.get(cookieKey)
+  const wideCookieBackup = localStorage.getItem(storeKey)
+
+  // Set the cookie from localStorage iff: 
+  // 1) it doesn't already exist.
+  // 2) we have a backup in localStorage.
+  if (!wideCookie && wideCookieBackup) {
     // The cookie object is stored as a string. Parse it.
-    const cookieObj = JSON.parse(localStorage.getItem(storeKey))
+    const cookieObj = JSON.parse(wideCookieBackup)
     await cookieStore.set(cookieObj)
+    // Refresh the page to make YT use the new cookie.
+    location.reload()
   }
 
   // Persist the cookie value to localStorage every second.
@@ -27,4 +35,4 @@
       // swallow error from no cookie existing
     }
   }, 1000)
-})()
+})();
