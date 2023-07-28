@@ -16,12 +16,6 @@
                 "title": "EasyList-Cookie",
                 "format": "Standard",
                 "support_url": "https://forums.lanik.us/"
-            },
-            {
-                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-cookie-specific.txt",
-                "title": "Brave additions to EasyList-Cookie",
-                "format": "Standard",
-                "support_url": "https://github.com/brave/adblock-lists"
             }
         ]
     },
