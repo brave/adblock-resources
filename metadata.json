@@ -1,6 +1,6 @@
 [
     {
-        "name": "async-sugarcoat-04394153a7ce417b88e3fe1790a4e6a269bfebe5",
+        "name": "async-sugarcoat-04394153a7ce417b88e3fe1790a4e6a269bfebe5.js",
         "aliases": [],
         "kind": {
             "mime": "application/javascript"
@@ -8,7 +8,7 @@
         "resourcePath": "async-sugarcoat-04394153a7ce417b88e3fe1790a4e6a269bfebe5.js"
     },
     {
-        "name": "async-sugarcoat-8a459c41783885dc83d30f5b7da2359091f4e607",
+        "name": "async-sugarcoat-8a459c41783885dc83d30f5b7da2359091f4e607.js",
         "aliases": [],
         "kind": {
             "mime": "application/javascript"
@@ -16,7 +16,7 @@
         "resourcePath": "async-sugarcoat-8a459c41783885dc83d30f5b7da2359091f4e607.js"
     },
     {
-        "name": "brave-fix",
+        "name": "brave-fix.js",
         "aliases": [],
         "kind": {
             "mime": "application/javascript"
@@ -24,39 +24,7 @@
         "resourcePath": "brave-fix.js"
     },
     {
-        "name": "brave-set-cookie-reload",
-        "aliases": [],
-        "kind": {
-            "mime": "application/javascript"
-        },
-        "resourcePath": "brave-set-cookie-reload.js"
-    },
-    {
-        "name": "brave-set-cookie",
-        "aliases": [],
-        "kind": {
-            "mime": "application/javascript"
-        },
-        "resourcePath": "brave-set-cookie.js"
-    },
-    {
-        "name": "brave-set-local-storage-item",
-        "aliases": [],
-        "kind": {
-            "mime": "application/javascript"
-        },
-        "resourcePath": "brave-set-local-storage-item.js"
-    },
-    {
-        "name": "brave-set-session-storage-item",
-        "aliases": [],
-        "kind": {
-            "mime": "application/javascript"
-        },
-        "resourcePath": "brave-set-session-storage-item.js"
-    },
-    {
-        "name": "brave-youtube-theater-fix",
+        "name": "brave-youtube-theater-fix.js",
         "aliases": [],
         "kind": {
             "mime": "application/javascript"
@@ -64,7 +32,7 @@
         "resourcePath": "brave-youtube-theater-fix.js"
     },
     {
-        "name": "de-amp",
+        "name": "de-amp.js",
         "aliases": [],
         "kind": {
             "mime": "application/javascript"
@@ -72,7 +40,7 @@
         "resourcePath": "de-amp.js"
     },
     {
-        "name": "touch-fix",
+        "name": "touch-fix.js",
         "aliases": [],
         "kind": {
             "mime": "application/javascript"
