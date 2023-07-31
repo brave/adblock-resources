@@ -14,7 +14,7 @@ console.debug(`Creating ${metadataJsonFile}...`);
 const resources = fs.readdirSync(resourcesDir);
 const metadataList = resources.map((file) => {
   return {
-    name: path.basename(file, ".js"),
+    name: path.basename(file),
     aliases: [],
     kind: { mime: "application/javascript" },
     resourcePath: path.basename(file),
