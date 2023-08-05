@@ -78,7 +78,7 @@
                 "support_url": "https://easylist.to/"
             },
             {
-                "url": "https://malware-filter.gitlab.io/urlhaus-filter/urlhaus-filter-agh.txt",
+                "url": "https://malware-filter.gitlab.io/urlhaus-filter/urlhaus-filter-agh-online.txt",
                 "title": "URLhaus Malicious URL Blocklist",
                 "format": "Standard",
                 "support_url": "https://gitlab.com/malware-filter/urlhaus-filter"
