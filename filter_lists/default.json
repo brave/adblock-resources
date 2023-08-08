@@ -12,8 +12,8 @@
         },
         "sources": [
             {
-                "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters.txt",
-                "title": "uBlock Origin Filters",
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/filters-mirror.txt",
+                "title": "uBlock Origin Filters (brave-mirror)",
                 "format": "Standard",
                 "support_url": "https://github.com/uBlockOrigin/uAssets"
             },
