@@ -795,6 +795,11 @@
                 "url": "https://easylist-downloads.adblockplus.org/advblock.txt",
                 "format": "Standard",
                 "support_url": "https://forums.lanik.us/viewforum.php?f=102"
+            },
+            {
+                "url": "https://raw.githubusercontent.com/easylist/ruadlist/master/js-fixes-experimental.txt",
+                "format": "Standard",
+                "support_url": "https://forums.lanik.us/viewforum.php?f=102"
             }
         ]
     },
