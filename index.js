@@ -12,7 +12,6 @@ const readResources = (() => {
     }))
 })
 
-const defaultLists = require('./filter_lists/default.json')
-const regionalLists = require('./filter_lists/regional.json')
+const listCatalog = require('./filter_lists/list_catalog.json')
 
-module.exports = { defaultLists, regionalLists, readResources }
+module.exports = { listCatalog, readResources }

@@ -1,4 +1,4 @@
-const { readResources, defaultLists, regionalLists } = require('.')
+const { readResources, listCatalog } = require('.')
 
 const assert = require('node:assert')
 const test = require('node:test')
@@ -49,10 +49,6 @@ const testLists = (lists) => {
     })
 }
 
-test('default filter lists are correctly formatted', t => {
-    testLists(defaultLists)
-})
-
-test('regional filter lists are correctly formatted', t => {
-    testLists(regionalLists)
+test('filter list catalog is correctly formatted', t => {
+    testLists(listCatalog)
 })
