@@ -132,7 +132,7 @@
     },
     {
         "uuid": "E99CBD02-FFD1-4651-9BDD-6A9ED7B87819",
-        "title": "Brave \"Exception-exception\" list",
+        "title": "Brave Ad Block First Party Filters",
         "desc": "Default filters that still take effect in standard blocking mode regardless of any first-party status",
         "langs": [],
         "hidden": true,
