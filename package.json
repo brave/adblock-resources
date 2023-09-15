@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/brave/adblock-resources#readme",
   "devDependencies": {
-    "adblock-rs": "^0.5.6",
-    "standard": "^17.0.0"
+    "adblock-rs": "^0.5.6"
   }
 }
