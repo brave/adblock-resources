@@ -738,21 +738,7 @@
                 "url": "https://raw.githubusercontent.com/olegwukr/polish-privacy-filters/master/anti-adblock.txt",
                 "format": "Standard",
                 "support_url": "https://github.com/olegwukr/polish-privacy-filters/issues"
-            }
-        ]
-    },
-    {
-        "uuid": "CB3A9B4A-C9F3-40FA-A6B8-5219ED5FA9ED",
-        "title": "Oficjalne Polskie Filtry Przeciwko Alertom o Adblocku Uzupełnienie",
-        "desc": "Defuses anti-adblock from Polish websites",
-        "langs": ["pl"],
-        "component_id": "ndgeclhidhlfgmjdcapejaldbahmkgbi",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvZaLRYXrVyL6jjJF8guXpjmUFv3nJd8hfLmbldBIiJ21bMPpaypGBjQANxIU1Sfz1jpy9J+OkB1ifoDg0ScWqDCD0zpjjS87g9ANGantkh55Y+TYDe7yGq6JF2ELr618y3UJTSyfMUi2jLlmved/1Zmtuup2+nWS3Od6NfnXmV+pHJXJLTX7n397RVb1RNN8U5WIvx6vnpZPVB2H8YoNJd9JMj2olIm6yt4Y0ODMOOAXuROz02QLBwnlZC39Z+BuNVxW2fqhLqFw28MD308v2uYiY/Vc0enna8UISSvebYwJedwZFCzk1CVWaO0Y6vHOBVtH4DwHb5sVxUzx/KI3dwIDAQAB",
-        "list_text_component": {
-            "component_id": "bdnfonbomiianhopbpfgfeekmlcbegfo",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA77Cpl7pDmqWRY8sjZhvJ+GxIHDmA7PvUZinQz0PoOz3wEuWmuFU6mOOx6uUi83onGMamcu5ofHWAZBNYRIXbbPcpC4a87YLbpfTegKi7TX9BTFrUMUZCKlO74z6LZO8R1APLAcse6rubCkpyyuvMZ4mcbCA+vKv8RPh4YLhSRWhIi/UvueiaTOew4QkAq2W2q1FtStK9w5uBtBJBFX8LR456AMKZ554bpZ9jea9/8kasXvrbujwyx6G1KueQW1QIUlXbVVxGs+fKMMj3UYxIODYQUqXkV1YvWmdZ3jNApnnOyeJJNEAfNlMw/KMJM2m+S9apXqOdR7VhE5SCZ99wlQIDAQAB"
-        },
-        "sources": [
+            },
             {
                 "url": "https://raw.githubusercontent.com/olegwukr/polish-privacy-filters/master/anti-adblock-suplement.txt",
                 "format": "Standard",
