@@ -558,15 +558,15 @@
         ]
     },
     {
-        "uuid": "A0E9F361-A01F-4C0E-A52D-2977A1AD4BFB",
+        "uuid": "7BC951C6-B0B8-4223-97FC-3C22605734FC",
         "title": "Macedonian filters",
         "desc": "Removes advertisements from Macedonian websites",
         "langs": ["mk"],
-        "component_id": "agfanagdjcijocanbeednbhclejcjlfo",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsorIQuFuMI5OaGYaYTu6+kZC4j3qPoWRoD7F9GS0IJC+VEk3XQ7UTsRXlrIxP9obmC7+pByP6hknBUzvKKS9I1v2voIqjUoydWOozbfoVoRhTLN3UiDnoDueXqXiv1MGLzY/ZcsxsxAlIiTcE7+/KdM6pJ72Mn/aLKU3escIJ5E5qOHJOFDLW9587JeWOzexaCOrtiZMclE0KWbUi7qB3Bz3auF6piSzoNGeI1NMwHSSAwhDOQ3UK09aqRKhyfBq6ugrrYyRAr3FWqmMBWkiTsr6SzrbQg3wcGbD+GDvoQmqVf8dH/WYG+srR6PyJdYH5mOQs6Yg+nu1gvwQ46Z74QIDAQAB",
+        "component_id": "aokcpdaifhlnodffkoeofnkdpjbogkof",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4mjaNlc5u9OML3skl63VLLWQ0O7cPpROr2OiPr6tb6XgTkHtyY4EFZdpXAa2I/KPcffVf4ljKlwV9Ei3eWi2N/zqI+n9nA0SAg5OZQOExYRoU1WDgmNzYNi8gpnOCXRqoBR0FM5h+t0ddt/vibkhGG6P3dn2Eiq7rl2sIAlGf0QLyugiQnVM43ilevqSLTufGiWfkmHUMo+Uh70mFOBvt0LcbMtd9mGF6IhatZt/k574ienNDT0ZDbdDgpK0CvWZM5sPSY9O+E1b/BsXSkEg7Gp0TjAoSCwdvekNae85THCW1PgfbDYAttQCL+y7wtxN32AVCNvguC1lioHUD/1/uQIDAQAB",
         "list_text_component": {
-            "component_id": "njbfmhgmihdjfgecgfhgknkinndnojgf",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA85EG3eFmZn/VmRqgmfOzcqGNbCUIsj2ZKu/GfKG1cYz6N1Qyadmmx1slJhc3wqaSav9U15SaktcELk9d2dSXEsQPStluf2Vrw6ClqgTUmcxkjtni8PY8KRLd6ZKw1mUO29NonN7B8qEUWAiObqPP6dg25vSAoj1NXgnkq7WlA/JMZx+rijviam2Ya0HdXoUIOeuzYhNQERjH2R/Va2EDT+LsPXSjW3qGxfBabQfMuFFhjyTIvK5vRMNwoxTV1q7Z0o/zdB9HtXZlEWpkEEBiWFZo6F+4tUBopsCSICbSqbwAoJemo1O0BvR2suf+yIxuwbWMv4y36AtFBbhT4tiCqwIDAQAB"
+            "component_id": "jbjcimgbgpgbgkjalhlhgldfflklfgef",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuSyMltFEvz64XeA6dNlPYLeptPDpjp8a5vntfZHMDnhyVXW1PTtOwJxFNF+5hWfo/FjMIWYzFwdVNvOY1SHv0oW/V172hSeFyBj/us8U9RQA8vtdrUvGXc4LCk8WeAuL7ebaTyq2BEhzulgMGFGyRPFVs+Hn2ve/UwkgpIe/ROalQ/FM50RS+u+NDtzS3Hod1Ec50weskwmLOH+1GyFYdXa0qPOPjvYadynrnJPTETNa5LGHgY4T77CPr/j0jRTHyYIsS/6Lz6Tx9vImMLJhSOFhPvSyzoQ0v+JrMecFuzh2KNS9RBbbCT+wpixHod2EjA6w+VZGhrJ6GIWN+lgHgQIDAQAB"
         },
         "sources": [
             {
