@@ -81,6 +81,19 @@ The `filter_lists/*.json` files are lists of elements, each describing a filter 
 
 - `support_url` is somewhere a user can ask for help with the filter list.
 
+### Optional fields
+
+The following 4 fields are all optional and default to `false` or `0` if omitted.
+
+- `hidden` (`boolean`) should the component be displayed in brave://settings/shields/filters as an additional list option?
+- `default_enabled` (`boolean`) should the component be enabled by default?
+- `first_party_protections` (`boolean`) should first-party heuristics be applied to rules from the list?
+- `permission_mask` (`number`) what scriptlet permissions should be granted to rules from the list?
+  The bits of the bitmask are currently assigned as follows:
+    - Bit `0`: "trusted" resources from the uBlock Origin project
+    - Bit `1`: resources only intended for use by Brave-authored lists
+    - Bits `2`-`7`: reserved
+
 ## Adding a new list
 
 The `generate_component.sh` script can be used to help create a new filter list component.
