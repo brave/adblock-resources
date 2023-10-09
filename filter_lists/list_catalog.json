@@ -177,6 +177,12 @@
                 "title": "uBlock filters – Cookie Notices",
                 "format": "Standard",
                 "support_url": "https://github.com/uBlockOrigin/uAssets"
+            },
+            {
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-cookie-specific.txt",
+                "tille": "Brave-specific cookie additions",
+                "formart": "Standard",
+                "support_url": "https://github.com/brave/adblock-lists"
             }
         ]
     },
