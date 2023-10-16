@@ -111,12 +111,6 @@
                 "support_url": "https://github.com/brave/adblock-lists"
             },
             {
-                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-unbreak.txt",
-                "title": "Brave Unbreak",
-                "format": "Standard",
-                "support_url": "https://github.com/brave/adblock-lists"
-            },
-            {
                 "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-android-specific.txt",
                 "title": "Brave Android-Specific Rules",
                 "format": "Standard",
