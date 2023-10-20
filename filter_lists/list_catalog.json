@@ -99,7 +99,7 @@
                 "support_url": "https://github.com/brave/adblock-lists"
             },
             {
-                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-specific.txt",
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/delete-local-storage-script-insert/brave-lists/brave-specific.txt",
                 "title": "Brave Specific",
                 "format": "Standard",
                 "support_url": "https://github.com/brave/adblock-lists"
