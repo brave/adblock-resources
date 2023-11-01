@@ -846,7 +846,7 @@
         },
         "sources": [
             {
-                "url": "https://raw.githubusercontent.com/EasyDutch-uBO/EasyDutch/gh-pages/EasyDutch.all.txt",
+                "url": "https://easydutchcdn.pages.dev/EasyDutch.all.txt",
                 "format": "Standard",
                 "support_url": "https://github.com/EasyDutch-uBO/EasyDutch"
             }
