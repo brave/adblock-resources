@@ -181,7 +181,7 @@
             {
                 "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-cookie-specific.txt",
                 "tille": "Brave-specific cookie additions",
-                "formart": "Standard",
+                "format": "Standard",
                 "support_url": "https://github.com/brave/adblock-lists"
             }
         ]
