@@ -93,7 +93,7 @@
                 "support_url": "https://pgl.yoyo.org/adservers/"
             },
             {
-                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-unbreak.txt",
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/test-remove-local-storage/brave-unbreak.txt",
                 "title": "Brave Unbreak",
                 "format": "Standard",
                 "support_url": "https://github.com/brave/adblock-lists"
