@@ -1120,24 +1120,5 @@
                 "support_url": "https://forum.adguard.com/forumdisplay.php?51-Filter-Rules"
             }
         ]
-    },
-    {
-        "uuid": "6A0209AC-9869-4FD6-A9DF-039B4200D52C",
-        "title": "ABPVN",
-        "desc": "Removes advertisements from Vietnamese websites",
-        "langs": ["vi"],
-        "component_id": "cklgijeopkpaadeipkhdaodemoenlene",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAymFhKEG/UJ8ZyKjdx4xfRFtECXdWXixG8GoS3mrw/haeVQoB1jXmPBQTZfL2WGZqYvrAkHRRel7XEoZNYziP3bCYbS4yVqKnDUp1u5GIsMsN0Pff1O1SHEbqClb79vAVhftNq1VQkHPpXQdoSiINQ12Om8WbOIuaNxkrTToFW7XRMtbI3tluoLUSy9YTkCEGah68Dl1uL6nOzOxaMV1iQRRk5Pw4ugTzwGHHL2U2kDYDNrlywK8cUIFgtZskqQ/TF1zF6u9xTGjwjB9X319XrTg2llcojCgj/dllBuXL2aJoDsS3qAVzqbSYxIE6bQU8JX8wv+KCDMpJt/dHPQqOMwIDAQAB",
-        "list_text_component": {
-            "component_id": "ooamlicohiiaodkaemgoimcihidbedmp",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3NaOxndIgpo142VxPI2iWEKwvfFbKsQpxZeGzLGbhO7SwFi7AcEBvDOS6Ufc2PQ3Cz7+TxvUO8a4uEVK/SEiNtMhfL7LGlfMyxV17hIJEjWN1ytEEAALjXJFyVkcz0pAhPC0RY/ti378dSLYL9HetA4XfeO0aC7l23dirQMZMRPfSFvzaZtrp2t35PbQCuMqDW9jbPtdwSSswa7wVYFdafaT48WDuMxxKrggWikMBDxE9/Jihd7179Bd0pmlVreBsWhj+LjLUkf+j4UksUiyttKgQ3+5ZyV5k/tzmhN2HaJC9/q+hvboBz1giOcpSb7u4PbmA82o1K62nKS5c77nTwIDAQAB"
-        },
-        "sources": [
-            {
-                "url": "https://raw.githubusercontent.com/abpvn/abpvn/master/filter/abpvn_ublock.txt",
-                "format": "Standard",
-                "support_url": "https://abpvn.com/"
-            }
-        ]
     }
 ]
