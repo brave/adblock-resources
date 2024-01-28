@@ -79,7 +79,7 @@
 		"title": "uBlock Origin filters - Quick Fixes",
 		"format": "Standard",
 		"support_url": "https://github.com/uBlockOrigin/uAssets"
-            }
+            },
             {
                 "url": "https://easylist.to/easylist/easylist.txt",
                 "title": "EasyList",
