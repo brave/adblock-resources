@@ -777,7 +777,7 @@
             {
                 "url": "https://filters.adtidy.org/ios/filters/7.txt",
                 "format": "Standard",
-                "support_url": "https://github.com/AdguardTeam/AdguardFilters"
+                "support_url": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
             }
         ]
     },
