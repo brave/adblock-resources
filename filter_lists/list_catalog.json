@@ -1151,5 +1151,22 @@
                 "support_url": "https://abpvn.com/"
             }
         ]
+    },
+    {
+        "uuid": "564C3B75-8731-404C-AD7C-5683258BA0B0",
+        "title": "Experimental adblock rules",
+        "desc": "CAUTION: Risky or experimental filter rules that may break websites",
+        "langs": [],
+        "list_text_component": {
+            "component_id": "jcfckfokjmopfomnoebdkdhbhcgjfnbi",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7PoRxGM/LMWIvZGE8UxNv56MHvtMyR8Sg/Gj3ZSX/XUemGHd9RmYDX/uQqGA6KIwU+26aH4GZ/sMj3JETIdZvscCDMsAhILoPAMIDxWtqpsLCOXALo+UKDtrRLpogtG9WvQmdxApyT+BqnEhXIQ2PDs+eEHsmJD9xO3FR2++haWXAV0QVgAe0V6AqT26ukDaNEKfEWfWJl8gcoutVkqdvdl5RU1vEgbXNcXnYpsJ4aNlO7RG07J4JUHw9LZ7CasQMWpFEFifBjeKQpMDg7bKXOD83D5TZ+Csw9V67FGeQeLg3uFDUdp+rXMOeSxH/4l8PtemQj9O5mUPUlL+UGH/iwIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/experimental.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/brave/adblock-lists"
+            }
+        ]
     }
 ]
