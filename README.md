@@ -104,7 +104,10 @@ It will generate:
 
 The script should be run with no arguments.
 The resulting PEM file will be named `ad-block-updater-<component_id>.pem`.
-This file should be uploaded as a secret to Brave's `Extension Developers` vault in 1Password.
-Once it is uploaded, devops will also need to sync it the with Jenkins so that it can be used to build the component.
 
-Note that until iOS is updated to use plaintext list components (see [this tracking issue](https://github.com/brave/brave-ios/issues/5974)), each list will also need another separate `component_id` and `base64_public_key`, as well as `uuid`, defined at the top-level of the object.
+We will need to run this script a second time to get values for the top-level `base64_public_key` and `component_id` fields, see note at end. These will be different from the values for `list_text_component.base64_public_key` and `list_text_component.component_id` fields.
+
+This file should be uploaded as a secret to Brave's `Extension Developers` vault in 1Password. To do this, you might need to ask IT support to give you permission (tag @mihai in the request).
+Once it is uploaded, devops will also need to sync it with Jenkins so that it can be used to build the component.
+
+Note: until iOS is updated to use plaintext list components (see [this tracking issue](https://github.com/brave/brave-ios/issues/5974)), each list will also need another separate `component_id` and `base64_public_key`, as well as `uuid`, defined at the top-level of the object.
