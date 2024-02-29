@@ -1157,6 +1157,8 @@
         "title": "Experimental adblock rules",
         "desc": "CAUTION: Risky or experimental filter rules that may break websites",
         "langs": [],
+        "component_id": "mphkinndmkhjeijpncflnnbnphjmggoi",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7r9jN9PUQtqw3bjzn15zkSYM5FMxfuU0bc0LrewdPIW1bzVpI8pR45iwpfvRvT88ZewF06x1NSyvuIuWt/Y/bjlyfZOvN7Mm5mi4wdMiILBALSo25Co5stZUY6kZN1LnmHofcdyd2zwGsFMg9S13CWkBNihRZcGQptfIGXQRmOyaZhkTUUyeg4ZE3aiD7rXEVhArCO4WgL3414l33cHmFtqGQLu+LauhvXQHS6NtfOWE9zPs8eBnT/jqx/P/oM5451jx5o6i7zCyBp0zxhBheSKRTDQwAVYKpFbKBmnAGt1IhbFaCdQT1rTURfOjoGY+OrUpY4Lvy9KDE0TynwXAAQIDAQAB",
         "list_text_component": {
             "component_id": "jcfckfokjmopfomnoebdkdhbhcgjfnbi",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7PoRxGM/LMWIvZGE8UxNv56MHvtMyR8Sg/Gj3ZSX/XUemGHd9RmYDX/uQqGA6KIwU+26aH4GZ/sMj3JETIdZvscCDMsAhILoPAMIDxWtqpsLCOXALo+UKDtrRLpogtG9WvQmdxApyT+BqnEhXIQ2PDs+eEHsmJD9xO3FR2++haWXAV0QVgAe0V6AqT26ukDaNEKfEWfWJl8gcoutVkqdvdl5RU1vEgbXNcXnYpsJ4aNlO7RG07J4JUHw9LZ7CasQMWpFEFifBjeKQpMDg7bKXOD83D5TZ+Csw9V67FGeQeLg3uFDUdp+rXMOeSxH/4l8PtemQj9O5mUPUlL+UGH/iwIDAQAB"
