@@ -10,9 +10,13 @@ COMPONENTID=$(openssl rsa -in $TEMPFILE -pubout -outform DER 2>/dev/null | shasu
 
 PEMFILE="ad-block-updater-$COMPONENTID.pem"
 
-echo "$PUBKEY"
+echo "Generating values to use in new component defined in list_catalog.json"
 echo
-echo "$COMPONENTID"
+echo "uuid: $(uuidgen)"
+echo
+echo "base64 public key: $PUBKEY"
+echo
+echo "component ID: $COMPONENTID"
 echo
 
 mv "$TEMPFILE" "$PEMFILE"

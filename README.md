@@ -63,7 +63,7 @@ The `filter_lists/*.json` files are lists of elements, each describing a filter 
 }
 ```
 
-- `uuid` is currently only used by iOS, along with versions of the Desktop/Android browser prior to [brave/brave-core#15077](https://github.com/brave/brave-core/pull/15077). It's a UUID generated with, for example, the CLI tool `uuidgen`.
+- `uuid` is a UUID generated with, for example, the CLI tool `uuidgen`.
 
 - `title` is a human-readable title for the filter list component. Each source also has a title, which is a human-readable title for each individual list making up the full component.
 
@@ -98,6 +98,7 @@ The following 4 fields are all optional and default to `false` or `0` if omitted
 
 The `generate_component.sh` script can be used to help create a new filter list component.
 It will generate:
+- A UUID (for the top-level `uuid` field)
 - A public key (corresponding to the `list_text_component.base64_public_key` field)
 - A component ID (corresponding to the `list_text_component.component_id` field)
 - The component's private key (in a new PEM file)
