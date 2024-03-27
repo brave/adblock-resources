@@ -81,6 +81,12 @@
 		"support_url": "https://github.com/uBlockOrigin/uAssets"
             },
             {
+                "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/ubo-link-shorteners.txt",
+		"title": "uBlock Origin filters - link shortners",
+                "format": "Standard",
+                "support_url": "https://github.com/uBlockOrigin/uAssets"
+            },
+            {
                 "url": "https://easylist.to/easylist/easylist.txt",
                 "title": "EasyList",
                 "format": "Standard",
