@@ -376,9 +376,9 @@
          },
         "sources": [
             {
-                "url": "https://gitlab.com/magnolia1234/bypass-paywalls-clean-filters/-/raw/main/bpc-paywall-filter.txt",
+                "url": "https://raw.githubusercontent.com/bpc-clone/bypass-paywalls-clean-filters/main/bpc-paywall-filter.txt",
                 "format": "Standard",
-                "support_url": "https://gitlab.com/magnolia1234/bypass-paywalls-clean-filters"
+                "support_url": "https://github.com/bpc-clone/bypass-paywalls-clean-filters"
             }
         ]
     },
