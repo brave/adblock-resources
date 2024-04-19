@@ -1,6 +1,6 @@
 {
   "description": "Brave Ad Block Updater extension",
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsAnb1lw5UA1Ww4JIVE8PjKNlPogAdFoie+Aczk6ppQ4OrHANxz6oAk1xFuT2W3uhGOc3b/1ydIUMqOIdRFvMdEDUvKVeFyNAVXNSouFF7EBLEzcZfFtqoxeIbwEplVISUm+WUbsdVB9MInY3a4O3kNNuUijY7bmHzAqWMTrBfenw0Lqv38OfREXCiNq/+Jm/gt7FhyBd2oviXWEGp6asUwNavFnj8gQDGVvCf+dse8HRMJn00QH0MOypsZSWFZRmF08ybOu/jTiUo/TuIaHL1H8y9SR970LqsUMozu3ioSHtFh/IVgq7Nqy4TljaKsTE+3AdtjiOyHpW9ZaOkA7j2QIDAQAB",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzsCcLU0L2d+9mvliQGJMwv6q2HDVQNtEyVozVK/VnKV8tS7P0SZ9+TKvOOgJiHVtUN3uPBSxOyq9KgL0z9V4H5cq3VAoYLgmPO6gi9tXmQNulJxp9DslJZwzT+Z61jXW9oUjLubRz9iWtu3nHR4OfAxVDZhhqrqUk/kjD8FDctiVX6zQrnbsbwxlI+gnmEMGBqdLGMdkXmLgHp3KGx9ELfCgaLrkirE53ix+gXOcFxHfB5x5Hifl5UdRVfKJyBizY5JFGoCjia5ULhTZkORy0v8bKXwNytQMdSMxq1qv8sfrbeGQX/THaXW4VRITkMPzMCxvBpEPaAHJixBHnqpnRQIDAQAB",
   "manifest_version": 2,
   "name": "Brave Ad Block Updater (Regional Catalog)",
   "version": "1.0.0"
