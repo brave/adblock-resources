@@ -370,25 +370,6 @@
         ]
      },
      {
-        "uuid": "9E8EC586-4E17-4E5E-99D7-35172C4CEA74",
-        "title": "YouTube Anti-Shorts",
-        "desc": "Youtube Anti-Shorts list",
-        "langs": [],
-        "component_id": "jcahhopdpkkneegcggpicndcgbcdfhpb",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJ0YOzyW7CvAIknBXyFVjl56LvJ/Vsob3EBIOmDVb7DUnTkBOFS0t+s5AzVgDeG9L1XRq9+slM0Zs19G3L0VT+7Ehi+p69JKOLv09F4LNOBdQsC4ePKNUVjgrwcHkVerFKb1upXS2QC7mreSuMn6cXpyP08KREyp6CYVRmcVjUxqOrUbtkP6bzrQJQDshJzAu1ujI1mAX4rHZcSMkRZXJWPe3NzbYSkR7kmR5aLZQHtGdBhHY986I9Vmv/9N2Ta0/Gp3JrO+tvu+00+pUESgzv1X+j4EipY2/5RR/e/jjTejRej/yP17YEd4nY7oAyKFWw0mQI8X/z32T+3fNFBlLwIDAQAB",
-        "list_text_component": {
-            "component_id": "almolcgbkikkhliiibfjkohebgklegam",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs+jKXsk0ynC51YEJWZa8PmrF7o73NQB+8KIkWB8kvSYzMFFtByWVGXhpfYbx9jyD/BJQN8kt4hgKofjfixLqzIfevkEeuyGtVN5KYoZpA5zF2X6jTY4ZKlqHc14ox306/FXjtsiLGg+9Y/ToCGWOTvfQsYEpKO+6BQEcBMMGzNhDR2MQaBMNcd3/o7RF7oUaF4Zye/X5WQD+2IrkrfOqHxd2dSstIQRvmGZH5Tuyehf3jNCRKRoQe7v1M0DGwYUJ7B2eO4PrQf+B1NTzxtPBQWUm3k7dAAHm6YTWfUvnwF7rbJs/Rv/jqRPpy+Z6qu3NyfJki7COtchwnqbbkUkAtQIDAQAB"
-        },
-        "sources": [
-            {
-                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/yt-shorts.txt",
-                "format": "Standard",
-                "support_url": "https://github.com/brave/adblock-lists"
-            }
-        ]
-     },
-     {
         "uuid": "78672887-A098-4D2C-B0CB-A3DEC4834DA7",
         "title": "Bypass Paywalls Clean Filters",
         "desc": "Bypass Paywalls filters",
