@@ -206,7 +206,7 @@
     },
     {
         "uuid": "67E792D4-AE03-4D1A-9EDE-80E01C81F9B8",
-        "title": "Fanboy's Annoyances (and combined with uBO Annoyances list)",
+        "title": "Fanboy's Annoyances + uBO Annoyances",
         "desc": "Removes Web annoyances",
         "langs": [],
         "component_id": "kfhcejhgfapmkapakabicnjhpglajkao",
