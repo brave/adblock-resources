@@ -30,7 +30,6 @@ To generate `metadata.json` automatically from files in `resources/`, run `npm r
 
 Use `npm run test` after modifying the resources or metadata file to ensure the format can be accepted by `adblock-rust`.
 
-
 ## Metadata format
 
 `metadata.json` is a list of elements of the following format:
