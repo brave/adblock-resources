@@ -32,6 +32,14 @@
         "resourcePath": "brave-fix.js"
     },
     {
+        "name": "brave-google-maps-fix.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "brave-google-maps-fix.js"
+    },
+    {
         "name": "brave-video-bg-play.js",
         "aliases": [],
         "kind": {
