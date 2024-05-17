@@ -871,7 +871,7 @@
     },
     {
         "uuid": "9D644676-4784-4982-B94D-C9AB19098D2A",
-        "title": "EasyDutch",
+        "title": "Adguard Dutch",
         "desc": "Removes advertisements from Dutch websites",
         "langs": ["nl"],
         "component_id": "fbmjnabmpmfnfknjmbegjmjigmelggmf",
@@ -882,9 +882,9 @@
         },
         "sources": [
             {
-                "url": "https://easydutchcdn.pages.dev/EasyDutch.all.txt",
+                "url": "https://filters.adtidy.org/extension/ublock/filters/8.txt",
                 "format": "Standard",
-                "support_url": "https://github.com/EasyDutch-uBO/EasyDutch"
+                "support_url": "https://kb.adguard.com/en/general/adguard-ad-filters"
             }
         ]
     },
