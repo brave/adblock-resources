@@ -206,7 +206,7 @@
     },
     {
         "uuid": "67E792D4-AE03-4D1A-9EDE-80E01C81F9B8",
-        "title": "Fanboy's Annoyances",
+        "title": "Fanboy's Annoyances + uBO Annoyances",
         "desc": "Removes Web annoyances",
         "langs": [],
         "component_id": "kfhcejhgfapmkapakabicnjhpglajkao",
@@ -232,6 +232,12 @@
                 "title": "Brave-specific cookie additions",
                 "format": "Standard",
                 "support_url": "https://github.com/brave/adblock-lists"
+            },
+            {
+               "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/annoyances-others.txt",
+               "title": "uBO Annoyances list",
+               "format": "Standard",
+               "support_url": "https://github.com/uBlockOrigin/uAssets"
             }
         ]
     },
@@ -309,25 +315,6 @@
                 "url": "https://raw.githubusercontent.com/easylist/easylist/master/fanboy-addon/fanboy_chatapps_third-party.txt",
                 "format": "Standard",
                 "support_url": "https://forums.lanik.us/"
-            }
-        ]
-    },
-    {
-        "uuid": "319A754E-065A-465F-B09D-3F2C7BF1E67B",
-        "title": "uBlock Annoyances (used with Fanboy's Annoyances)",
-        "desc": "Removes Web Annoyances, Supplemental uBO list",
-        "langs": [],
-        "component_id": "bfoofkaohomljmodljoameijbaichadj",
-        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx6oamYGdGGq5ZITZdjTfIYUdkUFDfer3SBG2Dp/PLpCktna778IR28lrwrA9mlQQDCwmWezRNaX9n/hIEemPwq8Fijp3v2rlXwj2xoskwxNPuHB9qETUZh1K2owZkLngrLR8UJP0kOcpCGCxiQ9Pn8kBoeNsDOx1yHnVmU89UUqGYNwIeSUDcrOdi8f3CZUgtOxMNy5+3s1lrmgWnt8gEpQptBS7G4Ptn7sYtX9HfMW+c8AEluoxtRyB2hcGMb9wZ8fUbYbvLtu5agSJlXi67hSHa5tSAQCCZO4Fd4Xvv5TX3AIaz0dFwJNbGp9HLzm974TfaqFkVWFZ5FdlRvD71QIDAQAB",
-        "list_text_component": {
-            "component_id": "pnoagbonokhdnppohfeemefhjbbofplk",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0BMvGe5WudkwwjswOQ61mbs6L/NNWKQK3kyw10Ew2oRWR5Jggr9IRFc3nT7tIvYZ0l/6tbOzoqM07Z3AW7ASK+am8TL3gw4nxZuduCdEJreJdlTKHxa7/Q0eYyNrTzVyu2zsiSZUFMtrWEhPdptnE15pA4NW7cy2rOWkTyG+nLZzDP1JEov3ZHia42B9RorQLN60dLLhYZl0E073FCra3Tv3wyNwnzvVskcPC9ljRSxH34UYCkjvZH8yHSZE9e/Oda2Tza3HxTy2Dm3Iu1PpfjJBYJCd76ZChlf0Pwb4hvE4YjmZd2EGXNnSpVjUrKDpSSaBORbURkm8tRXFRCs66QIDAQAB"
-        },
-        "sources": [
-            {
-                "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/annoyances-others.txt",
-                "format": "Standard",
-                "support_url": "https://github.com/uBlockOrigin/uAssets"
             }
         ]
     },
