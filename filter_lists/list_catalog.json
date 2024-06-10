@@ -149,6 +149,30 @@
         ]
     },
     {
+        "uuid": "9F38E77A-64AA-4C5F-AF37-727CAE1266FF",
+        "title": "Brave IOS specific filters",
+        "desc": "A list for iOS only to handle specific iOS adblocking requirements.",
+        "langs": [],
+        "platforms": ["IOS"],
+        "hidden": true,
+        "default_enabled": true,
+        "first_party_protections": true,
+        "component_id": "lkpaajgkmjfgfjkggiohhledainlgfmd",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr+1qo2JlXIjeI4D7Od9Wb1gGI+uqXjLM1UO3/Gryiv0yhrD2UuFqZ8w5+vBKvPDxmeWnN3PYwS8hxHDkiWj/+M6AkSl9lJ8XHqBMRB507wyiDlT3cF7ZFbA9WdVVfVn92F9ixdDSlOHcnEHSFJtFmD8LHbt4j8SJa/Qd69x3YAF1YZxZNyGvxigUpa4B4ZFBW0ABA47aJW3JQ/29bCFxu93SdHvEbHIjKgGvZs5kWs+LdlYZy5fT142buFsWh2HEX8FNDDz/j8LCfcOISsWmBxRDieYmljrNZGGidJsXTUwnVp9H7Zr7qVYn4aix40HpFfb4xWOVKh60Um85nCcaLwIDAQAB",
+        "list_text_component": {
+            "component_id": "eaokkjgnlhceblfhbhpeoebmfldocmnc",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtvmLp4MOseThuH/vFSc7kjr+CDCzR/ieGI8TJZyFQhzA1SKWRl4y0wB+HGkmoq0KPOzKNZq6hxK7jdm/r/nxxOjqutPoUEL+ysxePErMTse2XeWu3psGSTEjPFdQTPEwH8MF2SwXXneOraD0V/GSiCCvlx8yKIXNX7V9ujMo+QoD6hPGslKUZQJAg+OaZ7pAfq5cOuWXNN6jv12UL0eMt6Dhl31yEu4kZWeTkiccHqdlB/KvPiqXTrV+qd3Tjvsk6kmUlexu3/zlOwVDz5H/kPuOGvW7kYaW22NWQ9TH6fjffgVcSgHDbZETDiP8fHd76kyi1SZ5YJ09XHTE+i9ikQIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-ios-specific.txt",
+                "title": "Brave IOS specific filters",
+                "format": "Standard",
+                "support_url": "https://github.com/brave/adblock-lists"
+            }
+        ]
+    },
+    {
         "uuid": "E99CBD02-FFD1-4651-9BDD-6A9ED7B87819",
         "title": "Brave Ad Block First Party Filters",
         "desc": "Default filters that still take effect in standard blocking mode regardless of any first-party status",
