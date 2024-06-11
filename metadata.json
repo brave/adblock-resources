@@ -73,11 +73,11 @@
     },
     {
         "name": "vaft-ublock-origin.js",
-	"aliases": [],
-	"kind": {
+        "aliases": [],
+        "kind": {
             "mime": "application/javascript"
         },
-	"resourcePath": "vaft-ublock-origin.js"
+        "resourcePath": "vaft-ublock-origin.js"
     },
     {
         "name": "video-swap-new-ublock-origin.js",
@@ -88,4 +88,3 @@
         "resourcePath": "video-swap-new-ublock-origin.js"
     }
 ]
-
