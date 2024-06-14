@@ -78,5 +78,21 @@
             "mime": "application/javascript"
         },
         "resourcePath": "touch-fix.js"
+    },
+    {
+        "name": "vaft-ublock-origin.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "vaft-ublock-origin.js"
+    },
+    {
+        "name": "video-swap-new-ublock-origin.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "video-swap-new-ublock-origin.js"
     }
 ]
