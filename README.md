@@ -93,7 +93,6 @@ The following 4 fields are all optional and default to `false` or `0` if omitted
     - Bit `0`: "trusted" resources from the uBlock Origin project
     - Bit `1`: resources only intended for use by Brave-authored lists
     - Bits `2`-`7`: reserved
-- `platforms` (`array` of `string`) specify the platforms that the list supports. Can be any combination of `LINUX`, `WINDOWS`, `MAC`, `ANDROID` or `IOS`.
 
 ## Adding a new list
 
