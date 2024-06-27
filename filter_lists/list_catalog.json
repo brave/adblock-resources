@@ -735,9 +735,9 @@
         },
         "sources": [
             {
-                "url": "https://adblock.gardar.net/is.abp.txt",
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/custom/is.txt",
                 "format": "Standard",
-                "support_url": "https://adblock.gardar.net/"
+                "support_url": "https://github.com/brave/adblock-lists"
             }
         ]
     },
