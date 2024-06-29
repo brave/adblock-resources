@@ -26,7 +26,15 @@
     var twitchWorkers = [];
     const oldWorker = window.Worker;
     window.Worker = class Worker extends oldWorker {
-        constructor(twitchBlobUrl) {
+        constructor(twitchBlobUrl, options) {
+            var isTwitchWorker = false;
+            try {
+                isTwitchWorker = new URL(twitchBlobUrl).origin.endsWith('.twitch.tv');
+            } catch {}
+            if (!isTwitchWorker) {
+                super(twitchBlobUrl, options);
+                return;
+            }
             var newBlobStr = `
                 ${processM3U8.toString()}
                 ${hookWorkerFetch.toString()}
@@ -38,7 +46,7 @@
                 ${parseAttributes.toString()}
                 ${onFoundAd.toString()}
                 ${getWasmWorkerUrl.toString()}
-                var workerUrl = getWasmWorkerUrl('${twitchBlobUrl}');
+                var workerUrl = getWasmWorkerUrl('${twitchBlobUrl.replaceAll("'", "%27")}');
                 if (workerUrl && workerUrl.includes('assets.twitch.tv/assets/amazon-ivs-wasmworker')) {
                     declareOptions(self);
                     self.addEventListener('message', function(e) {
@@ -54,7 +62,7 @@
                     importScripts(workerUrl);
                 }
             `
-            super(URL.createObjectURL(new Blob([newBlobStr])));
+            super(URL.createObjectURL(new Blob([newBlobStr])), options);
             twitchWorkers.push(this);
             this.onmessage = function(e) {
                 // NOTE: Removed adDiv caching as '.video-player' can change between streams?
@@ -102,6 +110,7 @@
     function getWasmWorkerUrl(twitchBlobUrl) {
         var req = new XMLHttpRequest();
         req.open('GET', twitchBlobUrl, false);
+        req.overrideMimeType("text/javascript");
         req.send();
         return req.responseText.split("'")[1];
     }
