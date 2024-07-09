@@ -659,7 +659,7 @@
         },
         "sources": [
             {
-                "url": "https://raw.githubusercontent.com/hufilter/hufilter/master/hufilter-ublock.txt",
+                "url": "https://cdn.jsdelivr.net/gh/hufilter/hufilter@gh-pages/hufilter-ublock.txt",
                 "format": "Standard",
                 "support_url": "https://github.com/hufilter/hufilter"
             }
