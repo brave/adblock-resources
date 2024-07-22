@@ -2,9 +2,9 @@
 (function(){
 const IS_MOBILE_YOUTUBE = window.location.hostname == 'm.youtube.com';
 const IS_ANDROID = window.navigator.userAgent.indexOf('Android') > -1;
-
+console.log("tapan IS_MOBILE_YOUTUBE:"+IS_MOBILE_YOUTUBE+", IS_ANDROID:"+IS_ANDROID);
 if (IS_ANDROID && IS_MOBILE_YOUTUBE) {
-
+  console.log("tapan if");
   screen.orientation.addEventListener('change', onOrientationChange);
 }
 
