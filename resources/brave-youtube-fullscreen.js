@@ -10,8 +10,10 @@ if (IS_ANDROID && IS_MOBILE_YOUTUBE) {
 
 function onOrientationChange() {
   console.log("tapan onOrientationChange:"+screen.orientation.type);
-  if (screen.orientation.type.startsWith('portrait')) {
+  if (screen.orientation.type.startsWith('landscape')) {
+      console.log("if");
       if(!document.fullscreenElement) {
+        console.log("if1");
         var fullscreenBtn = 
              document.getElementsByClassName('fullscreen-icon');
         if(fullscreenBtn && fullscreenBtn.length > 0) {
@@ -29,8 +31,11 @@ function onOrientationChange() {
                  }
              }, 50);
         }
+      } else {
+        console.log("else");
       }
   } else if(document.fullscreenElement) {
+      console.log("else if");
       document.exitFullscreen();
   }
 }
