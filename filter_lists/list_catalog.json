@@ -117,7 +117,7 @@
                 "support_url": "https://github.com/brave/adblock-lists"
             },
             {
-                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-specific.txt",
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/d2ab11d0241c5e135315652de96c52fa975dd0a0/brave-lists/brave-specific.txt",
                 "title": "Brave Specific",
                 "format": "Standard",
                 "support_url": "https://github.com/brave/adblock-lists"
