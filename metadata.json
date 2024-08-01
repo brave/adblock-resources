@@ -94,5 +94,12 @@
             "mime": "application/javascript"
         },
         "resourcePath": "video-swap-new-ublock-origin.js"
+    },
+        "name": "trusted_types.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "trusted_types.js" 
     }
 ]
