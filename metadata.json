@@ -101,6 +101,6 @@
         "kind": {
             "mime": "application/javascript"
         },
-        "resourcePath": "trusted_types.js" 
+        "resourcePath": "trusted_types.js"
     }
 ]
