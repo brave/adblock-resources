@@ -80,6 +80,14 @@
         "resourcePath": "touch-fix.js"
     },
     {
+        "name": "trusted_types.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "trusted_types.js"
+    },
+    {
         "name": "vaft-ublock-origin.js",
         "aliases": [],
         "kind": {
