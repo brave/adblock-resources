@@ -1,5 +1,4 @@
-/// set-trusted-types.js
-
+/// trusted_types.js
 {function runAt(fn, when) {...}
 
 function safeSelf() {...}
