@@ -56,6 +56,14 @@
         "resourcePath": "brave-youtube-navigation-fix.js"
     },
     {
+        "name": "brave-youtube-quality.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "brave-youtube-quality.js"
+    },
+    {
         "name": "brave-youtube-theater-fix.js",
         "aliases": [],
         "kind": {
