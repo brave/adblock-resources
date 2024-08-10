@@ -1,6 +1,6 @@
-const fs = require('fs')
-const path = require('path')
+import fs from 'fs'
+import path from 'path'
 
-const { readResources } = require('.')
+import { readResources } from './index.js'
 
-fs.writeFileSync(path.join(__dirname, 'dist', 'resources.json'), JSON.stringify(readResources()))
+fs.writeFileSync(path.join(import.meta.dirname, 'dist', 'resources.json'), JSON.stringify(readResources()))

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Custom resources and scriptlets used for Brave's adblocker",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "build": "node build",
     "test": "node verify",
