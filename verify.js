@@ -1,9 +1,9 @@
-const { readResources, listCatalog } = require('.')
+import { readResources, listCatalog } from './index.js'
 
-const assert = require('node:assert')
-const crypto = require('crypto')
-const test = require('node:test')
-const { Engine, FilterFormat, FilterSet } = require('adblock-rs')
+import assert from 'node:assert'
+import crypto from 'crypto'
+import test from 'node:test'
+import { Engine, FilterFormat, FilterSet } from 'adblock-rs'
 
 const getIDFromBase64PublicKey = (key) => {
   const hash = crypto.createHash('sha256')

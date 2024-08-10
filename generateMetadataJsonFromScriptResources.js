@@ -4,8 +4,8 @@
  * For instance - brave-fix script needs the "bf" alias
  */
 
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 const metadataJsonFile = "metadata.json";
 const resourcesDir = "resources";
