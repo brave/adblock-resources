@@ -1,17 +1,17 @@
-const fs = require('fs')
-const path = require('path')
+import fs from 'fs'
+import path from 'path'
 
-const metadata = require('./metadata.json')
+import metadata from './metadata.json' with { type: "json" }
 
 const readResources = (() => {
     return metadata.map(item => ({
         name: item.name,
         aliases: item.aliases,
         kind: item.kind,
-        content: fs.readFileSync(path.join(__dirname, 'resources', item.resourcePath)).toString('base64')
+        content: fs.readFileSync(path.join(import.meta.dirname, 'resources', item.resourcePath)).toString('base64')
     }))
 })
 
-const listCatalog = require('./filter_lists/list_catalog.json')
+import listCatalog from './filter_lists/list_catalog.json' with { type: "json" }
 
-module.exports = { listCatalog, readResources }
+export { listCatalog, readResources }

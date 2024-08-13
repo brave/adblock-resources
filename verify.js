@@ -1,8 +1,19 @@
-const { readResources, listCatalog } = require('.')
+import { readResources, listCatalog } from './index.js'
 
-const assert = require('node:assert')
-const test = require('node:test')
-const { Engine, FilterFormat, FilterSet } = require('adblock-rs')
+import assert from 'node:assert'
+import crypto from 'crypto'
+import test from 'node:test'
+import { Engine, FilterFormat, FilterSet } from 'adblock-rs'
+
+const getIDFromBase64PublicKey = (key) => {
+  const hash = crypto.createHash('sha256')
+  const data = Buffer.from(key, 'base64')
+  const digest = hash.update(data).digest('hex')
+  const id = digest.toString().substring(0, 32)
+  return id.replace(/[0-9a-f]/g, (c) => {
+    return 'abcdefghijklmnop'.charAt('0123456789abcdef'.indexOf(c))
+  })
+}
 
 test('resources are parsed OK by adblock-rust', t => {
     const resources = readResources()
@@ -33,6 +44,9 @@ const testLists = (lists) => {
         assert.ok(list.list_text_component !== undefined && typeof list.list_text_component === 'object')
         assert.ok(list.list_text_component.component_id !== undefined && typeof list.list_text_component.component_id === 'string')
         assert.ok(list.list_text_component.base64_public_key !== undefined && typeof list.list_text_component.base64_public_key === 'string')
+
+        assert.ok(list.component_id === getIDFromBase64PublicKey(list.base64_public_key))
+        assert.ok(list.list_text_component.component_id === getIDFromBase64PublicKey(list.list_text_component.base64_public_key))
 
         assert.ok(list.sources !== undefined && Array.isArray(list.sources))
         for (const source of list.sources) {

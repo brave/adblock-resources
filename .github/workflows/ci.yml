@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  verify_json:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+
+      - name: Install yajl-tools
+        run: sudo apt-get install -qq yajl-tools
+
+      - name: Check that JSON files are valid
+        run: for f in *.json dist/*.json filter_lists/*.json ; do json_verify < $f || echo "$f failed" ; done
+
+  confirm_built:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+
+      - name: Install node
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
+        with:
+          node-version: "20"
+
+      - name: Get changed resource-related files
+        id: changed-files
+        uses: tj-actions/changed-files@cbda684547adc8c052d50711417fa61b428a9f88 # v41
+        with:
+          files: |
+            resources
+            metadata.json
+
+      - name: Build and verify
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          npm run build
+          npm run generateMetadata
+
+      - name: Check for any drift via git diff
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          git diff --no-ext-diff --exit-code metadata.json
+
+  check_format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+
+      - name: Install node
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
+        with:
+          node-version: "20"
+
+      - name: See if list catalog has changed
+        id: changed-files
+        uses: tj-actions/changed-files@cbda684547adc8c052d50711417fa61b428a9f88 # v41
+        with:
+          files: |
+            filter_lists/list_catalog.json
+
+      - name: Run format tests
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          npm run test
