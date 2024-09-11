@@ -1214,6 +1214,26 @@
         ]
     },
     {
+        "uuid": "529a3f3b-7eba-4351-b986-d176a82e7f5a",
+        "title": "Brave Twitch adblocking rules",
+        "desc": "Remmove Twitch.tv adverts",
+        "langs": [],
+        "default_enabled": true,
+        "component_id": "obbidhioeiamcckaaahojjkecklmfhbe",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwsyACpnNiQuueirAV3aSncEBmxlBEikjON/ZY8rJdaj38hVUelUKl2t4ZQElVtNczGyBBT9JPcHAB5mGxoCzqLD8uwbbcgqtBpsFv547TS5EkgxRa5IOX89Y2lTTBqHNlya4Ludym6a9y79lbZwubMCxV0JkzQjXMiU3fN8YUgspci+L8r0KpN2u+lCcyK4SOHULrzAIKdBOD8ULSc8B9DinqO5H9Qyt1s1vEoobdf4rEn6mgRR/62g8m3Cm6KLtsX54pkv5ju5axqMxPGV8XjbwKJYIEqt6Za83a5940erW0gR4yqZfsTB4QE5q9hBOT/ySBUdJP6riPn86oiJEeQIDAQAB",
+        "list_text_component": {
+            "component_id": "mhccgcegedfkhdbfbgllfkkcjhgkoinc",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAq4DOoN3zveE7ONh3iRIPviaozVzBunIpB/OWAstnsZDboVgAHUqMdt4cIG/dnN48YSQJPdcNfFOvQeU1OxWihL14cUOa5A/Q6oW9tZiMoBBm8K1PSiDtH28TaUvLQHLfuSfEKY4pL0B7UOmgqwzoyqZWqYqSwaTcUVvkaNagyOW4Uq8FiOhaox7H3hMeXPysI8kdfT0DdOd0+baufFQhnYaiLFecRX+VHgm4FeUNH14wXwnrXlT56l2g5w5IyC0P6wuTQTUPhYadChACDOMpMnOncbkNqIwzOFOMs/HtWD0lt788hUBPn/JjK1tskrkAkEtGHq8xxvSxcLYVy1HCsQIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-twitch.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/brave/adblock-lists"
+            }
+        ]
+    },
+    {
         "uuid": "564C3B75-8731-404C-AD7C-5683258BA0B0",
         "title": "Brave Experimental Adblock Rules",
         "desc": "CAUTION: Risky or experimental filter rules that may break websites",
