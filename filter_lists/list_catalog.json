@@ -1216,7 +1216,7 @@
     {
         "uuid": "529a3f3b-7eba-4351-b986-d176a82e7f5a",
         "title": "Brave Twitch adblocking rules",
-        "desc": "Remmove Twitch.tv adverts",
+        "desc": "Remove ads and trackers on twitch.tv",
         "langs": [],
         "default_enabled": true,
         "component_id": "obbidhioeiamcckaaahojjkecklmfhbe",
