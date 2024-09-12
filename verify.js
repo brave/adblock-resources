@@ -1,9 +1,12 @@
-import { readResources, listCatalog } from './index.js'
+import AdblockResources from './index.js'
 
 import assert from 'node:assert'
 import crypto from 'crypto'
 import test from 'node:test'
 import { Engine, FilterFormat, FilterSet } from 'adblock-rs'
+
+const getter = new AdblockResources()
+const [resources, listCatalog] = await Promise.all([getter.resources(), getter.listCatalog()])
 
 const getIDFromBase64PublicKey = (key) => {
   const hash = crypto.createHash('sha256')
@@ -16,8 +19,6 @@ const getIDFromBase64PublicKey = (key) => {
 }
 
 test('resources are parsed OK by adblock-rust', t => {
-    const resources = readResources()
-
     const filterSet = new FilterSet()
     const engine = new Engine(filterSet)
 
