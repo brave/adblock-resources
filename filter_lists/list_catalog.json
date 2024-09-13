@@ -1217,6 +1217,7 @@
         "uuid": "529A3F3B-7EBA-4351-B986-D176A82E7F5A",
         "title": "Brave Twitch Adblock Rules",
         "desc": "Remove ads and trackers on twitch.tv",
+	"default_enabled": true,
         "langs": [],
         "component_id": "obbidhioeiamcckaaahojjkecklmfhbe",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwsyACpnNiQuueirAV3aSncEBmxlBEikjON/ZY8rJdaj38hVUelUKl2t4ZQElVtNczGyBBT9JPcHAB5mGxoCzqLD8uwbbcgqtBpsFv547TS5EkgxRa5IOX89Y2lTTBqHNlya4Ludym6a9y79lbZwubMCxV0JkzQjXMiU3fN8YUgspci+L8r0KpN2u+lCcyK4SOHULrzAIKdBOD8ULSc8B9DinqO5H9Qyt1s1vEoobdf4rEn6mgRR/62g8m3Cm6KLtsX54pkv5ju5axqMxPGV8XjbwKJYIEqt6Za83a5940erW0gR4yqZfsTB4QE5q9hBOT/ySBUdJP6riPn86oiJEeQIDAQAB",
