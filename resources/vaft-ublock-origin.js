@@ -25,6 +25,19 @@
     var OriginalVideoPlayerQuality = null;
     var IsPlayerAutoQuality = null;
     const oldWorker = window.Worker;
+    function isWorkerDoubleHooked(ourWorker, identifier) {
+        var ourWorkerString = ourWorker ? ourWorker.toString() : null;
+        var proto = window.Worker;
+        while (proto)
+        {
+            var workerString = proto.toString();
+            if (workerString.includes(identifier) && workerString !== ourWorkerString) {
+                return true;
+            }
+            proto = Object.getPrototypeOf(proto);
+        }
+        return false;
+    }
     function hookWindowWorker() {
         var newWorker = window.Worker = class Worker extends oldWorker {
             constructor(twitchBlobUrl, options) {
@@ -32,7 +45,7 @@
                 try {
                     isTwitchWorker = new URL(twitchBlobUrl).origin.endsWith('.twitch.tv');
                 } catch {}
-                if (newWorker.toString() !== window.Worker.toString()) {
+                if (isWorkerDoubleHooked(newWorker, 'twitch')) {
                     console.log('Multiple twitch adblockers installed. Skipping Worker hook (vaft)');
                     isTwitchWorker = false;
                 }
@@ -861,8 +874,8 @@
             }
         }catch{}
     }
-    if (window.Worker.toString().includes('twitch')) {
-        console.log('Twitch Worker is already hooked');
+    if (isWorkerDoubleHooked(null, 'twitch')) {
+        console.log('Twitch Worker is already hooked. Skipping (vaft)');
     } else {
         window.reloadTwitchPlayer = reloadTwitchPlayer;
         declareOptions(window);
