@@ -602,7 +602,7 @@
         },
         "sources": [
             {
-                "url": "https://adblock.ee/list.php",
+                "url": "https://adblock.ee/list.txt",
                 "format": "Standard",
                 "support_url": "https://adblock.ee/"
             }
