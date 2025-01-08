@@ -34,7 +34,7 @@ jobs:
 
       - name: Get changed resource-related files
         id: changed-files
-        uses: tj-actions/changed-files@cbda684547adc8c052d50711417fa61b428a9f88 # v41
+        uses: tj-actions/changed-files@c65cd883420fd2eb864698a825fc4162dd94482c # v44
         with:
           files: |
             resources
@@ -63,7 +63,7 @@ jobs:
 
       - name: See if list catalog has changed
         id: changed-files
-        uses: tj-actions/changed-files@cbda684547adc8c052d50711417fa61b428a9f88 # v41
+        uses: tj-actions/changed-files@c65cd883420fd2eb864698a825fc4162dd94482c # v44
         with:
           files: |
             filter_lists/list_catalog.json
