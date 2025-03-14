@@ -581,6 +581,7 @@
         "title": "EasyList Germany",
         "desc": "Removes advertisements from German websites",
         "langs": ["de"],
+	"first_party_protections": true,
         "component_id": "faknfgalcghekhfggcdikddilkpjbonh",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu1CpR7Asj+2wl/1vM39WGUrHQ6vT+nuo+XSL7VzTaxW7g7el5lUC2X9MaaynfK7gOblr5Wnf/mjSJJZA57mxogjOCPP8lF0c7sOEgeO5L6hnDGB7sonCEFpHnBEn8VOZDvmqEb++AiXUPBFSnAOt4Mouck5CY80N6Sqbt4cxUBSof/NsGHZiTvCN7fJpW4ajLOtbWhCAmBhdG0VHatBG+Et/Z6yQtxEYQixKQNHJljiq55MzuE2jfGOZ8MAjyQdstF+GGfF6WPqnR5fd1rECK3OsI8zV9OOLPkjKrKEnlMsaMFFFU0T7Ly1UALehlWXtunelzq1mGvVS7vV+5aVR/QIDAQAB",
         "list_text_component": {
@@ -638,6 +639,7 @@
         "title": "AdGuard Français",
         "desc": "Removes advertisements from French websites",
         "langs": ["fr"],
+	"first_party_protections": true,
         "component_id": "emaecjinaegfkoklcdafkiocjhoeilao",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsbqIWuMS7r2OPXCsIPbbLG1H/d3NM9uzCMscw7R9ZV3TwhygvMOpZrNp4Y4hImy2H+HE0OniCqzuOAaq7+SHXcdHwItvLKtnRmeWgdqxgEdzJ8rZMWnfi+dODTbA4QvxI6itU5of8trDFbLzFqgnEOBk8ZxtjM/M5v3UeYh+EYHSEyHnDSJKbKevlXC931xlbdca0q0Ps3Ln6w/pJFByGbOh212mD/PvwS6jIH3LYjrMVUMefKC/ywn/AAdnwM5mGirm1NflQCJQOpTjIhbRIXBlACfV/hwI1lqfKbFnyr4aPOdg3JcOZZVoyi+ko3rKG3vH9JPWEy24Ys9A3SYpTwIDAQAB",
         "list_text_component": {
@@ -713,7 +715,7 @@
         "uuid": "4C07DB6B-6377-4347-836D-68702CF1494A",
         "title": "IndianList",
         "desc": "Removes advertisements from Hindi websites",
-        "langs": ["in"],
+	"first_party_protections": true,
         "component_id": "jnnbjhbkmgggeoplhadmppaeddmeapla",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1KcZJ8dK2ANtw8x19l0g1i2sSsg/G6AJNLORsw+Uz9g6sx7pUJo8TpjyITiwO366C6q/I2KwFpuc0NgGvWs6nLMEX6yaGO8tnrza36Dj7GFTQA9+H0TQxuZdcOfZqP8UakA6exGOl0anzAt/HQB1Gf6ipKilS0M4PAnPwlVaTRmdKxQwqHQrpfWSiKRB3MBG/OT48y9SXKToP+NAIIfVRC7TxPVJ0zIu41UDfU3Mx6zKOBcRfTnhmUT9XIEv2lAfRDyEDXTGg3nSNluZM4Bu4iQKpxj+x7oZDpQMkrpVBZdjpIRMPiD6aMKCo3GULoH15Fb7re5RZLJIxcu0+B8lPwIDAQAB",
         "list_text_component": {
