@@ -111,12 +111,6 @@
                 "support_url": "https://gitlab.com/malware-filter/urlhaus-filter"
             },
             {
-                "url": "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblockplus&showintro=1&mimetype=plaintext",
-                "title": "Peter Lowe's Ad and tracking server list",
-                "format": "Standard",
-                "support_url": "https://pgl.yoyo.org/adservers/"
-            },
-            {
                 "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-unbreak.txt",
                 "title": "Brave Unbreak",
                 "format": "Standard",
