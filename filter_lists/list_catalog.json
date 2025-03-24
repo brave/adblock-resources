@@ -7,7 +7,6 @@
         "hidden": true,
         "default_enabled": true,
         "first_party_protections": true,
-        "component_id": "cffkpbalmllkdoenhmdmpbkajipdjfam",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs0qzJmHSgIiw7IGFCxij1NnB5hJ5ZQ1LKW9htL4EBOaMJvmqaDs/wfq0nw/goBHWsqqkMBynRTu2Hxxirvdbcugn1Goys5QKPgAvKwDHJp9jlnADWm5xQvPQ4GE1mK1/I3ka9cEOCzPW6GI+wGLiVPx9VZrxHHsSBIJRaEB5Tyi5bj0CZ+kcfMnRTsXIBw3C6xJgCVKISQUkd8mawVvGvqOhBOogCdb9qza5eJ1Cgx8RWKucFfaWWxKLOelCiBMT1Hm1znAoVBHG/blhJJOD5HcH/heRrB4MvrE1J76WF3fvZ03aHVcnlLtQeiNNOZ7VbBDXdie8Nomf/QswbBGaVwIDAQAB",
         "list_text_component": {
             "component_id": "iodkpdagapdfkphljnddpjlldadblomo",
@@ -157,7 +156,6 @@
         "hidden": true,
         "default_enabled": true,
         "first_party_protections": true,
-        "component_id": "lkpaajgkmjfgfjkggiohhledainlgfmd",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr+1qo2JlXIjeI4D7Od9Wb1gGI+uqXjLM1UO3/Gryiv0yhrD2UuFqZ8w5+vBKvPDxmeWnN3PYwS8hxHDkiWj/+M6AkSl9lJ8XHqBMRB507wyiDlT3cF7ZFbA9WdVVfVn92F9ixdDSlOHcnEHSFJtFmD8LHbt4j8SJa/Qd69x3YAF1YZxZNyGvxigUpa4B4ZFBW0ABA47aJW3JQ/29bCFxu93SdHvEbHIjKgGvZs5kWs+LdlYZy5fT142buFsWh2HEX8FNDDz/j8LCfcOISsWmBxRDieYmljrNZGGidJsXTUwnVp9H7Zr7qVYn4aix40HpFfb4xWOVKh60Um85nCcaLwIDAQAB",
         "list_text_component": {
             "component_id": "eaokkjgnlhceblfhbhpeoebmfldocmnc",
@@ -179,7 +177,6 @@
         "langs": [],
         "hidden": true,
         "default_enabled": true,
-        "component_id": "olkgheogegnkboeffagjdkcknbgapndj",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt5jKS0xNXFJYZ7gd66cMXZM7unn54kNoe13VazhNA2zsdnJHpSIiwjB5pDviDX9thenoCXUrFfQpt52Jy+a4Waxc6NpVLUCYwM2PcuZ0KUxljWQNZ8t8CYox2F+NuuKQBRrt4hzF0e1ke36hr0F1MzwhZg3xTGi7/uuMooM5+cgt+wjElzQkd2+u1yyqiDVOzY3275RLsKrxiu809IPfarULeK+ixz71gcS2S4cq71K6n/rcu3ir0OLewtV2G1Iak+CAJCgBPpCDW++teUExLZj+9mats+FGcNLYf1GgPu0DE2W1wpr/zpPSO9RBKuqy2x6cGYHBCXCmQFzFQEC6bwIDAQAB",
         "list_text_component": {
             "component_id": "adcocjohghhfpidemphmcmlmhnfgikei",
@@ -201,7 +198,6 @@
         "langs": [],
         "default_enabled": true,
         "permission_mask": 1,
-        "component_id": "lfgnenkkneohplacnfabidofpgcdpofm",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqNcRp37CBZCXe1vbmXyobycPxHyEKNIgNl6p0XBBxtcZcQOijpY70GjCRzgCL7m1+FBo4MR3FXLiF2aPn/QsUR8t7+zfw3XzBVos4Ssexkqpd4/4ciASwTXpbuyFOq4Z5dcgJ1afeT9Zj5bmh4ekLpgJ1NzVwCMhEKk6cmSKIaGVo5EEydtlor2nkUJrSFuZA6tYZ++4BOfhhCtzrvXTZjg7mTlB6ca21NL4oLwtqvJMtF8ddoumh619BB5wOqxLzntC/oWyOxf00V5HDC7e/DRj9J8jLRFLd4EQUO4Mk+kG3MNy0ph9cqdw6zFR7a2H3LGkl4ejsifM1mUDuJL0cwIDAQAB",
         "list_text_component": {
             "component_id": "cdbbhgbmjhfnhnmgeddbliobbofkgdhe",
@@ -233,7 +229,6 @@
         "title": "Fanboy's Annoyances + uBO Annoyances",
         "desc": "Removes Web annoyances",
         "langs": [],
-        "component_id": "kfhcejhgfapmkapakabicnjhpglajkao",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs5oODJ9Xh552zkLYW8nkCkzOQ0qBNGbhxf7sXwtJsOgQJ8D+DypeYWal+g63B28OX/xJ3Mwnd4WF0JWeN+i3CxBSidSwCPN6c7/DZF4xUyzpo1uvQnnBL6uYgzBYR6JJ904OVHFEgRM7MIdgve2Z9PyaWvNEEg8I2vqPDyBIu8GAy0UjG9edQLCAgQrmejpxBGXuB6b87FILMryW7ejbUjh39hFhpzu1pmsG1wi4jWX1xzaqUiF5xRPbuBx64BWsAzern4p8XdjH3mXgwJiHItBngcDh1tHKjD7Ke5LmY9gJf9TIXkrBPmiu0SAfVhcwmfj/VuWYa8R06cSaCRZF2QIDAQAB",
         "list_text_component": {
             "component_id": "omoaeaghhgmiojkeaemjkpkmelmalbgo",
@@ -270,7 +265,6 @@
         "title": "Fanboy's Social",
         "desc": "Removes Social Elements",
         "langs": [],
-        "component_id": "jkmfbjpchgojnebkdleeiplnaagomnll",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1COQ5BWnYkWTrXeLhmaFQPHhCGbQ8gXNjd55TQxl2ne07PpSd6We1LeowFPuMrgXyIyhzW+MRxndFYhjMsUyJ34N+GGpDBf1u6zKWkbtprVgFhWDrlzmfuGq0o1SFkOo5bA2h4MhjBIJG55SuM0Bj6hYNtQqqQbcu8wC+L2glP7XtJUawUbZCr2eGFEDxBJA+g4HOgGAhAbgM+1xrL3IMsDTI1QChPjotTRxlUzARVWYMJN/r1Dmu8+pkmsgNfvVcmbLxqPpqhlKV49VtlB0QI0tZMYSIqui5B6qku6XJk7SUt1w0jZ+A5LpcQtDyAnlcnFwi6wqsujhPZ9Y4rr4GQIDAQAB",
         "list_text_component": {
             "component_id": "nbkknaieglghmocpollinelcggiehfco",
@@ -289,7 +283,6 @@
         "title": "Fanboy's Anti-Newsletter",
         "desc": "Suppress website newsletter popups",
         "langs": [],
-        "component_id": "jniglbhheddihbcebineofiaophapfcm",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvKrGZC8Go3yIWQUdbOJs6mcAftW6rzmZEO51woVeBgEtBO7KWkMqxbVF0XROE/gsQPThCtFLjG7Wl5vLxNHK/8TgCeju/4qB4hVcXkss+aZ49KvgFzb1aGlm7n42aOpnpJ2WOCsnnHbJAPSHA/k3KixUT+xl772QdHE4YWueWQSHSuhdOZ9L9e9NErDtD94qwTxeYuDNC4xBHp+CXLG4kBah515by4kJ5242exRaK/OcYWGAXHSnZDqQ2/fMmM1wfrKsiln25+lSBmYLBDjqVwPxr3nMdEqE2Qurqmqee9wGCVNEjjkoNbyGTgh9t+eBJoOF1YM9kAAYTCbCMbMXIwIDAQAB",
         "list_text_component": {
             "component_id": "kdddfellohomdnfkdhombbddhojklibj",
@@ -309,7 +302,6 @@
         "desc": "Suppress \"switch to app\" notifications and prompts on mobile",
         "langs": [],
         "default_enabled": true,
-        "component_id": "ldbgldhcahahpffloggbbmjllggnkenk",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm42LAwZhmXBZ23uRGC8btPLv16YUr+9NPd8X4R1TVIMwujFBmAAVDVKR2UT7Ma5FfmdVimr/LxIv3v8DtAlnH5KZCd76Rtq5iYxMlPmCS0QKE42zRK/3u0ezN+/U9xAKHZQviw/Jn+go0biuiEmxzbFlAHNvdqaGtvHwBz24/DzWr+sRYbS2ttk31E1PVWF0un+n4ivTyYRZ6J6DLN3Cl+nPMYrmoyKGVbVLZcWHdftGjs2CGvyIYwlpo/03B1NahA1BrZvEvuL+xuqp68Nx7LAG2MHGeHTFkKYtcqr9gQR+W4EsKrQKCCJ0NEe4VralIVxn0Zi8wOQ4a6127uP7vwIDAQAB",
         "list_text_component": {
             "component_id": "bfpgedeaaibpoidldhjcknekahbikncb",
@@ -328,7 +320,6 @@
         "title": "Fanboy's Anti-chat Apps",
         "desc": "Suppress website chat apps",
         "langs": [],
-        "component_id": "obkanklfclekjgmfajnammibdjcbeklo",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu3bU/oJ+EYAfClmZsUjMjasCBbw+9YqkeLdsX3xtJuZ4N4o9ELvjytMoCi2dsl+BDo94C5zheZOEtLvQi/C/z70uP0bbNU+uST8R+hMgtcVq91dRaUmZUpfeBiYA6fK8svko4VK1dKX5ruvicwuE1jp3MsfKwGzplWsjUcolVjzS0JH0VRJu1Kl7uW/sMbCfVWfg+6YIhpHNGxgaZF48U0lChMHw4h4YH7Mf34QHDKp1p6KD/VaACmmdlDepq8LmzRT+T8PF4XIS+YVdFkSf6BwdP+APCFLAWkkBctUsgzQk5oqrnlm0KekIszp8UEgd0gyLgC3Rj7qh5XVSYFn3HwIDAQAB",
         "list_text_component": {
             "component_id": "cjoooeeofnfjohnalnghhmdlalopplja",
@@ -347,7 +338,6 @@
         "title": "YouTube Mobile Distractions",
         "desc": "Removes Youtube Distractions (Mobile)",
         "langs": [],
-        "component_id": "lklpombomaoagfjekkmiggppobeeeklg",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmREMTDVEwlJKAm1PUCTZDdcO4TjT7jZn1NiQHPcRUUlA23bK1QI+NwevgJzIz2VpnA8AdHhNeQzYDypEpow5B3MmRr5g5tC57uVuy9qmq8/i5sPFg6zhCL5bxFmHEAU/VdDuYrCYYaNEqwdWpKP9CBoNLezJwRfgCJNjXRpSgQAATVDvxbZYgB11McQTrEqsqXra2wTlrr3t4V5aTyRYghImGFa7Ka4o7APq2q7jhtCnU0/tq8g8ykg+AFlpdlv3YgNEzD4c4UicruRS1C6U2pR6n/eDvnzZleiHo4eSi2HRZS7ayMeZrdi10zowWq8qqNT4pgkDb26vpF2tzT+oGwIDAQAB",
         "list_text_component": {
             "component_id": "cpapfkpkeaajehipopnaiihfmbfbnkdp",
@@ -366,7 +356,6 @@
         "title": "YouTube Mobile Recommendations",
         "desc": "Youtube Recommended list (Mobile)",
         "langs": [],
-        "component_id": "ghjoffpbhhecdjeffpjeejdpjfckigle",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4cZnKXdtGkGBM0pXfgCNp+jaMHVRKMPwp78lfS+B3lPaM8+f6WzzOMTBm4p8NGrDVtw+Ej+z4zLuYPFDtPMIOlpASBhMwjay5NA0dkeLgTz00GYS7a/gTE3uMAz9w3s5m9JzBDWasgN0fnMkPGhs1jCc037Ji+Ox2dGcqNctqPH3I+ODdPiCAZyrgLZxJZOn4bkzlqjaBuwiWdhaHlorwntu7+OkYWXfs+xCFWULWtnAXBZLAQ0z6b+fpAHacHEJxEJPEvY2zAKNq/1BOMNNW0YssjJ4qR01DLsdAAG1JrN5UPVk6ecBOSp/HfDUSEAwemGOIpfxtZS0Os3QZShWBwIDAQAB",
         "list_text_component": {
             "component_id": "phdmgpanpejkbmbljlhcehpadabljfbk",
@@ -385,7 +374,6 @@
         "title": "YouTube Anti-Shorts",
         "desc": "Youtube Anti-Shorts list",
         "langs": [],
-        "component_id": "jcahhopdpkkneegcggpicndcgbcdfhpb",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJ0YOzyW7CvAIknBXyFVjl56LvJ/Vsob3EBIOmDVb7DUnTkBOFS0t+s5AzVgDeG9L1XRq9+slM0Zs19G3L0VT+7Ehi+p69JKOLv09F4LNOBdQsC4ePKNUVjgrwcHkVerFKb1upXS2QC7mreSuMn6cXpyP08KREyp6CYVRmcVjUxqOrUbtkP6bzrQJQDshJzAu1ujI1mAX4rHZcSMkRZXJWPe3NzbYSkR7kmR5aLZQHtGdBhHY986I9Vmv/9N2Ta0/Gp3JrO+tvu+00+pUESgzv1X+j4EipY2/5RR/e/jjTejRej/yP17YEd4nY7oAyKFWw0mQI8X/z32T+3fNFBlLwIDAQAB",
         "list_text_component": {
             "component_id": "almolcgbkikkhliiibfjkohebgklegam",
@@ -404,7 +392,6 @@
         "title": "Bypass Paywalls Clean Filters",
         "desc": "Bypass Paywalls filters",
         "langs": [],
-        "component_id": "gemhdipceojibnafnnnjnkijihoonobj",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6uj1pHwtluCMMXvrq5MJL5ZQKVeeC5u0uA4IdF8sNzlwa2mhdCR8hpmaFBl4vfvCRjjpdp86AvQmQjXThHdNHwQRFAmEOxoyjpLNbCeGT7jzQfGSEwfhmoRnm8nAYj3/tCb9RM/RdcJGimAYDlDygBEtZSTLM/qa4ehPw4Twabh79zFL69rXnabBPqNosGHwrEMrBTqlMwJnHFa7WbrarZtUen9sxgqkhx3+yKTS2b5K2aKwyLk4lCljKViBlsJl42FS4oV5odDIxKdYXhYlqohntZcnf8PMEgd8WE/o7D3MnB/T5J3UyhKkf+YtxMP8zORNxUKAaKCbYIQMp5K4XQIDAQAB",
         "list_text_component": {
             "component_id": "mjhbdghipcamfoojbeikdojibeelbmil",
@@ -423,7 +410,6 @@
         "title": "AdGuard URL Tracking Protection Filters",
         "desc": "AdGuard URL Tracking Protection",
         "langs": [],
-        "component_id": "oegjnlcdacfpkmhpebjkpdfpgdijgjda",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA43QEFjxw+z0aSWtCYYO0YAfZTD3ZW9qsIiHr+vj5li4xqPBGsVPMx9JmDXKvoAn26JTxbd0ZmCGNVKcoiDcef/WBje5LD+zpcnRL2i+rtK8eNAWq0C1EyzAlWGsi4C+hd9MsrD8OxNid7G8vqHLFYRbxf07tcEQXGog1ZsvVoepB+njp3p/m9rc70lwlQQ2GzsIypp3cywRNaTHmw+h2EpgVH8CdTdH31rxdYsvFJZPX+Iun83gbHULNDPkq7GT1ICbfzR4ZO4KX2zom1YUgYdzqWJkAewxCHU/6wISGEn0lzKsYOel7IA/JiRes77etIEFz3mCPhnpJc8WXG+TglQIDAQAB",
         "list_text_component": {
             "component_id": "acjngemejiflkehbcbomjgkbfhjlgioh",
@@ -442,7 +428,6 @@
         "title": "Liste AR",
         "desc": "Removes advertisements on Arabic websites",
         "langs": ["ar"],
-        "component_id": "gpgegghiabhggiplapgdfnfcmodkccji",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnbHn298ZQjKnWlC6NgkvS3Dr7Neu87d1h8s3b9GTlc1QNDWiYgY5IfWVq/1FBw2nUFE/v8fNJg8quq8Z2nS8dYiJDVSGRggiCooa0OTCARL0BsGxHZO6s2QROYIcxPVnzISqg5zRIBc+8npE68uVUrDR6q/KdJ8siL2hrR/NybPp+uTK44lHOEIBFm8ih1rC6z+Y5dHfhax0CuL6wlWwVNcFe1macYEcOXShwkUOADh6rEBQZKJmv474xJutmB8nIpGq7C2Hn2HNNyfA6tYmhVlsaeEC44phGITKDai03wFsWWkHQPEU5HwFzKQGIBFwudyO8iigO5m+d3XSzgSZtQIDAQAB",
         "list_text_component": {
             "component_id": "mpgdjfnjjmglioiflfioiappfbdbkeno",
@@ -461,7 +446,6 @@
         "title": "Blocklists Anti-Porn",
         "desc": "Blocks access to porn websites",
         "langs": [],
-        "component_id": "llncepohmekfljgcdgnlikjindhabpom",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4vDS5+s0ImGnynie+7tavH69T65aWhZ5VSSaaplycMbt4kYT9RIadrJM8SFyvfybCeluDavGQSxmgX+egFVIbrGeZjl/BvfOWQXZ9qfPdbL0NAAgCSwzsaLag/Mpeg17R2rbMJnEz9zPyT/ZCjXwq5JVtyWx+Bgnxl2T/0zOYAqbVta+nm/dEO0TUQBjEP8YcHItsj/zsOdhXfsPHjIs/hlaJkbUwBw5ziFj01lmBIzwd5LLUlnFmeKDduYibMO/bNnKXZDMTwgBH+rSSErARyLjACkjl0xFBsJJA4gMQ1IFC7vGzUAFxIpU/DJsJymxWaSUcY6Np0Ew+RMNygn9hwIDAQAB",
         "list_text_component": {
             "component_id": "lbnibkdpkdjnookgfeogjdanfenekmpe",
@@ -480,7 +464,6 @@
         "title": "Bulgarian",
         "desc": "Removes advertisements on Bulgarian websites",
         "langs": ["bg"],
-        "component_id": "coofeapfgmpkchclgdphgpmfhmnplbpn",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoqpe6QWKketr66AW+hKSxr5qds9gxmU72N20bG/nG8wfbPUdTwEqIG3m5e37Iq1FI0gcQir5UqwZZUgkum5dWJwgCB1SOaVvlZrWZbTbATKFcePswHqAIXMfS+wzMA/Ifoky26dE4k/rs6J/zQEbeXXon/ikjGJ7GxYeHYMBz9DAPQhcUoBlh1C0O0vhvXU+kG5DO4wdIt9W/cXJtv+8OTZ6HiTJw1j0jAliFZI/jhkYB6MW57OBpBYlWJQhMbLbK5opXq6d4ELbjC1amqI1lT3j5bl0g1OpMqL4Jtz6578G79gMJfxE3hA5tL0rGU3vAmwck/jXh7uOOzqetwdBcwIDAQAB",
         "list_text_component": {
             "component_id": "fdmemomgcgpopbhhmdkdedkphkglhopj",
@@ -499,7 +482,6 @@
         "title": "EasyList China (中文)",
         "desc": "Removes advertisements on Chinese websites",
         "langs": ["zh"],
-        "component_id": "llhecljkijgcaalnbfadljdpkpbehakp",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyahWbgHuWAI7CkBdclxOlehPVVGuG8u6bPi1vs016Kbhn9GThEVIP5qzAFQLA3jRrGy5B2nncdaCnibf7BkGsNR7nyQQuXAI2FGk9qCm36ZF7FI/yjtN0S0e6LzSswOcVhTdPnVkxYY6UDuKyzVRxgbF9Yg1aT45NFpJFZKFtKHexnLiY6KlZKV6GhY1jucjo7W77xdpLaspkYbQ69UvDlSA093InAzzikuqBdKvY0FPvC6pgiefqWTMa4M1cZU9IoIiukqrpXQn1tC9PJ8CU4XKCTshaNbpX5wxY10rUl7i/WHNcXCfmCXxKbqRZ1SyH6KiiBrDpSnfKXxrQip4GwIDAQAB",
         "list_text_component": {
             "component_id": "hmnnhojoekmmehfpmeegehbmifiijobb",
@@ -518,7 +500,6 @@
         "title": "CJX's Annoyance",
         "desc": "Removes additional advertisements on Chinese websites, may break some websites",
         "langs": [],
-        "component_id": "llpoppgpcimnmhgehpipdmamalmpfbjd",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAudVtKg3tZbgealGvVzbEL3yP1YWdt6GRDreqy/b3kCce3AZ8WroL8jb6Zj/aapBRCNxBezXzij+b6QiIH/l7sn5Wf5HDs5Vnrx4fDvGRtSLpgP0cSuFGVDx71TQz4X+AnUubOeHskIlJJAT4t4cHWs9c7EAl3ShG7DtvL2qHG2TUfJFqYOMOtQd2qG5H+X9zAUFP/qRHT55gzce8h+SXCsvdK4B8XK1cdvbIykllbGPzZr/TANn9gCtMKxUfk1qFn1uYD6mzg80KJmof8MHbLon6KLMqywcqfwEwvoivxo6f5LkOUjhqDYZEQ5la3h7lFfHKz7fCE7FCww7bQ028lwIDAQAB",
         "list_text_component": {
             "component_id": "npcnkjiaolpnapjleimicclmdcccoeme",
@@ -537,7 +518,6 @@
         "title": "AdGuard Chinese",
         "desc": "Removes advertisements on Chinese websites",
         "langs": [],
-        "component_id": "lgfeompbgommiobcenmodekodmdajcal",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtAMyjMBZCbqNIuO01ZFJ5iKmcNFuJHXIUqhO9s6j6XnBAfak/OOk4s9k3maXyhaynXVpYATQyRHR0OEpmsQawFgKCmVm1LB68jxJ5Hh1ZITG1UyfznYnozkjBtzdkMGKeuZFBaHo5PPueHVO7yJDHvU3UFW4vCJ01twXiH4y0qaYjL1CPr58J9U0oKxptsfwEC53WcDq6mKtAKRpyxN6vbtFJ5/li2yC0Ms+8Xe3Xv5ovniM/4vNf3Jn1w0jzgrDRcW2VhxpydsH6q7oaR2igIzJ+XG6/k0g29CJhfT85dJNF31TwqvoI+Ju6hjZrEmSHmC7gbY7gN3ak+DbUrQxjwIDAQAB",
         "list_text_component": {
             "component_id": "fbljdmoohhbifebddjnbbljgencmpjlb",
@@ -556,7 +536,6 @@
         "title": "EasyList Czech and Slovak",
         "desc": "Removes advertisements from Czech and Slovak websites",
         "langs": ["cs", "sk"],
-        "component_id": "omkkefoeihpbpebhhbhmjekpnegokpbj",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuYBXbfloR5HddFlg80U8+pf5TqfFJQAf1bL4myp9KfGggwqrjuRzIkPOD8J8IvCp8tWv2f4QK9sAPHhtV6w1cnYX24lKxrQ/lHHAV6/CEcFa+2Yk7cRLKDC10H3r4FMRoCeAy/ruTjVPfIw+GuAfFYl1qYWBNxvW7XXw7cCIIYL4j82YQF6HjsWbTT+QHLCR6h66wvIyVQC9ppjJPxDaEevjt4tohEFAB1NBC+Wxt8H/P5r5ayNcLnb9Ygt75haYL8VWZOJhO/neSTyuidTFG5ox2Ruc6TXP8t0IqpVtiZUDkx1jzUakIHoKNMBc7oz3P/SQ4AanZsIliJobXFeUiQIDAQAB",
         "list_text_component": {
             "component_id": "oegebjahecghlckbhkmojgnpcgdeajdi",
@@ -576,7 +555,6 @@
         "desc": "Removes advertisements from German websites",
         "langs": ["de"],
 	"first_party_protections": true,
-        "component_id": "faknfgalcghekhfggcdikddilkpjbonh",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu1CpR7Asj+2wl/1vM39WGUrHQ6vT+nuo+XSL7VzTaxW7g7el5lUC2X9MaaynfK7gOblr5Wnf/mjSJJZA57mxogjOCPP8lF0c7sOEgeO5L6hnDGB7sonCEFpHnBEn8VOZDvmqEb++AiXUPBFSnAOt4Mouck5CY80N6Sqbt4cxUBSof/NsGHZiTvCN7fJpW4ajLOtbWhCAmBhdG0VHatBG+Et/Z6yQtxEYQixKQNHJljiq55MzuE2jfGOZ8MAjyQdstF+GGfF6WPqnR5fd1rECK3OsI8zV9OOLPkjKrKEnlMsaMFFFU0T7Ly1UALehlWXtunelzq1mGvVS7vV+5aVR/QIDAQAB",
         "list_text_component": {
             "component_id": "lfmefmifdjlfneapckmpkinmlofjehbp",
@@ -595,7 +573,6 @@
         "title": "Eesti Saitidele Kohandatud",
         "desc": "Removes advertisements from Estonian websites",
         "langs": ["et"],
-        "component_id": "fnpjliiiicbbpkfihnggnmobcpppjhlj",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnrl1tavPfozqu7CmqNfVUtZfUlIitbWpFBRn+HVW0oEFUNqAwNlwHqy9QZP88wKvb5N3EJj6NAq6je4ii6nMkDn59teNzGA4m8QSkeOWT6pNm98FZA6HNHPnhnYSG2sT8tpQ8Uyh4ySrxj2ijVM0Hc01WKQ6zjkvZWOuZWllsCejRZmxGOLUUy5mtKhIfHiuleZ7AmKx46AiVFvrpvV5x8G2HKAlF/uDc6LmV0lfXcROt5RlY+kD/sQ6wKcatibpHbLoRHOJx3ac13+pvt85773af0MdrvdCYjxvqn3DJlKw9qqk/B59n+XdTmWcfC9k77Z0teoMM5EBy8G1nGbelwIDAQAB",
         "list_text_component": {
             "component_id": "dcfccddjfmckaigemleendolfmmaaiii",
@@ -614,7 +591,6 @@
         "title": "EasyList Finnish",
         "desc": "Removes advertisements from Finnish websites",
         "langs": ["fi"],
-        "component_id": "kdcalgmhljnckmnfcboeabeepgnlaemf",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3seBXoyYSdtiqNAIaS5v9jP6Pr8xqgFnZyHknxNsC92fHyRW2nbuwMr78pWA4vPIyV6BFG5jS8k2RXEbWiOKNNsw7nWlfT4QMwkEu4uU1vqxsNDtdc1rdrc69aBegyNOQBS+W6aP1ESHp68AoalYKMHKpc+fi00sdQwYU9Y5oW9q4uRX3baAyuGZjP0xuKN3t+T1QnhbhkldP2WP0ooU/VRMhy2rYoE+W6eQRGrghJJG/wWznz5AiPD9EpPST/hoVWOKVco+12IbdILw7yGX2c65xPcLr6obVR+549QrgxU0W02XxS2lXKGc1NT2Zdl6ugh6XpW1RHVz7SjLIZgifwIDAQAB",
         "list_text_component": {
             "component_id": "afggnigkiebjlahlhcjgjahbhfikcipa",
@@ -634,7 +610,6 @@
         "desc": "Removes advertisements from French websites",
         "langs": ["fr"],
 	"first_party_protections": true,
-        "component_id": "emaecjinaegfkoklcdafkiocjhoeilao",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsbqIWuMS7r2OPXCsIPbbLG1H/d3NM9uzCMscw7R9ZV3TwhygvMOpZrNp4Y4hImy2H+HE0OniCqzuOAaq7+SHXcdHwItvLKtnRmeWgdqxgEdzJ8rZMWnfi+dODTbA4QvxI6itU5of8trDFbLzFqgnEOBk8ZxtjM/M5v3UeYh+EYHSEyHnDSJKbKevlXC931xlbdca0q0Ps3Ln6w/pJFByGbOh212mD/PvwS6jIH3LYjrMVUMefKC/ywn/AAdnwM5mGirm1NflQCJQOpTjIhbRIXBlACfV/hwI1lqfKbFnyr4aPOdg3JcOZZVoyi+ko3rKG3vH9JPWEy24Ys9A3SYpTwIDAQAB",
         "list_text_component": {
             "component_id": "flnkmpokemfpaajmiimmjeiandgoodgg",
@@ -653,7 +628,6 @@
         "title": "Greek AdBlock",
         "desc": "Removes advertisements from Greek websites",
         "langs": ["el"],
-        "component_id": "pmgkiiodjlmmpimpmphjhkodjnjfkeke",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4KGRug8Rw1WHk1BPfIdtdw7uwFijUac7jk1lb99lEfSq2uPV2bKCk8lLh/6ahlV/EjSN8mGiFfZIVTDFhuYhVuIO8iETrCZe1ChoI0F8ptHOPQXVPzKUFMpkRqAnH51vqx+3gG78A3+iGfAE+LjerP1j4Jx5jSvTkbN8l+RqKMtjaaL9qRHv3aRQtYB/shGgdxKeOR0f8E6yJ4tIRDHB72bDufN7wbnRoHCNnLkrAPtbIwpWRLKYcOxAB6QqKNCLx/UX/pWpGtyJmMQQBpxQgl3BT8daNp0h4Soc6VPZA9wEIQ5/a/8UpsBT9rwJGj5WdSBPSR8D54aULATPxsienQIDAQAB",
         "list_text_component": {
             "component_id": "onooookdmjmijocbeafcldnbfiaobhjk",
@@ -672,7 +646,6 @@
         "title": "Hufilter",
         "desc": "Removes advertisements from Hungarian websites",
         "langs": ["hu"],
-        "component_id": "gemncmbgjgcjjepjkindgdhdilnaanlc",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4HNXDsDBPP4b/irxacZMYnaPjNMXS31e11nsFBvN9lFOkuwF3bEk9uEk0fDzocF6GSpXbUE0HVTqfKTTnZfvG9m+C3nT8j6N7BB/wST72s0zXCjSlLWJPGmFnFb/EDkFAGmA9FU4C+j28Obehd94OC9pSqu8DYK4LbMWPmk2fgpO9N3ZV/5Y2Ni69WKJwT72prSMzyVVEAYluCYPQWY93g6dJ9RBtwnHCmdK5TG/bN2q6f50Cw/aJSv8nshSdp+KJK6yi6fBOxF5Xb0Bj+xZGC4K4SW9JjElswaGJi2PX5I11w7xC24jNaW6BUHcJ6IXudIVmBFQxWWxkMVwfgqNlwIDAQAB",
         "list_text_component": {
             "component_id": "ldnolaledjfkfgpjkbkcfjiaejeeanmh",
@@ -691,7 +664,6 @@
         "title": "ABPindo",
         "desc": "Removes advertisements from Indonesian websites",
         "langs": ["id"],
-        "component_id": "egooomckhdgnfbpofhkbhbkiejaihdll",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAptA5jVa5JkYI2jt905om4OLSHGahwgS7tu7GG0sk1YNafOo4ajKrN96Kxj0fgwGrJPhU1UiTDmrgLTZSbuC3hAscbfhuakVNo1pyFfSAVoLWSrOq5l4k6zZK+y1ahxdyJvlbz06RWE6OhIqExxGqLyMjEknkPGxBVO0cKcYHiGYUxvVPxQOg+9fGieXMlSGs/L7Mty1oJOoZ4JcPIFeSvQ5ax48E7l+yAW6psNpPqRAZ5fm7hhZXjd5+3cfXXIMStgX3X0MUHjx2KpYlv3NxMjaZQOAZiuZ3W/H7VWnV7V/ScJ9Eb+e6iG4XS15f7vFQu4zPy4UTYOl6gXnIGWGmsQIDAQAB",
         "list_text_component": {
             "component_id": "olkjbfppmeijhkjhjjmfdbloighaigmh",
@@ -710,7 +682,6 @@
         "title": "IndianList",
         "desc": "Removes advertisements from Hindi websites",
         "langs": ["in"],
-        "component_id": "jnnbjhbkmgggeoplhadmppaeddmeapla",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1KcZJ8dK2ANtw8x19l0g1i2sSsg/G6AJNLORsw+Uz9g6sx7pUJo8TpjyITiwO366C6q/I2KwFpuc0NgGvWs6nLMEX6yaGO8tnrza36Dj7GFTQA9+H0TQxuZdcOfZqP8UakA6exGOl0anzAt/HQB1Gf6ipKilS0M4PAnPwlVaTRmdKxQwqHQrpfWSiKRB3MBG/OT48y9SXKToP+NAIIfVRC7TxPVJ0zIu41UDfU3Mx6zKOBcRfTnhmUT9XIEv2lAfRDyEDXTGg3nSNluZM4Bu4iQKpxj+x7oZDpQMkrpVBZdjpIRMPiD6aMKCo3GULoH15Fb7re5RZLJIxcu0+B8lPwIDAQAB",
         "list_text_component": {
             "component_id": "femdbljnkmindcakmnbjhfefepeaicnm",
@@ -729,7 +700,6 @@
         "title": "PersianBlocker",
         "desc": "Removes advertisements from Persian websites",
         "langs": ["fa"],
-        "component_id": "dbcccdegkijbppmeaihneimbghfghkdl",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm3AZE2ne7R55X2j6RxAQHAZKl1hNPgwLOFsYpfAJ6m0uXmKJspguWxatJ9jDBbYLmtXnwX2WORILq1+r4kFtTcN8GNYe7/7o5yDLucI/W9d2vCjmEg95v50MzVQZSwd2gNZVZtL1s0S6pBwX0zI+6kHIFr2xqGV/FNE8L75f30rriQ0xKmenI1OWjyn8gNqIp4mKZW6XxkMRRS9+e0ynDi4ysQA9Ub5YHJxm0t62eqTmIyemgRhP6Rdbi0+GXbqFPjDfC26rtD3wy5f3aYL1V+2ADpdDyCeNlwCH7+vC7LWujqNTgK8wVJ4eH5VbUKC1e9cm/T57OsHJMDC5fbUuswIDAQAB",
         "list_text_component": {
             "component_id": "keclkbppmfihehggeadflldbjpolcpgf",
@@ -748,7 +718,6 @@
         "title": "Icelandic",
         "desc": "Removes advertisements from Icelandic websites",
         "langs": ["is"],
-        "component_id": "njhlaafgablgnekjaodhgbaomabjibaf",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqSwaNKhg90HCheaJu3sHocbZUjXDs90I0OmijNkDeS291wUjvXAm5YqhNE8aZmPSMVZBjBCwKXrrtTOkMA1b1uBqJ2P83fCZsgNZWbGTD8MorMrU6vyqkWCqLRc+bTTUgzAd55ckUJ/M+HVnjo6QfqUuB3kVzjpwJorQQZUYOLcgDY/Q5/tbrXI5+OGVxAb21pmnk8JHXNNWB2NvpA2o3p0ke/7WEoUH24l91ndOkXkN87eO8rSysl07Eq7gshbednYYiCxRPjuX0aPqbXMYNWXa5NdvIXFJcD2xV/l/QvXRYl+7Ca1igSXaiKc5eJyKSRqY4lf2vG0XCH6VZVxZuQIDAQAB",
         "list_text_component": {
             "component_id": "oimegboipnkgekgoccmlljjlhhbjaoil",
@@ -767,7 +736,6 @@
         "title": "EasyList Hebrew",
         "desc": "Removes advertisements from Hebrew websites",
         "langs": ["he"],
-        "component_id": "hjeidaaocognlgpdkfeenmiefipcffbo",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoUnmZ/fnWAGhAywLBs5IX0OMxK6LOwtjljcwEkt8QD7ZKBekxq+MDrUuRPzav3ky9IyREhXe9F4UWBKPDD8ZQXZ57WQAAMAp3IxbgdAsTqqTEEReUVx+pzjl8lxdp7xEG2gpuM5wq7bjn4zJ3kcdj3vx7bec/YbYf4fV0brQPWghKf2sh3mHXOVh68wEFXYBvcWkGXfuBoRbB9WLflqZYRk3GrLllwBLn1Ag6iuKucvoyv7N23qXKIjqAhyKPmHx4l9w/v2c1pc3NB1af2xvtRWaQp19N98QouFFx5MwAI9+jR77Eox6QvRwA+L9CFkYlDTvT/aS3q+Zb1QH/8AE4QIDAQAB",
         "list_text_component": {
             "component_id": "kdakdkdknmkkafefhcbngpinlfoopoej",
@@ -786,7 +754,6 @@
         "title": "EasyList Italy",
         "desc": "Removes advertisements from Italian websites",
         "langs": ["it"],
-        "component_id": "nkmllpnhpfieajahfpfmjneipnddhimi",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAurn1cJrIcCa8P7hjGex+OUHi19PRxmjJ5DuQlMAeIaKibwaQOZEPXSvD+O+xgxHZJs1o2DE8zfj6yrAmDfu9+/T0ArT2RWuopDMEfaKdeG0ylHP62WJC+KGUhCiTNmLyPxbU9AiwydVyFOam8vs4Tr+9I3lYKVeClQrtDRM34BTOAsuHRjiuIKoC0jDC2kc+BAsAbzhIdrkEDGD+qx0rCRnGL6c8xODe2PLKSkCSIsqOk44eYOkBqQd0SgmCvQjXS2XczMDNuV7DCZofErsy2iEv/2kzhkkN8GFwbRkYGN9LuK8rtekE34AvZKRHS6e/pHjUCYJb/2xv6elC+VLsJwIDAQAB",
         "list_text_component": {
             "component_id": "eaidcpcfnepdmmhbglgjhpjdfodkdcki",
@@ -805,7 +772,6 @@
         "title": "Macedonian filters",
         "desc": "Removes advertisements from Macedonian websites",
         "langs": ["mk"],
-        "component_id": "aokcpdaifhlnodffkoeofnkdpjbogkof",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4mjaNlc5u9OML3skl63VLLWQ0O7cPpROr2OiPr6tb6XgTkHtyY4EFZdpXAa2I/KPcffVf4ljKlwV9Ei3eWi2N/zqI+n9nA0SAg5OZQOExYRoU1WDgmNzYNi8gpnOCXRqoBR0FM5h+t0ddt/vibkhGG6P3dn2Eiq7rl2sIAlGf0QLyugiQnVM43ilevqSLTufGiWfkmHUMo+Uh70mFOBvt0LcbMtd9mGF6IhatZt/k574ienNDT0ZDbdDgpK0CvWZM5sPSY9O+E1b/BsXSkEg7Gp0TjAoSCwdvekNae85THCW1PgfbDYAttQCL+y7wtxN32AVCNvguC1lioHUD/1/uQIDAQAB",
         "list_text_component": {
             "component_id": "jbjcimgbgpgbgkjalhlhgldfflklfgef",
@@ -825,7 +791,6 @@
         "desc": "Removes advertisements from Japanese websites",
         "langs": ["ja", "jp"],
         "first_party_protections": true,
-        "component_id": "ghnjmapememheddlfgmklijahiofgkea",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsOoGwN4i751gHi1QmHMkFZCXFPseO/Q8qKOQViZI7p6THKqF1G3uHNxh8NjwKfsdcJLyZbnWx7BvDeyUw3K9hqWw4Iq6C0Ta1YEqEJFhcltV7J7aCMPJHdjZk5rpya9eXTWX1hfIYOvujPisKuwMNUmnlpaeWThihf4twu9BUn/X6+jcaqVaQ73q5TLS5vp13A9q2qSbEa79f/uUT8oKzN4S/GorQ6faS4bOl3iHuCT9abVXdy80WSut4bBERKgbc+0aJvi1dhpbCeM4DxVViM2ZccKvxSpyx4NvWj56dNKqFLvzoA4/Chz1udxifIXUHh0701s1Y4fLpY0wWP0uXQIDAQAB",
         "list_text_component": {
             "component_id": "llgjaaddopeckcifdceaaadmemagkepi",
@@ -844,7 +809,6 @@
         "title": "YousList",
         "desc": "Removes advertisements from Korean websites",
         "langs": ["ko"],
-        "component_id": "djhjpnilfflibdflbkgapjfldapkjcgl",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAux80m8cYDEXwq+nMwmui6NCO9SFAdcGly5eq4uGEIQNB1R6Tr9JMqosHLZ4PnaUJqJwFfLWfmxzXj3q0DIpqqpdSq/jTYT/MvOldC+VQFO+NIjXhtysh4Z5F0BzlsQx/leMnV6yoyQjBX53n9cl3BvQK/EdbuQSDiNqX2TSVLm7hnr7Vf8m4XYRSCSJybY/1Tk3Cqgqywlkr+YN58L1/txXCQ9LJ5SxJ9I56TxqA1uT97hBmQikvnopuLh1SovDfjtCZwWwaGDD4ujW+Qaeh9dRrojS47iwG/Twu1xbb7ra8cn8BxdzsPjUSSurpPz/9sUooYOGJO44p7u77sxeTXQIDAQAB",
         "list_text_component": {
             "component_id": "gdlpebjigadbdpjpfpdbmogebilelnbh",
@@ -863,7 +827,6 @@
         "title": "Fanboy's Korean",
         "desc": "Removes additional advertisements from Korean websites, may break some websites",
         "langs": [],
-        "component_id": "oidcknjcjepjgfpammgdalpnjefekhge",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvCOljWKWLWfq/k/BE9gIZtI1MstmG+NcgGBGAP0R7xgaUMU5phdSbQf83Zt9ctwDRpisHWlGS6o+tk93zMIoJVj6RMQ2Zee6QPAKAGgwuCXF7A/ciI3lRyX7ts49XV8GAbasu1mBHntz+GpmOVmoiRxcDMUDDEqsSXgckCM9HkYvIyHQWyEgeulKdhQ2HoCptD2Wgmws6NzRTgQ94+DHu2o6J4MsG74h7L/cG3XB8WQNuqlpjjFIQTXftuUWDSkyR3tlmMxGN1PXAH6RZBNmwQTwdgrOAqEup82dWaO3BqoYGZdYeRaUGRc73iPdvvjZb1tvmqLdVSq7Ur1XJjJJTwIDAQAB",
         "list_text_component": {
             "component_id": "iihfaghdnbilkdhmmnnkebhodfgeaopd",
@@ -882,7 +845,6 @@
         "title": "EasyList Lithuania",
         "desc": "Removes advertisements from Lithuanian websites",
         "langs": ["lt"],
-        "component_id": "dkbmlhggeoegbkimcafbfhjibdknflnj",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqCK9nqZcPjszbCmHXHMyLgwzSJGFHLIRKGF/QP4GRhdCh+gsiE4Y317mNx9Q0ogbrvsmYGzI7z+Vzfh0BSOEYVs3bl1dCNENPyf+f8kXWySoHY1/u8jMyeJsIPFrIhzjoypGYgqmjFTSnTAYhTPKv6fQ6KHUsNn/5WdKis1h/yPQSFWw7PX7wJubyD3UsE6mtWegpR9sv8mJdaFGvCnTvxm0NRxuAlP+3yINKmnTal82KpPTXh3o4ehNUsGQb8ibcMT0jFmq7VcD53gxojmta/AhBjP1LmByPkUMe8yCYKpnW3zMg1LS4JNcWiS8H2ApUUSW/9wUKMZI+3gidakP2QIDAQAB",
         "list_text_component": {
             "component_id": "fmddkdeghohhfoglgdpkhlnfgmmffklg",
@@ -901,7 +863,6 @@
         "title": "Latvian",
         "desc": "Removes advertisements from Latvian websites",
         "langs": ["lv"],
-        "component_id": "hmabmnondepbfogenlfklniehjedmicd",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAst1posKDpKt3WLU07CziowQnBKYXzH2i/sDdJfMuTcKSNQvn9dxbHVLhg8Ih7NmN6SSJTRgb2PughdVNPXqlT3/jGioDC0gN8kBrBoN2YWgIW2wdvTCPvBOfwTOhGueQY6AtE7zD/3m9v6Wfcw07Rj84Su0qI1Zadmq2pBWo5z82vOAI2yV83YGDbnyK1JaFeLToYQmj+bMEojoZ4Lk4PbFmopVh1GkeOdCKtVN2NTIy43N/w0tS0wlLxjwTyZ6RIcK3VOhQXBqcpwKpKm/4WDksTvNRLZ8e526z/nqaasM/meS22hURh6NPtIOdy6/TspTzFPiRdj2xgNfQZ9oRxwIDAQAB",
         "list_text_component": {
             "component_id": "hkeaopcnlcfbmbogejmbipnnopjlpiph",
@@ -920,7 +881,6 @@
         "title": "Adguard Dutch",
         "desc": "Removes advertisements from Dutch websites",
         "langs": ["nl"],
-        "component_id": "fbmjnabmpmfnfknjmbegjmjigmelggmf",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqqfwmNS4XOq9pWC3XSMt5WcqoKaj3lRpYAwZKTP+6DwA9pG+Zw+0iWC95riSLjqPgX+0d2cZaqjinuNn3mUMOeGdbwSIeRLE50J5J/dMmkg5YO09orZKLBjMfJG5IDgfXdZLSJtmzKC4Xj2y6KSuQ7N0Sg5f1Ecc19nFbcFazCaIhKvcoA84J7Twf2IoCDuPMsGplgZCBtFQkKeqILaVhJZeD0my6pdC2KJREbM3eRnntE44O0sbmemCfHs9BV50hVb913zGDZ379eTqg3mPjvH+VnY+7RvjVPayJP4+51zRJYKi18W7KMry3sj4ZZ3EyNKmbwlGQOzAyd/Qtj4I3wIDAQAB",
         "list_text_component": {
             "component_id": "oojedkppeblkjkcdlmlahnhndjmbicoi",
@@ -939,7 +899,6 @@
         "title": "Dandelion Sprout's Nordic",
         "desc": "Removes advertisements from Norwegian, Danish and Icelandic websites",
         "langs": ["nb", "nn", "no", "da", "is"],
-        "component_id": "kcffflkhcncgnbmgdhcgjfogpoacfied",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAocZlfkzlHWHXKsez5tmC4fFn4sJcjP67IlACrJIla8GgWQ6ipDCntH6Qq9zACQeePL5jocESzqh9vzdFdgY66puCk8dnLz3VOciDMLABwwf76runOrWVEEBUyDK+tq07tdHRz7V7QohRuvRoqRvdnXdbi/mcZGApuF+UjXVhs7OVGZSVsS9nriFkm1RF6BAv4/9wB0XhfCODaX/5bI34V1TbteN6d2iBKrDD7e7RxJCFBz9uCmHjR+yrxyZFBxDkgcH9FrXm+7tOGXuLmJljZ6frazp2Eg75aDLkC1O3FQgYqUP5H0Kdyexi6HmizYpQ4hW1Zhlv2hqeArAs42s1XwIDAQAB",
         "list_text_component": {
             "component_id": "kjdbffhfijkonelaglifggkchhmgmeli",
@@ -958,7 +917,6 @@
         "title": "Oficjalne Polskie Filtry do AdBlocka",
         "desc": "Removes advertisements from Polish websites",
         "langs": ["pl"],
-        "component_id": "paoecjnjjbclkgbempaeemcbeldldlbo",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsUqWP6CeMx79UyZ3GZ1XcBGexIgml00sB286wZ7dJsfqG7oI0EGRoqrDeRreYcOTl+HvXsRJvR1FfkKJzD5svdhR4mn4lI+FXUDCvgEZ9CFa0YfASuoTIrdZtG74Twu2ai52ZJzrQ9ike97bdwzuZo+uymw26S+5/+IQbriIYoxEbJd7EryZuo+W65LdSat/NOKKf1QnVTIOoqMrXiewRYywnmZATfDIi0uKXuQfF15lbNBkQllmPH1xlMkz2WnvSvqI4HKPAmEFJWVUkiNhGKFZkTk1+88CgGGPVsKllxLaDOD+j8Kb0+h44RxObHTF/vFkfh8FfzujFj3HtevjCQIDAQAB",
         "list_text_component": {
             "component_id": "ngcohbdfildjnmfnicgdipopmlhdcokg",
@@ -977,7 +935,6 @@
         "title": "Oficjalne Polskie Filtry Przeciwko Alertom o Adblocku",
         "desc": "Defuses anti-adblock from Polish websites",
         "langs": ["pl"],
-        "component_id": "baophminpaegfihdcekehejfhpmjimle",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApX6GHwd6ZsPNk4iomzHF6fb69FJcVyRNTQc3X/LlDuEXERJ/eZzDVMn2pCm2CTCXQHweQWqBkC/20FkjniwGb9LSjzP5jdcDCFmSwaFWdiM7xG+BfMFP+XDJtjOlqirWESi6dzwnQ5pKQDpNCblMBuuhT1WyDLtHODwbNJs/jILdSAapW8eQApQ/iCGidYPbPvPL53bq+u45UXXljillsJTbGV8vu2VVhf9/fL5McKu7uX6xR2i4WR2x1hQYMYu5rnFIrDNWGIn4CNDodO22nyBBjznGfQ8XVp558s5tC+v+12hY6HJW4CWJ3Oes+PXuLPDUwYuJKkuncfADk49oVQIDAQAB",
         "list_text_component": {
             "component_id": "beeceepafhbchnbfdkfalfipoancnjkm",
@@ -1001,7 +958,6 @@
         "title": "Romanian Ad (ROad)",
         "desc": "Removes advertisements from Romanian websites",
         "langs": ["ro"],
-        "component_id": "hojdjlebfkngledgkgecohjkjjojaekd",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnhLXi2u795hnBUJi/vS8qtMGoTYk9NRefWk+SI6fkqVdiKs/eM6Y8v3To4HgNmtYb4jAoYctcq3/CS3hzGCLEwQbDuL8Y8UP5B6PWgzuiRrAobRl1DtXO1+Q57VIrYTpJVLCqaTulclys7Fka/wD5o78Y0vAfSenBZTzRUXwTZd9Z7SRNwcJyccbi7zL8UDWnJMBnD/dnV7t2q41MHiCgdzimOSuoRZmTBrupVc0QYhqoxy6ePkHFDGL2U25omAZckkzpQbtvJEE2lmg7YqnaSvGDzsmqd+j7hVWjpm/ncArLOWBCbER3MdHwFeOI2rFJWcO7GY5etQsA5128FAv0wIDAQAB",
         "list_text_component": {
             "component_id": "cgmhmpbimmakidhlkcnnehhicoclofep",
@@ -1025,7 +981,6 @@
         "title": "RU AdList Дополнительная региональная подписка",
         "desc": "Removes advertisements from Russian websites",
         "langs": ["ru", "uk", "be"],
-        "component_id": "enkheaiicpeffbfgjiklngbpkilnbkoi",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArVVgKRE868yup0HfX4+HyZmJVIk33AKivwvRRfjHRxeC+lLnRjNiY0LKS/K65J6SNLgUsZGfT5u4h4F423O/pbZl6zdfs5kOyStlmLPXhFtF/bIXIsUtdJ0R3dEz+nSg0C2L/FnE5Qr8M4thdmq/DIP1C70mj8pCnX1939hXyR0ymQkYp573O+LJ0q1L41jBqHzNKWngfBc79I2Kbt1pLluBT2X7zZVbb+1ap3Ad/VMeFDB2yurRs88cYJZOal7mgTgI/Zkuzsh2Dnql5+UNOCHinYjcOvUifGgkdsJIJxL57PxRzbriLCNjShoOV3Fpc0XYL1KSWvIVuW0bYeLmrwIDAQAB",
         "list_text_component": {
             "component_id": "phmomndefejccjmpiehbogokakkmnmgb",
@@ -1049,7 +1004,6 @@
         "title": "Adguard Russian",
         "desc": "Removes additional advertisements from Russian websites, may break some websites",
         "langs": [],
-        "component_id": "dmoefgliihlcfplldbllllbofegmojne",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4p+4n2wNFQCqQBBJDsvs+oqNYGzX3cbpY7fKbCjrRVE5esJK5HZJDoUUg43pPvKrCOIQ+lF+dXpBaCNnO4O/7JeFt2IFRJnKhE3ipIBAAbFymfo5T2uWFdyh6HcK0FNyJ/7FyHnANe7vYhXJS1Fqmh6jTYkAEIbrbmxtzrDMefx3XJcVhUV3XAPlP+K3MerxudIH++4fn3X0vKob5oQQQ9ZZ1PVcW6ZdZTQwQWtaVDb6prT+ULaphRRmnZpZuRXyHMv9KC8YP3K5ou+/Yd3uxxMwKmJXD67ZoNMtS/Dtr0btQsLxiEgox5Swd4iqyLM/SMxr3LqgUIlNwn7KRbMnZwIDAQAB",
         "list_text_component": {
             "component_id": "jiajbjlakknofnkmlokcbanjbajpbdkl",
@@ -1068,7 +1022,6 @@
         "title": "BitBlock Дополнительная подписка фильтров",
         "desc": "Removes additional advertisements from Russian websites, may break some websites",
         "langs": [],
-        "component_id": "fmcofgdkijoanfaodpdfjipdgnjbiolk",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApGBuuxC9pqx2s5hUd3K8zeFUtMFt9X+rSKR3elqWztjIQrbOdXSeezHvhAUdzgc+Wv79ZoRf4i4amYs3Mg3wg783BAqLvlu9r6FsUAbcgVQtt+MT3Z4ZepwvzWU0NjUd1q4O2pNEUsE8SPjmOeb3KHOF5WX7CA1uIHT5xGQsU5Uh3VTZC8FIOGjCskDAAnJGUeOowlMBGL2UvlNQLiqzPSvI9byjwxIMN5OfCmxXXr4R9m88oVK2D1gj7vfwBVJcRdV8ner4ZSuT68ncSyaQRtgI3/QyHc0J6giCRFmF0bHN/5kjFIWrHg5+uiBQN4Qt39TVCUU024Fi2RGInvTTdQIDAQAB",
         "list_text_component": {
             "component_id": "iiglahilpgmhlcogkkihklnbcjjgpddl",
@@ -1087,7 +1040,6 @@
         "title": "EasyList Spanish",
         "desc": "Removes advertisements from Spanish websites",
         "langs": ["es"],
-        "component_id": "pdecoifadfkklajdlmndjpkhabpklldh",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2eGyWcTM6Cpmkw6CBBxQbJCgp3Q4jyh+JR/Aqq5G+OFzxFpwlqW0dH9kNuUs30iSt1tt1gMZGYnhPKiGhtX3nV1iYg2K8k82wNqA5+ODfHxnnVn536UoC7rmjXL+mhpymxgkjGCQ+1HVmnCcSC9mxTPy65ihor+YZcRRPo0IhjQTx3NgdpzkGYvpQVjwnw3a5FpRBCbbp3X2x3EGV3DcjvT6DvvxSU/mAUPlXISo9OFHYUpADilqAevXQIs49LSmefSDu4pezGyR/JoRLh7QR4N3fC17V2E0GazWxvn2U985hPE3tvFcH+LM3EypVRCl6E9AiUZCeumqMBffyXw1AwIDAQAB",
         "list_text_component": {
             "component_id": "fejmaeodjeekfldnbegjagemjgnmhfof",
@@ -1106,7 +1058,6 @@
         "title": "Adguard Spanish/Portuguese",
         "desc": "Removes advertisements from Spanish and Portuguese websites",
         "langs": ["es", "pt"],
-        "component_id": "jpolmkeojnkicccihhepfbkhcbicimpa",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs1E/bf3s1EQeJY10IT5/ZMCzfMAm6SKyWUCeHBkWZLcfwyYLJww84EC2jCLeYgwukOmZjwtnDrasVhUyKOif7dKIBEZizsvSldi8tzHqTbX3PFKsLhRXCETbU0kkOlArGRGLaBIhgT07qPtlehYCZoDdowk42025fVtfVEMtZg8yBIqtFT/bDL96lRDQIW+1uAM3uFkzvRtQgsYhoI6JlyqFw6fqowRx8a+zHvtQzAUyIaTGf0OFEHwGCFlHXmTYpcOXlcUAXn4RnJvx+thpeDBtAvT6LubTLNQClBbwjGL5d7NlGNPByYdcZZcvGPmBWX/vnobY5QGP4lWxZvWfFwIDAQAB",
         "list_text_component": {
             "component_id": "meimhmgfbckapkbbbdaoefgnbppmkodp",
@@ -1125,7 +1076,6 @@
         "title": "Slovenian",
         "desc": "Removes advertisements from Slovenian websites",
         "langs": ["sl"],
-        "component_id": "lddghfaofadfpaajgncgkbjhalgohfkd",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4cRSF2Rg5SSG6mwE6NQCnX4a0MfzC9URqNFnI4Wf3d3a7CkhmVeNZHxSCGGLxNV9SjCi5tko7NdMqIwnN/vliZV+jnEDi8Lj+zz9nftkaGXe3jNoP7tr/+Qkqphc76j3wIpsQx/vBnfVTn5lrNynZL6qpFzX5dj4ukdJ6BOx1YTNdJV9LOyMWbC5rno1mpd14aS7R2T6xfnm3+nupaZMAbUeN/1bwxDdND/mbjFzFvkPCC+4m758tI/5kSJOefy8kNvp9BM64LXPA4sF59ttJtCIOJDAyhM1P0Danyze2g/0GGnojDuzZilfeSCeEpDsc+S78Tyqz/lMtxt2LZkvoQIDAQAB",
         "list_text_component": {
             "component_id": "nnpbcdahaefknppiijdmnckpdgojejck",
@@ -1144,7 +1094,6 @@
         "title": "Frellwit's Swedish",
         "desc": "Removes advertisements from Swedish websites",
         "langs": ["sv"],
-        "component_id": "oimfmeehpinnecjghphifehbbnddjkmf",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA17Vf1qj8dWwYVtGpBHWc9gLiITU1XrTnb1sDASIeuKYp9JNBtEnBwy4oBlOoZd2uWFKxXrRtaimdwqa627gi9DB17t/RgzisXSpLubXbVVelRWllaX26SioGxsGcQhS2/e1Bc0inQ8GODM6mk5FPZ9RObFN1N/QVz35anN4VNcjtETD/XpujYXE1BU3C0KGBlWwc+cQZ6sGojWEPrb7aRXSTJ5y/ugwGomTTpbT+Jt9nFrMfuAmJHvWS0Ev96dDmn1zsuoPGUExVFjGBunphRYMVCg9LUGzY0FN5+dp6fljrTJrtUOEfvh40vmjahKd0w6bKpgTAOUEaWulmVSr37QIDAQAB",
         "list_text_component": {
             "component_id": "ggjlfgjhaeedkajcdpomeidjlniafdnp",
@@ -1163,7 +1112,6 @@
         "title": "EasyList Thailand",
         "desc": "Removes advertisements from Thai websites",
         "langs": ["th"],
-        "component_id": "jplgiejfnpolnfnigblbfeeidoimingd",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy4EQ0IdWDAAqRT6ymtxWG32Whfmv5TMxKuEP3rs9LMfa+iU+xiyE/XvWjgA58n4Bs2vQgefCoqY+a9B0TUkqz0nDcrBi371w1EZSxNRySslO5VvLHdRdYwynTMwDsAlHIPZ6pgh9zwprW1Lxz31CC2EHJeBGmBQ/S8My/VRiN8Y2Jj7yZDX1rTvBrYPj5XAwe2MAPAsMJD4lHcx7uClEbVq/4AxNpmNay5kamFaX6qt8/765RyPYuqgneharP7EJ9HToH56l/KR7doOywTyVPQYvEhD+a1mioMfEtYNxvqY4lKDhctTV8aU7RItAgwGTW+msldvdPfs3QWV5o7yrtQIDAQAB",
         "list_text_component": {
             "component_id": "johkmlmpfakcaopiapbmcocgpkabdmed",
@@ -1182,7 +1130,6 @@
         "title": "Adguard Turkish",
         "desc": "Removes advertisements from Turkish websites",
         "langs": ["tr"],
-        "component_id": "oooemoeokehlgldpjjhcgbndjcekllim",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2We4hmp3TwsrKyOb6rF/mCjy9TW3w9n9CD1rZMXUF3U6CCgxH4lps5HiLlxUFaIhhcUEXrGlXbk4TE2LlTv4VS53O23YixZXQ/xMmpWSyBvc3/jBCrAAcvDLAZY53J1T/9t7DNZdpXkX3rNpYB4L5/5dyzQI+sZZoTBe5dLyJOR1uDZJphpXRWSKqBRLn4SJ5uOGgtqG5J4rMhB+SUrNhWs8AyM8+tdoaxOjx7n+PA2Rx7/foty1Bbd7Hfc1Eg0C9R40inJNgH+IDxZ07ZFqiAuY1Z16lr4bwunk7ft4tTafci0M2t86JkoH0B4yiTBKthB6AkmZ0/dejeQeOBszYQIDAQAB",
         "list_text_component": {
             "component_id": "gomenlogbembmkbghmaoledggliepdef",
@@ -1201,7 +1148,6 @@
         "title": "ABPVN",
         "desc": "Removes advertisements from Vietnamese websites",
         "langs": ["vi"],
-        "component_id": "cklgijeopkpaadeipkhdaodemoenlene",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAymFhKEG/UJ8ZyKjdx4xfRFtECXdWXixG8GoS3mrw/haeVQoB1jXmPBQTZfL2WGZqYvrAkHRRel7XEoZNYziP3bCYbS4yVqKnDUp1u5GIsMsN0Pff1O1SHEbqClb79vAVhftNq1VQkHPpXQdoSiINQ12Om8WbOIuaNxkrTToFW7XRMtbI3tluoLUSy9YTkCEGah68Dl1uL6nOzOxaMV1iQRRk5Pw4ugTzwGHHL2U2kDYDNrlywK8cUIFgtZskqQ/TF1zF6u9xTGjwjB9X319XrTg2llcojCgj/dllBuXL2aJoDsS3qAVzqbSYxIE6bQU8JX8wv+KCDMpJt/dHPQqOMwIDAQAB",
         "list_text_component": {
             "component_id": "ooamlicohiiaodkaemgoimcihidbedmp",
@@ -1220,7 +1166,6 @@
         "title": "Brave Twitch Adblock Rules",
         "desc": "Remove ads and trackers on twitch.tv",
         "langs": [],
-        "component_id": "obbidhioeiamcckaaahojjkecklmfhbe",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwsyACpnNiQuueirAV3aSncEBmxlBEikjON/ZY8rJdaj38hVUelUKl2t4ZQElVtNczGyBBT9JPcHAB5mGxoCzqLD8uwbbcgqtBpsFv547TS5EkgxRa5IOX89Y2lTTBqHNlya4Ludym6a9y79lbZwubMCxV0JkzQjXMiU3fN8YUgspci+L8r0KpN2u+lCcyK4SOHULrzAIKdBOD8ULSc8B9DinqO5H9Qyt1s1vEoobdf4rEn6mgRR/62g8m3Cm6KLtsX54pkv5ju5axqMxPGV8XjbwKJYIEqt6Za83a5940erW0gR4yqZfsTB4QE5q9hBOT/ySBUdJP6riPn86oiJEeQIDAQAB",
         "list_text_component": {
             "component_id": "mhccgcegedfkhdbfbgllfkkcjhgkoinc",
@@ -1239,7 +1184,6 @@
         "title": "Brave Experimental Adblock Rules",
         "desc": "CAUTION: Risky or experimental filter rules that may break websites",
         "langs": [],
-        "component_id": "mphkinndmkhjeijpncflnnbnphjmggoi",
         "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7r9jN9PUQtqw3bjzn15zkSYM5FMxfuU0bc0LrewdPIW1bzVpI8pR45iwpfvRvT88ZewF06x1NSyvuIuWt/Y/bjlyfZOvN7Mm5mi4wdMiILBALSo25Co5stZUY6kZN1LnmHofcdyd2zwGsFMg9S13CWkBNihRZcGQptfIGXQRmOyaZhkTUUyeg4ZE3aiD7rXEVhArCO4WgL3414l33cHmFtqGQLu+LauhvXQHS6NtfOWE9zPs8eBnT/jqx/P/oM5451jx5o6i7zCyBp0zxhBheSKRTDQwAVYKpFbKBmnAGt1IhbFaCdQT1rTURfOjoGY+OrUpY4Lvy9KDE0TynwXAAQIDAQAB",
         "list_text_component": {
             "component_id": "jcfckfokjmopfomnoebdkdhbhcgjfnbi",
