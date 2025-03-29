@@ -654,6 +654,7 @@
         "title": "IndianList",
         "desc": "Removes advertisements from Hindi websites",
         "langs": ["in"],
+        "first_party_protections": true,
         "list_text_component": {
             "component_id": "femdbljnkmindcakmnbjhfefepeaicnm",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvr/tGn/LAkKrRrt9PVmtyFvKMhSEVj/OuUsD3Jorj+U3TU06Akg8YkGg08rrfjuZjFTtBoniCgtQsnpIuCaRhN/2u95EkGxsS92932YjQQUDMw2chAWaaFKJI1bFSIvvuPAK1lT9RuW/Aa/rpOjDpAZiszVoVMu+ZGNvkheBVm1HbU5rPB24x2kdayzH87wcJS9GxApGa29cXUNUmCZw7w0JNqd76/i86SZBdjXtlPQz1LynLTGyyCUC2sqlcn+lVNVTkGA86EQwM/GTrknGaqyArIoeJMgoZ2WCOOozz0RO6RDPbDHemLE/9+ROHxFwtjhiXbSR+8bbUlKQI2THvwIDAQAB"
