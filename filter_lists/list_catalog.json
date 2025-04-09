@@ -55,6 +55,12 @@
                 "support_url": "https://github.com/uBlockOrigin/uAssets"
             },
             {
+                "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-general.txt",
+                "title": "uBlock Origin filters - General",
+                "format": "Standard",
+                "support_url": "https://github.com/uBlockOrigin/uAssets"
+            },
+            {
                 "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/badware.txt",
                 "title": "uBlock Origin filters - Badware risks",
                 "format": "Standard",
