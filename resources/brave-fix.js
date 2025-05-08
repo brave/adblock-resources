@@ -12,38 +12,35 @@ const spoofBrands = (items) => {
   });
 };
 
-let originalBrands = navigator?.userAgentData?.brands;
+const originalBrands = navigator?.userAgentData?.brands;
 if (originalBrands) {
-  try {
-    const spoofedBrands = spoofBrands(originalBrands);
-    Object.defineProperty(NavigatorUAData.prototype, 'brands', {
-      value: spoofedBrands
-    });
-  } catch {}
+  const spoofedBrands = spoofBrands(originalBrands);
+  Object.defineProperty(NavigatorUAData.prototype, 'brands', {
+    value: spoofedBrands
+  });
 }
 
 const originalGetHighEntropyValues =
   NavigatorUAData?.prototype?.getHighEntropyValues;
 
 if (originalGetHighEntropyValues) {
-  try {
-    Object.defineProperty(NavigatorUAData.prototype, 'getHighEntropyValues', {
-      value: async function getHighEntropyValues(hints) {
-        const results = await originalGetHighEntropyValues.call(
-          navigator.userAgentData,
-          hints
-        );
-        for (const key of Object.keys(results)) {
-          if (key === 'brands' || key === 'fullVersionList') {
-            results[key] = spoofBrands(results[key]);
-          }
+  Object.defineProperty(NavigatorUAData.prototype, 'getHighEntropyValues', {
+    value: async function getHighEntropyValues(hints) {
+      const results = await originalGetHighEntropyValues.call(
+        navigator.userAgentData,
+        hints
+      );
+      for (const key of Object.keys(results)) {
+        if (key === 'brands' || key === 'fullVersionList') {
+          results[key] = spoofBrands(results[key]);
         }
-        return results;
       }
-    });
-
-    Object.defineProperty(NavigatorUAData.prototype.getHighEntropyValues, 'toString', {
-      value: () => 'function getHighEntropyValues() { [native code] }'
-    });
-  } catch {}
+      return results;
+    }
+  });
 }
+
+Object.defineProperty(
+  NavigatorUAData.prototype.getHighEntropyValues, 'toString', {
+  value: () => 'function getHighEntropyValues() { [native code] }'
+});
