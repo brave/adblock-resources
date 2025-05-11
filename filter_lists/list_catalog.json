@@ -1006,6 +1006,7 @@
         "title": "EasyList Spanish",
         "desc": "Removes advertisements from Spanish websites",
         "langs": ["es"],
+        "first_party_protections": true,
         "list_text_component": {
             "component_id": "fejmaeodjeekfldnbegjagemjgnmhfof",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv7yIqlQQ/fK5DkO90mULt6tdYXm4sdROKgLMd9PGxuXkTMWt2gI2VgnOIMKXenr6yQ35kx859rr7dcV8bOUPPCVZsu3zU3mxJoPt6+wOZH00na1n6XVS/jHFULOeqKA7fj/2GYyTvdaSpLL2B7u/limqbZ/IQSBoc0GdEfsjEghKFvFhWmZw6g0UAp0ZiJzm13t+ta2FjCDTfrnXJFt1VY/hd4Ip2i4KmBKByR0gfv4ksqY0rSVJhXjcbrXHqBZvRUr/vw6bBmnFVCJlQKS44S/5QLDsmxm2E2kIp2LmSMLjoYPqTZnthCX9/svwCp08LRwvDHtVSS3c5MsgRzwMkwIDAQAB"
@@ -1023,6 +1024,7 @@
         "title": "Adguard Spanish/Portuguese",
         "desc": "Removes advertisements from Spanish and Portuguese websites",
         "langs": ["es", "pt"],
+        "first_party_protections": true,
         "list_text_component": {
             "component_id": "meimhmgfbckapkbbbdaoefgnbppmkodp",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvZOGZijGxkLbvTxJY/4nih6wdCBI7zJLrUwOUMXsv9DOVRJvh8s5CHYRQDwxUhNbWGOubxyjYT8Je2sb/5fLFJXqBFbC+xZQbRAshfpOJjO+ZJC6EAUz+MsG/xWqQZfHHuJ71yLSaSt55dFSvZiF7XqIPIrT3enTdILCgT6Ql42faE6d3EBcQm/lR1fyuBS8PGfcjiIL6rIvcNiTSvU2530m/x8ie2rWijMxJp+JlHejMzc3OJ3Z7Lz+52u/WFWMeTbVNDK4LQ1OEwTPxsARd13UTkk9S0Kf4B6G3OdND3lpzso3CPF3z52i22SUqOJE4nudWKWqkXVoDVNJGebnCwIDAQAB"
