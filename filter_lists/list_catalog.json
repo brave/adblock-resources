@@ -67,12 +67,6 @@
                 "support_url": "https://github.com/uBlockOrigin/uAssets"
             },
             {
-                "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/privacy.txt",
-                "title": "uBlock Origin filters – Privacy",
-                "format": "Standard",
-                "support_url": "https://github.com/uBlockOrigin/uAssets"
-            },
-            {
                 "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/resource-abuse.txt",
                 "title": "uBlock Origin filters – Resource abuse",
                 "format": "Standard",
@@ -99,12 +93,6 @@
             {
                 "url": "https://easylist.to/easylist/easylist.txt",
                 "title": "EasyList",
-                "format": "Standard",
-                "support_url": "https://easylist.to/"
-            },
-            {
-                "url": "https://easylist.to/easylist/easyprivacy.txt",
-                "title": "EasyPrivacy",
                 "format": "Standard",
                 "support_url": "https://easylist.to/"
             },
@@ -150,6 +138,33 @@
                 "format": "Standard",
                 "support_url": "https://github.com/brave-experiments/sugarcoat-pipeline"
             }
+        ]
+    },
+    {
+        "uuid": "4D715457-307C-4383-8873-73A2FD263F71",
+        "title": "Brave default privacy lists",
+        "desc": "Default privacy lists for Brave Browser",
+        "langs": [],
+        "hidden": true,
+        "default_enabled": true,
+        "first_party_protections": true,
+        "list_text_component": {
+            "component_id": "kihnoaefogbkmblfimmibknnmkllbhlf",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArTbJVQgtS0Ulo1pd72XT51mhFYXQowGJrrbIfCttxHFyasryxpYVc6835tSXUNddFlCr8sjdPyOc6kRxC3WzGAk0BNFF3bo1Ln93oUnqjwRQ571jojhe4ROu6JpLSwGGxiadp0RmfpYhZiNBzR5e1DZUbEmhRL4lI/OHznZKhSkqVsD3sZ3eF2p+qwT5kqSZvwoylgCuivE6S9hatKcx86Zda2uwj0BQoq04OPX+T+XmT23F50Vrns3p6W7vUxKZuE+EW2Uw/iIQGEIfuh0oa0XqX1C8ounw3KSuubJRV7dAV0EhFs2Gh1xXLR8nfJHs3AFR0GNpieW1xPllDGU5xwIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://easylist.to/easylist/easyprivacy.txt",
+                "title": "EasyPrivacy",
+                "format": "Standard",
+                "support_url": "https://easylist.to/"
+            },
+            {
+                "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/privacy.txt",
+                "title": "uBlock Origin filters – Privacy",
+                "format": "Standard",
+                "support_url": "https://github.com/uBlockOrigin/uAssets"
+            },
         ]
     },
     {
