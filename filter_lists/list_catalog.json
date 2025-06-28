@@ -735,6 +735,7 @@
         "title": "EasyList Italy",
         "desc": "Removes advertisements from Italian websites",
         "langs": ["it"],
+        "first_party_protections": true,
         "list_text_component": {
             "component_id": "eaidcpcfnepdmmhbglgjhpjdfodkdcki",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6srtCOWjPWh8AiCrnjcJd9iFwmhs+5VMfnfaQnK5PeK1//Hr0xlrS9S6Q7AHlE3O7fBFS9EkBGXAXPeqNpXAuE1wKkzmKkOWRT2mCWQcc07sbIUjyXaQL6UIJYTQREJEZzif+beXopscv/ALsJkbTcMWaCbqrTx7SHVlIdkf44B4VccYsp99vhDg5pzhMgDtq+f2ni3jzM0EmECyp9lJefqVEvg1FXNLI3Z0DxkYr1izYCbH3X9NNj+xs7OFz+5eXwus/Ikt9JRtYush7Kr50O7fD/ouvdB/gpCXsvqDW1F3x97ysRZwEQTgioLlVnMs4DN0T0TGoGULr7QkmpzigQIDAQAB"
