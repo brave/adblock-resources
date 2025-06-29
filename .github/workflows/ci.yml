@@ -30,7 +30,7 @@ jobs:
       - name: Install node
         uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: Get changed resource-related files
         id: changed-files
@@ -59,7 +59,7 @@ jobs:
       - name: Install node
         uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: See if list catalog has changed
         id: changed-files
