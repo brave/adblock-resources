@@ -67,12 +67,6 @@
                 "support_url": "https://github.com/uBlockOrigin/uAssets"
             },
             {
-                "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/privacy.txt",
-                "title": "uBlock Origin filters – Privacy",
-                "format": "Standard",
-                "support_url": "https://github.com/uBlockOrigin/uAssets"
-            },
-            {
                 "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/resource-abuse.txt",
                 "title": "uBlock Origin filters – Resource abuse",
                 "format": "Standard",
@@ -84,27 +78,21 @@
                 "format": "Standard",
                 "support_url": "https://github.com/uBlockOrigin/uAssets"
             },
-	    {
+            {
                 "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/quick-fixes.txt",
-		"title": "uBlock Origin filters - Quick Fixes",
-		"format": "Standard",
-		"support_url": "https://github.com/uBlockOrigin/uAssets"
+                "title": "uBlock Origin filters - Quick Fixes",
+                "format": "Standard",
+                "support_url": "https://github.com/uBlockOrigin/uAssets"
             },
             {
                 "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/ubo-link-shorteners.txt",
-		"title": "uBlock Origin filters - link shortners",
+                "title": "uBlock Origin filters - link shortners",
                 "format": "Standard",
                 "support_url": "https://github.com/uBlockOrigin/uAssets"
             },
             {
                 "url": "https://easylist.to/easylist/easylist.txt",
                 "title": "EasyList",
-                "format": "Standard",
-                "support_url": "https://easylist.to/"
-            },
-            {
-                "url": "https://easylist.to/easylist/easyprivacy.txt",
-                "title": "EasyPrivacy",
                 "format": "Standard",
                 "support_url": "https://easylist.to/"
             },
@@ -150,6 +138,33 @@
                 "format": "Standard",
                 "support_url": "https://github.com/brave-experiments/sugarcoat-pipeline"
             }
+        ]
+    },
+    {
+        "uuid": "4D715457-307C-4383-8873-73A2FD263F71",
+        "title": "Brave default privacy lists",
+        "desc": "Default privacy lists for Brave Browser",
+        "langs": [],
+        "hidden": true,
+        "default_enabled": true,
+        "first_party_protections": true,
+        "list_text_component": {
+            "component_id": "kihnoaefogbkmblfimmibknnmkllbhlf",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArTbJVQgtS0Ulo1pd72XT51mhFYXQowGJrrbIfCttxHFyasryxpYVc6835tSXUNddFlCr8sjdPyOc6kRxC3WzGAk0BNFF3bo1Ln93oUnqjwRQ571jojhe4ROu6JpLSwGGxiadp0RmfpYhZiNBzR5e1DZUbEmhRL4lI/OHznZKhSkqVsD3sZ3eF2p+qwT5kqSZvwoylgCuivE6S9hatKcx86Zda2uwj0BQoq04OPX+T+XmT23F50Vrns3p6W7vUxKZuE+EW2Uw/iIQGEIfuh0oa0XqX1C8ounw3KSuubJRV7dAV0EhFs2Gh1xXLR8nfJHs3AFR0GNpieW1xPllDGU5xwIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://easylist.to/easylist/easyprivacy.txt",
+                "title": "EasyPrivacy",
+                "format": "Standard",
+                "support_url": "https://easylist.to/"
+            },
+            {
+                "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/privacy.txt",
+                "title": "uBlock Origin filters – Privacy",
+                "format": "Standard",
+                "support_url": "https://github.com/uBlockOrigin/uAssets"
+            },
         ]
     },
     {
@@ -545,7 +560,7 @@
         "title": "EasyList Germany",
         "desc": "Removes advertisements from German websites",
         "langs": ["de"],
-	"first_party_protections": true,
+        "first_party_protections": true,
         "list_text_component": {
             "component_id": "lfmefmifdjlfneapckmpkinmlofjehbp",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmvTOXmS56FBoh9eAsPUIAFXAYnwmyJC9HgLEtF7D5pkac6WkPAOOeidY+wJ0A2u58hBYw82f/8COkznUUiq7Oubb6+zdJP7lsTYbhN9yoPm+aw1vLucSa2O+O9Xhvp/0bT1bABtdccb9WrRT5HlL+BiHtwwHVZ0KLuX+k1IM6jxWD3DxKk7mnADxIOobODspLGkmduTMzVYygbMKf+0p478Us99aqK8oEMMjTL8IMHfdwFUrTBBbhS8mVkioNUFCEzeXFowhnWeoN6ysjmIcNN2STeVptCBXcaOAYePCrbCDcRzeOTBr4mu4U13Bune87VC+WJkTf+E9BDncTHjGUQIDAQAB"
@@ -597,7 +612,7 @@
         "title": "AdGuard Français",
         "desc": "Removes advertisements from French websites",
         "langs": ["fr"],
-	"first_party_protections": true,
+        "first_party_protections": true,
         "list_text_component": {
             "component_id": "flnkmpokemfpaajmiimmjeiandgoodgg",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwwUZwUB8V3M17u9iE4xJlqee5tpabVHr4SUZJMdcxUVYi0gPLSQfWHNUR9HqXy4/b92OmPwOHcp1d7gereg8ave7d6syQB3R6xZLM04ESK949zUAzuYGmTSGPgBmC9O09tAw+dmHrHNXi2zKUf/bU0nOXyYtRqPq9UYxIIxq51nqgIqvUdvX2iwVPGVEXOxgKG3zCF8Z4U9tImWYYAq2cb3LbM2+b6w++PsnhwN6XIFFV2KsYVhtrOnzpgE3M+1cI2BT6N9prYIyP55MHfvU7La/VfqgmRVjH+qASJw0kGy1T/c7R4DLPHaND1L0MY7GjwRxAgPct3eTha+weL01vwIDAQAB"
@@ -938,11 +953,11 @@
                 "format": "Standard",
                 "support_url": "https://github.com/tcptomato/ROad-Block"
             },
-	    {
+            {
                 "url": "https://raw.githubusercontent.com/tcptomato/ROad-Block/master/road-ubo.txt",
-		"format": "Standard",
-		"support_url": "https://github.com/tcptomato/ROad-Block"
-	    }
+                "format": "Standard",
+                "support_url": "https://github.com/tcptomato/ROad-Block"
+            }
         ]
     },
     {
