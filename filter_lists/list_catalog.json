@@ -422,6 +422,23 @@
         ]
     },
     {
+        "uuid": "6b91e355-1421-4c03-9a30-911b4d0fb277",
+        "title": "Anti-AI Search Filters",
+        "desc": "laylavish uBlockOrigin-HUGE-AI-Blocklist",
+        "langs": [],
+        "list_text_component": {
+            "component_id": "cijficcafkonlbfjfmjeejbjjipdadea",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxdtGogqtpPMKDw7xFgp/Q8pwufcVoiuwgRxuEBVVPrCBkuNBlbe8tnoZ6pS2rWPhlz1UAgZQEh+9Np62KWrFgGId1ryYq5+GSIFyNBfWZJhqBs5j8Kszjhh6ZPCuPveglFSmK9WqIUoEoS/k3E89zWA62c8wWtX4W4h0oQ/P/46TXUfEHMGn6vBhbRGDzOOBf/IwrtptTvyDenpvkE9/nBTOvzCJ5ZPuKUxhIGTOZQ3Rzp+75Wd0vcACGsJVK+1zk1hBWBqbuQhzdiKEgmAwSCCPaA646JCBfts7o+ZmUlu1wrykpuNIcUBZQViJM3C0ouCozxgl+wwVKvKtH5LQFQIDAQAB"
+         },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist/refs/heads/main/additional_list_nuclear.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist"
+            }
+         ]
+    },
+    {
         "uuid": "9FCEECEC-52B4-4487-8E57-8781E82C91D0",
         "title": "Liste AR",
         "desc": "Removes advertisements on Arabic websites",
