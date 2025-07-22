@@ -1169,7 +1169,7 @@
             {
                 "url": "https://raw.githubusercontent.com/chartingshow/crypto-firewall/master/src/blacklists/lite-version.txt",
                 "format": "Standard",
-                "support_url": "https://github.com/brave/adblock-lists"
+                "support_url": "https://github.com/chartingshow/crypto-firewall"
             }
         ]
     },
@@ -1186,7 +1186,7 @@
             {
                 "url": "https://raw.githubusercontent.com/chartingshow/crypto-firewall/master/src/blacklists/full-version.txt",
                 "format": "Standard",
-                "support_url": "https://github.com/brave/adblock-lists"
+                "support_url": "https://github.com/chartingshow/crypto-firewall"
             }
         ]
     },
@@ -1203,7 +1203,7 @@
             {
                 "url": "https://raw.githubusercontent.com/chartingshow/crypto-firewall/master/src/blacklists/mega-version.txt",
                 "format": "Standard",
-                "support_url": "https://github.com/brave/adblock-lists"
+                "support_url": "https://github.com/chartingshow/crypto-firewall"
             }
         ]
     },
@@ -1220,7 +1220,7 @@
             {
                 "url": "https://raw.githubusercontent.com/chartingshow/crypto-firewall/master/src/blacklists/beta-version.txt",
                 "format": "Standard",
-                "support_url": "https://github.com/brave/adblock-lists"
+                "support_url": "https://github.com/chartingshow/crypto-firewall"
             }
         ]
     }
