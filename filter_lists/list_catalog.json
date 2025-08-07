@@ -1,7 +1,7 @@
 [
     {
         "uuid": "default",
-        "title": "Brave Ad Block Updater",
+        "title": "Brave Default Adblock Filters",
         "desc": "Default lists for Brave Browser",
         "langs": [],
         "hidden": true,
@@ -142,7 +142,7 @@
     },
     {
         "uuid": "4D715457-307C-4383-8873-73A2FD263F71",
-        "title": "Brave default privacy lists",
+        "title": "Brave Default Privacy Filters",
         "desc": "Default privacy lists for Brave Browser",
         "langs": [],
         "hidden": true,
@@ -169,7 +169,7 @@
     },
     {
         "uuid": "9F38E77A-64AA-4C5F-AF37-727CAE1266FF",
-        "title": "Brave IOS specific filters",
+        "title": "Brave IOS-Specific Filters",
         "desc": "A list for iOS only to handle specific iOS adblocking requirements.",
         "langs": [],
         "platforms": ["IOS"],
@@ -191,7 +191,7 @@
     },
     {
         "uuid": "E99CBD02-FFD1-4651-9BDD-6A9ED7B87819",
-        "title": "Brave Ad Block First Party Filters",
+        "title": "Brave First Party Adblock Filters",
         "desc": "Default filters that still take effect in standard blocking mode regardless of any first-party status",
         "langs": [],
         "hidden": true,
