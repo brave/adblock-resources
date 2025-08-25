@@ -934,28 +934,6 @@
         ]
     },
     {
-        "uuid": "867EF333-8336-455C-9CC6-98749AEE69E4",
-        "title": "Oficjalne Polskie Filtry Przeciwko Alertom o Adblocku",
-        "desc": "Defuses anti-adblock from Polish websites",
-        "langs": ["pl"],
-        "list_text_component": {
-            "component_id": "beeceepafhbchnbfdkfalfipoancnjkm",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuvdYUaLF2iI9loRQjDLZelATqaMso9wPX0sBZR1i9MrqM5pw3o5x9sc57SYiuCQJMKwD8l8g4S7WEHyfGs43EYmiO0/1LE2QJ7765x3tyN4LrH+PIGvrVdFkdeVv23uQ1Vk9kZ9OiCo5+ZvpGIavWFGQ7Cq+QJAu3omKLzHQUpfph8UgRlEGjJo0g07Dc/4vsNE8qF9LRTpThxlMZIvWU4ZPsd/bW4VBipvAMDyMvUBwA1gW/3ehPY4rekuykK7RGcsX9hCoLn0Nm3J9/tHfYk0vS76yNcaYq1saITBlBzqPnrwAc73sQjpMkwfWgdrPl0JsQJ9lRlzeoecyOcmkEQIDAQAB"
-        },
-        "sources": [
-            {
-                "url": "https://raw.githubusercontent.com/olegwukr/polish-privacy-filters/master/anti-adblock.txt",
-                "format": "Standard",
-                "support_url": "https://github.com/olegwukr/polish-privacy-filters/issues"
-            },
-            {
-                "url": "https://raw.githubusercontent.com/olegwukr/polish-privacy-filters/master/anti-adblock-suplement.txt",
-                "format": "Standard",
-                "support_url": "https://github.com/olegwukr/polish-privacy-filters/issues"
-            }
-        ]
-    },
-    {
         "uuid": "AD3E8454-F376-11E8-8EB2-F2801F1B9FD1",
         "title": "Romanian Ad (ROad)",
         "desc": "Removes advertisements from Romanian websites",
