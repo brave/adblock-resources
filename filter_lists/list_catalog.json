@@ -439,7 +439,7 @@
     {
         "uuid": "6b91e355-1421-4c03-9a30-911b4d0fb277",
         "title": "Anti-AI Search Filters",
-        "desc": "A blocklist of sites that contain a mix of both AI generated content and authentic imagery, for uBlock Origin",
+        "desc": "An anti-AI blocklist for the Web",
         "langs": [],
         "list_text_component": {
             "component_id": "cijficcafkonlbfjfmjeejbjjipdadea",
