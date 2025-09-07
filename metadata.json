@@ -16,6 +16,14 @@
         "resourcePath": "async-sugarcoat-8a459c41783885dc83d30f5b7da2359091f4e607.js"
     },
     {
+        "name": "brave-auto-pip.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "brave-auto-pip.js"
+    },
+    {
         "name": "brave-disable-pageview-api.js",
         "aliases": [],
         "kind": {
