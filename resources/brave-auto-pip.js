@@ -18,6 +18,9 @@
       } catch (error) {
         console.log("The enterpictureinpicture action is not yet supported.");
       }
+    } else {
+      // If no video is available, retry in 10 seconds
+      setTimeout(setupAutoPictureInPicture, 10000);
     }
   }
 
