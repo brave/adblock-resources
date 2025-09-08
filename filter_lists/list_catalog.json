@@ -91,7 +91,7 @@
                 "support_url": "https://github.com/uBlockOrigin/uAssets"
             },
             {
-                "url": "https://easylist.to/easylist/easylist.txt",
+                "url": "https://ublockorigin.github.io/uAssets/thirdparties/easylist.txt",
                 "title": "EasyList",
                 "format": "Standard",
                 "support_url": "https://easylist.to/"
@@ -154,7 +154,7 @@
         },
         "sources": [
             {
-                "url": "https://easylist.to/easylist/easyprivacy.txt",
+                "url": "https://ublockorigin.github.io/uAssets/thirdparties/easyprivacy.txt",
                 "title": "EasyPrivacy",
                 "format": "Standard",
                 "support_url": "https://easylist.to/"
