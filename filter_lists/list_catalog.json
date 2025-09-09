@@ -1140,8 +1140,8 @@
     },
     {
         "uuid": "529A3F3B-7EBA-4351-B986-D176A82E7F5A",
-        "title": "Brave Twitch Adblock Rules",
-        "desc": "Remove ads and trackers on twitch.tv",
+        "title": "Brave Livestream Adblock Rules",
+        "desc": "Remove ads and trackers on livestream websites",
         "langs": [],
         "list_text_component": {
             "component_id": "mhccgcegedfkhdbfbgllfkkcjhgkoinc",
