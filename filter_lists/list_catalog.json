@@ -447,7 +447,7 @@
          },
         "sources": [
             {
-                "url": "https://raw.githubusercontent.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist/refs/heads/main/additional_list_nuclear.txt",
+                "url": "https://raw.githubusercontent.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist/refs/heads/main/list.txt",
                 "format": "Standard",
                 "support_url": "https://github.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist"
             },
