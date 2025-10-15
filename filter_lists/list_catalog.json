@@ -154,7 +154,7 @@
         },
         "sources": [
             {
-                "url": "https://ublockorigin.github.io/uAssets/thirdparties/easyprivacy.txt",
+                "url": "https://easylist.to/easylist/easyprivacy.txt",
                 "title": "EasyPrivacy",
                 "format": "Standard",
                 "support_url": "https://easylist.to/"
