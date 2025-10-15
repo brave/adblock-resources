@@ -91,7 +91,7 @@
                 "support_url": "https://github.com/uBlockOrigin/uAssets"
             },
             {
-                "url": "https://ublockorigin.github.io/uAssets/thirdparties/easylist.txt",
+                "url": "https://easylist.to/easylist/easylist.txt",
                 "title": "EasyList",
                 "format": "Standard",
                 "support_url": "https://easylist.to/"
