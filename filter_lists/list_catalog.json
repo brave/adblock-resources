@@ -727,7 +727,42 @@
         },
         "sources": [
             {
-                "url": "https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlocker.txt",
+                "url": "https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlocker-Deprecated.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/MasterKia/PersianBlocker"
+            },
+            {
+                "url": "https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerAds.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/MasterKia/PersianBlocker"
+            },
+            {
+                "url": "https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerTrackers.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/MasterKia/PersianBlocker"
+            },
+            {
+                "url": "https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerCensor.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/MasterKia/PersianBlocker"
+            },
+            {
+                "url": "https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHalfPrice.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/MasterKia/PersianBlocker"
+            },
+            {
+                "url": "https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerMalware.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/MasterKia/PersianBlocker"
+            },
+            {
+                "url": "https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerPhishing.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/MasterKia/PersianBlocker"
+            },
+            {
+                "url": "https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerMobile.txt",
                 "format": "Standard",
                 "support_url": "https://github.com/MasterKia/PersianBlocker"
             }
