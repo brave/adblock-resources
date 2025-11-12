@@ -447,11 +447,6 @@
          },
         "sources": [
             {
-                "url": "https://raw.githubusercontent.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist/refs/heads/main/list.txt",
-                "format": "Standard",
-                "support_url": "https://github.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist"
-            },
-            {
                 "url": "https://raw.githubusercontent.com/easylist/easylist/refs/heads/master/fanboy-addon/fanboy_ai_suggestions.txt",
                 "format": "Standard",
                 "support_url": "https://forums.lanik.us/"
