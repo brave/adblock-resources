@@ -1169,6 +1169,25 @@
         ]
     },
     {
+        "uuid": "BFCF9A6A-E4ED-4AD1-A7D6-3277ABE924CA",
+        "title": "Brave pageview Rules",
+        "desc": "Disable page visibility checks on various websites",
+        "langs": [],
+        "component_id": "bfpkngdiekaidmngpbajifhmfnjmchac",
+        "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm/gF6C8WsoBoK+ZQMmJNnu2uhjPuytmCPBx0Np1D/SFDBcWb2FEgYO6X4KmYke2iVKtoB8+Nxrm2axjcJ/PuW+oqOXURGqu5cOtRZfqiII4WTp+/BIUWa4l6xkA+uiIw9qJEqz7j/hR5Z0iz14HggYGs64JqgDsjmvJz0w1U7QXCXrg0NinbcSIdfN/zRiZ+FzRw216DdCgL/NDpNQT8sfsu4v5wY07YphD6jnAEaXLKxRV4q61AKVLoeYtAQyjeotYhDjzftcFFeb9TuRAhDXPfuUxdwKnJoZq7ZaD0Uh59cYl6YfDp26fMxWKqh7hITbVVNNfqAjRXZ/+d40u5vwIDAQAB",
+        "list_text_component": {
+            "component_id": "pbahjeaancmjnhaaecahkjokadgndabi",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxFgeBtvYzL9eB46+DJ+zAsKwlw31rypoHdDjIpbUwokrofxaDwavOP/5R3NdhHwRGSEvJEWHAN/fCH4qaOJtja63dY+dfHXzNhoEb6a12yOfkfKr8ur8Nzos/RSEHk2tQadllIl5Ef+67Fxx6uUQeDHNhdDF/HEy57aamD+gytKrRl2I4sE/ZS5R7sJjdpObLg/RB6aGJBH971mrIG5YwqJqJsp7MPALCxiihKQUG9LM9NSBvZ6Mcqfm8EaWtcLgAA7CSR6e/vpQerGdnR6QKrIMzInyxwpneu9D/FzvU325c4rtVS3WHgxjFvrvXS3ZzIj40N4mHYqX/HXidjbiaQIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-pageview.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/brave/adblock-lists"
+            }
+        ]
+    },
+    {
         "uuid": "529A3F3B-7EBA-4351-B986-D176A82E7F5A",
         "title": "Brave Twitch Adblock Rules",
         "desc": "Remove ads and trackers on twitch.tv",
