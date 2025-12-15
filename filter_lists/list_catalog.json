@@ -1169,6 +1169,91 @@
         ]
     },
     {
+        "uuid": "7f11b964-4f36-4e06-9d75-bd16381b9386",
+        "title": "Remove Youtube Autodubbed videos",
+        "desc": "Remove Youtube Autodubbed videos",
+        "langs": [""],
+        "list_text_component": {
+            "component_id": "gdmleoblaklbnepkfgceepngljjmgfpg",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtLmBFZxKnvrqsIobmvpt7nIieqYlVqHu3AMVXS8YK8CDf6/Jiul5Vl3nqtVmF6pmrGZsJPmVARs7fgV7/EbQksIv/J9pxQ8632UZ3BgUVoy4Y9FuwbXxT9h8ywYiWRm/YuHkeXOCVyvN+l5X91sC5G/nsO8pHUOp9/Y2FS10MgDeywMty1X56HXMLAwqzoDycW0QH1wTTXGD8U/kt1yJrZaVntSIlcYp8iYKZWLiuRts9m9kbNm6bvUqTvqlYeb658rZBrbZVh792VZP0TNjxmB7oHjDL5hs5xulAzLj7M7eeanL4hyXiiBzoi7Rkhph+bV/wTXx9Ip7nH7aT6KI+QIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/easylist/easylist/refs/heads/master/custom-lists/youtube-autodubbed.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/easylist/easylist"
+            }
+        ]
+    },
+    {
+        "uuid": "3afa9d35-d837-45b5-b742-b3d0fe94e77c",
+        "title": "Remove Youtube thumbnail images",
+        "desc": "Remove Youtube thumbnail images",
+        "langs": [""],
+        "list_text_component": {
+            "component_id": "ggcbgmjhlhfgmijeocidfaagohcldncn",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlouCSyvEBF9WSpX/BtlVQUrV3U6zcL/SU05bz+yIbf0EwH71jHqOg13pE+KWm0rrmdNx2KW7DBEb3BAe4n9pjDxSmqp3I4WPLBnC0DAY0OgMHHKEqfBIn8QIGVvLGY6ParKHa0a31vouyuV8rQVoMRVM/+o3dZMMX17/vTRNJBxBTIGIOxOidJ5GYEcW1jtDU8IzXBxPWdGE9RaxsWrdtnN+KWHfXmPqC7XvWZx4QH4oWtUlfICcaVed6gL5N58s37E5+0ou/q9zXOMfuxch+rX4yKdx4Sp5oCOZAcFnNFOhz/Xf1Fvtgl953T4vaoVEFhQJbbbrhO6ErEPwi6tXlwIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/easylist/easylist/refs/heads/master/custom-lists/youtube-nothumbnails.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/easylist/easylist"
+            }
+        ]
+    },
+    {
+        "uuid": "5c6a6c95-b60a-4695-9efb-539359022531",
+        "title": "Remove Youtube Playables",
+        "desc": "Remove Youtube Playables section",
+        "langs": [""],
+        "list_text_component": {
+            "component_id": "abhafnnblaoofkgacbenbhhalbohmail",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAthWre55FJf09Q8sw9qgTKs3bYzv7NM6Rp+bupMQ7mLrXVFXb6n/FSJS2QOjxPD5vV/Zw+f6/eRK9NO5vD43LhczKTZgqxuuIzDtR4pRagCgqf7h1nHAxoF0xb3Qz+5lmbSdRV4WdGlfpldmuc23duZhZOAkA+cSxs1bTuVZOLPkxR0JGNuYLgI9E+R8YkiWDhmH/eRt1iqay3fJJQ2t0+kbmSAPoYYkjICnYm6GMfewzK41Dd3PRWMf/9trPwbxAop4dNK6Cs6D26yAIoTv+LJXC3hyXgZaXey6cqBRZIbU388vOZi9TnIjbYU411myTg8B6/9jp2lWPXBH6qpmkewIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/easylist/easylist/refs/heads/master/custom-lists/youtube-playables.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/easylist/easylist"
+            }
+        ]
+    },
+    {
+        "uuid": "49958da7-f532-4a84-a765-9501729b8e75",
+        "title": "Remove Youtube Members video advertisements",
+        "desc": "Remove Youtube Members video advertisements",
+        "langs": [""],
+        "list_text_component": {
+            "component_id": "pbkpnahgockepdffchhnmjfgocmdbdhc",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi+3kFflz/T/23jCZhh9hh4uFlHzAM8nFm+F5oP4MB6P6gboajLIP6X4xsgODxk4vbe6bPm59cgnT9gjKGgSbJM0sG9uYXMFTCCDvALu0ftekOHVUJm5WIwxzBbXfHWzbJm7HPtkiezFPfKvric7aI4oZdO6QSAwP8K57zxvK6UFZ0BFBCjCE+ryyOEMM/eEWpNnvtxw5gXWp/Ur7QPCrN/vYvFf2l6NlsYyc5ExFXToeSp6FByfSEvyhTuRwbM5RkCF2lPbkX5js1Hy46aqhJ+8FsfKpfEh3fNq34W55hHx3hHhAp/W3TvSJ+ZdMRQocatKpGwMSc1nl0WCcm8EpXQIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/easylist/easylist/refs/heads/master/custom-lists/youtube-membersonly.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/easylist/easylist"
+            }
+        ]
+    },
+    {
+        "uuid": "d579f370-6de3-4507-aa9a-cee4227e59f5",
+        "title": "Remove Youtube End video elements",
+        "desc": "Remove Youtube End video elements",
+        "langs": [""],
+        "list_text_component": {
+            "component_id": "kjdkgfbncofapgmdlnlfhnnnlmkndelp",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtt6G6ZY04k4utmx2Ay9ZVDI/ck5fdEf+MSQvV1i+YX86KeW5JtLijvbUtvjImVnd7KNuXiVWwTY4AIZbEU5RmYKlaDuQgrHHoxTInc/IZCiugapGJruBzgBp0LgFP01Mzchb6hwI5C7B5t0EHSIlJgSb4yLPUOczBynI+WBc2qu1CIIxFzMszyaxQt5+u7anZAw+FobWSEjmqP4yzSN8fjw7KOH/0+oBPK/H7f3BrTVsX2o2516tpHLeq60kwgq7LiNk/8ff5wFDvZXB/CnrpnY0g8psE6RKGpprfDKjeAlkBfwMj9mQeJGUdy10GDS4BF7BXeRergR7R22PvhQbXQIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/easylist/easylist/refs/heads/master/custom-lists/youtube-endscreen-elements.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/easylist/easylist"
+            }
+        ]
+    },
+    {
         "uuid": "529A3F3B-7EBA-4351-B986-D176A82E7F5A",
         "title": "Brave Twitch Adblock Rules",
         "desc": "Remove ads and trackers on twitch.tv",
