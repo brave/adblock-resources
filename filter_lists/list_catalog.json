@@ -1221,8 +1221,8 @@
     },
     {
         "uuid": "49958da7-f532-4a84-a765-9501729b8e75",
-        "title": "Remove Youtube Members only",
-        "desc": "Remove Youtube Members only video section",
+        "title": "Remove Youtube Members video advertisements",
+        "desc": "Remove Youtube Members video advertisements",
         "langs": [""],
         "list_text_component": {
             "component_id": "pbkpnahgockepdffchhnmjfgocmdbdhc",
