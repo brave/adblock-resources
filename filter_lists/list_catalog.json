@@ -55,6 +55,12 @@
                 "support_url": "https://github.com/uBlockOrigin/uAssets"
             },
             {
+                "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-2026.txt",
+                "title": "uBlock Origin 2026 Filters",
+                "format": "Standard",
+                "support_url": "https://github.com/uBlockOrigin/uAssets"
+            },
+            {
                 "url": "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-general.txt",
                 "title": "uBlock Origin filters - General",
                 "format": "Standard",
