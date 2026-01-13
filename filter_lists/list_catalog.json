@@ -607,9 +607,9 @@
         },
         "sources": [
             {
-                "url": "https://adblock.ee/list.txt",
+                "url": "https://ubo-et.lepik.io/list.txt",
                 "format": "Standard",
-                "support_url": "https://adblock.ee/"
+                "support_url": "https://github.com/sander85/uBO-et"
             }
         ]
     },
