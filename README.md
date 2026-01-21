@@ -6,6 +6,22 @@ Custom resources should be added to the `resources` directory, and a correspondi
 
 ## Using
 
+Make sure to run `npm install`.
+
+### Adding a new scriptlet
+
+If you just want to add a new scriptlet, simply add it under `resources/`, and then run:
+
+```
+npm run addScriptlet
+```
+
+Git add your new scriptlet, and also commit the changes generated in `dist/resources.json` (this is the file that actually contains the resource and gets loaded into the browser) and `metadata.json` (which describes the resources). The `resourcePath` for your resource is what you will use to insert the scriptlet via an adblock rule.
+
+See https://github.com/brave/adblock-resources/pull/131 and https://github.com/brave/adblock-lists/pull/1310 for an example of adding a resource and using it via an adblock rule.
+
+### Advanced use
+
 This package can be imported as a library, exposing the function `readResources` which will produce the correctly formatted list of resources for use with [adblock-rust](https://github.com/brave/adblock-rust).
 
 Alternatively, `npm run build` will write all resources to `dist/resources.json` for future use.
