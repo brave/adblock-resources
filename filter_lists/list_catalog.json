@@ -1292,5 +1292,73 @@
                 "support_url": "https://github.com/brave/adblock-lists"
             }
         ]
+    },
+    {
+        "uuid": "56de9474-0411-4217-8d6c-9d9a0ea6e54f",
+        "title": "Crypto Firewall Lite Version",
+        "desc": "Lite version: minimal performance impact, suitable for low-end mobile devices",
+        "langs": [],
+        "list_text_component": {
+            "component_id": "lmklmmicjeeehbjaghhbbpabfgcioala",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAveLc2YLj5YYVKuP02hc/diLTsiTcVk0rT16WHfnEh4iLq2/nYAD/m5emke+UaWEhKQV+iVOHKvw99kGE6+r3fCAzylb7+XIVXvnO2s9MfnT4ZV+zNb0RaXD/p/2INclzbbMwzdlcAA23usLbIo57MdtMz7yawEhLbAGyxcGTu6cFJ8q3kMGenwMm38X+oY8Mi+/WBtbHm3a8Kg5mu5FYmVoGdLSfERpL+cVSrnpOwFMl9KQSfmaQE62kMVw1r8R930eOGUH1DunwBN4izB2L68BB5mZjbdYeXxqT1Xj6rdvIqS+6pQl7Tau2ZcKnJwPRf0Kbsee6Qy86nkn8ndcOMQIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/chartingshow/crypto-firewall/master/src/blacklists/lite-version.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/chartingshow/crypto-firewall"
+            }
+        ]
+    },
+    {
+        "uuid": "5f4ee4a0-4436-42ea-8654-ff11a17de3cf",
+        "title": "Crypto Firewall Full Version",
+        "desc": "Full version: comprehensive protection, suitable for most mobile devices",
+        "langs": [],
+        "list_text_component": {
+            "component_id": "apbfkdfiligmdhbbccopapkkhneopjni",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxEptZLHjzxsAlFou9YYzIMLnQhV8y8nENAvbwsOM0eOk4Vnhuf8gX6E24csBKC1M4/4UcqJXQxugX5DVLlc9GI/IV2kE/FWtZlM3dXb1d4Y38Am9g/oR+qQ23peeb4O5WW1dRQLGsJQam3/kT0texnGFl4vS1KEGoozA7m3rVkIFQC++WocaSsgJNB16wIPteJ7KqOwPq2ImBNP6+Lc8NJJxg8Sc94JtgBca5ck/SXj4HNoDo20fQgQTHxw8Klfb3SqFrjEx9RCcJGWPDEe6HHGlg+C+y8GgsidA3KBTkbhs9uPv4lUO/oPqxJcViHV43OykoJz15DfhcR3ifRqK4QIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/chartingshow/crypto-firewall/master/src/blacklists/full-version.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/chartingshow/crypto-firewall"
+            }
+        ]
+    },
+    {
+        "uuid": "38daafa3-fa59-4414-9c3f-c91572f5e3a2",
+        "title": "Crypto Firewall Mega Version",
+        "desc": "Mega version: extensive coverage, suitable for high-powered mobile and desktop devices",
+        "langs": [],
+        "list_text_component": {
+            "component_id": "cdbcejooppjbcooogdckibnblgogcgbe",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsuePbvrDGwhoxcaHOa0SViPnNEOBj9yNV6f6Y4le8DbvAEOpkB9WsHOTuTS0MShvrudLQMPQmAwbKPz7K/rI4PkdN6PRZSNO6RrXgQksBHosyy9MN1XoPLzZ26eJ0OLFCmJHAS0lKZZvUwGCE5qqxPUTIoL6nI/XlpXruLnBcwNeS4kZh1KHAsKAx24H9LiO+UQlZKKktH39bELVfJVQmEikcAF7EINq0rXuvp5yknYs1BwOtCwwleoLdMhl0jujlYs4mvYZ9Gs0vl2vPIHreA5LSGWEFG4cXgS/s6QQhSXB7Qepv7Q/+sv9bvQn3gYIWKz+n5S9Ikg5vK+gt6aAgQIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/chartingshow/crypto-firewall/master/src/blacklists/mega-version.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/chartingshow/crypto-firewall"
+            }
+        ]
+    },
+    {
+        "uuid": "52f0c797-1409-4139-a9e6-1c0258c1e8af",
+        "title": "Crypto Firewall Beta Version",
+        "desc": "Beta version: new and experimental features for advanced users, may break some websites",
+        "langs": [],
+        "list_text_component": {
+            "component_id": "jlpfijihcjcolkghkpnghjeomoaebcan",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiNk43dJuYCVK9/0L951VzwALbfMkXWpo/KT4OMY3QcyZ0gcl3ftodQHE8br6DDbKLBjiZyaKw6haUU3dVTUsizDR21La3jgNGrdlzm3L6Fsgcjwveat/XMsSCkzKcJCSMfYi2Ee6yj3qFE466MrBXKU6hPejIhWYN0gDmV+a/OBSO/XbAYIpNoV8G9pOv2Jg592IHuOr1F80i9zBd9QUyQL++jr1BHMgDUe89vPuK05QiWgnil90i5HOX4tUsgwy0vtlHURBRgGV6+yiO7BRvPXBU/1HLqt8fRQnMiSDcLsfxrunVvKIdqoi2yUjIYmr7/hiLoZcU+gW0VfIC+O5iQIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/chartingshow/crypto-firewall/master/src/blacklists/beta-version.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/chartingshow/crypto-firewall"
+            }
+        ]
     }
 ]
