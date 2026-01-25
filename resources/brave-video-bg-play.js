@@ -26,6 +26,21 @@ window.addEventListener(
 window.addEventListener(
   'focus', evt => evt.stopImmediatePropagation(), true);
 
+// Block onfocus/onblur handler assignment
+Object.defineProperty(window, 'onfocus', {
+  get: function() { return null; },
+  set: function() {},
+  enumerable: true,
+  configurable: true
+});
+
+Object.defineProperty(window, 'onblur', {
+  get: function() { return null; },
+  set: function() {},
+  enumerable: true,
+  configurable: true
+});
+
 // Block onvisibilitychange handler assignment
 Object.defineProperty(Document.prototype, 'onvisibilitychange', {
   get: function() { return null; },
