@@ -38,8 +38,12 @@
 
   // Block event delivery (capture=true to intercept early)
   const stop = (e) => e.stopImmediatePropagation();
+  const IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
   try {
-    document.addEventListener('visibilitychange', stop, true);
+    // Skip visibilitychange blocking on iOS to avoid conflict with media backgrounding
+    if (!IS_IOS) {
+      document.addEventListener('visibilitychange', stop, true);
+    }
     window.addEventListener('blur', stop, true);
     window.addEventListener('focus', stop, true);
   } catch (e) {}
