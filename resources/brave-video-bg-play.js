@@ -38,7 +38,8 @@
 
   // Block event delivery (capture=true to intercept early)
   const stop = (e) => e.stopImmediatePropagation();
-  const IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   try {
     // Skip visibilitychange blocking on iOS to avoid conflict with media backgrounding
     if (!IS_IOS) {
