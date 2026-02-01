@@ -56,6 +56,14 @@
         "resourcePath": "brave-video-bg-play.js"
     },
     {
+        "name": "brave-video-bg-play-update.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "brave-video-bg-play-update.js"
+    },
+    {
         "name": "brave-youtube-navigation-fix.js",
         "aliases": [],
         "kind": {
