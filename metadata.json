@@ -88,14 +88,6 @@
         "resourcePath": "de-amp.js"
     },
     {
-        "name": "set-trusted-types.js",
-        "aliases": [],
-        "kind": {
-            "mime": "application/javascript"
-        },
-        "resourcePath": "set-trusted-types.js"
-    },
-    {
         "name": "touch-fix.js",
         "aliases": [],
         "kind": {
