@@ -2,8 +2,23 @@ import { readResources, listCatalog } from './index.js'
 
 import assert from 'node:assert'
 import crypto from 'crypto'
+import fs, { globSync } from 'fs'
 import test from 'node:test'
 import { Engine, FilterFormat, FilterSet } from 'adblock-rs'
+
+test('all JSON files are valid', t => {
+    const patterns = ['*.json', 'dist/*.json', 'filter_lists/*.json']
+    for (const pattern of patterns) {
+        const files = globSync(pattern)
+        for (const file of files) {
+            try {
+                JSON.parse(fs.readFileSync(file, 'utf8'))
+            } catch (e) {
+                assert.fail(`${file} is not valid JSON: ${e.message}`)
+            }
+        }
+    }
+})
 
 const getIDFromBase64PublicKey = (key) => {
   const hash = crypto.createHash('sha256')
@@ -62,4 +77,25 @@ const testLists = (lists) => {
 
 test('filter list catalog is correctly formatted', t => {
     testLists(listCatalog)
+})
+
+test('metadata.json matches resources/', t => {
+    const resourceFiles = fs.readdirSync('resources')
+    const metadataNames = metadata.map(entry => entry.resourcePath)
+
+    // Every file in resources/ should have a metadata entry
+    for (const file of resourceFiles) {
+        assert.ok(metadataNames.includes(file), `File resources/${file} is missing from metadata.json`)
+    }
+
+    // Every metadata entry should have a corresponding file
+    for (const name of metadataNames) {
+        assert.ok(resourceFiles.includes(name), `metadata.json entry "${name}" has no corresponding file in resources/`)
+    }
+})
+
+test('dist/resources.json is up to date', t => {
+    const committed = JSON.parse(fs.readFileSync('dist/resources.json', 'utf8'))
+    const generated = readResources()
+    assert.deepStrictEqual(committed, generated, 'dist/resources.json is out of date - run "npm run build"')
 })
