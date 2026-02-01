@@ -1,4 +1,4 @@
-/// brave-video-bg-play.js
+/// brave-video-bg-play-update.js
 // Based on: https://github.com/mozilla/video-bg-play
 // License:  https://github.com/mozilla/video-bg-play/blob/master/LICENSE (MIT)
 // From: https://gist.github.com/gwarser/3b47b61863bffcfebe4498c77b2301cd
