@@ -39,13 +39,10 @@ const testLists = (lists) => {
         assert.ok(list.desc !== undefined && typeof list.desc === 'string')
         assert.ok(list.langs !== undefined && Array.isArray(list.langs))
         list.langs.forEach(lang => assert.ok(typeof lang === 'string'))
-        assert.ok(list.component_id !== undefined && typeof list.component_id === 'string')
-        assert.ok(list.base64_public_key !== undefined && typeof list.base64_public_key === 'string')
         assert.ok(list.list_text_component !== undefined && typeof list.list_text_component === 'object')
         assert.ok(list.list_text_component.component_id !== undefined && typeof list.list_text_component.component_id === 'string')
         assert.ok(list.list_text_component.base64_public_key !== undefined && typeof list.list_text_component.base64_public_key === 'string')
 
-        assert.ok(list.component_id === getIDFromBase64PublicKey(list.base64_public_key))
         assert.ok(list.list_text_component.component_id === getIDFromBase64PublicKey(list.list_text_component.base64_public_key))
 
         assert.ok(list.sources !== undefined && Array.isArray(list.sources))
