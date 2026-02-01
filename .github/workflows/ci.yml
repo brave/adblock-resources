@@ -37,14 +37,16 @@ jobs:
         uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47.0.0
         with:
           files: |
-            resources
+            resources/**
             metadata.json
 
       - name: Build and verify
         if: steps.changed-files.outputs.any_changed == 'true'
         run: |
+          npm ci
           npm run build
           npm run generateMetadata
+          npm run test
 
       - name: Check for any drift via git diff
         if: steps.changed-files.outputs.any_changed == 'true'
