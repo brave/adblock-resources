@@ -48,20 +48,20 @@
         "resourcePath": "brave-google-maps-fix.js"
     },
     {
-        "name": "brave-video-bg-play.js",
-        "aliases": [],
-        "kind": {
-            "mime": "application/javascript"
-        },
-        "resourcePath": "brave-video-bg-play.js"
-    },
-    {
         "name": "brave-video-bg-play-update.js",
         "aliases": [],
         "kind": {
             "mime": "application/javascript"
         },
         "resourcePath": "brave-video-bg-play-update.js"
+    },
+    {
+        "name": "brave-video-bg-play.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "brave-video-bg-play.js"
     },
     {
         "name": "brave-youtube-navigation-fix.js",
@@ -86,6 +86,14 @@
             "mime": "application/javascript"
         },
         "resourcePath": "de-amp.js"
+    },
+    {
+        "name": "set-trusted-types.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "set-trusted-types.js"
     },
     {
         "name": "touch-fix.js",
