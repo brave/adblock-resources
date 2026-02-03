@@ -1,4 +1,5 @@
 import { readResources, listCatalog } from './index.js'
+import metadata from './metadata.json' with { type: "json" }
 
 import assert from 'node:assert'
 import crypto from 'crypto'
