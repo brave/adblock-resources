@@ -39,7 +39,7 @@ test('resources are parsed OK by adblock-rust', t => {
 
     resources.forEach(resource => {
         try {
-            engine.addResource(resource)
+            engine.useResources([resource])
         } catch(e) {
             console.error("Encountered an error when attempting to add this resource:", resource)
             throw e
