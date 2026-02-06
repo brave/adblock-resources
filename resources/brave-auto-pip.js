@@ -20,8 +20,13 @@
         console.log("The enterpictureinpicture action is not yet supported.");
       }
     } else {
-      // If no video is available, retry in 10 seconds
-      setTimeout(setupAutoPictureInPicture, 10000);
+      // If no video is available, watch for one to appear
+      new MutationObserver((_, observer) => {
+        if (document.querySelector("video")) {
+          observer.disconnect();
+          setupAutoPictureInPicture();
+        }
+      }).observe(document.body, { childList: true, subtree: true });
     }
   }
 
