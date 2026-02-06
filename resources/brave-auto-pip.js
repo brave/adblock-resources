@@ -1,6 +1,7 @@
 (function() {
   function setupAutoPictureInPicture() {
-    const video = document.querySelector("video");
+    const video = document.querySelector("video[src], video source")?.closest("video")
+      || document.querySelector("video");
     
     if (video) {
       // Check if PiP is disabled on this video
@@ -18,9 +19,19 @@
       } catch (error) {
         console.log("The enterpictureinpicture action is not yet supported.");
       }
+      video.addEventListener("pause", () => {
+        if (document.pictureInPictureElement) {
+          document.exitPictureInPicture();
+        }
+      });
     } else {
-      // If no video is available, retry in 10 seconds
-      setTimeout(setupAutoPictureInPicture, 10000);
+      // If no video is available, watch for one to appear
+      new MutationObserver((_, observer) => {
+        if (document.querySelector("video")) {
+          observer.disconnect();
+          setupAutoPictureInPicture();
+        }
+      }).observe(document.body, { childList: true, subtree: true });
     }
   }
 
