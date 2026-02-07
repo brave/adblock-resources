@@ -28,13 +28,6 @@
       enumerable: false,
       configurable: true
     });
-
-    Object.defineProperty(Document.prototype, 'hasFocus', {
-      value() { return true; },
-      writable: true,
-      enumerable: false,
-      configurable: true
-    });
   } catch (e) {}
 
   // Block event delivery (capture=true to intercept early)
@@ -46,25 +39,6 @@
     if (!IS_IOS) {
       document.addEventListener('visibilitychange', stop, true);
     }
-    window.addEventListener('blur', stop, true);
-    window.addEventListener('focus', stop, true);
-  } catch (e) {}
-
-  // Block handler property assignment
-  try {
-    Object.defineProperty(window, 'onfocus', {
-      get() { return null; },
-      set() {},
-      enumerable: false,
-      configurable: true
-    });
-
-    Object.defineProperty(window, 'onblur', {
-      get() { return null; },
-      set() {},
-      enumerable: false,
-      configurable: true
-    });
   } catch (e) {}
 
   // Fullscreen API (Vimeo)
