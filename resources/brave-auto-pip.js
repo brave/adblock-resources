@@ -19,6 +19,11 @@
       } catch (error) {
         console.log("The enterpictureinpicture action is not yet supported.");
       }
+      video.addEventListener("pause", () => {
+        if (document.pictureInPictureElement) {
+          document.exitPictureInPicture();
+        }
+      });
     } else {
       // If no video is available, watch for one to appear
       new MutationObserver((_, observer) => {
