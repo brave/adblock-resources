@@ -1,6 +1,7 @@
 (function() {
   function setupAutoPictureInPicture() {
-    const video = document.querySelector("video");
+    const video = document.querySelector("video[src], video source")?.closest("video")
+      || document.querySelector("video");
     
     if (video) {
       // Check if PiP is disabled on this video
