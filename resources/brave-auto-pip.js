@@ -8,7 +8,7 @@
       if (video.disablePictureInPicture) {
         console.log('PiP is disabled for this video, enabling it...');
         video.disablePictureInPicture = false;
-        // or video.removeAttribute('disablePictureInPicture');
+        video.removeAttribute('disablepictureinpicture');
       }
       
       try {
@@ -24,6 +24,16 @@
           document.exitPictureInPicture();
         }
       });
+
+      // Watch for sites (e.g. Netflix) re-adding disablepictureinpicture
+      // https://old.reddit.com/r/brave_browser/comments/1r8edg4/workaround_to_fix_netflix_intentional_disabled_pip/
+      new MutationObserver(() => {
+        if (video.disablePictureInPicture) {
+          video.disablePictureInPicture = false;
+          video.removeAttribute('disablepictureinpicture');
+        }
+      }).observe(video, { attributes: true, attributeFilter: ['disablepictureinpicture'] });
+
     } else {
       // If no video is available, watch for one to appear
       new MutationObserver((_, observer) => {
