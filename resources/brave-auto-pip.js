@@ -2,7 +2,6 @@
   function setupAutoPictureInPicture() {
     const video = document.querySelector("video[src], video source")?.closest("video")
       || document.querySelector("video");
-    
     if (video) {
       // Check if PiP is disabled on this video
       if (video.disablePictureInPicture) {
@@ -10,7 +9,6 @@
         video.disablePictureInPicture = false;
         video.removeAttribute('disablepictureinpicture');
       }
-      
       try {
         // Request video to automatically enter picture-in-picture when eligible.
         navigator.mediaSession.setActionHandler("enterpictureinpicture", async () => {
@@ -19,10 +17,9 @@
       } catch (error) {
         console.log("The enterpictureinpicture action is not yet supported.");
       }
-      video.addEventListener("pause", () => {
-        if (document.pictureInPictureElement) {
-          document.exitPictureInPicture();
-        }
+
+      video.addEventListener("enterpictureinpicture", () => {
+        setTimeout(() => { video.play(); }, 1000);
       });
 
       // Watch for sites (e.g. Netflix) re-adding disablepictureinpicture
