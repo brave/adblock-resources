@@ -1,6 +1,6 @@
 (function() {
     if ( /(^|\.)twitch\.tv$/.test(document.location.hostname) === false ) { return; }
-    const ourTwitchAdSolutionsVersion = 20;// Used to prevent conflicts with outdated versions of the scripts
+    const ourTwitchAdSolutionsVersion = 23;// Used to prevent conflicts with outdated versions of the scripts
     if (typeof window.twitchAdSolutionsVersion !== 'undefined' && window.twitchAdSolutionsVersion >= ourTwitchAdSolutionsVersion) {
         console.log("skipping video-swap-new as there's another script active. ourVersion:" + ourTwitchAdSolutionsVersion + " activeVersion:" + window.twitchAdSolutionsVersion);
         window.twitchAdSolutionsVersion = ourTwitchAdSolutionsVersion;
@@ -350,7 +350,7 @@
             streamInfo.NumStrippedAdSegments = 0;
         }
         streamInfo.IsStrippingAdSegments = hasStrippedAdSegments;
-        AdSegmentCache.forEach((key, value, map) => {
+        AdSegmentCache.forEach((value, key, map) => {
             if (value < Date.now() - 120000) {
                 map.delete(key);
             }
@@ -590,6 +590,7 @@
     }
     function gqlRequest(body, playerType) {
         if (!gql_device_id) {
+            gql_device_id = '';
             const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
             for (let i = 0; i < 32; i += 1) {
                 gql_device_id += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -684,6 +685,10 @@
                     if (typeof init.headers['Authorization'] === 'string' && init.headers['Authorization'] !== AuthorizationHeader) {
                         postTwitchWorkerMessage('UpdateAuthorizationHeader', AuthorizationHeader = init.headers['Authorization']);
                     }
+                    // Get rid of mini player above chat - TODO: Reject this locally instead of having server reject it
+                    if (init && typeof init.body === 'string' && init.body.includes('PlaybackAccessToken') && init.body.includes('picture-by-picture')) {
+                        init.body = '';
+                    }
                     if (OPT_FORCE_ACCESS_TOKEN_PLAYER_TYPE && typeof init.body === 'string' && init.body.includes('PlaybackAccessToken')) {
                         let replacedPlayerType = '';
                         const newBody = JSON.parse(init.body);
@@ -704,10 +709,6 @@
                             console.log(`Replaced '${replacedPlayerType}' player type with '${OPT_FORCE_ACCESS_TOKEN_PLAYER_TYPE}' player type`);
                             init.body = JSON.stringify(newBody);
                         }
-                    }
-                    // Get rid of mini player above chat - TODO: Reject this locally instead of having server reject it
-                    if (init && typeof init.body === 'string' && init.body.includes('PlaybackAccessToken') && init.body.includes('picture-by-picture')) {
-                        init.body = '';
                     }
                 }
             }
@@ -784,6 +785,9 @@
         }
         let player = findReactNode(reactRootNode, node => node.setPlayerActive && node.props && node.props.mediaPlayerInstance);
         player = player && player.props && player.props.mediaPlayerInstance ? player.props.mediaPlayerInstance : null;
+        if (player?.playerInstance) {
+            player = player.playerInstance;
+        }
         const playerState = findReactNode(reactRootNode, node => node.setSrc && node.setInitialPlaybackSettings);
         return  {
             player: player,

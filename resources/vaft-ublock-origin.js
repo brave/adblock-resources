@@ -1,7 +1,7 @@
 (function() {
     if ( /(^|\.)twitch\.tv$/.test(document.location.hostname) === false ) { return; }
     'use strict';
-    const ourTwitchAdSolutionsVersion = 20;// Used to prevent conflicts with outdated versions of the scripts
+    const ourTwitchAdSolutionsVersion = 23;// Used to prevent conflicts with outdated versions of the scripts
     if (typeof window.twitchAdSolutionsVersion !== 'undefined' && window.twitchAdSolutionsVersion >= ourTwitchAdSolutionsVersion) {
         console.log("skipping vaft as there's another script active. ourVersion:" + ourTwitchAdSolutionsVersion + " activeVersion:" + window.twitchAdSolutionsVersion);
         window.twitchAdSolutionsVersion = ourTwitchAdSolutionsVersion;
@@ -22,7 +22,7 @@
         scope.SkipPlayerReloadOnHevc = false;// If true this will skip player reload on streams which have 2k/4k quality (if you enable this and you use the 2k/4k quality setting you'll get error #4000 / #3000 / spinning wheel on chrome based browsers)
         scope.AlwaysReloadPlayerOnAd = false;// Always pause/play when entering/leaving ads
         scope.ReloadPlayerAfterAd = true;// After the ad finishes do a player reload instead of pause/play
-        scope.PlayerReloadMinimalRequestsTime = 1500;
+        scope.PlayerReloadMinimalRequestsTime = 1600;
         scope.PlayerReloadMinimalRequestsPlayerIndex = 2;//autoplay
         scope.HasTriggeredPlayerReload = false;
         scope.StreamInfos = [];
@@ -34,11 +34,13 @@
         scope.AuthorizationHeader = undefined;
         scope.SimulatedAdsDepth = 0;
         scope.PlayerBufferingFix = true;// If true this will pause/play the player when it gets stuck buffering
-        scope.PlayerBufferingDelay = 500;// How often should we check the player state (in milliseconds)
+        scope.PlayerBufferingDelay = 600;// How often should we check the player state (in milliseconds)
         scope.PlayerBufferingSameStateCount = 3;// How many times of seeing the same player state until we trigger pause/play (it will only trigger it one time until the player state changes again)
         scope.PlayerBufferingDangerZone = 1;// The buffering time left (in seconds) when we should ignore the players playback position in the player state check
         scope.PlayerBufferingDoPlayerReload = false;// If true this will do a player reload instead of pause/play (player reloading is better at fixing the playback issues but it takes slightly longer)
-        scope.PlayerBufferingMinRepeatDelay = 5000;// Minimum delay (in milliseconds) between each pause/play (this is to avoid over pressing pause/play when there are genuine buffering problems)
+        scope.PlayerBufferingMinRepeatDelay = 12000;// Minimum delay (in milliseconds) between each pause/play (this is to avoid over pressing pause/play when there are genuine buffering problems)
+        scope.PlayerBufferingPrerollCheckEnabled = false;// Enable this if you're getting an immediate pause/play/reload as you open a stream (which is causing the stream to take longer to load). One problem with this being true is that it can cause the player to get stuck in some instances requiring the user to press pause/play
+        scope.PlayerBufferingPrerollCheckOffset = 5;// How far the stream need to move before doing the buffering mitigation (depends on PlayerBufferingPrerollCheckEnabled being true)
         scope.V2API = false;
         scope.IsAdStrippingEnabled = true;
         scope.AdSegmentCache = new Map();
@@ -409,7 +411,7 @@
             streamInfo.NumStrippedAdSegments = 0;
         }
         streamInfo.IsStrippingAdSegments = hasStrippedAdSegments;
-        AdSegmentCache.forEach((key, value, map) => {
+        AdSegmentCache.forEach((value, key, map) => {
             if (value < Date.now() - 120000) {
                 map.delete(key);
             }
@@ -640,6 +642,7 @@
     }
     function gqlRequest(body, playerType) {
         if (!GQLDeviceID) {
+            GQLDeviceID = '';
             const dcharacters = 'abcdefghijklmnopqrstuvwxyz0123456789';
             const dcharactersLength = dcharacters.length;
             for (let i = 0; i < 32; i++) {
@@ -695,29 +698,33 @@
                     const position = player.core?.state?.position;
                     const bufferedPosition = player.core?.state?.bufferedPosition;
                     const bufferDuration = player.getBufferDuration();
-                    //console.log('position:' + position + ' bufferDuration:' + bufferDuration + ' bufferPosition:' + bufferedPosition);
-                    // NOTE: This could be improved. It currently lets the player fully eat the full buffer before it triggers pause/play
-                    if (position > 5 &&// changed from >0 to >5 due to issues with prerolls. TODO: Improve this, player could get stuck
-                        (playerBufferState.position == position || bufferDuration < PlayerBufferingDangerZone)  &&
-                        playerBufferState.bufferedPosition == bufferedPosition &&
-                        playerBufferState.bufferDuration >= bufferDuration &&
-                        (position != 0 || bufferedPosition != 0 || bufferDuration != 0)
-                       ) {
-                        playerBufferState.numSame++;
-                        if (playerBufferState.numSame == PlayerBufferingSameStateCount) {
-                            console.log('Attempt to fix buffering position:' + playerBufferState.position + ' bufferedPosition:' + playerBufferState.bufferedPosition + ' bufferDuration:' + playerBufferState.bufferDuration);
-                            doTwitchPlayerTask(!PlayerBufferingDoPlayerReload, PlayerBufferingDoPlayerReload, false);
-                            const isPausePlay = !PlayerBufferingDoPlayerReload;
-                            const isReload = PlayerBufferingDoPlayerReload;
-                            doTwitchPlayerTask(isPausePlay, isReload);
-                            playerBufferState.lastFixTime = Date.now();
+                    if (position !== undefined && bufferedPosition !== undefined) {
+                        //console.log('position:' + position + ' bufferDuration:' + bufferDuration + ' bufferPosition:' + bufferedPosition);
+                        // NOTE: This could be improved. It currently lets the player fully eat the full buffer before it triggers pause/play
+                        if ((!PlayerBufferingPrerollCheckEnabled || position > PlayerBufferingPrerollCheckOffset) &&
+                            (playerBufferState.position == position || bufferDuration < PlayerBufferingDangerZone)  &&
+                            playerBufferState.bufferedPosition == bufferedPosition &&
+                            playerBufferState.bufferDuration >= bufferDuration &&
+                            (position != 0 || bufferedPosition != 0 || bufferDuration != 0)
+                        ) {
+                            playerBufferState.numSame++;
+                            if (playerBufferState.numSame == PlayerBufferingSameStateCount) {
+                                console.log('Attempt to fix buffering position:' + playerBufferState.position + ' bufferedPosition:' + playerBufferState.bufferedPosition + ' bufferDuration:' + playerBufferState.bufferDuration);
+                                const isPausePlay = !PlayerBufferingDoPlayerReload;
+                                const isReload = PlayerBufferingDoPlayerReload;
+                                doTwitchPlayerTask(isPausePlay, isReload);
+                                playerBufferState.lastFixTime = Date.now();
+                                playerBufferState.numSame = 0;
+                            }
+                        } else {
+                            playerBufferState.numSame = 0;
                         }
+                        playerBufferState.position = position;
+                        playerBufferState.bufferedPosition = bufferedPosition;
+                        playerBufferState.bufferDuration = bufferDuration;
                     } else {
                         playerBufferState.numSame = 0;
                     }
-                    playerBufferState.position = position;
-                    playerBufferState.bufferedPosition = bufferedPosition;
-                    playerBufferState.bufferDuration = bufferDuration;
                 }
             } catch (err) {
                 console.error('error when monitoring player for buffering: ' + err);
@@ -797,6 +804,9 @@
         }
         let player = findReactNode(reactRootNode, node => node.setPlayerActive && node.props && node.props.mediaPlayerInstance);
         player = player && player.props && player.props.mediaPlayerInstance ? player.props.mediaPlayerInstance : null;
+        if (player?.playerInstance) {
+            player = player.playerInstance;
+        }
         const playerState = findReactNode(reactRootNode, node => node.setSrc && node.setInitialPlaybackSettings);
         return  {
             player: player,
@@ -822,6 +832,8 @@
         if (player.isPaused() || player.core?.paused) {
             return;
         }
+        playerBufferState.lastFixTime = Date.now();
+        playerBufferState.numSame = 0;
         if (isPausePlay) {
             player.pause();
             player.play();
@@ -921,6 +933,10 @@
                     if (typeof init.headers['Authorization'] === 'string' && init.headers['Authorization'] !== AuthorizationHeader) {
                         postTwitchWorkerMessage('UpdateAuthorizationHeader', AuthorizationHeader = init.headers['Authorization']);
                     }
+                    // Get rid of mini player above chat - TODO: Reject this locally instead of having server reject it
+                    if (init && typeof init.body === 'string' && init.body.includes('PlaybackAccessToken') && init.body.includes('picture-by-picture')) {
+                        init.body = '';
+                    }
                     if (ForceAccessTokenPlayerType && typeof init.body === 'string' && init.body.includes('PlaybackAccessToken')) {
                         let replacedPlayerType = '';
                         const newBody = JSON.parse(init.body);
@@ -941,10 +957,6 @@
                             console.log(`Replaced '${replacedPlayerType}' player type with '${ForceAccessTokenPlayerType}' player type`);
                             init.body = JSON.stringify(newBody);
                         }
-                    }
-                    // Get rid of mini player above chat - TODO: Reject this locally instead of having server reject it
-                    if (init && typeof init.body === 'string' && init.body.includes('PlaybackAccessToken') && init.body.includes('picture-by-picture')) {
-                        init.body = '';
                     }
                 }
             }
