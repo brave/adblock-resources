@@ -1,7 +1,7 @@
 (function() {
     if ( /(^|\.)twitch\.tv$/.test(document.location.hostname) === false ) { return; }
     'use strict';
-    const ourTwitchAdSolutionsVersion = 23;// Used to prevent conflicts with outdated versions of the scripts
+    const ourTwitchAdSolutionsVersion = 24;// Used to prevent conflicts with outdated versions of the scripts
     if (typeof window.twitchAdSolutionsVersion !== 'undefined' && window.twitchAdSolutionsVersion >= ourTwitchAdSolutionsVersion) {
         console.log("skipping vaft as there's another script active. ourVersion:" + ourTwitchAdSolutionsVersion + " activeVersion:" + window.twitchAdSolutionsVersion);
         window.twitchAdSolutionsVersion = ourTwitchAdSolutionsVersion;
@@ -22,7 +22,7 @@
         scope.SkipPlayerReloadOnHevc = false;// If true this will skip player reload on streams which have 2k/4k quality (if you enable this and you use the 2k/4k quality setting you'll get error #4000 / #3000 / spinning wheel on chrome based browsers)
         scope.AlwaysReloadPlayerOnAd = false;// Always pause/play when entering/leaving ads
         scope.ReloadPlayerAfterAd = true;// After the ad finishes do a player reload instead of pause/play
-        scope.PlayerReloadMinimalRequestsTime = 1600;
+        scope.PlayerReloadMinimalRequestsTime = 1500;
         scope.PlayerReloadMinimalRequestsPlayerIndex = 2;//autoplay
         scope.HasTriggeredPlayerReload = false;
         scope.StreamInfos = [];
@@ -38,7 +38,7 @@
         scope.PlayerBufferingSameStateCount = 3;// How many times of seeing the same player state until we trigger pause/play (it will only trigger it one time until the player state changes again)
         scope.PlayerBufferingDangerZone = 1;// The buffering time left (in seconds) when we should ignore the players playback position in the player state check
         scope.PlayerBufferingDoPlayerReload = false;// If true this will do a player reload instead of pause/play (player reloading is better at fixing the playback issues but it takes slightly longer)
-        scope.PlayerBufferingMinRepeatDelay = 12000;// Minimum delay (in milliseconds) between each pause/play (this is to avoid over pressing pause/play when there are genuine buffering problems)
+        scope.PlayerBufferingMinRepeatDelay = 8000;// Minimum delay (in milliseconds) between each pause/play (this is to avoid over pressing pause/play when there are genuine buffering problems)
         scope.PlayerBufferingPrerollCheckEnabled = false;// Enable this if you're getting an immediate pause/play/reload as you open a stream (which is causing the stream to take longer to load). One problem with this being true is that it can cause the player to get stuck in some instances requiring the user to press pause/play
         scope.PlayerBufferingPrerollCheckOffset = 5;// How far the stream need to move before doing the buffering mitigation (depends on PlayerBufferingPrerollCheckEnabled being true)
         scope.V2API = false;
@@ -680,6 +680,8 @@
     }
     let playerForMonitoringBuffering = null;
     const playerBufferState = {
+        channelName: null,
+        hasStreamStarted: false,
         position: 0,
         bufferedPosition: 0,
         bufferDuration: 0,
@@ -695,13 +697,30 @@
                 if (!player.core) {
                     playerForMonitoringBuffering = null;
                 } else if (state.props?.content?.type === 'live' && !player.isPaused() && !player.getHTMLVideoElement()?.ended && playerBufferState.lastFixTime <= Date.now() - PlayerBufferingMinRepeatDelay && !isActivelyStrippingAds) {
+                    const m3u8Url = player.core?.state?.path;
+                    if (m3u8Url) {
+                      const fileName = new URL(m3u8Url).pathname.split('/').pop();
+                      if (fileName?.endsWith('.m3u8')) {
+                          const channelName = fileName.slice(0, -5);
+                          if (playerBufferState.channelName != channelName) {
+                              playerBufferState.channelName = channelName;
+                              playerBufferState.hasStreamStarted = false;
+                              playerBufferState.numSame = 0;
+                              //console.log('Channel changed to ' + channelName);
+                          }
+                      }
+                    }
+                    if (player.getState() === 'Playing') {
+                        playerBufferState.hasStreamStarted = true;
+                    }
                     const position = player.core?.state?.position;
                     const bufferedPosition = player.core?.state?.bufferedPosition;
                     const bufferDuration = player.getBufferDuration();
                     if (position !== undefined && bufferedPosition !== undefined) {
-                        //console.log('position:' + position + ' bufferDuration:' + bufferDuration + ' bufferPosition:' + bufferedPosition);
+                        //console.log('position:' + position + ' bufferDuration:' + bufferDuration + ' bufferPosition:' + bufferedPosition + ' state: ' + player.core?.state?.state + ' started: ' + playerBufferState.hasStreamStarted);
                         // NOTE: This could be improved. It currently lets the player fully eat the full buffer before it triggers pause/play
-                        if ((!PlayerBufferingPrerollCheckEnabled || position > PlayerBufferingPrerollCheckOffset) &&
+                        if (playerBufferState.hasStreamStarted &&
+                            (!PlayerBufferingPrerollCheckEnabled || position > PlayerBufferingPrerollCheckOffset) &&
                             (playerBufferState.position == position || bufferDuration < PlayerBufferingDangerZone)  &&
                             playerBufferState.bufferedPosition == bufferedPosition &&
                             playerBufferState.bufferDuration >= bufferDuration &&
@@ -989,12 +1008,17 @@
         };
         let wasVideoPlaying = true;
         const visibilityChange = e => {
-            if (typeof chrome !== 'undefined') {
-                const videos = document.getElementsByTagName('video');
-                if (videos.length > 0) {
-                    if (hidden.apply(document) === true || (webkitHidden && webkitHidden.apply(document) === true)) {
-                        wasVideoPlaying = !videos[0].paused && !videos[0].ended;
-                    } else if (wasVideoPlaying && !videos[0].ended && videos[0].paused && videos[0].muted) {
+            const isChrome = typeof chrome !== 'undefined';
+            const videos = document.getElementsByTagName('video');
+            if (videos.length > 0) {
+                if (hidden.apply(document) === true || (webkitHidden && webkitHidden.apply(document) === true)) {
+                    wasVideoPlaying = !videos[0].paused && !videos[0].ended;
+                } else {
+                    if (!playerBufferState.hasStreamStarted) {
+                        //console.log('Tab focused. Stream should be active');
+                        playerBufferState.hasStreamStarted = true;
+                    }
+                    if (isChrome && wasVideoPlaying && !videos[0].ended && videos[0].paused && videos[0].muted) {
                         videos[0].play();
                     }
                 }
