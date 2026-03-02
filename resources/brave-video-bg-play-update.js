@@ -103,7 +103,6 @@
       if (video && !video.paused) {
         video.dispatchEvent(new Event('timeupdate'));
       }
-      recoverPlayback();
     }, PLAYER_STATE_INTERVAL);
   }
 
