@@ -54,6 +54,38 @@
     const LACT_REFRESH = 5 * 60 * 1000; // 5 min
     waitForLact(() => refreshLact(), LACT_REFRESH);
 
+    function getVideo() {
+      return document.querySelector('ytd-player video, #movie_player video, video');
+    }
+
+    let lastUserInput = 0;
+    document.addEventListener('keydown', () => { lastUserInput = Date.now(); }, true);
+    document.addEventListener('click',   () => { lastUserInput = Date.now(); }, true);
+
+    function onVideoNavigation() {
+      refreshLact();
+      setTimeout(() => {
+        const video = getVideo();
+        if (!video) return;
+        if (video._bgPlayPauseHandler) {
+          video.removeEventListener('pause', video._bgPlayPauseHandler);
+        }
+        const handler = () => {
+          // If user clicked or pressed a key within 1s before the pause, it's intentional
+          if (Date.now() - lastUserInput < 1000) return;
+          setTimeout(() => {
+            const v = getVideo();
+            if (v && v.paused && !v.ended && v.readyState >= 2) v.play().catch(() => {});
+          }, 800);
+        };
+        video._bgPlayPauseHandler = handler;
+        video.addEventListener('pause', handler);
+      }, 1500);
+    }
+
+    window.addEventListener('yt-navigate-finish', onVideoNavigation);
+    window.addEventListener('yt-page-data-updated', onVideoNavigation);
+
     // Simulate user interaction to prevent "Are you still watching?"
     const INTERACTION_INTERVAL = 10 * 60 * 1000; // 10 min
     setInterval(() => {
@@ -67,10 +99,11 @@
     // Keep player state updated
     const PLAYER_STATE_INTERVAL = 60 * 1000; // 1 min
     setInterval(() => {
-      const video = document.querySelector('video');
+      const video = getVideo();
       if (video && !video.paused) {
         video.dispatchEvent(new Event('timeupdate'));
       }
+      recoverPlayback();
     }, PLAYER_STATE_INTERVAL);
   }
 
