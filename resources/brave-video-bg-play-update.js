@@ -64,6 +64,7 @@
 
     function onVideoNavigation() {
       refreshLact();
+      if (IS_IOS) return;
       setTimeout(() => {
         const video = getVideo();
         if (!video) return;
@@ -71,8 +72,8 @@
           video.removeEventListener('pause', video._bgPlayPauseHandler);
         }
         const handler = () => {
-          // If user clicked or pressed a key within 3s before the pause, it's intentional
-          if (Date.now() - lastUserInput < 3000) return;
+          // If user clicked or pressed a key within 1s before the pause, it's intentional
+          if (Date.now() - lastUserInput < 1000) return;
           setTimeout(() => {
             const v = getVideo();
             if (v && v.paused && !v.ended && v.readyState >= 2) v.play().catch(() => {});
