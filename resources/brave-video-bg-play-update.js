@@ -64,6 +64,7 @@
 
     function onVideoNavigation() {
       refreshLact();
+      if (IS_IOS) return;
       setTimeout(() => {
         const video = getVideo();
         if (!video) return;
