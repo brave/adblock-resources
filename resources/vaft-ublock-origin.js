@@ -1,7 +1,7 @@
 (function() {
     if ( /(^|\.)twitch\.tv$/.test(document.location.hostname) === false ) { return; }
     'use strict';
-    const ourTwitchAdSolutionsVersion = 30;// Used to prevent conflicts with outdated versions of the scripts
+    const ourTwitchAdSolutionsVersion = 37;// Used to prevent conflicts with outdated versions of the scripts
     if (typeof window.twitchAdSolutionsVersion !== 'undefined' && window.twitchAdSolutionsVersion >= ourTwitchAdSolutionsVersion) {
         console.log("skipping vaft as there's another script active. ourVersion:" + ourTwitchAdSolutionsVersion + " activeVersion:" + window.twitchAdSolutionsVersion);
         window.twitchAdSolutionsVersion = ourTwitchAdSolutionsVersion;
@@ -10,13 +10,14 @@
     window.twitchAdSolutionsVersion = ourTwitchAdSolutionsVersion;
     // Configuration and state shared between window and worker scopes
     function declareOptions(scope) {
-        scope.AdSignifier = 'stitched';// Legacy single signifier (kept for compatibility)
-        scope.AdSignifiers = ['stitched', 'stitched-ad', 'X-TV-TWITCH-AD', 'EXT-X-CUE-OUT', 'EXT-X-DATERANGE:CLASS="twitch-stitched-ad"'];
+        scope.AdSignifiers = ['stitched', 'stitched-ad', 'maf-ad', 'X-TV-TWITCH-AD', 'EXT-X-CUE-OUT', 'EXT-X-DATERANGE:CLASS="twitch-stitched-ad"', 'EXT-X-DATERANGE:CLASS="twitch-stream-source"', 'EXT-X-DATERANGE:CLASS="twitch-trigger"', 'EXT-X-DATERANGE:CLASS="twitch-maf-ad"', 'EXT-X-DATERANGE:CLASS="twitch-ad-quartile"', 'SCTE35-OUT'];
+        scope.AdSegmentURLPatterns = ['/adsquared/', '/_404/', '/processing'];
         scope.ClientID = 'kimne78kx3ncx6brgo4mv6wki5h1ko';
         scope.BackupPlayerTypes = [
             'embed',//Source
             'site',//Source
             'popout',//Source
+            'mobile_web',//Mobile
             'autoplay',//360p
             //'picture-by-picture-CACHED'//360p (-CACHED is an internal suffix and is removed)
         ];
@@ -25,6 +26,10 @@
         scope.SkipPlayerReloadOnHevc = false;// If true this will skip player reload on streams which have 2k/4k quality (if you enable this and you use the 2k/4k quality setting you'll get error #4000 / #3000 / spinning wheel on chrome based browsers)
         scope.AlwaysReloadPlayerOnAd = false;// Always pause/play when entering/leaving ads
         scope.ReloadPlayerAfterAd = true;// After the ad finishes do a player reload instead of pause/play
+        scope.ReloadCooldownSeconds = 30;// Minimum seconds between reloads — breaks CSAI cascades triggered by reload
+        scope.DisableReloadCap = false;// If true, buffer monitor reloads unlimited times (pre-v47 behavior, risk of cascade)
+        scope.DriftCorrectionRate = 1.1;// Playback rate for catching up to live edge after reload (0 = disable drift correction)
+        scope.PinBackupPlayerType = false;// If true, remember which backup player type worked and try it first on next ad break
         scope.PlayerReloadMinimalRequestsTime = 1500;
         scope.PlayerReloadMinimalRequestsPlayerIndex = 2;//autoplay
         scope.HasTriggeredPlayerReload = false;
@@ -132,6 +137,7 @@
                 const newBlobStr = `
                     const pendingFetchRequests = new Map();
                     ${hasAdTags.toString()}
+                    ${getMatchedAdSignifiers.toString()}
                     ${stripAdSegments.toString()}
                     ${getStreamUrlForResolution.toString()}
                     ${processM3U8.toString()}
@@ -146,6 +152,9 @@
                     const workerString = getWasmWorkerJs('${twitchBlobUrl.replaceAll("'", "%27")}');
                     declareOptions(self);
                     ReloadPlayerAfterAd = ${ReloadPlayerAfterAd};
+                    ReloadCooldownSeconds = ${ReloadCooldownSeconds};
+                    DisableReloadCap = ${DisableReloadCap};
+                    PinBackupPlayerType = ${PinBackupPlayerType};
                     ForceAccessTokenPlayerType = '${ForceAccessTokenPlayerType}';
                     GQLDeviceID = ${GQLDeviceID ? "'" + GQLDeviceID + "'" : null};
                     AuthorizationHeader = ${AuthorizationHeader ? "'" + AuthorizationHeader + "'" : undefined};
@@ -201,6 +210,17 @@
                 this.addEventListener('message', (e) => {
                     if (e.data.key == 'UpdateAdBlockBanner') {
                         updateAdblockBanner(e.data);
+                        // Track when ads first appear (proxy for backup stream switch)
+                        if (e.data.hasAds && !playerBufferState.inAdBreak) {
+                            playerBufferState.lastBackupSwitchAt = Date.now();
+                        }
+                        playerBufferState.inAdBreak = !!e.data.hasAds;
+                        // Clear drift catch-up when ads start — don't run 1.1x during ad handling
+                        if (e.data.hasAds && (driftCatchUpInterval || driftCatchUpTimeout)) {
+                            if (driftCatchUpInterval) { clearInterval(driftCatchUpInterval); driftCatchUpInterval = null; }
+                            if (driftCatchUpTimeout) { clearTimeout(driftCatchUpTimeout); driftCatchUpTimeout = null; }
+                            try { document.querySelector('video').playbackRate = 1.0; } catch {}
+                        }
                     } else if (e.data.key == 'PauseResumePlayer') {
                         doTwitchPlayerTask(true, false);
                     } else if (e.data.key == 'ReloadPlayer') {
@@ -300,9 +320,17 @@
                                         ResolutionList: [],
                                         BackupEncodingsM3U8Cache: [],
                                         ActiveBackupPlayerType: null,
+                                        PinnedBackupPlayerType: null,
+                                        HasCheckedUnknownTags: false,
                                         IsMidroll: false,
                                         IsStrippingAdSegments: false,
-                                        NumStrippedAdSegments: 0
+                                        NumStrippedAdSegments: 0,
+                                        RecoverySegments: [],
+                                        FailedBackupPlayerTypes: new Map(),// Map<playerType, timestamp> — failures expire after 15s for retry
+                                        HasLoggedAdAttributes: false,
+                                        LoggedBackupAdsByType: null,
+                                        RecoveryStartSeq: undefined,
+                                        CleanPlaylistCount: 0
                                     };
                                     const lines = encodingsM3u8.split(/\r?\n/);
                                     for (let i = 0; i < lines.length - 1; i++) {
@@ -387,31 +415,56 @@
     function hasAdTags(textStr) {
         return AdSignifiers.some((s) => textStr.includes(s));
     }
+    function getMatchedAdSignifiers(textStr) {
+        return AdSignifiers.filter((s) => textStr.includes(s));
+    }
     // Remove ad segments from an m3u8 playlist and cache their URLs for replacement
     function stripAdSegments(textStr, stripAllSegments, streamInfo) {
         let hasStrippedAdSegments = false;
         let inCueOut = false;
+        const liveSegments = [];
         const lines = textStr.split(/\r?\n/);
         const newAdUrl = 'https://twitch.tv';
+        // Log ad tracking attribute names once per stream (helps identify new beacons)
+        if (!streamInfo.HasLoggedAdAttributes) {
+            const adAttrs = textStr.match(/X-TV-TWITCH-AD[A-Z-]*(?==")/g);
+            if (adAttrs && adAttrs.length > 0) {
+                streamInfo.HasLoggedAdAttributes = true;
+                console.log('[AD DEBUG] Ad tracking attributes seen: ' + [...new Set(adAttrs)].join(', '));
+            }
+        }
         for (let i = 0; i < lines.length; i++) {
             let line = lines[i];
             // Track SCTE-35 CUE-OUT/CUE-IN ad boundaries
             if (line.includes('EXT-X-CUE-OUT')) {
+                if (!inCueOut) {
+                    console.log('[AD DEBUG] SCTE-35 CUE-OUT — ad boundary entered');
+                }
                 inCueOut = true;
             } else if (line.includes('EXT-X-CUE-IN')) {
+                if (inCueOut) {
+                    console.log('[AD DEBUG] SCTE-35 CUE-IN — ad boundary exited');
+                }
                 inCueOut = false;
             }
             // Remove tracking urls which appear in the overlay UI
             lines[i] = line
-                .replaceAll(/(X-TV-TWITCH-AD-URL=")(?:[^"]*)(")/g, `$1${newAdUrl}$2`)
-                .replaceAll(/(X-TV-TWITCH-AD-CLICK-TRACKING-URL=")(?:[^"]*)(")/g, `$1${newAdUrl}$2`);
-            if (i < lines.length - 1 && line.startsWith('#EXTINF') && (!line.includes(',live') || stripAllSegments || AllSegmentsAreAdSegments || inCueOut)) {
+                .replaceAll(/(X-TV-TWITCH-AD(?:-[A-Z]+)*-URLS?=")[^"]*(")/g, `$1${newAdUrl}$2`);
+            const isLiveSegment = line.includes(',live');
+            if (i < lines.length - 1 && line.startsWith('#EXTINF') && (!isLiveSegment || stripAllSegments || AllSegmentsAreAdSegments || inCueOut)) {
                 const segmentUrl = lines[i + 1];
                 if (!AdSegmentCache.has(segmentUrl)) {
                     streamInfo.NumStrippedAdSegments++;
                 }
                 AdSegmentCache.set(segmentUrl, Date.now());
                 hasStrippedAdSegments = true;
+            } else if (i < lines.length - 1 && line.startsWith('#EXTINF') && AdSegmentURLPatterns.some((p) => lines[i + 1].includes(p))) {
+                console.log('[AD DEBUG] Ad segment detected via URL pattern: ' + lines[i + 1]);
+                AdSegmentCache.set(lines[i + 1], Date.now());
+                hasStrippedAdSegments = true;
+                streamInfo.NumStrippedAdSegments++;
+            } else if (i < lines.length - 1 && line.startsWith('#EXTINF') && isLiveSegment) {
+                liveSegments.push({ extinf: line, url: lines[i + 1] });
             }
             if (AdSignifiers.some((s) => line.includes(s))) {
                 hasStrippedAdSegments = true;
@@ -426,6 +479,31 @@
             }
         } else {
             streamInfo.NumStrippedAdSegments = 0;
+        }
+        // Cache live segments for recovery (plus the MEDIA-SEQUENCE of the oldest cached segment,
+        // so the player accepts injected recovery segments as the correct position in the stream)
+        if (liveSegments.length > 0) {
+            streamInfo.RecoverySegments = liveSegments.slice(-6);
+            const seq = parseInt((textStr.match(/#EXT-X-MEDIA-SEQUENCE:(\d+)/) || [])[1]);
+            if (!isNaN(seq)) {
+                streamInfo.RecoveryStartSeq = seq + Math.max(0, liveSegments.length - streamInfo.RecoverySegments.length);
+            }
+        }
+        // If all segments were stripped, restore cached recovery segments to prevent black screen
+        if (hasStrippedAdSegments && liveSegments.length === 0 && streamInfo.RecoverySegments && streamInfo.RecoverySegments.length > 0) {
+            console.log('[AD DEBUG] All segments stripped — restoring ' + streamInfo.RecoverySegments.length + ' recovery segments');
+            if (streamInfo.RecoveryStartSeq !== undefined) {
+                for (let j = 0; j < lines.length; j++) {
+                    if (lines[j].startsWith('#EXT-X-MEDIA-SEQUENCE:')) {
+                        lines[j] = '#EXT-X-MEDIA-SEQUENCE:' + streamInfo.RecoveryStartSeq;
+                        break;
+                    }
+                }
+            }
+            for (let j = 0; j < streamInfo.RecoverySegments.length; j++) {
+                lines.push(streamInfo.RecoverySegments[j].extinf);
+                lines.push(streamInfo.RecoverySegments[j].url);
+            }
         }
         streamInfo.IsStrippingAdSegments = hasStrippedAdSegments;
         const now = Date.now();
@@ -478,12 +556,23 @@
             HasTriggeredPlayerReload = false;
             streamInfo.LastPlayerReload = Date.now();
         }
+        if (!streamInfo.HasCheckedUnknownTags) {
+            streamInfo.HasCheckedUnknownTags = true;
+            const unknownAdTags = textStr.match(/#EXT[^:\n]*(?:ad|cue|scte|sponsor)[^:\n]*/gi);
+            if (unknownAdTags) {
+                const unknown = unknownAdTags.filter(t => !AdSignifiers.some(s => t.includes(s)));
+                if (unknown.length > 0) {
+                    console.log('[AD DEBUG] Unknown ad-related tags found: ' + [...new Set(unknown)].join(', '));
+                }
+            }
+        }
         const haveAdTags = hasAdTags(textStr) || SimulatedAdsDepth > 0;
         if (haveAdTags) {
+            streamInfo.CleanPlaylistCount = 0;
             streamInfo.IsMidroll = textStr.includes('"MIDROLL"') || textStr.includes('"midroll"');
             if (!streamInfo.IsShowingAd) {
                 streamInfo.IsShowingAd = true;
-                console.log('[AD DEBUG] Ad detected — type: ' + (streamInfo.IsMidroll ? 'midroll' : 'preroll') + ', channel: ' + streamInfo.ChannelName);
+                console.log('[AD DEBUG] Ad detected — type: ' + (streamInfo.IsMidroll ? 'midroll' : 'preroll') + ', channel: ' + streamInfo.ChannelName + ', signifiers: ' + getMatchedAdSignifiers(textStr).join(', '));
                 postMessage({
                     key: 'UpdateAdBlockBanner',
                     isMidroll: streamInfo.IsMidroll,
@@ -519,6 +608,7 @@
                     key: 'ReloadPlayer'
                 });
             }
+            const backupSearchStart = Date.now();
             let backupPlayerType = null;
             let backupM3u8 = null;
             let fallbackM3u8 = null;
@@ -529,9 +619,22 @@
                 startIndex = PlayerReloadMinimalRequestsPlayerIndex;
                 isDoingMinimalRequests = true;
             }
-            for (let playerTypeIndex = startIndex; !backupM3u8 && playerTypeIndex < BackupPlayerTypes.length; playerTypeIndex++) {
-                const playerType = BackupPlayerTypes[playerTypeIndex];
+            // Try pinned backup player type first if available
+            const playerTypesToTry = [...BackupPlayerTypes];
+            if (PinBackupPlayerType && streamInfo.PinnedBackupPlayerType) {
+                const pinnedIndex = playerTypesToTry.indexOf(streamInfo.PinnedBackupPlayerType);
+                if (pinnedIndex > 0) {
+                    playerTypesToTry.splice(pinnedIndex, 1);
+                    playerTypesToTry.unshift(streamInfo.PinnedBackupPlayerType);
+                }
+            }
+            for (let playerTypeIndex = startIndex; !backupM3u8 && playerTypeIndex < playerTypesToTry.length; playerTypeIndex++) {
+                const playerType = playerTypesToTry[playerTypeIndex];
                 const realPlayerType = playerType.replace('-CACHED', '');
+                const failedAt = streamInfo.FailedBackupPlayerTypes.get(realPlayerType);
+                if (failedAt && (Date.now() - failedAt) < 15000) {
+                    continue;
+                }
                 const isFullyCachedPlayerType = playerType != realPlayerType;
                 for (let i = 0; i < 2; i++) {
                     // This caches the m3u8 if it doesn't have ads. If the already existing cache has ads it fetches a new version (second loop)
@@ -556,9 +659,11 @@
                                 }
                             } else {
                                 console.log('[AD DEBUG] Access token HTTP ' + accessTokenResponse.status + ' for ' + realPlayerType);
+                                streamInfo.FailedBackupPlayerTypes.set(realPlayerType, Date.now());
                             }
                         } catch (err) {
                             console.log('[AD DEBUG] Access token failed for ' + realPlayerType + ': ' + err.message);
+                            streamInfo.FailedBackupPlayerTypes.set(realPlayerType, Date.now());
                         }
                     }
                     if (encodingsM3u8) {
@@ -571,13 +676,17 @@
                                     if (playerType == FallbackPlayerType) {
                                         fallbackM3u8 = m3u8Text;
                                     }
-                                    if ((!hasAdTags(m3u8Text) && (SimulatedAdsDepth == 0 || playerTypeIndex >= SimulatedAdsDepth - 1)) || (!fallbackM3u8 && playerTypeIndex >= BackupPlayerTypes.length - 1)) {
+                                    if ((!hasAdTags(m3u8Text) && (SimulatedAdsDepth == 0 || playerTypeIndex >= SimulatedAdsDepth - 1)) || (!fallbackM3u8 && playerTypeIndex >= playerTypesToTry.length - 1)) {
                                         backupPlayerType = playerType;
                                         backupM3u8 = m3u8Text;
                                         break;
                                     }
                                     if (hasAdTags(m3u8Text)) {
-                                        console.log('[AD DEBUG] Backup stream (' + playerType + ') also has ads');
+                                        if (!streamInfo.LoggedBackupAdsByType) streamInfo.LoggedBackupAdsByType = new Set();
+                                        if (!streamInfo.LoggedBackupAdsByType.has(playerType)) {
+                                            streamInfo.LoggedBackupAdsByType.add(playerType);
+                                            console.log('[AD DEBUG] Backup stream (' + playerType + ') also has ads');
+                                        }
                                     }
                                     if (isFullyCachedPlayerType) {
                                         break;
@@ -609,10 +718,13 @@
                 textStr = backupM3u8;
                 if (streamInfo.ActiveBackupPlayerType != backupPlayerType) {
                     streamInfo.ActiveBackupPlayerType = backupPlayerType;
-                    console.log(`Blocking${(streamInfo.IsMidroll ? ' midroll ' : ' ')}ads (${backupPlayerType})`);
+                    if (PinBackupPlayerType) {
+                        streamInfo.PinnedBackupPlayerType = backupPlayerType;
+                    }
+                    console.log(`Blocking${(streamInfo.IsMidroll ? ' midroll ' : ' ')}ads (${backupPlayerType}) — backup found in ${Date.now() - backupSearchStart}ms`);
                 }
             } else {
-                console.log('[AD DEBUG] No ad-free backup stream found — ads may leak. Tried: ' + BackupPlayerTypes.slice(startIndex).join(', '));
+                console.log('[AD DEBUG] No ad-free backup stream found — ads may leak. Tried: ' + playerTypesToTry.slice(startIndex).join(', '));
             }
             // TODO: Improve hevc stripping. It should always strip when there is a codec mismatch (both ways)
             const stripHevc = isHevc && streamInfo.ModifiedM3U8;
@@ -622,22 +734,52 @@
                 console.log('[AD DEBUG] Ad stripping disabled and no backup — ads WILL show');
             }
         } else if (streamInfo.IsShowingAd) {
-            console.log('Finished blocking ads — stripped ' + streamInfo.NumStrippedAdSegments + ' ad segments');
-            streamInfo.IsShowingAd = false;
-            streamInfo.IsStrippingAdSegments = false;
-            streamInfo.NumStrippedAdSegments = 0;
-            streamInfo.ActiveBackupPlayerType = null;
-            streamInfo.RequestedAds.clear();
-            if (streamInfo.IsUsingModifiedM3U8 || ReloadPlayerAfterAd) {
-                streamInfo.IsUsingModifiedM3U8 = false;
-                streamInfo.LastPlayerReload = Date.now();
-                postMessage({
-                    key: 'ReloadPlayer'
-                });
-            } else {
-                postMessage({
-                    key: 'PauseResumePlayer'
-                });
+            streamInfo.CleanPlaylistCount++;
+            // Check if the current playlist has live segments — if not, backup stream is dead
+            const hasLiveSegments = textStr.includes(',live');
+            if (streamInfo.CleanPlaylistCount >= 2 || !hasLiveSegments) {
+                if (!hasLiveSegments) {
+                    console.log('[AD DEBUG] Backup stream has no live segments — forcing immediate reload');
+                }
+                console.log('Finished blocking ads — stripped ' + streamInfo.NumStrippedAdSegments + ' ad segments');
+                const hadStrippedSegments = streamInfo.NumStrippedAdSegments > 0;
+                streamInfo.IsShowingAd = false;
+                streamInfo.IsStrippingAdSegments = false;
+                streamInfo.NumStrippedAdSegments = 0;
+                streamInfo.ActiveBackupPlayerType = null;
+                streamInfo.RequestedAds.clear();
+                streamInfo.FailedBackupPlayerTypes.clear();
+                if (streamInfo.LoggedBackupAdsByType) streamInfo.LoggedBackupAdsByType.clear();
+                streamInfo.CleanPlaylistCount = 0;
+                // CSAI-only ad break: no segments were stripped — skip reload entirely.
+                if (!hadStrippedSegments) {
+                    console.log('[AD DEBUG] CSAI-only ad break (stripped 0) — clearing backup without reload');
+                    streamInfo.IsUsingModifiedM3U8 = false;
+                    postMessage({ key: 'PauseResumePlayer' });
+                } else {
+                // Auto-escalate cooldown: if 3+ reloads in last 5 min, triple the cooldown
+                if (!streamInfo.ReloadTimestamps) streamInfo.ReloadTimestamps = [];
+                streamInfo.ReloadTimestamps = streamInfo.ReloadTimestamps.filter(t => Date.now() - t < 300000);
+                const recentReloads = streamInfo.ReloadTimestamps.filter(t => Date.now() - t < 300000).length;
+                const effectiveCooldown = recentReloads >= 3 ? ReloadCooldownSeconds * 3 : ReloadCooldownSeconds;
+                const tooSoonSinceLastReload = streamInfo.LastPlayerReload && (Date.now() - streamInfo.LastPlayerReload) < (effectiveCooldown * 1000);
+                const shouldReload = streamInfo.IsUsingModifiedM3U8 || (ReloadPlayerAfterAd && (hadStrippedSegments || !tooSoonSinceLastReload));
+                if (shouldReload) {
+                    streamInfo.ReloadTimestamps.push(Date.now());
+                    streamInfo.IsUsingModifiedM3U8 = false;
+                    streamInfo.LastPlayerReload = Date.now();
+                    postMessage({
+                        key: 'ReloadPlayer'
+                    });
+                } else {
+                    if (tooSoonSinceLastReload) {
+                        console.log('[AD DEBUG] Skipping reload — last reload was ' + ((Date.now() - streamInfo.LastPlayerReload) / 1000).toFixed(0) + 's ago (cooldown: ' + effectiveCooldown + 's' + (recentReloads >= 3 ? ', auto-escalated from ' + recentReloads + ' reloads in 5min' : '') + ')');
+                    }
+                    postMessage({
+                        key: 'PauseResumePlayer'
+                    });
+                }
+                }// end else (non-CSAI path)
             }
         }
         postMessage({
@@ -645,7 +787,8 @@
             isMidroll: streamInfo.IsMidroll,
             hasAds: streamInfo.IsShowingAd,
             isStrippingAdSegments: streamInfo.IsStrippingAdSegments,
-            numStrippedAdSegments: streamInfo.NumStrippedAdSegments
+            numStrippedAdSegments: streamInfo.NumStrippedAdSegments,
+            activeBackupPlayerType: streamInfo.ActiveBackupPlayerType
         });
         return textStr;
     }
@@ -722,6 +865,8 @@
         });
     }
     let playerForMonitoringBuffering = null;
+    let driftCatchUpInterval = null;
+    let driftCatchUpTimeout = null;
     const playerBufferState = {
         channelName: null,
         hasStreamStarted: false,
@@ -729,6 +874,7 @@
         bufferedPosition: 0,
         bufferDuration: 0,
         numSame: 0,
+        fixAttempts: 0,
         lastFixTime: 0,
         isLive: true
     };
@@ -740,7 +886,7 @@
                 const state = playerForMonitoringBuffering.state;
                 if (!player.core) {
                     playerForMonitoringBuffering = null;
-                } else if (state.props?.content?.type === 'live' && !player.isPaused() && !player.getHTMLVideoElement()?.ended && playerBufferState.lastFixTime <= Date.now() - PlayerBufferingMinRepeatDelay && !isActivelyStrippingAds) {
+                } else if (state.props?.content?.type === 'live' && !player.isPaused() && !player.getHTMLVideoElement()?.ended && playerBufferState.lastFixTime <= Date.now() - PlayerBufferingMinRepeatDelay && !isActivelyStrippingAds && (!playerBufferState.lastReloadAt || Date.now() - playerBufferState.lastReloadAt >= 15000) && (!playerBufferState.lastBackupSwitchAt || Date.now() - playerBufferState.lastBackupSwitchAt >= 10000)) {
                     const m3u8Url = player.core?.state?.path;
                     if (m3u8Url) {
                       const lastSlash = m3u8Url.lastIndexOf('/');
@@ -752,6 +898,10 @@
                               playerBufferState.channelName = channelName;
                               playerBufferState.hasStreamStarted = false;
                               playerBufferState.numSame = 0;
+                              playerBufferState.fixAttempts = 0;
+                              playerBufferState.recoveryReloadUsed = false;
+                              playerBufferState.userPauseIntent = false;
+                              playerBufferState.loggedPauseIntent = false;
                               //console.log('Channel changed to ' + channelName);
                           }
                       }
@@ -774,15 +924,27 @@
                         ) {
                             playerBufferState.numSame++;
                             if (playerBufferState.numSame == PlayerBufferingSameStateCount) {
-                                console.log('Attempt to fix buffering position:' + playerBufferState.position + ' bufferedPosition:' + playerBufferState.bufferedPosition + ' bufferDuration:' + playerBufferState.bufferDuration);
-                                const isPausePlay = !PlayerBufferingDoPlayerReload;
-                                const isReload = PlayerBufferingDoPlayerReload;
+                                playerBufferState.fixAttempts++;
+                                // Cap: at most ONE reload per recovery window. After reloading once,
+                                // stay on pause/play until playback recovers. Prevents reload cascades.
+                                const wouldEscalate = playerBufferState.fixAttempts >= 3;
+                                const escalateToReload = wouldEscalate && (DisableReloadCap || !playerBufferState.recoveryReloadUsed);
+                                const reloadCapNote = wouldEscalate && !escalateToReload ? ' (reload cap reached, pause/play only — set twitchAdSolutions_disableReloadCap=true to bypass)' : (escalateToReload ? ' (escalating to reload)' : '');
+                                console.log('Attempt to fix buffering position:' + playerBufferState.position + ' bufferedPosition:' + playerBufferState.bufferedPosition + ' bufferDuration:' + playerBufferState.bufferDuration + reloadCapNote);
+                                const isPausePlay = escalateToReload ? false : !PlayerBufferingDoPlayerReload;
+                                const isReload = escalateToReload ? true : PlayerBufferingDoPlayerReload;
                                 doTwitchPlayerTask(isPausePlay, isReload);
                                 playerBufferState.lastFixTime = Date.now();
                                 playerBufferState.numSame = 0;
+                                if (escalateToReload) {
+                                    playerBufferState.fixAttempts = 0;
+                                    playerBufferState.recoveryReloadUsed = true;
+                                }
                             }
                         } else {
                             playerBufferState.numSame = 0;
+                            playerBufferState.fixAttempts = 0;
+                            playerBufferState.recoveryReloadUsed = false;
                         }
                         playerBufferState.position = position;
                         playerBufferState.bufferedPosition = bufferedPosition;
@@ -803,6 +965,20 @@
                     player: playerAndState.player,
                     state: playerAndState.state
                 };
+                // Track user pause intent on the video element
+                const video = playerAndState.player.getHTMLVideoElement?.();
+                if (video && !video.__tasIntentHooked) {
+                    video.__tasIntentHooked = true;
+                    video.addEventListener('pause', () => {
+                        if (!playerBufferState.weJustPaused || (Date.now() - playerBufferState.weJustPaused) > 2000) {
+                            playerBufferState.userPauseIntent = true;
+                        }
+                    });
+                    video.addEventListener('play', () => {
+                        playerBufferState.userPauseIntent = false;
+                        playerBufferState.loggedPauseIntent = false;
+                    });
+                }
             }
         }
         const isLive = playerForMonitoringBuffering?.state?.props?.content?.type === 'live';
@@ -812,7 +988,20 @@
             });
         }
         playerBufferState.isLive = isLive;
-        setTimeout(monitorPlayerBuffering, PlayerBufferingDelay);
+        // Force immediate tick when tab becomes visible so stalls are caught fast on return
+        if (typeof document !== 'undefined' && !monitorPlayerBuffering.visibilityHooked) {
+            monitorPlayerBuffering.visibilityHooked = true;
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden && !monitorPlayerBuffering.pendingTick) {
+                    monitorPlayerBuffering.pendingTick = true;
+                    setTimeout(() => { monitorPlayerBuffering.pendingTick = false; monitorPlayerBuffering(); }, 100);
+                }
+            });
+        }
+        // Visibility-aware backoff: poll 3x slower when tab is hidden (but NOT during PiP — user is still watching)
+        const shouldThrottle = typeof document !== 'undefined' && document.hidden && !document.pictureInPictureElement;
+        const nextDelay = shouldThrottle ? PlayerBufferingDelay * 3 : PlayerBufferingDelay;
+        setTimeout(monitorPlayerBuffering, nextDelay);
     }
     function updateAdblockBanner(data) {
         if (!cachedPlayerRootDiv || !cachedPlayerRootDiv.isConnected) {
@@ -821,10 +1010,10 @@
         const playerRootDiv = cachedPlayerRootDiv;
         if (playerRootDiv != null) {
             let adBlockDiv = null;
-            adBlockDiv = playerRootDiv.querySelector('.adblock-overlay');
+            adBlockDiv = playerRootDiv.querySelector('.tas-adblock-overlay');
             if (adBlockDiv == null) {
                 adBlockDiv = document.createElement('div');
-                adBlockDiv.className = 'adblock-overlay';
+                adBlockDiv.className = 'tas-adblock-overlay';
                 adBlockDiv.innerHTML = '<div class="player-adblock-notice" style="color: white; background-color: rgba(0, 0, 0, 0.8); position: absolute; top: 0px; left: 0px; padding: 5px;"><p></p></div>';
                 adBlockDiv.style.display = 'none';
                 adBlockDiv.P = adBlockDiv.querySelector('p');
@@ -832,7 +1021,7 @@
             }
             if (adBlockDiv != null) {
                 isActivelyStrippingAds = data.isStrippingAdSegments;
-                adBlockDiv.P.textContent = 'Blocking' + (data.isMidroll ? ' midroll' : '') + ' ads' + (data.isStrippingAdSegments ? ' (stripping)' : '');// + (data.numStrippedAdSegments > 0 ? ` (${data.numStrippedAdSegments})` : '');
+                adBlockDiv.P.textContent = 'Blocking' + (data.isMidroll ? ' midroll' : '') + ' ads' + (data.isStrippingAdSegments ? ' (stripping)' : '') + (data.activeBackupPlayerType ? ' (' + data.activeBackupPlayerType + ')' : '');
                 adBlockDiv.style.display = data.hasAds && playerBufferState.isLive ? 'block' : 'none';
             }
         }
@@ -872,7 +1061,6 @@
         }
         const reactRootNode = findReactRootNode();
         if (!reactRootNode) {
-            console.log('[AD DEBUG] React root node not found — Twitch may have changed their React setup');
             return null;
         }
         let player = findReactNode(reactRootNode, node => node.setPlayerActive && node.props && node.props.mediaPlayerInstance);
@@ -881,10 +1069,12 @@
             player = player.playerInstance;
         }
         const playerState = findReactNode(reactRootNode, node => node.setSrc && node.setInitialPlaybackSettings);
-        if (!player) {
+        if (!player && !getPlayerAndState.loggedNoPlayer) {
+            getPlayerAndState.loggedNoPlayer = true;
             console.log('[AD DEBUG] Player not found — Twitch may have renamed setPlayerActive/mediaPlayerInstance');
         }
-        if (!playerState) {
+        if (!playerState && !getPlayerAndState.loggedNoState) {
+            getPlayerAndState.loggedNoState = true;
             console.log('[AD DEBUG] Player state not found — Twitch may have renamed setSrc/setInitialPlaybackSettings');
         }
         return  {
@@ -910,13 +1100,27 @@
             return;
         }
         if (player.isPaused() || player.core?.paused) {
+            // User deliberately paused — respect their intent, don't auto-resume
+            if (playerBufferState.userPauseIntent) {
+                if (!playerBufferState.loggedPauseIntent) {
+                    playerBufferState.loggedPauseIntent = true;
+                    console.log('[AD DEBUG] Respecting user pause intent — skipping auto-resume');
+                }
+                return;
+            }
+            // If WE recently called pause/play and player is still paused, retry play (stuck from autoplay policy or ad-state interference)
+            if (playerBufferState.weJustPaused && (Date.now() - playerBufferState.weJustPaused) < 10000) {
+                try { player.play(); } catch {}
+            }
             return;
         }
+        playerBufferState.weJustPaused = 0;
         playerBufferState.lastFixTime = Date.now();
         playerBufferState.numSame = 0;
         if (isPausePlay) {
             player.pause();
             player.play();
+            playerBufferState.weJustPaused = Date.now();
             return;
         }
         if (isReload) {
@@ -938,11 +1142,16 @@
                     localStorage.setItem(lsKeyQuality, JSON.stringify({default:player.core.state.quality.group}));
                 }
             } catch {}
+            playerBufferState.lastReloadAt = Date.now();
+            playerBufferState.userPauseIntent = false;
+            playerBufferState.loggedPauseIntent = false;
+            playerForMonitoringBuffering = null;// Force re-acquire player ref after reload — old ref reads stale buffer state
             console.log('Reloading Twitch player');
             playerState.setSrc({ isNewMediaPlayerInstance: true, refreshAccessToken: true });
             postTwitchWorkerMessage('TriggeredPlayerReload');
             player.play();
-            if (localStorageHookFailed && (currentQualityLS || currentMutedLS || currentVolumeLS)) {
+            // Always restore muted/volume state after reload — Chrome autoplay policy can force muted
+            if (currentQualityLS || currentMutedLS || currentVolumeLS) {
                 setTimeout(() => {
                     try {
                         if (currentQualityLS) {
@@ -953,6 +1162,37 @@
                         }
                         if (currentVolumeLS) {
                             localStorage.setItem(lsKeyVolume, currentVolumeLS);
+                        }
+                        const videos = document.getElementsByTagName('video');
+                        if (videos.length > 0 && videos[0].muted) {
+                            videos[0].muted = false;
+                        }
+                        // Correct live drift after reload — gradual catch-up via playback rate instead of jarring seek
+                        if (videos.length > 0 && videos[0].buffered.length > 0 && videos[0].readyState >= 3 && DriftCorrectionRate > 1) {
+                            const liveEdge = videos[0].buffered.end(videos[0].buffered.length - 1);
+                            const drift = liveEdge - videos[0].currentTime;
+                            if (drift > 2) {
+                                console.log('[AD DEBUG] Post-reload live drift correction: ' + drift.toFixed(1) + 's behind — catching up at ' + DriftCorrectionRate + 'x');
+                                if (driftCatchUpInterval) { clearInterval(driftCatchUpInterval); driftCatchUpInterval = null; }
+                                if (driftCatchUpTimeout) { clearTimeout(driftCatchUpTimeout); driftCatchUpTimeout = null; }
+                                videos[0].playbackRate = DriftCorrectionRate;
+                                driftCatchUpInterval = setInterval(() => {
+                                    try {
+                                        const vid = document.querySelector('video');
+                                        if (vid && vid.buffered.length > 0) {
+                                            const remaining = vid.buffered.end(vid.buffered.length - 1) - vid.currentTime;
+                                            if (remaining <= 1) {
+                                                vid.playbackRate = 1.0;
+                                                console.log('[AD DEBUG] Drift correction complete — resumed normal playback speed');
+                                                clearInterval(driftCatchUpInterval);
+                                                driftCatchUpInterval = null;
+                                                if (driftCatchUpTimeout) { clearTimeout(driftCatchUpTimeout); driftCatchUpTimeout = null; }
+                                            }
+                                        }
+                                    } catch { clearInterval(driftCatchUpInterval); driftCatchUpInterval = null; }
+                                }, 500);
+                                driftCatchUpTimeout = setTimeout(() => { try { videos[0].playbackRate = 1.0; } catch {} if (driftCatchUpInterval) { clearInterval(driftCatchUpInterval); driftCatchUpInterval = null; } driftCatchUpTimeout = null; }, 30000);
+                            }
                         }
                     } catch {}
                 }, 3000);
@@ -1046,12 +1286,19 @@
                         }
                     }
                 }
+                if (url.includes('edge.ads.twitch.tv')) {
+                    const csaiType = url.includes('bp=midroll') ? 'midroll' : url.includes('bp=preroll') ? 'preroll' : 'unknown';
+                    console.log('[AD DEBUG] CSAI ad request detected — type: ' + csaiType + ' (client-side ad insertion, not blockable via m3u8)');
+                }
             }
             return realFetch.apply(this, arguments);
         };
     }
     // Set up visibility overrides and localStorage hooks to preserve player state across reloads
     function onContentLoaded() {
+        if (document.getElementById('seventv-extension')) {
+            console.log('[AD DEBUG] Warning: 7TV extension detected — may cause black screen or buffering issues. If you experience problems, try disabling 7TV.');
+        }
         // This stops Twitch from pausing the player when in another tab and an ad shows.
         // Taken from https://github.com/saucettv/VideoAdBlockForTwitch/blob/cefce9d2b565769c77e3666ac8234c3acfe20d83/chrome/content.js#L30
         try {
@@ -1076,7 +1323,6 @@
         };
         let wasVideoPlaying = true;
         const visibilityChange = e => {
-            const isChrome = typeof chrome !== 'undefined';
             const videos = document.getElementsByTagName('video');
             if (videos.length > 0) {
                 if (hidden && hidden.apply(document) === true) {
@@ -1086,7 +1332,7 @@
                         //console.log('Tab focused. Stream should be active');
                         playerBufferState.hasStreamStarted = true;
                     }
-                    if (wasVideoPlaying && !videos[0].ended && videos[0].paused && videos[0].muted) {
+                    if (wasVideoPlaying && !videos[0].ended && videos[0].paused) {
                         videos[0].play();
                     }
                 }
@@ -1138,14 +1384,44 @@
         if (lsReloadAfterAd !== null) {
             ReloadPlayerAfterAd = lsReloadAfterAd === 'true';
         }
+        const lsReloadCooldown = parseInt(localStorage.getItem('twitchAdSolutions_reloadCooldownSeconds'));
+        if (!isNaN(lsReloadCooldown) && lsReloadCooldown >= 0) {
+            ReloadCooldownSeconds = lsReloadCooldown;
+        }
+        const lsDisableReloadCap = localStorage.getItem('twitchAdSolutions_disableReloadCap');
+        if (lsDisableReloadCap !== null) {
+            DisableReloadCap = lsDisableReloadCap === 'true';
+        }
+        const lsDriftRate = parseFloat(localStorage.getItem('twitchAdSolutions_driftCorrectionRate'));
+        if (!isNaN(lsDriftRate) && lsDriftRate >= 0) {
+            DriftCorrectionRate = lsDriftRate;
+        }
         const lsPlayerType = localStorage.getItem('twitchAdSolutions_playerType');
         if (lsPlayerType !== null) {
             ForceAccessTokenPlayerType = lsPlayerType;
         }
+        const lsPinBackup = localStorage.getItem('twitchAdSolutions_pinBackupPlayerType');
+        if (lsPinBackup !== null) {
+            PinBackupPlayerType = lsPinBackup === 'true';
+        }
+        const lsHideAdOverlay = localStorage.getItem('twitchAdSolutions_hideAdOverlay');
+        if (lsHideAdOverlay === 'true') {
+            const style = document.createElement('style');
+            style.textContent = '.tas-adblock-overlay { display: none !important; }';
+            (document.head || document.documentElement).appendChild(style);
+        }
     } catch {}
-    console.log('[AD DEBUG] Config: ReloadPlayerAfterAd = ' + ReloadPlayerAfterAd + ', ForceAccessTokenPlayerType = ' + ForceAccessTokenPlayerType);
+    console.log('[AD DEBUG] Config: ReloadPlayerAfterAd = ' + ReloadPlayerAfterAd + ', ForceAccessTokenPlayerType = ' + ForceAccessTokenPlayerType + ', PinBackupPlayerType = ' + PinBackupPlayerType);
     hookWindowWorker();
     hookFetch();
+    const realXHROpen = XMLHttpRequest.prototype.open;
+    XMLHttpRequest.prototype.open = function(method, url) {
+        if (typeof url === 'string' && url.includes('edge.ads.twitch.tv')) {
+            const csaiType = url.includes('bp=midroll') ? 'midroll' : url.includes('bp=preroll') ? 'preroll' : 'unknown';
+            console.log('[AD DEBUG] CSAI ad request (XHR) detected — type: ' + csaiType);
+        }
+        return realXHROpen.apply(this, arguments);
+    };
     if (PlayerBufferingFix) {
         monitorPlayerBuffering();
     }
