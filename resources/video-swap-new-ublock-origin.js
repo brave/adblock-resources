@@ -1,23 +1,23 @@
 (function() {
     if ( /(^|\.)twitch\.tv$/.test(document.location.hostname) === false ) { return; }
-    const ourTwitchAdSolutionsVersion = 27;// Used to prevent conflicts with outdated versions of the scripts
+    const ourTwitchAdSolutionsVersion = 35;// Used to prevent conflicts with outdated versions of the scripts
+    console.log('[AD DEBUG] TwitchAdSolutions video-swap-new v' + ourTwitchAdSolutionsVersion + ' loading');
     if (typeof window.twitchAdSolutionsVersion !== 'undefined' && window.twitchAdSolutionsVersion >= ourTwitchAdSolutionsVersion) {
-        console.log("skipping video-swap-new as there's another script active. ourVersion:" + ourTwitchAdSolutionsVersion + " activeVersion:" + window.twitchAdSolutionsVersion);
-        window.twitchAdSolutionsVersion = ourTwitchAdSolutionsVersion;
+        console.log('[AD DEBUG] CONFLICT: video-swap-new v' + ourTwitchAdSolutionsVersion + ' skipped — another script already active (v' + window.twitchAdSolutionsVersion + '). Remove duplicate scripts.');
         return;
     }
     window.twitchAdSolutionsVersion = ourTwitchAdSolutionsVersion;
     function declareOptions(scope) {
         // Options / globals
-        scope.OPT_BACKUP_PLAYER_TYPES = [ 'autoplay', 'picture-by-picture', /*'autoplay-ALT',*/ 'embed' ];
+        scope.OPT_BACKUP_PLAYER_TYPES = [ 'autoplay', 'picture-by-picture', /*'autoplay-ALT',*/ 'embed', 'mobile_web' ];
         scope.OPT_FORCE_ACCESS_TOKEN_PLAYER_TYPE = 'popout';
-        scope.AD_SIGNIFIER = 'stitched-ad';// Legacy single signifier (kept for compatibility)
-        scope.AD_SIGNIFIERS = ['stitched', 'stitched-ad', 'X-TV-TWITCH-AD', 'EXT-X-CUE-OUT', 'EXT-X-DATERANGE:CLASS="twitch-stitched-ad"'];
+        scope.AD_SIGNIFIERS = ['stitched', 'stitched-ad', 'X-TV-TWITCH-AD', 'EXT-X-CUE-OUT', 'EXT-X-DATERANGE:CLASS="twitch-stitched-ad"', 'EXT-X-DATERANGE:CLASS="twitch-stream-source"', 'EXT-X-DATERANGE:CLASS="twitch-trigger"', 'EXT-X-DATERANGE:CLASS="twitch-maf-ad"', 'EXT-X-DATERANGE:CLASS="twitch-ad-quartile"', 'SCTE35-OUT'];
+        scope.AD_SEGMENT_URL_PATTERNS = ['/adsquared/', '/_404/', '/processing'];
         scope.LIVE_SIGNIFIER = ',live';
         scope.CLIENT_ID = 'kimne78kx3ncx6brgo4mv6wki5h1ko';
         // These are only really for Worker scope...
-        scope.StreamInfos = [];
-        scope.StreamInfosByUrl = [];
+        scope.StreamInfos = Object.create(null);
+        scope.StreamInfosByUrl = Object.create(null);
         // Need this in both scopes. Window scope needs to update this to worker scope.
         scope.gql_device_id = null;
         scope.ClientIntegrityHeader = null;
@@ -28,6 +28,20 @@
         scope.AdSegmentCache = new Map();
         scope.AllSegmentsAreAdSegments = false;
         scope.ReloadPlayerAfterAd = true;// After the ad finishes do a player reload instead of pause/play
+        scope.PinBackupPlayerType = false;// If true, remember which backup player type worked and try it first on next ad break
+        scope.StreamInfoMaxAgeMs = 30 * 60 * 1000;
+    }
+    function pruneStreamInfos() {
+        const now = Date.now();
+        for (const channelName in StreamInfos) {
+            const streamInfo = StreamInfos[channelName];
+            if (!streamInfo || !streamInfo.LastSeenAt || (now - streamInfo.LastSeenAt) > StreamInfoMaxAgeMs) {
+                if (streamInfo && streamInfo.Urls) {
+                    streamInfo.Urls.forEach((_, url) => { delete StreamInfosByUrl[url]; });
+                }
+                delete StreamInfos[channelName];
+            }
+        }
     }
     let twitchPlayerAndState = null;
     let localStorageHookFailed = false;
@@ -85,11 +99,24 @@
     }
     function isValidWorker(worker) {
         const workerString = worker.toString();
-        return !workerStringConflicts.some((x) => workerString.includes(x))
-            || workerStringAllow.some((x) => workerString.includes(x))
-            || workerStringReinsert.some((x) => workerString.includes(x));
+        const hasConflict = workerStringConflicts.some((x) => workerString.includes(x));
+        const hasAllow = workerStringAllow.some((x) => workerString.includes(x));
+        const hasReinsert = workerStringReinsert.some((x) => workerString.includes(x));
+        if (hasConflict && !hasAllow && !hasReinsert) {
+            console.log('[AD DEBUG] Worker rejected — conflict string found: ' + workerStringConflicts.filter((x) => workerString.includes(x)).join(', '));
+        }
+        return !hasConflict || hasAllow || hasReinsert;
     }
+    let injectedBlobUrl = null;
     function hookWindowWorker() {
+        // Prevent Twitch from revoking our injected worker blob URL
+        if (!URL.__tasOriginalRevokeObjectURL) {
+            URL.__tasOriginalRevokeObjectURL = URL.revokeObjectURL;
+            URL.revokeObjectURL = function(url) {
+                if (url === injectedBlobUrl) return;
+                return URL.__tasOriginalRevokeObjectURL.call(this, url);
+            };
+        }
         const reinsert = getWorkersForReinsert(window.Worker);
         const newWorker = class Worker extends getCleanWorker(window.Worker) {
             constructor(twitchBlobUrl, options) {
@@ -99,11 +126,14 @@
                 } catch {}
                 if (!isTwitchWorker) {
                     super(twitchBlobUrl, options);
+                    console.log('[AD DEBUG] Non-Twitch worker skipped: ' + twitchBlobUrl);
                     return;
                 }
+                console.log('[AD DEBUG] Worker intercepted — injecting ad-block hooks');
                 const newBlobStr = `
                     const pendingFetchRequests = new Map();
                     ${hasAdTags.toString()}
+                    ${getMatchedAdSignifiers.toString()}
                     ${stripAdSegments.toString()}
                     ${processM3U8.toString()}
                     ${hookWorkerFetch.toString()}
@@ -118,9 +148,14 @@
                     ${replaceServerTimeInM3u8.toString()}
                     ${getStreamUrlForResolution.toString()}
                     ${updateAdblockBannerForStream.toString()}
+                    ${pruneStreamInfos.toString()}
                     const workerString = getWasmWorkerJs('${twitchBlobUrl.replaceAll("'", "%27")}');
                     declareOptions(self);
+                    if (!self.__tasPruneInterval) {
+                        self.__tasPruneInterval = setInterval(pruneStreamInfos, 5 * 60 * 1000);
+                    }
                     ReloadPlayerAfterAd = ${ReloadPlayerAfterAd};
+                    PinBackupPlayerType = ${PinBackupPlayerType};
                     OPT_FORCE_ACCESS_TOKEN_PLAYER_TYPE = '${OPT_FORCE_ACCESS_TOKEN_PLAYER_TYPE}';
                     gql_device_id = ${gql_device_id ? "'" + gql_device_id + "'" : null};
                     AuthorizationHeader = ${AuthorizationHeader ? "'" + AuthorizationHeader + "'" : undefined};
@@ -135,7 +170,8 @@
                         } else if (e.data.key == 'FetchResponse') {
                             const responseData = e.data.value;
                             if (pendingFetchRequests.has(responseData.id)) {
-                                const { resolve, reject } = pendingFetchRequests.get(responseData.id);
+                                const { resolve, reject, timeoutId } = pendingFetchRequests.get(responseData.id);
+                                clearTimeout(timeoutId);
                                 pendingFetchRequests.delete(responseData.id);
                                 if (responseData.error) {
                                     reject(new Error(responseData.error));
@@ -160,7 +196,8 @@
                     hookWorkerFetch();
                     eval(workerString);
                 `
-                super(URL.createObjectURL(new Blob([newBlobStr])), options);
+                injectedBlobUrl = URL.createObjectURL(new Blob([newBlobStr]));
+                super(injectedBlobUrl, options);
                 twitchWorkers.length = 0;
                 twitchWorkers.push(this);
                 this.addEventListener('message', (e) => {
@@ -199,14 +236,22 @@
         });
     }
     function getWasmWorkerJs(twitchBlobUrl) {
+        if (!getWasmWorkerJs.cache) {
+            getWasmWorkerJs.cache = Object.create(null);
+        }
+        if (getWasmWorkerJs.cache[twitchBlobUrl]) {
+            return getWasmWorkerJs.cache[twitchBlobUrl];
+        }
         const req = new XMLHttpRequest();
         req.open('GET', twitchBlobUrl, false);
         req.overrideMimeType("text/javascript");
         req.send();
-        return req.responseText;
+        const text = req.responseText;
+        getWasmWorkerJs.cache[twitchBlobUrl] = text;
+        return text;
     }
     function setStreamInfoUrls(streamInfo, encodingsM3u8) {
-        const lines = encodingsM3u8.replaceAll('\r', '').split('\n');
+        const lines = encodingsM3u8.split(/\r?\n/);
         for (let i = 0; i < lines.length; i++) {
             if (!lines[i].startsWith('#') && lines[i].includes('.m3u8')) {
                 StreamInfosByUrl[lines[i].trimEnd()] = streamInfo;
@@ -236,13 +281,22 @@
             isMidroll: streamInfo.IsMidroll,
             hasAds: isShowingAd,
             isStrippingAdSegments: streamInfo.IsStrippingAdSegments,
-            numStrippedAdSegments: streamInfo.NumStrippedAdSegments
+            numStrippedAdSegments: streamInfo.NumStrippedAdSegments,
+            activeBackupPlayerType: streamInfo.BackupEncodingsPlayerTypeIndex >= 0 ? OPT_BACKUP_PLAYER_TYPES[streamInfo.BackupEncodingsPlayerTypeIndex] : null
         });
     }
     async function onFoundAd(streamInfo, textStr, reloadPlayer, realFetch, url, resolutionInfo) {
         let result = textStr;
         streamInfo.IsMidroll = textStr.includes('"MIDROLL"') || textStr.includes('"midroll"');
-        const playerTypes = OPT_BACKUP_PLAYER_TYPES;
+        const playerTypes = [...OPT_BACKUP_PLAYER_TYPES];
+        // Try pinned backup player type first if available
+        if (PinBackupPlayerType && streamInfo.PinnedBackupPlayerType) {
+            const pinnedIndex = playerTypes.indexOf(streamInfo.PinnedBackupPlayerType);
+            if (pinnedIndex > 0) {
+                playerTypes.splice(pinnedIndex, 1);
+                playerTypes.unshift(streamInfo.PinnedBackupPlayerType);
+            }
+        }
         if (streamInfo.BackupEncodingsStatus.size >= playerTypes.length) {
             return textStr;
         }
@@ -253,6 +307,7 @@
                 return await streamM3u8Response.text();
             }
         }
+        const backupSearchStart = Date.now();
         let backupPlayerTypeInfo = '';
         for (let i = 0; i < playerTypes.length; i++) {
             const playerType = playerTypes[i];
@@ -261,6 +316,10 @@
                     const accessTokenResponse = await getAccessToken(streamInfo.ChannelName, playerType);
                     if (accessTokenResponse != null && accessTokenResponse.status === 200) {
                         const accessToken = await accessTokenResponse.json();
+                        if (!accessToken?.data?.streamPlaybackAccessToken) {
+                            console.log('[AD DEBUG] GQL response format changed — missing data.streamPlaybackAccessToken for ' + playerType + '. Response keys: ' + JSON.stringify(Object.keys(accessToken?.data || accessToken || {})));
+                            continue;
+                        }
                         const urlInfo = new URL('https://usher.ttvnw.net/api/' + (V2API ? 'v2/' : '') + 'channel/hls/' + streamInfo.ChannelName + '.m3u8' + streamInfo.UsherParams);
                         urlInfo.searchParams.set('sig', accessToken.data.streamPlaybackAccessToken.signature);
                         urlInfo.searchParams.set('token', accessToken.data.streamPlaybackAccessToken.value);
@@ -276,10 +335,13 @@
                                     backupPlayerTypeInfo = ' (' + playerType + ')';
                                     streamInfo.BackupEncodingsStatus.set(playerType, 1);
                                     streamInfo.BackupEncodingsPlayerTypeIndex = i;
+                                    if (PinBackupPlayerType) {
+                                        streamInfo.PinnedBackupPlayerType = playerType;
+                                    }
                                     if (streamInfo.Encodings != null) {
                                         // Low resolution streams will reduce the number of resolutions in the UI. To fix this we merge the low res URLs into the main m3u8
                                         const normalEncodingsM3u8 = streamInfo.Encodings;
-                                        const normalLines = normalEncodingsM3u8.replaceAll('\r', '').split('\n');
+                                        const normalLines = normalEncodingsM3u8.split(/\r?\n/);
                                         for (let j = 0; j < normalLines.length - 1; j++) {
                                             if (normalLines[j].startsWith('#EXT-X-STREAM-INF')) {
                                                 const resSettings = parseAttributes(normalLines[j].substring(normalLines[j].indexOf(':') + 1));
@@ -316,7 +378,7 @@
                 }
             }
         }
-        console.log('Found ads, switch to backup' + backupPlayerTypeInfo);
+        console.log('Found ads, switch to backup' + backupPlayerTypeInfo + ' in ' + (Date.now() - backupSearchStart) + 'ms — signifiers: ' + getMatchedAdSignifiers(textStr).join(', '));
         if (reloadPlayer) {
             postMessage({key: ReloadPlayerAfterAd ? 'UboReloadPlayer' : 'UboPauseResumePlayer'});
         }
@@ -326,23 +388,40 @@
     function hasAdTags(textStr) {
         return AD_SIGNIFIERS.some((s) => textStr.includes(s));
     }
+    function getMatchedAdSignifiers(textStr) {
+        return AD_SIGNIFIERS.filter((s) => textStr.includes(s));
+    }
     function stripAdSegments(textStr, stripAllSegments, streamInfo) {
         let hasStrippedAdSegments = false;
         let inCueOut = false;
-        const lines = textStr.replaceAll('\r', '').split('\n');
+        const liveSegments = [];
+        const lines = textStr.split(/\r?\n/);
         const newAdUrl = 'https://twitch.tv';
+        // Log ad tracking attribute names once per stream (helps identify new beacons)
+        if (!streamInfo.HasLoggedAdAttributes) {
+            const adAttrs = textStr.match(/X-TV-TWITCH-AD[A-Z-]*(?==")/g);
+            if (adAttrs && adAttrs.length > 0) {
+                streamInfo.HasLoggedAdAttributes = true;
+                console.log('[AD DEBUG] Ad tracking attributes seen: ' + [...new Set(adAttrs)].join(', '));
+            }
+        }
         for (let i = 0; i < lines.length; i++) {
             let line = lines[i];
             // Track SCTE-35 CUE-OUT/CUE-IN ad boundaries
             if (line.includes('EXT-X-CUE-OUT')) {
+                if (!inCueOut) {
+                    console.log('[AD DEBUG] SCTE-35 CUE-OUT — ad boundary entered');
+                }
                 inCueOut = true;
             } else if (line.includes('EXT-X-CUE-IN')) {
+                if (inCueOut) {
+                    console.log('[AD DEBUG] SCTE-35 CUE-IN — ad boundary exited');
+                }
                 inCueOut = false;
             }
             // Remove tracking urls which appear in the overlay UI
             lines[i] = line
-                .replaceAll(/(X-TV-TWITCH-AD-URL=")(?:[^"]*)(")/g, `$1${newAdUrl}$2`)
-                .replaceAll(/(X-TV-TWITCH-AD-CLICK-TRACKING-URL=")(?:[^"]*)(")/g, `$1${newAdUrl}$2`);
+                .replaceAll(/(X-TV-TWITCH-AD(?:-[A-Z]+)*-URLS?=")[^"]*(")/g, `$1${newAdUrl}$2`);
             if (i < lines.length - 1 && line.startsWith('#EXTINF') && (!line.includes(',live') || stripAllSegments || AllSegmentsAreAdSegments || inCueOut)) {
                 const segmentUrl = lines[i + 1];
                 if (!AdSegmentCache.has(segmentUrl)) {
@@ -350,6 +429,13 @@
                 }
                 AdSegmentCache.set(segmentUrl, Date.now());
                 hasStrippedAdSegments = true;
+            } else if (i < lines.length - 1 && line.startsWith('#EXTINF') && AD_SEGMENT_URL_PATTERNS.some((p) => lines[i + 1].includes(p))) {
+                console.log('[AD DEBUG] Ad segment detected via URL pattern: ' + lines[i + 1]);
+                AdSegmentCache.set(lines[i + 1], Date.now());
+                hasStrippedAdSegments = true;
+                streamInfo.NumStrippedAdSegments++;
+            } else if (i < lines.length - 1 && line.startsWith('#EXTINF') && line.includes(',live')) {
+                liveSegments.push({ extinf: line, url: lines[i + 1] });
             }
             if (AD_SIGNIFIERS.some((s) => line.includes(s))) {
                 hasStrippedAdSegments = true;
@@ -365,6 +451,31 @@
         } else {
             streamInfo.NumStrippedAdSegments = 0;
         }
+        // Cache live segments for recovery (plus the MEDIA-SEQUENCE of the oldest cached segment,
+        // so the player accepts injected recovery segments as the correct position in the stream)
+        if (liveSegments.length > 0) {
+            streamInfo.RecoverySegments = liveSegments.slice(-6);
+            const seq = parseInt((textStr.match(/#EXT-X-MEDIA-SEQUENCE:(\d+)/) || [])[1]);
+            if (!isNaN(seq)) {
+                streamInfo.RecoveryStartSeq = seq + Math.max(0, liveSegments.length - streamInfo.RecoverySegments.length);
+            }
+        }
+        // If all segments were stripped, restore cached recovery segments to prevent black screen
+        if (hasStrippedAdSegments && liveSegments.length === 0 && streamInfo.RecoverySegments && streamInfo.RecoverySegments.length > 0) {
+            console.log('[AD DEBUG] All segments stripped — restoring ' + streamInfo.RecoverySegments.length + ' recovery segments');
+            if (streamInfo.RecoveryStartSeq !== undefined) {
+                for (let j = 0; j < lines.length; j++) {
+                    if (lines[j].startsWith('#EXT-X-MEDIA-SEQUENCE:')) {
+                        lines[j] = '#EXT-X-MEDIA-SEQUENCE:' + streamInfo.RecoveryStartSeq;
+                        break;
+                    }
+                }
+            }
+            for (let j = 0; j < streamInfo.RecoverySegments.length; j++) {
+                lines.push(streamInfo.RecoverySegments[j].extinf);
+                lines.push(streamInfo.RecoverySegments[j].url);
+            }
+        }
         streamInfo.IsStrippingAdSegments = hasStrippedAdSegments;
         AdSegmentCache.forEach((value, key, map) => {
             if (value < Date.now() - 120000) {
@@ -378,9 +489,20 @@
         if (!streamInfo) {
             return textStr;
         }
+        streamInfo.LastSeenAt = Date.now();
         const currentResolution = streamInfo.Urls.get(url);
         if (!currentResolution) {
             return textStr;
+        }
+        if (!streamInfo.HasCheckedUnknownTags) {
+            streamInfo.HasCheckedUnknownTags = true;
+            const unknownAdTags = textStr.match(/#EXT[^:\n]*(?:ad|cue|scte|sponsor)[^:\n]*/gi);
+            if (unknownAdTags) {
+                const unknown = unknownAdTags.filter(t => !AD_SIGNIFIERS.some(s => t.includes(s)));
+                if (unknown.length > 0) {
+                    console.log('[AD DEBUG] Unknown ad-related tags found: ' + [...new Set(unknown)].join(', '));
+                }
+            }
         }
         const haveAdTags = hasAdTags(textStr) || (SimulatedAdsDepth > 0 && (!streamInfo.BackupEncodings || !streamInfo.BackupEncodings.includes(url) || SimulatedAdsDepth - 1 > streamInfo.BackupEncodingsPlayerTypeIndex));
         if (streamInfo.BackupEncodings) {
@@ -390,23 +512,35 @@
                 const streamM3u8 = await streamM3u8Response.text();
                 if (streamM3u8 != null) {
                     if (!hasAdTags(streamM3u8) && SimulatedAdsDepth == 0) {
-                        console.log('No more ads on main stream. ' + (ReloadPlayerAfterAd ? 'Triggering player reload to go back to main stream...' : 'Resuming playback...'));
-                        streamInfo.IsMovingOffBackupEncodings = true;
-                        streamInfo.BackupEncodings = null;
-                        streamInfo.BackupEncodingsStatus.clear();
-                        streamInfo.BackupEncodingsPlayerTypeIndex = -1;
-                        postMessage({key: ReloadPlayerAfterAd ? 'UboReloadPlayer' : 'UboPauseResumePlayer'});
-                    } else if (!streamM3u8.includes('"MIDROLL"') && !streamM3u8.includes('"midroll"')) {
-                        const lines = streamM3u8.replaceAll('\r', '').split('\n');
-                        for (let i = 0; i < lines.length; i++) {
-                            const line = lines[i];
-                            if (line.startsWith('#EXTINF') && lines.length > i + 1) {
-                                if (!line.includes(LIVE_SIGNIFIER) && !streamInfo.RequestedAds.has(lines[i + 1])) {
-                                    // Only request one .ts file per .m3u8 request to avoid making too many requests
-                                    //console.log('Fetch ad .ts file');
-                                    streamInfo.RequestedAds.add(lines[i + 1]);
-                                    fetch(lines[i + 1]).then((response)=>{response.blob()});
-                                    break;
+                        streamInfo.CleanPlaylistCount++;
+                        // Check if the current playlist has live segments — if not, backup stream is dead
+                        const hasLiveSegments = textStr.includes(LIVE_SIGNIFIER);
+                        if (streamInfo.CleanPlaylistCount >= 2 || !hasLiveSegments) {
+                            if (!hasLiveSegments) {
+                                console.log('[AD DEBUG] Backup stream has no live segments — forcing immediate reload');
+                            }
+                            console.log('No more ads on main stream. ' + (ReloadPlayerAfterAd ? 'Triggering player reload to go back to main stream...' : 'Resuming playback...'));
+                            streamInfo.IsMovingOffBackupEncodings = true;
+                            streamInfo.BackupEncodings = null;
+                            streamInfo.BackupEncodingsStatus.clear();
+                            streamInfo.BackupEncodingsPlayerTypeIndex = -1;
+                            streamInfo.CleanPlaylistCount = 0;
+                            postMessage({key: ReloadPlayerAfterAd ? 'UboReloadPlayer' : 'UboPauseResumePlayer'});
+                        }
+                    } else {
+                        streamInfo.CleanPlaylistCount = 0;
+                        if (!streamM3u8.includes('"MIDROLL"') && !streamM3u8.includes('"midroll"')) {
+                            const lines = streamM3u8.split(/\r?\n/);
+                            for (let i = 0; i < lines.length; i++) {
+                                const line = lines[i];
+                                if (line.startsWith('#EXTINF') && lines.length > i + 1) {
+                                    if (!line.includes(LIVE_SIGNIFIER) && !streamInfo.RequestedAds.has(lines[i + 1])) {
+                                        // Only request one .ts file per .m3u8 request to avoid making too many requests
+                                        //console.log('Fetch ad .ts file');
+                                        streamInfo.RequestedAds.add(lines[i + 1]);
+                                        fetch(lines[i + 1]).then((response)=>{response.blob()});
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -482,15 +616,20 @@
                         let serverTime = null;
                         if (streamInfo == null || streamInfo.Encodings == null) {
                             StreamInfos[channelName] = streamInfo = {
+                                LastSeenAt: Date.now(),
                                 RequestedAds: new Set(),
                                 Encodings: null,
                                 BackupEncodings: null,
                                 BackupEncodingsStatus: new Map(),
                                 BackupEncodingsPlayerTypeIndex: -1,
+                                PinnedBackupPlayerType: null,
+                                HasCheckedUnknownTags: false,
                                 IsMovingOffBackupEncodings: false,
                                 IsMidroll: false,
                                 IsStrippingAdSegments: false,
                                 NumStrippedAdSegments: 0,
+                                RecoverySegments: [],
+                                CleanPlaylistCount: 0,
                                 UseFallbackStream: false,
                                 ChannelName: channelName,
                                 UsherParams: (new URL(url)).search,
@@ -547,7 +686,7 @@
         return newServerTime ? encodingsM3u8.replace(new RegExp('(SERVER-TIME=")[0-9.]+"'), `SERVER-TIME="${newServerTime}"`) : encodingsM3u8;
     }
     function getStreamUrlForResolution(encodingsM3u8, resolutionInfo) {
-        const encodingsLines = encodingsM3u8.replaceAll('\r', '').split('\n');
+        const encodingsLines = encodingsM3u8.split(/\r?\n/);
         const [targetWidth, targetHeight] = resolutionInfo.Resolution.split('x').map(Number);
         let matchedResolutionUrl = null;
         let matchedFrameRate = false;
@@ -629,9 +768,16 @@
                     headers
                 }
             };
+            const timeoutId = setTimeout(() => {
+                if (pendingFetchRequests.has(requestId)) {
+                    pendingFetchRequests.delete(requestId);
+                    reject(new Error('FetchRequest timed out'));
+                }
+            }, 15000);
             pendingFetchRequests.set(requestId, {
                 resolve,
-                reject
+                reject,
+                timeoutId
             });
             postMessage({
                 key: 'FetchRequest',
@@ -640,6 +786,12 @@
         });
     }
     function parseAttributes(str) {
+        if (!str) return {};
+        // Normalize: always pass only attribute section
+        if (str.charCodeAt(0) === 35) { // '#'
+            const idx = str.indexOf(':');
+            if (idx !== -1) str = str.slice(idx + 1);
+        }
         return Object.fromEntries(
             str.split(/(?:^|,)((?:[^=]*)=(?:"[^"]*"|[^,]*))/)
                 .filter(Boolean)
@@ -676,6 +828,8 @@
         }
     }
     function hookFetch() {
+        console.log('[AD DEBUG] Window fetch hook installed');
+        let hasLoggedHeaders = false;
         const realFetch = window.fetch;
         window.realFetch = realFetch;
         window.fetch = function(url, init, ...args) {
@@ -694,6 +848,10 @@
                     }
                     if (typeof init.headers['Authorization'] === 'string' && init.headers['Authorization'] !== AuthorizationHeader) {
                         postTwitchWorkerMessage('UpdateAuthorizationHeader', AuthorizationHeader = init.headers['Authorization']);
+                    }
+                    if (!hasLoggedHeaders && gql_device_id && AuthorizationHeader) {
+                        hasLoggedHeaders = true;
+                        console.log('[AD DEBUG] GQL headers captured — DeviceId: ' + (gql_device_id ? 'yes' : 'no') + ', Auth: ' + (AuthorizationHeader ? 'yes' : 'no') + ', Integrity: ' + (ClientIntegrityHeader ? 'yes' : 'no'));
                     }
                     // Get rid of mini player above chat - TODO: Reject this locally instead of having server reject it
                     if (init && typeof init.body === 'string' && init.body.includes('PlaybackAccessToken') && init.body.includes('picture-by-picture')) {
@@ -721,6 +879,10 @@
                         }
                     }
                 }
+                if (url.includes('edge.ads.twitch.tv')) {
+                    const csaiType = url.includes('bp=midroll') ? 'midroll' : url.includes('bp=preroll') ? 'preroll' : 'unknown';
+                    console.log('[AD DEBUG] CSAI ad request detected — type: ' + csaiType + ' (client-side ad insertion, not blockable via m3u8)');
+                }
             }
             return realFetch.apply(this, arguments);
         };
@@ -729,10 +891,10 @@
         const playerRootDiv = document.querySelector('.video-player');
         if (playerRootDiv != null) {
             let adBlockDiv = null;
-            adBlockDiv = playerRootDiv.querySelector('.adblock-overlay');
+            adBlockDiv = playerRootDiv.querySelector('.tas-adblock-overlay');
             if (adBlockDiv == null) {
                 adBlockDiv = document.createElement('div');
-                adBlockDiv.className = 'adblock-overlay';
+                adBlockDiv.className = 'tas-adblock-overlay';
                 adBlockDiv.innerHTML = '<div class="player-adblock-notice" style="color: white; background-color: rgba(0, 0, 0, 0.8); position: absolute; top: 0px; left: 0px; padding: 5px;"><p></p></div>';
                 adBlockDiv.style.display = 'none';
                 adBlockDiv.P = adBlockDiv.querySelector('p');
@@ -743,7 +905,7 @@
                     twitchPlayerAndState = getPlayerAndState();
                 }
                 const isLive = twitchPlayerAndState?.state?.props?.content?.type === 'live';
-                adBlockDiv.P.textContent = 'Blocking' + (data.isMidroll ? ' midroll' : '') + ' ads' + (data.isStrippingAdSegments ? ' (stripping)' : '');// + (data.numStrippedAdSegments > 0 ? ` (${data.numStrippedAdSegments})` : '');
+                adBlockDiv.P.textContent = 'Blocking' + (data.isMidroll ? ' midroll' : '') + ' ads' + (data.isStrippingAdSegments ? ' (stripping)' : '') + (data.activeBackupPlayerType ? ' (' + data.activeBackupPlayerType + ')' : '');
                 adBlockDiv.style.display = data.hasAds && isLive ? 'block' : 'none';
             }
         }
@@ -782,7 +944,7 @@
                 reactRootNode = rootNode._reactRootContainer._internalRoot.current;
             }
             if (reactRootNode == null && rootNode != null) {
-                const containerName = Object.keys(rootNode).find(x => x.startsWith('__reactContainer'));
+                const containerName = Object.keys(rootNode).find(x => x.startsWith('__reactContainer') || x.startsWith('__reactFiber'));
                 if (containerName != null) {
                     reactRootNode = rootNode[containerName];
                 }
@@ -793,15 +955,26 @@
         if (!reactRootNode) {
             return null;
         }
+        // Primary: named property lookup
         let player = findReactNode(reactRootNode, node => node.setPlayerActive && node.props && node.props.mediaPlayerInstance);
         player = player && player.props && player.props.mediaPlayerInstance ? player.props.mediaPlayerInstance : null;
         if (player?.playerInstance) {
             player = player.playerInstance;
         }
+        // Fallback: structural match if Twitch obfuscates property names
+        if (!player) {
+            player = findReactNode(reactRootNode, node => node.getHTMLVideoElement && node.getBufferDuration && node.core?.state);
+        }
+        // Primary: named property lookup
         const playerState = findReactNode(reactRootNode, node => node.setSrc && node.setInitialPlaybackSettings);
+        // Fallback: structural match — setSrc exists but setInitialPlaybackSettings was renamed
+        const playerStateFallback = !playerState ? findReactNode(reactRootNode, node => node.setSrc && node.setStreamManagerNode && !node.getHTMLVideoElement) : null;
+        // Fallback 2: TTV-AB's approach — videoPlayerInstance with playerMode
+        const playerStateFallback2 = !playerState && !playerStateFallback ? findReactNode(reactRootNode, node => node.state?.videoPlayerInstance?.playerMode !== undefined)?.state?.videoPlayerInstance : null;
+        const finalPlayerState = playerState || playerStateFallback || playerStateFallback2;
         return  {
             player: player,
-            state: playerState
+            state: finalPlayerState
         };
     }
     function reloadTwitchPlayer(isPausePlay) {
@@ -848,7 +1021,8 @@
         } catch {}
         playerState.setSrc({ isNewMediaPlayerInstance: true, refreshAccessToken: true });
         player.play();
-        if (localStorageHookFailed && (currentQualityLS || currentMutedLS || currentVolumeLS)) {
+        // Always restore muted/volume state after reload — Chrome autoplay policy can force muted
+        if (currentQualityLS || currentMutedLS || currentVolumeLS) {
             setTimeout(() => {
                 try {
                     if (currentQualityLS) {
@@ -860,11 +1034,18 @@
                     if (currentVolumeLS) {
                         localStorage.setItem(lsKeyVolume, currentVolumeLS);
                     }
+                    const videos = document.getElementsByTagName('video');
+                    if (videos.length > 0 && videos[0].muted) {
+                        videos[0].muted = false;
+                    }
                 } catch {}
             }, 3000);
         }
     }
     function onContentLoaded() {
+        if (document.getElementById('seventv-extension')) {
+            console.log('[AD DEBUG] Warning: 7TV extension detected — may cause black screen or buffering issues. If you experience problems, try disabling 7TV.');
+        }
         // This stops Twitch from pausing the player when in another tab and an ad shows.
         // Taken from https://github.com/saucettv/VideoAdBlockForTwitch/blob/cefce9d2b565769c77e3666ac8234c3acfe20d83/chrome/content.js#L30
         try {
@@ -895,7 +1076,7 @@
                 if (videos.length > 0) {
                     if (hidden.apply(document) === true || (webkitHidden && webkitHidden.apply(document) === true)) {
                         wasVideoPlaying = !videos[0].paused && !videos[0].ended;
-                    } else if (wasVideoPlaying && !videos[0].ended && videos[0].paused && videos[0].muted) {
+                    } else if (wasVideoPlaying && !videos[0].ended && videos[0].paused) {
                         videos[0].play();
                     }
                 }
@@ -969,10 +1150,28 @@
         if (lsPlayerType !== null) {
             OPT_FORCE_ACCESS_TOKEN_PLAYER_TYPE = lsPlayerType;
         }
+        const lsPinBackup = localStorage.getItem('twitchAdSolutions_pinBackupPlayerType');
+        if (lsPinBackup !== null) {
+            PinBackupPlayerType = lsPinBackup === 'true';
+        }
+        const lsHideAdOverlay = localStorage.getItem('twitchAdSolutions_hideAdOverlay');
+        if (lsHideAdOverlay === 'true') {
+            const style = document.createElement('style');
+            style.textContent = '.tas-adblock-overlay { display: none !important; }';
+            (document.head || document.documentElement).appendChild(style);
+        }
     } catch {}
-    console.log('[AD DEBUG] Config: ReloadPlayerAfterAd = ' + ReloadPlayerAfterAd + ', ForceAccessTokenPlayerType = ' + OPT_FORCE_ACCESS_TOKEN_PLAYER_TYPE);
+    console.log('[AD DEBUG] Config: ReloadPlayerAfterAd = ' + ReloadPlayerAfterAd + ', ForceAccessTokenPlayerType = ' + OPT_FORCE_ACCESS_TOKEN_PLAYER_TYPE + ', PinBackupPlayerType = ' + PinBackupPlayerType);
     hookWindowWorker();
     hookFetch();
+    const realXHROpen = XMLHttpRequest.prototype.open;
+    XMLHttpRequest.prototype.open = function(method, url) {
+        if (typeof url === 'string' && url.includes('edge.ads.twitch.tv')) {
+            const csaiType = url.includes('bp=midroll') ? 'midroll' : url.includes('bp=preroll') ? 'preroll' : 'unknown';
+            console.log('[AD DEBUG] CSAI ad request (XHR) detected — type: ' + csaiType);
+        }
+        return realXHROpen.apply(this, arguments);
+    };
     monitorLiveStatus();
     if (document.readyState === "complete" || document.readyState === "interactive") {
         onContentLoaded();
