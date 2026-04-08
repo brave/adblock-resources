@@ -1,9 +1,9 @@
 (function() {
     if ( /(^|\.)twitch\.tv$/.test(document.location.hostname) === false ) { return; }
-    const ourTwitchAdSolutionsVersion = 33;// Used to prevent conflicts with outdated versions of the scripts
+    const ourTwitchAdSolutionsVersion = 35;// Used to prevent conflicts with outdated versions of the scripts
+    console.log('[AD DEBUG] TwitchAdSolutions video-swap-new v' + ourTwitchAdSolutionsVersion + ' loading');
     if (typeof window.twitchAdSolutionsVersion !== 'undefined' && window.twitchAdSolutionsVersion >= ourTwitchAdSolutionsVersion) {
-        console.log("skipping video-swap-new as there's another script active. ourVersion:" + ourTwitchAdSolutionsVersion + " activeVersion:" + window.twitchAdSolutionsVersion);
-        window.twitchAdSolutionsVersion = ourTwitchAdSolutionsVersion;
+        console.log('[AD DEBUG] CONFLICT: video-swap-new v' + ourTwitchAdSolutionsVersion + ' skipped — another script already active (v' + window.twitchAdSolutionsVersion + '). Remove duplicate scripts.');
         return;
     }
     window.twitchAdSolutionsVersion = ourTwitchAdSolutionsVersion;
@@ -11,13 +11,13 @@
         // Options / globals
         scope.OPT_BACKUP_PLAYER_TYPES = [ 'autoplay', 'picture-by-picture', /*'autoplay-ALT',*/ 'embed', 'mobile_web' ];
         scope.OPT_FORCE_ACCESS_TOKEN_PLAYER_TYPE = 'popout';
-        scope.AD_SIGNIFIERS = ['stitched', 'stitched-ad', 'maf-ad', 'X-TV-TWITCH-AD', 'EXT-X-CUE-OUT', 'EXT-X-DATERANGE:CLASS="twitch-stitched-ad"', 'EXT-X-DATERANGE:CLASS="twitch-stream-source"', 'EXT-X-DATERANGE:CLASS="twitch-trigger"', 'EXT-X-DATERANGE:CLASS="twitch-maf-ad"', 'EXT-X-DATERANGE:CLASS="twitch-ad-quartile"', 'SCTE35-OUT'];
+        scope.AD_SIGNIFIERS = ['stitched', 'stitched-ad', 'X-TV-TWITCH-AD', 'EXT-X-CUE-OUT', 'EXT-X-DATERANGE:CLASS="twitch-stitched-ad"', 'EXT-X-DATERANGE:CLASS="twitch-stream-source"', 'EXT-X-DATERANGE:CLASS="twitch-trigger"', 'EXT-X-DATERANGE:CLASS="twitch-maf-ad"', 'EXT-X-DATERANGE:CLASS="twitch-ad-quartile"', 'SCTE35-OUT'];
         scope.AD_SEGMENT_URL_PATTERNS = ['/adsquared/', '/_404/', '/processing'];
         scope.LIVE_SIGNIFIER = ',live';
         scope.CLIENT_ID = 'kimne78kx3ncx6brgo4mv6wki5h1ko';
         // These are only really for Worker scope...
-        scope.StreamInfos = [];
-        scope.StreamInfosByUrl = [];
+        scope.StreamInfos = Object.create(null);
+        scope.StreamInfosByUrl = Object.create(null);
         // Need this in both scopes. Window scope needs to update this to worker scope.
         scope.gql_device_id = null;
         scope.ClientIntegrityHeader = null;
@@ -29,6 +29,19 @@
         scope.AllSegmentsAreAdSegments = false;
         scope.ReloadPlayerAfterAd = true;// After the ad finishes do a player reload instead of pause/play
         scope.PinBackupPlayerType = false;// If true, remember which backup player type worked and try it first on next ad break
+        scope.StreamInfoMaxAgeMs = 30 * 60 * 1000;
+    }
+    function pruneStreamInfos() {
+        const now = Date.now();
+        for (const channelName in StreamInfos) {
+            const streamInfo = StreamInfos[channelName];
+            if (!streamInfo || !streamInfo.LastSeenAt || (now - streamInfo.LastSeenAt) > StreamInfoMaxAgeMs) {
+                if (streamInfo && streamInfo.Urls) {
+                    streamInfo.Urls.forEach((_, url) => { delete StreamInfosByUrl[url]; });
+                }
+                delete StreamInfos[channelName];
+            }
+        }
     }
     let twitchPlayerAndState = null;
     let localStorageHookFailed = false;
@@ -86,11 +99,24 @@
     }
     function isValidWorker(worker) {
         const workerString = worker.toString();
-        return !workerStringConflicts.some((x) => workerString.includes(x))
-            || workerStringAllow.some((x) => workerString.includes(x))
-            || workerStringReinsert.some((x) => workerString.includes(x));
+        const hasConflict = workerStringConflicts.some((x) => workerString.includes(x));
+        const hasAllow = workerStringAllow.some((x) => workerString.includes(x));
+        const hasReinsert = workerStringReinsert.some((x) => workerString.includes(x));
+        if (hasConflict && !hasAllow && !hasReinsert) {
+            console.log('[AD DEBUG] Worker rejected — conflict string found: ' + workerStringConflicts.filter((x) => workerString.includes(x)).join(', '));
+        }
+        return !hasConflict || hasAllow || hasReinsert;
     }
+    let injectedBlobUrl = null;
     function hookWindowWorker() {
+        // Prevent Twitch from revoking our injected worker blob URL
+        if (!URL.__tasOriginalRevokeObjectURL) {
+            URL.__tasOriginalRevokeObjectURL = URL.revokeObjectURL;
+            URL.revokeObjectURL = function(url) {
+                if (url === injectedBlobUrl) return;
+                return URL.__tasOriginalRevokeObjectURL.call(this, url);
+            };
+        }
         const reinsert = getWorkersForReinsert(window.Worker);
         const newWorker = class Worker extends getCleanWorker(window.Worker) {
             constructor(twitchBlobUrl, options) {
@@ -100,8 +126,10 @@
                 } catch {}
                 if (!isTwitchWorker) {
                     super(twitchBlobUrl, options);
+                    console.log('[AD DEBUG] Non-Twitch worker skipped: ' + twitchBlobUrl);
                     return;
                 }
+                console.log('[AD DEBUG] Worker intercepted — injecting ad-block hooks');
                 const newBlobStr = `
                     const pendingFetchRequests = new Map();
                     ${hasAdTags.toString()}
@@ -120,8 +148,12 @@
                     ${replaceServerTimeInM3u8.toString()}
                     ${getStreamUrlForResolution.toString()}
                     ${updateAdblockBannerForStream.toString()}
+                    ${pruneStreamInfos.toString()}
                     const workerString = getWasmWorkerJs('${twitchBlobUrl.replaceAll("'", "%27")}');
                     declareOptions(self);
+                    if (!self.__tasPruneInterval) {
+                        self.__tasPruneInterval = setInterval(pruneStreamInfos, 5 * 60 * 1000);
+                    }
                     ReloadPlayerAfterAd = ${ReloadPlayerAfterAd};
                     PinBackupPlayerType = ${PinBackupPlayerType};
                     OPT_FORCE_ACCESS_TOKEN_PLAYER_TYPE = '${OPT_FORCE_ACCESS_TOKEN_PLAYER_TYPE}';
@@ -138,7 +170,8 @@
                         } else if (e.data.key == 'FetchResponse') {
                             const responseData = e.data.value;
                             if (pendingFetchRequests.has(responseData.id)) {
-                                const { resolve, reject } = pendingFetchRequests.get(responseData.id);
+                                const { resolve, reject, timeoutId } = pendingFetchRequests.get(responseData.id);
+                                clearTimeout(timeoutId);
                                 pendingFetchRequests.delete(responseData.id);
                                 if (responseData.error) {
                                     reject(new Error(responseData.error));
@@ -163,7 +196,8 @@
                     hookWorkerFetch();
                     eval(workerString);
                 `
-                super(URL.createObjectURL(new Blob([newBlobStr])), options);
+                injectedBlobUrl = URL.createObjectURL(new Blob([newBlobStr]));
+                super(injectedBlobUrl, options);
                 twitchWorkers.length = 0;
                 twitchWorkers.push(this);
                 this.addEventListener('message', (e) => {
@@ -202,14 +236,22 @@
         });
     }
     function getWasmWorkerJs(twitchBlobUrl) {
+        if (!getWasmWorkerJs.cache) {
+            getWasmWorkerJs.cache = Object.create(null);
+        }
+        if (getWasmWorkerJs.cache[twitchBlobUrl]) {
+            return getWasmWorkerJs.cache[twitchBlobUrl];
+        }
         const req = new XMLHttpRequest();
         req.open('GET', twitchBlobUrl, false);
         req.overrideMimeType("text/javascript");
         req.send();
-        return req.responseText;
+        const text = req.responseText;
+        getWasmWorkerJs.cache[twitchBlobUrl] = text;
+        return text;
     }
     function setStreamInfoUrls(streamInfo, encodingsM3u8) {
-        const lines = encodingsM3u8.replaceAll('\r', '').split('\n');
+        const lines = encodingsM3u8.split(/\r?\n/);
         for (let i = 0; i < lines.length; i++) {
             if (!lines[i].startsWith('#') && lines[i].includes('.m3u8')) {
                 StreamInfosByUrl[lines[i].trimEnd()] = streamInfo;
@@ -274,6 +316,10 @@
                     const accessTokenResponse = await getAccessToken(streamInfo.ChannelName, playerType);
                     if (accessTokenResponse != null && accessTokenResponse.status === 200) {
                         const accessToken = await accessTokenResponse.json();
+                        if (!accessToken?.data?.streamPlaybackAccessToken) {
+                            console.log('[AD DEBUG] GQL response format changed — missing data.streamPlaybackAccessToken for ' + playerType + '. Response keys: ' + JSON.stringify(Object.keys(accessToken?.data || accessToken || {})));
+                            continue;
+                        }
                         const urlInfo = new URL('https://usher.ttvnw.net/api/' + (V2API ? 'v2/' : '') + 'channel/hls/' + streamInfo.ChannelName + '.m3u8' + streamInfo.UsherParams);
                         urlInfo.searchParams.set('sig', accessToken.data.streamPlaybackAccessToken.signature);
                         urlInfo.searchParams.set('token', accessToken.data.streamPlaybackAccessToken.value);
@@ -295,7 +341,7 @@
                                     if (streamInfo.Encodings != null) {
                                         // Low resolution streams will reduce the number of resolutions in the UI. To fix this we merge the low res URLs into the main m3u8
                                         const normalEncodingsM3u8 = streamInfo.Encodings;
-                                        const normalLines = normalEncodingsM3u8.replaceAll('\r', '').split('\n');
+                                        const normalLines = normalEncodingsM3u8.split(/\r?\n/);
                                         for (let j = 0; j < normalLines.length - 1; j++) {
                                             if (normalLines[j].startsWith('#EXT-X-STREAM-INF')) {
                                                 const resSettings = parseAttributes(normalLines[j].substring(normalLines[j].indexOf(':') + 1));
@@ -349,7 +395,7 @@
         let hasStrippedAdSegments = false;
         let inCueOut = false;
         const liveSegments = [];
-        const lines = textStr.replaceAll('\r', '').split('\n');
+        const lines = textStr.split(/\r?\n/);
         const newAdUrl = 'https://twitch.tv';
         // Log ad tracking attribute names once per stream (helps identify new beacons)
         if (!streamInfo.HasLoggedAdAttributes) {
@@ -443,6 +489,7 @@
         if (!streamInfo) {
             return textStr;
         }
+        streamInfo.LastSeenAt = Date.now();
         const currentResolution = streamInfo.Urls.get(url);
         if (!currentResolution) {
             return textStr;
@@ -483,7 +530,7 @@
                     } else {
                         streamInfo.CleanPlaylistCount = 0;
                         if (!streamM3u8.includes('"MIDROLL"') && !streamM3u8.includes('"midroll"')) {
-                            const lines = streamM3u8.replaceAll('\r', '').split('\n');
+                            const lines = streamM3u8.split(/\r?\n/);
                             for (let i = 0; i < lines.length; i++) {
                                 const line = lines[i];
                                 if (line.startsWith('#EXTINF') && lines.length > i + 1) {
@@ -569,6 +616,7 @@
                         let serverTime = null;
                         if (streamInfo == null || streamInfo.Encodings == null) {
                             StreamInfos[channelName] = streamInfo = {
+                                LastSeenAt: Date.now(),
                                 RequestedAds: new Set(),
                                 Encodings: null,
                                 BackupEncodings: null,
@@ -638,7 +686,7 @@
         return newServerTime ? encodingsM3u8.replace(new RegExp('(SERVER-TIME=")[0-9.]+"'), `SERVER-TIME="${newServerTime}"`) : encodingsM3u8;
     }
     function getStreamUrlForResolution(encodingsM3u8, resolutionInfo) {
-        const encodingsLines = encodingsM3u8.replaceAll('\r', '').split('\n');
+        const encodingsLines = encodingsM3u8.split(/\r?\n/);
         const [targetWidth, targetHeight] = resolutionInfo.Resolution.split('x').map(Number);
         let matchedResolutionUrl = null;
         let matchedFrameRate = false;
@@ -720,9 +768,16 @@
                     headers
                 }
             };
+            const timeoutId = setTimeout(() => {
+                if (pendingFetchRequests.has(requestId)) {
+                    pendingFetchRequests.delete(requestId);
+                    reject(new Error('FetchRequest timed out'));
+                }
+            }, 15000);
             pendingFetchRequests.set(requestId, {
                 resolve,
-                reject
+                reject,
+                timeoutId
             });
             postMessage({
                 key: 'FetchRequest',
@@ -731,6 +786,12 @@
         });
     }
     function parseAttributes(str) {
+        if (!str) return {};
+        // Normalize: always pass only attribute section
+        if (str.charCodeAt(0) === 35) { // '#'
+            const idx = str.indexOf(':');
+            if (idx !== -1) str = str.slice(idx + 1);
+        }
         return Object.fromEntries(
             str.split(/(?:^|,)((?:[^=]*)=(?:"[^"]*"|[^,]*))/)
                 .filter(Boolean)
@@ -767,6 +828,8 @@
         }
     }
     function hookFetch() {
+        console.log('[AD DEBUG] Window fetch hook installed');
+        let hasLoggedHeaders = false;
         const realFetch = window.fetch;
         window.realFetch = realFetch;
         window.fetch = function(url, init, ...args) {
@@ -785,6 +848,10 @@
                     }
                     if (typeof init.headers['Authorization'] === 'string' && init.headers['Authorization'] !== AuthorizationHeader) {
                         postTwitchWorkerMessage('UpdateAuthorizationHeader', AuthorizationHeader = init.headers['Authorization']);
+                    }
+                    if (!hasLoggedHeaders && gql_device_id && AuthorizationHeader) {
+                        hasLoggedHeaders = true;
+                        console.log('[AD DEBUG] GQL headers captured — DeviceId: ' + (gql_device_id ? 'yes' : 'no') + ', Auth: ' + (AuthorizationHeader ? 'yes' : 'no') + ', Integrity: ' + (ClientIntegrityHeader ? 'yes' : 'no'));
                     }
                     // Get rid of mini player above chat - TODO: Reject this locally instead of having server reject it
                     if (init && typeof init.body === 'string' && init.body.includes('PlaybackAccessToken') && init.body.includes('picture-by-picture')) {
@@ -877,7 +944,7 @@
                 reactRootNode = rootNode._reactRootContainer._internalRoot.current;
             }
             if (reactRootNode == null && rootNode != null) {
-                const containerName = Object.keys(rootNode).find(x => x.startsWith('__reactContainer'));
+                const containerName = Object.keys(rootNode).find(x => x.startsWith('__reactContainer') || x.startsWith('__reactFiber'));
                 if (containerName != null) {
                     reactRootNode = rootNode[containerName];
                 }
@@ -888,15 +955,26 @@
         if (!reactRootNode) {
             return null;
         }
+        // Primary: named property lookup
         let player = findReactNode(reactRootNode, node => node.setPlayerActive && node.props && node.props.mediaPlayerInstance);
         player = player && player.props && player.props.mediaPlayerInstance ? player.props.mediaPlayerInstance : null;
         if (player?.playerInstance) {
             player = player.playerInstance;
         }
+        // Fallback: structural match if Twitch obfuscates property names
+        if (!player) {
+            player = findReactNode(reactRootNode, node => node.getHTMLVideoElement && node.getBufferDuration && node.core?.state);
+        }
+        // Primary: named property lookup
         const playerState = findReactNode(reactRootNode, node => node.setSrc && node.setInitialPlaybackSettings);
+        // Fallback: structural match — setSrc exists but setInitialPlaybackSettings was renamed
+        const playerStateFallback = !playerState ? findReactNode(reactRootNode, node => node.setSrc && node.setStreamManagerNode && !node.getHTMLVideoElement) : null;
+        // Fallback 2: TTV-AB's approach — videoPlayerInstance with playerMode
+        const playerStateFallback2 = !playerState && !playerStateFallback ? findReactNode(reactRootNode, node => node.state?.videoPlayerInstance?.playerMode !== undefined)?.state?.videoPlayerInstance : null;
+        const finalPlayerState = playerState || playerStateFallback || playerStateFallback2;
         return  {
             player: player,
-            state: playerState
+            state: finalPlayerState
         };
     }
     function reloadTwitchPlayer(isPausePlay) {
