@@ -1,6 +1,6 @@
 (function() {
     if ( /(^|\.)twitch\.tv$/.test(document.location.hostname) === false ) { return; }
-    const ourTwitchAdSolutionsVersion = 35;// Used to prevent conflicts with outdated versions of the scripts
+    const ourTwitchAdSolutionsVersion = 36;// Used to prevent conflicts with outdated versions of the scripts
     console.log('[AD DEBUG] TwitchAdSolutions video-swap-new v' + ourTwitchAdSolutionsVersion + ' loading');
     if (typeof window.twitchAdSolutionsVersion !== 'undefined' && window.twitchAdSolutionsVersion >= ourTwitchAdSolutionsVersion) {
         console.log('[AD DEBUG] CONFLICT: video-swap-new v' + ourTwitchAdSolutionsVersion + ' skipped — another script already active (v' + window.twitchAdSolutionsVersion + '). Remove duplicate scripts.');
@@ -31,6 +31,10 @@
         scope.PinBackupPlayerType = false;// If true, remember which backup player type worked and try it first on next ad break
         scope.StreamInfoMaxAgeMs = 30 * 60 * 1000;
     }
+    function maskAsNative(fn, name) {
+        fn.toString = () => 'function ' + name + '() { [native code] }';
+        return fn;
+    }
     function pruneStreamInfos() {
         const now = Date.now();
         for (const channelName in StreamInfos) {
@@ -43,6 +47,7 @@
             }
         }
     }
+    const loggedCsaiTypes = new Set();
     let twitchPlayerAndState = null;
     let localStorageHookFailed = false;
     const twitchWorkers = [];
@@ -110,15 +115,16 @@
     let injectedBlobUrl = null;
     function hookWindowWorker() {
         // Prevent Twitch from revoking our injected worker blob URL
-        if (!URL.__tasOriginalRevokeObjectURL) {
-            URL.__tasOriginalRevokeObjectURL = URL.revokeObjectURL;
-            URL.revokeObjectURL = function(url) {
+        if (!URL.revokeObjectURL.__tasMasked) {
+            const originalRevokeObjectURL = URL.revokeObjectURL;
+            URL.revokeObjectURL = maskAsNative(function(url) {
                 if (url === injectedBlobUrl) return;
-                return URL.__tasOriginalRevokeObjectURL.call(this, url);
-            };
+                return originalRevokeObjectURL.call(this, url);
+            }, 'revokeObjectURL');
+            URL.revokeObjectURL.__tasMasked = true;
         }
         const reinsert = getWorkersForReinsert(window.Worker);
-        const newWorker = class Worker extends getCleanWorker(window.Worker) {
+        const newWorker = class Worker extends (getCleanWorker(window.Worker) || window.Worker) {
             constructor(twitchBlobUrl, options) {
                 let isTwitchWorker = false;
                 try {
@@ -127,6 +133,14 @@
                 if (!isTwitchWorker) {
                     super(twitchBlobUrl, options);
                     console.log('[AD DEBUG] Non-Twitch worker skipped: ' + twitchBlobUrl);
+                    return;
+                }
+                // Pre-check: verify we can fetch the worker JS before injecting
+                let prefetchedWorkerJs = null;
+                try { prefetchedWorkerJs = getWasmWorkerJs(twitchBlobUrl); } catch {}
+                if (!prefetchedWorkerJs) {
+                    super(twitchBlobUrl, options);
+                    console.log('[AD DEBUG] Failed to fetch worker JS — falling back to unmodified worker');
                     return;
                 }
                 console.log('[AD DEBUG] Worker intercepted — injecting ad-block hooks');
@@ -519,7 +533,15 @@
                             if (!hasLiveSegments) {
                                 console.log('[AD DEBUG] Backup stream has no live segments — forcing immediate reload');
                             }
-                            console.log('No more ads on main stream. ' + (ReloadPlayerAfterAd ? 'Triggering player reload to go back to main stream...' : 'Resuming playback...'));
+                            console.log('No more ads on main stream. Stripped ' + streamInfo.NumStrippedAdSegments + ' ad segments. ' + (ReloadPlayerAfterAd ? 'Triggering player reload to go back to main stream...' : 'Resuming playback...'));
+                            if (streamInfo.NumStrippedAdSegments === 0) {
+                                streamInfo.ConsecutiveZeroStripBreaks++;
+                                if (streamInfo.ConsecutiveZeroStripBreaks >= 3) {
+                                    console.log('[AD DEBUG] Warning: ' + streamInfo.ConsecutiveZeroStripBreaks + ' consecutive ad breaks with 0 segments stripped — possible false positive from ad signifiers');
+                                }
+                            } else {
+                                streamInfo.ConsecutiveZeroStripBreaks = 0;
+                            }
                             streamInfo.IsMovingOffBackupEncodings = true;
                             streamInfo.BackupEncodings = null;
                             streamInfo.BackupEncodingsStatus.clear();
@@ -630,6 +652,7 @@
                                 NumStrippedAdSegments: 0,
                                 RecoverySegments: [],
                                 CleanPlaylistCount: 0,
+                                ConsecutiveZeroStripBreaks: 0,
                                 UseFallbackStream: false,
                                 ChannelName: channelName,
                                 UsherParams: (new URL(url)).search,
@@ -832,7 +855,7 @@
         let hasLoggedHeaders = false;
         const realFetch = window.fetch;
         window.realFetch = realFetch;
-        window.fetch = function(url, init, ...args) {
+        window.fetch = maskAsNative(function(url, init, ...args) {
             if (typeof url === 'string') {
                 if (url.includes('gql')) {
                     let deviceId = init.headers['X-Device-Id'];
@@ -881,11 +904,14 @@
                 }
                 if (url.includes('edge.ads.twitch.tv')) {
                     const csaiType = url.includes('bp=midroll') ? 'midroll' : url.includes('bp=preroll') ? 'preroll' : 'unknown';
-                    console.log('[AD DEBUG] CSAI ad request detected — type: ' + csaiType + ' (client-side ad insertion, not blockable via m3u8)');
+                    if (!loggedCsaiTypes.has(csaiType)) {
+                        loggedCsaiTypes.add(csaiType);
+                        console.log('[AD DEBUG] CSAI ad request detected — type: ' + csaiType + ' (client-side ad insertion, not blockable via m3u8)');
+                    }
                 }
             }
             return realFetch.apply(this, arguments);
-        };
+        }, 'fetch');
     }
     function updateAdblockBanner(data) {
         const playerRootDiv = document.querySelector('.video-player');
@@ -998,7 +1024,7 @@
         }
         if (isPausePlay) {
             player.pause();
-            player.play();
+            player.play()?.catch?.(() => {});
             return;
         }
         const lsKeyQuality = 'video-quality';
@@ -1015,12 +1041,12 @@
                 localStorage.setItem(lsKeyMuted, JSON.stringify({default:player.core.state.muted}));
                 localStorage.setItem(lsKeyVolume, player.core.state.volume);
             }
-            if (localStorageHookFailed && player?.core?.state?.quality?.group) {
+            if (player?.core?.state?.quality?.group) {
                 localStorage.setItem(lsKeyQuality, JSON.stringify({default:player.core.state.quality.group}));
             }
         } catch {}
         playerState.setSrc({ isNewMediaPlayerInstance: true, refreshAccessToken: true });
-        player.play();
+        player.play()?.catch?.(() => {});
         // Always restore muted/volume state after reload — Chrome autoplay policy can force muted
         if (currentQualityLS || currentMutedLS || currentVolumeLS) {
             setTimeout(() => {
@@ -1077,7 +1103,7 @@
                     if (hidden.apply(document) === true || (webkitHidden && webkitHidden.apply(document) === true)) {
                         wasVideoPlaying = !videos[0].paused && !videos[0].ended;
                     } else if (wasVideoPlaying && !videos[0].ended && videos[0].paused) {
-                        videos[0].play();
+                        videos[0].play()?.catch?.(() => {});
                     }
                 }
             }
@@ -1116,20 +1142,20 @@
                 cachedValues.set(keysToCache[i], localStorage.getItem(keysToCache[i]));
             }
             const realSetItem = localStorage.setItem;
-            localStorage.setItem = function(key, value) {
+            localStorage.setItem = maskAsNative(function(key, value) {
                 if (cachedValues.has(key)) {
                     cachedValues.set(key, value);
                 }
                 realSetItem.apply(this, arguments);
-            };
+            }, 'setItem');
             const realGetItem = localStorage.getItem;
-            localStorage.getItem = function(key) {
+            localStorage.getItem = maskAsNative(function(key) {
                 if (cachedValues.has(key)) {
                     return cachedValues.get(key);
                 }
                 return realGetItem.apply(this, arguments);
-            };
-            if (!localStorage.getItem.toString().includes(Object.keys({cachedValues})[0])) {
+            }, 'getItem');
+            if (localStorage.getItem === realGetItem) {
                 // These hooks are useful to preserve player state on player reload
                 // Firefox doesn't allow hooking of localStorage functions but chrome does
                 localStorageHookFailed = true;
@@ -1165,13 +1191,17 @@
     hookWindowWorker();
     hookFetch();
     const realXHROpen = XMLHttpRequest.prototype.open;
-    XMLHttpRequest.prototype.open = function(method, url) {
+    XMLHttpRequest.prototype.open = maskAsNative(function(method, url) {
         if (typeof url === 'string' && url.includes('edge.ads.twitch.tv')) {
             const csaiType = url.includes('bp=midroll') ? 'midroll' : url.includes('bp=preroll') ? 'preroll' : 'unknown';
-            console.log('[AD DEBUG] CSAI ad request (XHR) detected — type: ' + csaiType);
+            const xhrKey = csaiType + '-xhr';
+            if (!loggedCsaiTypes.has(xhrKey)) {
+                loggedCsaiTypes.add(xhrKey);
+                console.log('[AD DEBUG] CSAI ad request (XHR) detected — type: ' + csaiType);
+            }
         }
         return realXHROpen.apply(this, arguments);
-    };
+    }, 'open');
     monitorLiveStatus();
     if (document.readyState === "complete" || document.readyState === "interactive") {
         onContentLoaded();
