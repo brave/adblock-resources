@@ -1209,6 +1209,25 @@
         ]
     },
     {
+        "uuid": "61C6046C-B040-4CE4-8C8E-F3E8F316AA72",
+        "title": "Adblock Only Mode supplemental list",
+        "desc": "Adblock Only Mode supplemental list",
+        "langs": [],
+        "hidden": true,
+        "default_enabled": false,
+        "list_text_component": {
+            "component_id": "nonalfeamhpdknocmihkdmnpfofggjgo",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6LRRWhOYWLCmqsa1IhK9szwzSTxRoLWimkDuSnWtkCn9uXvOMBQgGNafr92ETybO9tuGob8Lvy2j6Xo6qHj7anbuRl6wq5DSlgfyQeCxtKUcfheuQsFwU1iAAewebcdXLvGqdOPkUU5PGvvVkCythlPXxbYphGFg4QisxQuqpO/dzT69nq8L7AIOGhUjPpTLlf4fjni4c5tPN3fbeGihqwfdm1orJ6SAwFLqG9tW8Zpfr6RaJ7y8OUOz8eey2y82jLrL/FvUd8MenJciKUgUVHvIu6Etzh0TvZv2x/WtzUSLm1vzB3niv2g67TNmBqErcAHvqmwuWlRvDUNwIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://github.com/easylist/easylist/blob/master/easyprivacy/easyprivacy_trackingservers_admiral.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/easylist/easylist"
+            }
+        ]
+    },
+    {
         "uuid": "564C3B75-8731-404C-AD7C-5683258BA0B0",
         "title": "Experimental ad blocker",
         "desc": "Brave Experimental Adblock Rules",
