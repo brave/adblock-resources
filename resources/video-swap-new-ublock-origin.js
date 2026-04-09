@@ -1,6 +1,6 @@
 (function() {
     if ( /(^|\.)twitch\.tv$/.test(document.location.hostname) === false ) { return; }
-    const ourTwitchAdSolutionsVersion = 37;// Used to prevent conflicts with outdated versions of the scripts
+    const ourTwitchAdSolutionsVersion = 38;// Used to prevent conflicts with outdated versions of the scripts
     console.log('[AD DEBUG] TwitchAdSolutions video-swap-new v' + ourTwitchAdSolutionsVersion + ' loading');
     if (typeof window.twitchAdSolutionsVersion !== 'undefined' && window.twitchAdSolutionsVersion >= ourTwitchAdSolutionsVersion) {
         console.log('[AD DEBUG] CONFLICT: video-swap-new v' + ourTwitchAdSolutionsVersion + ' skipped — another script already active (v' + window.twitchAdSolutionsVersion + '). Remove duplicate scripts.');
@@ -328,6 +328,11 @@
             if (!streamInfo.BackupEncodingsStatus.has(playerType)) {
                 try {
                     const accessTokenResponse = await getAccessToken(streamInfo.ChannelName, playerType);
+                    if (accessTokenResponse != null && accessTokenResponse.status !== 200) {
+                        let errorBody = '';
+                        try { errorBody = ' — ' + (await accessTokenResponse.text()).substring(0, 200); } catch {}
+                        console.log('[AD DEBUG] Access token HTTP ' + accessTokenResponse.status + ' for ' + playerType + (accessTokenResponse.status === 403 ? ' (integrity: ' + (ClientIntegrityHeader ? 'present' : 'missing') + ')' : '') + errorBody);
+                    }
                     if (accessTokenResponse != null && accessTokenResponse.status === 200) {
                         const accessToken = await accessTokenResponse.json();
                         if (!accessToken?.data?.streamPlaybackAccessToken) {
@@ -338,6 +343,9 @@
                         urlInfo.searchParams.set('sig', accessToken.data.streamPlaybackAccessToken.signature);
                         urlInfo.searchParams.set('token', accessToken.data.streamPlaybackAccessToken.value);
                         const encodingsM3u8Response = await realFetch(urlInfo.href);
+                        if (encodingsM3u8Response != null && encodingsM3u8Response.status !== 200) {
+                            console.log('[AD DEBUG] Usher HTTP ' + encodingsM3u8Response.status + ' for ' + playerType);
+                        }
                         if (encodingsM3u8Response != null && encodingsM3u8Response.status === 200) {
                             let encodingsM3u8 = await encodingsM3u8Response.text();
                             const streamM3u8Url = getStreamUrlForResolution(encodingsM3u8, resolutionInfo);
