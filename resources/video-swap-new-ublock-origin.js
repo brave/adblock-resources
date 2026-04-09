@@ -1,6 +1,6 @@
 (function() {
     if ( /(^|\.)twitch\.tv$/.test(document.location.hostname) === false ) { return; }
-    const ourTwitchAdSolutionsVersion = 36;// Used to prevent conflicts with outdated versions of the scripts
+    const ourTwitchAdSolutionsVersion = 37;// Used to prevent conflicts with outdated versions of the scripts
     console.log('[AD DEBUG] TwitchAdSolutions video-swap-new v' + ourTwitchAdSolutionsVersion + ' loading');
     if (typeof window.twitchAdSolutionsVersion !== 'undefined' && window.twitchAdSolutionsVersion >= ourTwitchAdSolutionsVersion) {
         console.log('[AD DEBUG] CONFLICT: video-swap-new v' + ourTwitchAdSolutionsVersion + ' skipped — another script already active (v' + window.twitchAdSolutionsVersion + '). Remove duplicate scripts.');
@@ -1025,6 +1025,13 @@
         if (isPausePlay) {
             player.pause();
             player.play()?.catch?.(() => {});
+            return;
+        }
+        if (document.pictureInPictureElement) {
+            // Downgrade to pause/play to preserve PiP — setSrc exits PiP
+            player.pause();
+            player.play()?.catch?.(() => {});
+            console.log('[AD DEBUG] Downgraded reload to pause/play to preserve PiP');
             return;
         }
         const lsKeyQuality = 'video-quality';
