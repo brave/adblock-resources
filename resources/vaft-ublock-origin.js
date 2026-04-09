@@ -1,7 +1,7 @@
 (function() {
     if ( /(^|\.)twitch\.tv$/.test(document.location.hostname) === false ) { return; }
     'use strict';
-    const ourTwitchAdSolutionsVersion = 42;// Used to prevent conflicts with outdated versions of the scripts
+    const ourTwitchAdSolutionsVersion = 43;// Used to prevent conflicts with outdated versions of the scripts
     console.log('[AD DEBUG] TwitchAdSolutions vaft v' + ourTwitchAdSolutionsVersion + ' loading');
     if (typeof window.twitchAdSolutionsVersion !== 'undefined' && window.twitchAdSolutionsVersion >= ourTwitchAdSolutionsVersion) {
         console.log('[AD DEBUG] CONFLICT: vaft v' + ourTwitchAdSolutionsVersion + ' skipped — another script already active (v' + window.twitchAdSolutionsVersion + '). Remove duplicate scripts.');
@@ -11,7 +11,6 @@
     // Configuration and state shared between window and worker scopes
     function declareOptions(scope) {
         scope.AdSignifiers = ['stitched', 'stitched-ad', 'X-TV-TWITCH-AD', 'EXT-X-CUE-OUT', 'EXT-X-DATERANGE:CLASS="twitch-stitched-ad"', 'EXT-X-DATERANGE:CLASS="twitch-stream-source"', 'EXT-X-DATERANGE:CLASS="twitch-trigger"', 'EXT-X-DATERANGE:CLASS="twitch-maf-ad"', 'EXT-X-DATERANGE:CLASS="twitch-ad-quartile"', 'SCTE35-OUT'];
-        scope.AdSignifierRegex = /stitched|X-TV-TWITCH-AD|EXT-X-CUE-OUT|SCTE35-OUT|twitch-stream-source|twitch-trigger|twitch-maf-ad|twitch-ad-quartile/;
         scope.AdSegmentURLPatterns = ['/adsquared/', '/_404/', '/processing'];
         scope.ClientID = 'kimne78kx3ncx6brgo4mv6wki5h1ko';
         scope.BackupPlayerTypes = [
@@ -477,7 +476,7 @@
         return newServerTime ? encodingsM3u8.replace(/(SERVER-TIME=")[0-9.]+"/, `SERVER-TIME="${newServerTime}"`) : encodingsM3u8;
     }
     function hasAdTags(textStr) {
-        return AdSignifierRegex.test(textStr);
+        return AdSignifiers.some((s) => textStr.includes(s));
     }
     function getMatchedAdSignifiers(textStr) {
         return AdSignifiers.filter((s) => textStr.includes(s));
@@ -1272,6 +1271,13 @@
             player.pause();
             player.play()?.catch?.(() => {});
             playerBufferState.weJustPaused = Date.now();
+            return;
+        }
+        if (isReload && document.pictureInPictureElement) {
+            // Downgrade to pause/play to preserve PiP — setSrc exits PiP
+            player.pause();
+            player.play()?.catch?.(() => {});
+            console.log('[AD DEBUG] Downgraded reload to pause/play to preserve PiP');
             return;
         }
         if (isReload) {
