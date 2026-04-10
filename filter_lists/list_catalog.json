@@ -1216,8 +1216,8 @@
         "hidden": true,
         "default_enabled": false,
         "list_text_component": {
-            "component_id": "nonalfeamhpdknocmihkdmnpfofggjgo",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6LRRWhOYWLCmqsa1IhK9szwzSTxRoLWimkDuSnWtkCn9uXvOMBQgGNafr92ETybO9tuGob8Lvy2j6Xo6qHj7anbuRl6wq5DSlgfyQeCxtKUcfheuQsFwU1iAAewebcdXLvGqdOPkUU5PGvvVkCythlPXxbYphGFg4QisxQuqpO/dzT69nq8L7AIOGhUjPpTLlf4fjni4c5tPN3fbeGihqwfdm1orJ6SAwFLqG9tW8Zpfr6RaJ7y8OUOz8eey2y82jLrL/FvUd8MenJciKUgUVHvIu6Etzh0TvZv2x/WtzUSLm1vzB3niv2g67TNmBqErcAHvqmwuWlRvDUNwIDAQAB"
+            "component_id": "abpgbgfjeilgidgbehnjbbompbcimfjl",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwm5dfbeDBwdYoKrXwFuz4sCzMAP4Cerm6HN47CGqZ8DsYWyKbZxpo+uITXbULItPWsle4GCTrzHhaTB4AdS3EyX/qeLPGSbqtsO9aR6VJbk32tJBwfI6pQtoKJTP1MOSZb0WWWnJFh3Uh0qmgIEsSCmSYWb3t2pNgIUjEuMam9PCmV9X5Ih4K9cQ352v24xe2Wv3LZgRvG5fAfQHDQC4ZBgyfvv4HIe7kthJKZV3E9oLBC7trQU/c5zxosVUOFPKr9RtvpBzBld8BOyBiWUiv4EQvuhhgo+qe+3VLFHFPfI1KXhgioWKBPTd9IUwKMQ7LvBxO9WmKiyX6eHByNSsIQIDAQAB"
         },
         "sources": [
             {
