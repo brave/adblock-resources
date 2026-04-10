@@ -106,5 +106,3 @@ It will generate:
 
 The script should be run with no arguments.
 The resulting PEM file will be named `ad-block-updater-<component_id>.pem`. This new PEM file has to be uploaded to 1Password. See instructions [here](https://github.com/brave/internal/wiki/Uploading-new-adblock-list-PEM-file-to-1Password).
-
-We will need to run this script a second time to get values for the top-level `base64_public_key` and `component_id` fields. These will be different from the values for `list_text_component.base64_public_key` and `list_text_component.component_id` fields. This is necessary for iOS, see [tracking issue](https://github.com/brave/brave-ios/issues/5974).
