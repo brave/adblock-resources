@@ -218,6 +218,12 @@
                 "title": "Brave First-Party Regional Filters",
                 "format": "Standard",
                 "support_url": "https://github.com/brave/adblock-lists"
+            },
+            {
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-firstparty-antiadblock.txt",
+                "title": "Brave First-Party Anti-adblock Filters",
+                "format": "Standard",
+                "support_url": "https://github.com/brave/adblock-lists"
             }
         ]
     },
