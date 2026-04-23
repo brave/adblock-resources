@@ -24,7 +24,7 @@
         }
     }
     'use strict';
-    const ourTwitchAdSolutionsVersion = 57;// Used to prevent conflicts with outdated versions of the scripts
+    const ourTwitchAdSolutionsVersion = 58;// Used to prevent conflicts with outdated versions of the scripts
     console.log('[AD DEBUG] TwitchAdSolutions vaft v' + ourTwitchAdSolutionsVersion + ' loading');
     if (typeof window.twitchAdSolutionsVersion !== 'undefined' && window.twitchAdSolutionsVersion >= ourTwitchAdSolutionsVersion) {
         console.log('[AD DEBUG] CONFLICT: vaft v' + ourTwitchAdSolutionsVersion + ' skipped — another script already active (v' + window.twitchAdSolutionsVersion + '). Remove duplicate scripts.');
@@ -33,7 +33,12 @@
     window.twitchAdSolutionsVersion = ourTwitchAdSolutionsVersion;
     // Configuration and state shared between window and worker scopes
     function declareOptions(scope) {
-        scope.AdSignifiers = ['stitched-ad', 'EXT-X-CUE-OUT', 'EXT-X-DATERANGE:CLASS="twitch-stitched-ad"', 'EXT-X-DATERANGE:CLASS="twitch-maf-ad"'];
+        // 'twitch-stitched' catches the twitch-stitched-* DATERANGE class family
+        // (-ad, -mid, -pod, etc.) without requiring an exact -ad suffix. Twitch-
+        // prefixed so we don't re-introduce the PR #120 false-positive from bare
+        // 'stitched' substring match. The specific twitch-stitched-ad DATERANGE
+        // marker is a subset of this prefix.
+        scope.AdSignifiers = ['stitched-ad', 'EXT-X-CUE-OUT', 'twitch-stitched', 'EXT-X-DATERANGE:CLASS="twitch-maf-ad"'];
         scope.AdSegmentURLPatterns = ['/adsquared/', '/_404/', '/processing'];
         // Precompiled regexes shared across the stripAdSegments hot path. Declared
         // here (serialized into the worker blob with declareOptions) so literals
@@ -44,18 +49,23 @@
         scope.UriAttributeRegex = /URI="([^"]+)"/;
         scope.ClientID = 'kimne78kx3ncx6brgo4mv6wki5h1ko';
         scope.BackupPlayerTypes = [
-            'embed',//Source
+            // Order matters: first clean type wins. 'embed' moved to end — field-observed
+            // Twitch returns GQL 'server error' for streamPlaybackAccessToken on embed when
+            // requested from twitch.tv origin, wasting ~200-400ms per break as first-try.
+            // Kept in case it ever succeeds on some channel/user combo.
             'site',//Source
             'popout',//Source
             'mobile_web',//Mobile
+            'embed',//Source (unreliable — see note above)
             // 'autoplay' (360p) removed: when committed as cycle backup, the player gets stuck
             // in an endless loading circle after the CSAI-only path releases the backup —
             // autoplay variants don't transition cleanly back to main stream variants.
             //'picture-by-picture-CACHED'//360p (-CACHED is an internal suffix and is removed)
         ];
-        scope.FallbackPlayerType = 'embed';
+        scope.FallbackPlayerType = 'site';// was 'embed' — site is more reliable when all Source types end up ad-laden
         scope.ForceAccessTokenPlayerType = 'popout';
         scope.PreferLowQualityBackup = true;// Hybrid safety net for SSAI-heavy breaks: sticky escape hatch (fires after ~8s stuck in all-stripped state) + autoplay (360p) as last-resort backup when all Source types are ad-laden. Default on; set twitchAdSolutions_preferLowQualityBackup=false to disable.
+        scope.BackupSwapFirst = true;// On ad detect, immediately swap to a backup player-type m3u8 (TTV-AB-style). Avoids MediaSource mixing from strip activity — fewer loading circles in field. Cost: extra fetches on every ad break. Default on; set twitchAdSolutions_backupSwapFirst=false to disable.
         scope.SkipPlayerReloadOnHevc = false;// If true this will skip player reload on streams which have 2k/4k quality (if you enable this and you use the 2k/4k quality setting you'll get error #4000 / #3000 / spinning wheel on chrome based browsers)
         scope.AlwaysReloadPlayerOnAd = false;// Always pause/play when entering/leaving ads
         scope.ReloadPlayerAfterAd = true;// After the ad finishes do a player reload instead of pause/play
@@ -288,6 +298,7 @@
                     EarlyReloadPollThreshold = ${EarlyReloadPollThreshold};
                     PinBackupPlayerType = ${PinBackupPlayerType};
                     PreferLowQualityBackup = ${PreferLowQualityBackup};
+                    BackupSwapFirst = ${BackupSwapFirst};
                     ForceAccessTokenPlayerType = '${ForceAccessTokenPlayerType}';
                     GQLDeviceID = ${GQLDeviceID ? "'" + GQLDeviceID + "'" : null};
                     AuthorizationHeader = ${AuthorizationHeader ? "'" + AuthorizationHeader + "'" : undefined};
@@ -606,7 +617,10 @@
             while ((sm = tagRe.exec(textStr)) !== null) {
                 candidates.add(sm[1]);
             }
-            const unknown = [...candidates].filter(c => !AdSignifiers.includes(c));
+            // Substring check (not exact): a candidate is "known" if any AdSignifier
+            // appears within it. This handles prefix signifiers like 'twitch-stitched'
+            // covering 'EXT-X-DATERANGE:CLASS="twitch-stitched-ad"' etc.
+            const unknown = [...candidates].filter(c => !AdSignifiers.some(s => c.includes(s)));
             if (unknown.length > 0) {
                 streamInfo.HasLoggedUnknownSignifiers = true;
                 console.log('[AD DEBUG] Potential ad markers seen but not in AdSignifiers: ' + unknown.join(', ') + ' (candidates for future inclusion)');
@@ -957,7 +971,12 @@
                     break;
                 }
             }
-            if (!hasNonLiveSegment && !streamInfo.IsUsingModifiedM3U8) {
+            // BackupSwapFirst (opt-in): skip sticky CSAI path entirely, always fall through to
+            // backup search on ad detect. Mimics TTV-AB's backup-swap-first flow — avoids
+            // MediaSource mixing from strip activity (no BLANK_MP4 injection, no recovery
+            // segment replay), which users report produces fewer loading circles. Cost: extra
+            // fetches on every ad break (token requests for each backup type tried).
+            if (!hasNonLiveSegment && !streamInfo.IsUsingModifiedM3U8 && !BackupSwapFirst) {
                 streamInfo.CsaiOnlyThisBreak = true;// Mark break as confirmed CSAI so subsequent polls stay on the fast path
                 console.log('[AD DEBUG] CSAI fast path — all segments live, skipping backup search');
                 if (IsAdStrippingEnabled) {
@@ -1011,13 +1030,19 @@
                             const accessTokenResponse = await getAccessToken(streamInfo.ChannelName, realPlayerType);
                             if (accessTokenResponse.status === 200) {
                                 const accessToken = await accessTokenResponse.json();
-                                if (!accessToken?.data?.streamPlaybackAccessToken) {
-                                    console.log('[AD DEBUG] GQL response format changed — missing data.streamPlaybackAccessToken for ' + realPlayerType + '. Response keys: ' + JSON.stringify(Object.keys(accessToken?.data || accessToken || {})));
+                                // Twitch returns streamPlaybackAccessToken in two observed shapes:
+                                //   { data: { streamPlaybackAccessToken: {...} } } (most player types)
+                                //   { streamPlaybackAccessToken: {...} } (flatter, observed for 'embed')
+                                // Accept either. Field-observed silently dropping embed backup otherwise.
+                                const spat = accessToken?.data?.streamPlaybackAccessToken || accessToken?.streamPlaybackAccessToken;
+                                if (!spat) {
+                                    const errInfo = accessToken?.errors ? ' errors: ' + JSON.stringify(accessToken.errors).substring(0, 300) : '';
+                                    console.log('[AD DEBUG] GQL response missing streamPlaybackAccessToken for ' + realPlayerType + '. Response keys: ' + JSON.stringify(Object.keys(accessToken || {})) + errInfo);
                                     continue;
                                 }
                                 const urlInfo = new URL('https://usher.ttvnw.net/api/' + (V2API ? 'v2/' : '') + 'channel/hls/' + streamInfo.ChannelName + '.m3u8' + streamInfo.UsherParams);
-                                urlInfo.searchParams.set('sig', accessToken.data.streamPlaybackAccessToken.signature);
-                                urlInfo.searchParams.set('token', accessToken.data.streamPlaybackAccessToken.value);
+                                urlInfo.searchParams.set('sig', spat.signature);
+                                urlInfo.searchParams.set('token', spat.value);
                                 const encodingsM3u8Response = await realFetch(urlInfo.href);
                                 if (encodingsM3u8Response.status === 200) {
                                     encodingsM3u8 = streamInfo.BackupEncodingsM3U8Cache[playerType] = await encodingsM3u8Response.text();
@@ -2115,6 +2140,11 @@
         if (lsPreferLow === 'false') {
             PreferLowQualityBackup = false;
             console.log('[AD DEBUG] PreferLowQualityBackup disabled via localStorage — sticky CSAI path only, no autoplay fallback or escape hatch');
+        }
+        const lsBackupSwapFirst = localStorage.getItem('twitchAdSolutions_backupSwapFirst');
+        if (lsBackupSwapFirst === 'false') {
+            BackupSwapFirst = false;
+            console.log('[AD DEBUG] BackupSwapFirst disabled via localStorage — using sticky CSAI path (strip on native stream)');
         }
         const lsHideAdOverlay = localStorage.getItem('twitchAdSolutions_hideAdOverlay');
         if (lsHideAdOverlay === 'true') {
