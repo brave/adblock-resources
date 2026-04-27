@@ -53,7 +53,7 @@
  *   https://old.reddit.com/r/brave_browser/comments/1r8edg4/
  * ============================================================================ */
 (function() {
-  const VERSION = "v0.40-cache-flags";
+  const VERSION = "v0.41-review-fixes";
 
   // ---------------------------------------------------------------------------
   // Tunables
@@ -190,6 +190,13 @@
     document.removeEventListener("webkitfullscreenchange", _scheduleUpdateAll);
     removeEventListener("scroll", _scheduleUpdateAll, true);
     removeEventListener("resize", _scheduleUpdateAll);
+    // Tear down the IntersectionObserver too — it's tied to the same
+    // overlay lifecycle as the global listeners. Re-created lazily by
+    // getIO() if a future overlay registers.
+    if (intersectionObserver) {
+      intersectionObserver.disconnect();
+      intersectionObserver = null;
+    }
   }
 
   // ---------------------------------------------------------------------------
@@ -235,13 +242,18 @@
   // Defense-in-depth helper used when cloning third-party wrapper
   // elements (Netflix's .medium icon wrapper, Twitch's right-controls
   // wrapper). cloneNode(false) carries forward inline event handlers
-  // such as `onclick="..."` — we strip them so our clone can't
-  // unintentionally execute the site's inline handlers.
+  // and the `style` attribute — we strip:
+  //   - any attribute starting with `on*` (would re-fire the site's
+  //     inline event handlers on our clone), and
+  //   - the `style` attribute itself (could carry a `url(...)` token
+  //     that triggers a network fetch when the clone is parented).
+  // We rely on the cloned element's class list for sizing/spacing,
+  // which matches the original via the site's external stylesheet.
   function stripInlineHandlers(el) {
     const attrs = el.attributes;
     for (let i = attrs.length - 1; i >= 0; i--) {
       const name = attrs[i].name;
-      if (name.startsWith("on")) el.removeAttribute(name);
+      if (name.startsWith("on") || name === "style") el.removeAttribute(name);
     }
   }
 
@@ -738,14 +750,17 @@
   // Configuration & dispatch
   // ---------------------------------------------------------------------------
 
-  // Reads the per-origin `localStorage.usegeneric_pip` flag.
+  // Per-origin `localStorage.usegeneric_pip` flag.
   // Default is ON: every site uses the generic overlay pill unless the
-  // user has explicitly opted into native injection.
-  // Wrapped in try/catch because localStorage access throws in private /
-  // sandboxed contexts on some browsers.
-  // Read once at init and cached as GENERIC_PIP_FORCED — addPipButton
-  // runs per video, and re-reading localStorage per video on a 50-video
-  // feed is wasted work since the flag never changes within a page life.
+  // user has explicitly opted into native injection (set the flag to
+  // "0" / "false" / "no" / "off"). Wrapped in try/catch because
+  // localStorage access throws in private / sandboxed contexts.
+  //
+  // Read lazily on first use (not at IIFE init) so that userscript
+  // managers or polyfill shims that replace `localStorage` slightly
+  // after our script loads still see a consistent value. After the
+  // first read it's cached for the rest of the page lifetime — the
+  // value can't change without a reload.
   function readGenericPipForced() {
     try {
       const v = localStorage.getItem("usegeneric_pip");
@@ -755,7 +770,11 @@
       return true;
     } catch { return true; }
   }
-  const GENERIC_PIP_FORCED = readGenericPipForced();
+  let _genericPipForcedCache = null; // null = not yet read
+  function genericPipForcedCached() {
+    if (_genericPipForcedCache === null) _genericPipForcedCache = readGenericPipForced();
+    return _genericPipForcedCache;
+  }
 
   // Per-origin opt-out: when truthy, the generic overlay pill is
   // suppressed on this site. Set via the right-click menu on the pill;
@@ -909,7 +928,7 @@
   function addPipButton(video, teardowns) {
     // Generic overlay is the default. Set localStorage.usegeneric_pip="0"
     // (or false/no/off) per-origin to opt back into native injection.
-    if (GENERIC_PIP_FORCED) {
+    if (genericPipForcedCached()) {
       addOverlayButton(video, teardowns);
       log("injected overlay");
       return;
