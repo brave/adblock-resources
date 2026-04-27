@@ -53,7 +53,7 @@
  *   https://old.reddit.com/r/brave_browser/comments/1r8edg4/
  * ============================================================================ */
 (function() {
-  const VERSION = "v0.37-refactor";
+  const VERSION = "v0.40-cache-flags";
 
   // ---------------------------------------------------------------------------
   // Tunables
@@ -534,6 +534,9 @@
     // Reaching here means `attachToVideo`'s `videoCleanups.has(video)`
     // guard already short-circuited duplicate registrations, so no
     // separate dataset marker is needed.
+    // Per-origin opt-out: skip building anything if the user previously
+    // disabled the pill on this site via the right-click menu.
+    if (_siteDisabled) return;
     const PADDING_FULL = "8px 14px 8px 10px";
     const PADDING_ICON = "8px";
 
@@ -557,6 +560,12 @@
     const label = document.createElement("span");
     label.textContent = "Pop out this video";
     btn.appendChild(label);
+
+    btn.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      showDisableMenu(e.clientX, e.clientY);
+    });
 
     let clicked = false;
     btn.addEventListener("click", (e) => {
@@ -627,6 +636,14 @@
       // Match Firefox: show on hover regardless of paused state. Only
       // require that the video has metadata loaded (so PiP is usable),
       // is visible, and we're not in fullscreen (incl. iOS webkit FS).
+      // Also honour a mid-session disable from the right-click menu
+      // (cached `_siteDisabled` flag — no localStorage hit per tick).
+      if (_siteDisabled) {
+        btn.style.opacity = "0";
+        btn.style.display = "none";
+        btn.style.pointerEvents = "none";
+        return;
+      }
       const ready = video.readyState >= 1;
       const fs = isFullscreen(video);
       const r = video.getBoundingClientRect();
@@ -726,7 +743,10 @@
   // user has explicitly opted into native injection.
   // Wrapped in try/catch because localStorage access throws in private /
   // sandboxed contexts on some browsers.
-  function genericPipForced() {
+  // Read once at init and cached as GENERIC_PIP_FORCED — addPipButton
+  // runs per video, and re-reading localStorage per video on a 50-video
+  // feed is wasted work since the flag never changes within a page life.
+  function readGenericPipForced() {
     try {
       const v = localStorage.getItem("usegeneric_pip");
       if (v == null) return true;
@@ -734,6 +754,92 @@
       if (s === "0" || s === "false" || s === "no" || s === "off") return false;
       return true;
     } catch { return true; }
+  }
+  const GENERIC_PIP_FORCED = readGenericPipForced();
+
+  // Per-origin opt-out: when truthy, the generic overlay pill is
+  // suppressed on this site. Set via the right-click menu on the pill;
+  // cleared from DevTools with `localStorage.removeItem("brave_pip_disabled")`.
+  //
+  // The flag is cached in `_siteDisabled` after the initial bail-out
+  // check so the hot paths (update() runs per visible video per
+  // animation frame) don't have to hit localStorage every tick. The
+  // menu's click handler flips the cached value when the user disables
+  // mid-session.
+  const DISABLE_KEY = "brave_pip_disabled";
+  function readSiteDisabled() {
+    try { return localStorage.getItem(DISABLE_KEY) === "1"; } catch { return false; }
+  }
+  function setSiteDisabled() {
+    try { localStorage.setItem(DISABLE_KEY, "1"); } catch {}
+  }
+  // Cached flag — updated on init and on mid-session disable.
+  let _siteDisabled = false;
+
+  // Single-instance custom context menu shown on right-click of the
+  // generic pill. We can't customise the browser's native context menu
+  // without an extension, so we cancel it (`preventDefault`) and render
+  // our own DOM. Auto-dismisses on click-outside, Escape, or scroll.
+  let activeMenu = null;
+  function closeMenu() {
+    if (!activeMenu) return;
+    activeMenu.remove();
+    activeMenu = null;
+    document.removeEventListener("keydown", _onMenuKey, true);
+    document.removeEventListener("click", _onMenuClickOutside, true);
+    removeEventListener("scroll", closeMenu, true);
+    removeEventListener("resize", closeMenu);
+  }
+  function _onMenuKey(e) { if (e.key === "Escape") closeMenu(); }
+  function _onMenuClickOutside(e) {
+    if (activeMenu && !activeMenu.contains(e.target)) closeMenu();
+  }
+  function showDisableMenu(x, y) {
+    closeMenu();
+    const menu = document.createElement("div");
+    menu.style.cssText =
+      "position:fixed;left:" + x + "px;top:" + y + "px;" +
+      "background:rgba(28,28,30,0.96);color:#fff;" +
+      "border-radius:6px;padding:4px 0;" +
+      "box-shadow:0 4px 12px rgba(0,0,0,0.4);" +
+      "z-index:2147483647;" +
+      "font:500 13px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;" +
+      "user-select:none;pointer-events:auto;min-width:180px;";
+
+    const item = document.createElement("div");
+    item.textContent = "Disable PiP icon on " + location.hostname;
+    item.style.cssText = "padding:8px 14px;cursor:pointer;white-space:nowrap;";
+    item.addEventListener("mouseenter", () => { item.style.background = "rgba(255,255,255,0.12)"; });
+    item.addEventListener("mouseleave", () => { item.style.background = ""; });
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setSiteDisabled();
+      _siteDisabled = true;
+      // Hide every active pill on this page immediately. The next
+      // `update()` tick will see the cached flag and keep them hidden.
+      _scheduleUpdateAll();
+      log("disabled on " + location.hostname);
+      closeMenu();
+    });
+    menu.appendChild(item);
+
+    document.body.appendChild(menu);
+    activeMenu = menu;
+
+    // If the menu would overflow the viewport, nudge it back in.
+    const r = menu.getBoundingClientRect();
+    if (r.right > innerWidth)  menu.style.left = (innerWidth  - r.width  - 8) + "px";
+    if (r.bottom > innerHeight) menu.style.top  = (innerHeight - r.height - 8) + "px";
+
+    // Defer listener attach to the next microtask so the click that
+    // opened the menu doesn't immediately dismiss it.
+    setTimeout(() => {
+      document.addEventListener("keydown", _onMenuKey, true);
+      document.addEventListener("click", _onMenuClickOutside, true);
+      addEventListener("scroll", closeMenu, true);
+      addEventListener("resize", closeMenu);
+    }, 0);
   }
 
   // Native-site adapter table. Each entry describes one site whose
@@ -803,7 +909,7 @@
   function addPipButton(video, teardowns) {
     // Generic overlay is the default. Set localStorage.usegeneric_pip="0"
     // (or false/no/off) per-origin to opt back into native injection.
-    if (genericPipForced()) {
+    if (GENERIC_PIP_FORCED) {
       addOverlayButton(video, teardowns);
       log("injected overlay");
       return;
@@ -939,6 +1045,16 @@
   // Bail out early on browsers with no PiP API at all (extremely old or
   // exotic). Avoids registering listeners we'd never use.
   if (!PIP_SUPPORTED) return;
+
+  // Per-origin opt-out: if the user previously selected "Disable PiP icon
+  // on <site>" from the right-click menu, this flag persists in
+  // localStorage. Bail before any setup so the script is a true no-op
+  // for that origin — no observers, no listeners, no work. Other
+  // origins are unaffected because localStorage is partitioned per-origin.
+  // We also seed the cached `_siteDisabled` flag here (irrelevant if we
+  // return, but keeps the cache live in the not-yet-disabled case).
+  _siteDisabled = readSiteDisabled();
+  if (_siteDisabled) return;
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded",
