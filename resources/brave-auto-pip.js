@@ -65,7 +65,7 @@
     // Vertical offset added to the pill's centred-mid-right position
     // (positive = down). Empirically tuned so the pill sits below the
     // typical site control bar instead of overlapping it.
-    PILL_OFFSET_Y: 160,
+    PILL_OFFSET_Y: 40,
     // Horizontal gap from the right edge of the visible video to the pill.
     PILL_RIGHT_MARGIN: 12,
     // Minimum gap between the pill and any viewport edge.
