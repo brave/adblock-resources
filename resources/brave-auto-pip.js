@@ -53,7 +53,7 @@
  *   https://old.reddit.com/r/brave_browser/comments/1r8edg4/
  * ============================================================================ */
 (function() {
-  const VERSION = "v0.41-review-fixes";
+  const VERSION = "v0.41-review-fixes+yt-thumbnail-fix+twitch-walk-fix";
 
   // ---------------------------------------------------------------------------
   // Tunables
@@ -81,6 +81,11 @@
     // IntersectionObserver buffer so the pill is in place before the
     // video fully scrolls into view.
     IO_ROOT_MARGIN: "100px",
+    // Grace window after a YouTube SPA navigation during which the pill
+    // stays suppressed even if the new URL would otherwise be eligible.
+    // Lets the watch-page player mount and avoids a brief flash when the
+    // cursor is still at the previous hover target's coordinates.
+    YT_NAV_GRACE_MS: 500,
   };
 
   // ---------------------------------------------------------------------------
@@ -92,6 +97,22 @@
   // is removed from the DOM, so we can release every listener and the
   // pill DOM node it owns.
   const videoCleanups = new WeakMap();
+
+  // YouTube-specific state for the URL-gate + SPA-nav-grace logic in
+  // update(). Hoisted to module scope so update() doesn't re-test the
+  // host regex every tick — hostname is invariant for the page lifetime,
+  // and the pathname regex only re-runs on actual SPA path changes.
+  // Why this exists: YouTube's homepage / feed / search / channel pages
+  // reuse the same `html5-video-container` <video> element as the watch
+  // page for hover-thumbnail previews, repositioning it over whichever
+  // thumbnail the cursor is on. DOM-level signals (size, muted, loop,
+  // parent class) are identical between preview and watch, so the URL is
+  // the only reliable distinguisher.
+  const _ytHost = /(?:^|\.)(?:youtube\.com|youtube-nocookie\.com)$/i.test(location.hostname);
+  const _ytWatchPath = /^\/(?:watch|embed|live|shorts)/;
+  let _ytLastPath = location.pathname;
+  let _ytPreviewArea = _ytHost && !_ytWatchPath.test(_ytLastPath);
+  let _ytNavAt = 0;
 
   // ---------------------------------------------------------------------------
   // Overlay registry + viewport gating
@@ -379,21 +400,27 @@
     // Anchor on the fullscreen / theatre row so we land alongside cast,
     // theatre and fullscreen — settings often lives in a separate row in
     // the popout player layout.
-    const anchorBtn =
-      document.querySelector('[data-a-target="player-fullscreen-button"]') ||
-      document.querySelector('[data-a-target="player-theatre-mode-button"]') ||
-      document.querySelector('[data-a-target="player-settings-button"]');
+    // Selector matching any of the known Twitch right-side controls. Used
+    // both to pick the anchor and as the loop's stop condition so we walk
+    // up to a parent that actually contains a *peer* control — not just
+    // any parent with >1 child (review feedback: the latter is fragile,
+    // a future stray sibling on an inner wrapper could mis-target).
+    const PEER_SEL =
+      '[data-a-target="player-fullscreen-button"],' +
+      '[data-a-target="player-theatre-mode-button"],' +
+      '[data-a-target="player-settings-button"]';
+    const anchorBtn = document.querySelector(PEER_SEL);
     if (!anchorBtn) return false;
 
-    // Walk up from the anchor to a wrapper element (Twitch wraps buttons
-    // in a div for spacing). Stop when the parent contains other right-
-    // side control buttons — that's the row container.
+    // Walk up to the first ancestor whose parent contains another known
+    // Twitch control outside our subtree — that's the row container.
     let anchorWrapper = anchorBtn;
     while (anchorWrapper.parentNode) {
-      const sibs = anchorWrapper.parentNode.children;
-      if (sibs.length > 1) break;
-      anchorWrapper = anchorWrapper.parentNode;
-      if (anchorWrapper.tagName === "BODY") return false;
+      const parent = anchorWrapper.parentNode;
+      if (parent.tagName === "BODY") return false;
+      const peer = parent.querySelector(PEER_SEL);
+      if (peer && !anchorWrapper.contains(peer)) break;
+      anchorWrapper = parent;
     }
     const row = anchorWrapper.parentNode;
     if (!row) return false;
@@ -661,7 +688,18 @@
       const r = video.getBoundingClientRect();
       lastRect = r;
       const onScreen = r.width > 0 && r.height > 0 && r.bottom > 0 && r.top < innerHeight;
-      const eligible = ready && !fs && onScreen;
+      // YouTube URL gate + SPA-nav-grace. Refresh the cached preview-area
+      // flag and stamp a navigation timestamp on path change, then
+      // suppress eligibility while we're either on a non-watch URL or
+      // inside the post-nav grace window (absorbs the brief flash when
+      // a homepage thumbnail click lands the cursor on the new player).
+      if (_ytHost && _ytLastPath !== location.pathname) {
+        _ytLastPath = location.pathname;
+        _ytPreviewArea = !_ytWatchPath.test(_ytLastPath);
+        _ytNavAt = performance.now();
+      }
+      const _inNavGrace = _ytNavAt && (performance.now() - _ytNavAt) < CONFIG.YT_NAV_GRACE_MS;
+      const eligible = ready && !fs && onScreen && !_ytPreviewArea && !_inNavGrace;
       if (!eligible) {
         btn.style.opacity = "0";
         btn.style.display = "none";
