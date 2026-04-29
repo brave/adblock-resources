@@ -53,7 +53,7 @@
  *   https://old.reddit.com/r/brave_browser/comments/1r8edg4/
  * ============================================================================ */
 (function() {
-  const VERSION = "v0.41-review-fixes+yt-thumbnail-fix+twitch-walk-fix";
+  const VERSION = "v0.41-review-fixes+yt-thumbnail-fix+twitch-walk-fix+clone-id-strip+menu-guard";
 
   // ---------------------------------------------------------------------------
   // Tunables
@@ -267,14 +267,16 @@
   //   - any attribute starting with `on*` (would re-fire the site's
   //     inline event handlers on our clone), and
   //   - the `style` attribute itself (could carry a `url(...)` token
-  //     that triggers a network fetch when the clone is parented).
+  //     that triggers a network fetch when the clone is parented), and
+  //   - the `id` attribute (cloning produces a duplicate, which would
+  //     break the site's own getElementById / CSS #id selectors).
   // We rely on the cloned element's class list for sizing/spacing,
   // which matches the original via the site's external stylesheet.
   function stripInlineHandlers(el) {
     const attrs = el.attributes;
     for (let i = attrs.length - 1; i >= 0; i--) {
       const name = attrs[i].name;
-      if (name.startsWith("on") || name === "style") el.removeAttribute(name);
+      if (name.startsWith("on") || name === "style" || name === "id") el.removeAttribute(name);
     }
   }
 
@@ -838,6 +840,11 @@
   // without an extension, so we cancel it (`preventDefault`) and render
   // our own DOM. Auto-dismisses on click-outside, Escape, or scroll.
   let activeMenu = null;
+  // Timestamp when the active menu was opened. Outside-clicks within a
+  // short window (~150 ms) of opening are ignored — defends against a
+  // synthetic same-frame click bypassing the setTimeout(0) handoff.
+  let activeMenuOpenedAt = 0;
+  const MENU_OPEN_GUARD_MS = 150;
   function closeMenu() {
     if (!activeMenu) return;
     activeMenu.remove();
@@ -849,7 +856,9 @@
   }
   function _onMenuKey(e) { if (e.key === "Escape") closeMenu(); }
   function _onMenuClickOutside(e) {
-    if (activeMenu && !activeMenu.contains(e.target)) closeMenu();
+    if (!activeMenu) return;
+    if (e.timeStamp - activeMenuOpenedAt < MENU_OPEN_GUARD_MS) return;
+    if (!activeMenu.contains(e.target)) closeMenu();
   }
   function showDisableMenu(x, y) {
     closeMenu();
@@ -883,6 +892,7 @@
 
     document.body.appendChild(menu);
     activeMenu = menu;
+    activeMenuOpenedAt = performance.now();
 
     // If the menu would overflow the viewport, nudge it back in.
     const r = menu.getBoundingClientRect();
