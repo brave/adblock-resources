@@ -53,7 +53,7 @@
  *   https://old.reddit.com/r/brave_browser/comments/1r8edg4/
  * ============================================================================ */
 (function() {
-  const VERSION = "v0.41-review-fixes+yt-thumbnail-fix+clone-id-strip+menu-guard+native-default-yt-twitch-netflix+native-fallback+native-disable+twitch-walk-revert+twitch-row-sanity+top-frame-only+netflix-remount-fix";
+  const VERSION = "v0.41-review-fixes+yt-thumbnail-fix+clone-id-strip+menu-guard+native-default-yt-twitch-netflix+native-fallback+native-disable+twitch-walk-peer-prefer+twitch-row-sanity+top-frame-only+netflix-remount-fix";
 
   // ---------------------------------------------------------------------------
   // Tunables
@@ -411,37 +411,52 @@
     // Anchor on the fullscreen / theatre row so we land alongside cast,
     // theatre and fullscreen — settings often lives in a separate row in
     // the popout player layout.
-    const anchorBtn =
-      document.querySelector('[data-a-target="player-fullscreen-button"]') ||
-      document.querySelector('[data-a-target="player-theatre-mode-button"]') ||
-      document.querySelector('[data-a-target="player-settings-button"]');
+    const PEER_SEL =
+      '[data-a-target="player-fullscreen-button"],' +
+      '[data-a-target="player-theatre-mode-button"],' +
+      '[data-a-target="player-settings-button"]';
+    const anchorBtn = document.querySelector(PEER_SEL);
     if (!anchorBtn) return false;
 
-    // Walk up from the anchor to a wrapper element (Twitch wraps buttons
-    // in a div for spacing). Stop when the parent contains other right-
-    // side control buttons — that's the row container. The native-→-
-    // generic fallback in tryNative() is the safety net if a future
-    // Twitch redesign makes this walk land in the wrong place.
+    // Walk up to the row container. Two stop signals, in priority order:
+    //   1. Strong: a parent that has multiple children AND contains a
+    //      peer control outside our current subtree — that's almost
+    //      certainly the actual control row.
+    //   2. Weak (fallback): the first parent with multiple children we
+    //      passed during the walk. Used when the strong signal never
+    //      fires, so layouts that don't expose peer controls at the
+    //      same level still work.
+    // Combined, this addresses the review concern about non-control
+    // siblings hijacking the structural walk while keeping the original
+    // behaviour as a safety net.
     let anchorWrapper = anchorBtn;
-    while (anchorWrapper.parentNode) {
-      const sibs = anchorWrapper.parentNode.children;
-      if (sibs.length > 1) break;
-      anchorWrapper = anchorWrapper.parentNode;
-      if (anchorWrapper.tagName === "BODY") return false;
+    let structuralFallback = null;
+    while (anchorWrapper.parentNode && anchorWrapper.parentNode.tagName !== "BODY") {
+      const parent = anchorWrapper.parentNode;
+      if (parent.children.length > 1) {
+        const peers = parent.querySelectorAll(PEER_SEL);
+        let hasOutsidePeer = false;
+        for (let i = 0; i < peers.length; i++) {
+          if (!anchorWrapper.contains(peers[i])) { hasOutsidePeer = true; break; }
+        }
+        if (hasOutsidePeer) break;
+        if (!structuralFallback) structuralFallback = anchorWrapper;
+      }
+      anchorWrapper = parent;
+    }
+    if (!anchorWrapper.parentNode || anchorWrapper.parentNode.tagName === "BODY") {
+      if (!structuralFallback) return false;
+      anchorWrapper = structuralFallback;
     }
     const row = anchorWrapper.parentNode;
     if (!row) return false;
     if (row.querySelector(".brave-pip-btn")) return true;
-    // Sanity check: a healthy Twitch right-controls row contains all
-    // three peer buttons (settings + theatre + fullscreen). If we only
-    // see one, the walk landed on a degenerate row (popout / detached
-    // player / future redesign) and we should bail rather than mis-
-    // target. Cheap — one querySelectorAll, no walking.
-    if (row.querySelectorAll(
-        '[data-a-target="player-fullscreen-button"],' +
-        '[data-a-target="player-theatre-mode-button"],' +
-        '[data-a-target="player-settings-button"]'
-      ).length < 2) return false;
+    // Sanity check: a healthy Twitch right-controls row contains at
+    // least two of the peer buttons (settings + theatre + fullscreen).
+    // If only one is present, the walk landed on a degenerate row
+    // (popout / detached player / future redesign) and we should bail
+    // rather than mis-target. Cheap — one querySelectorAll, no walking.
+    if (row.querySelectorAll(PEER_SEL).length < 2) return false;
 
     try {
       // Clone the anchor's outer wrapper (shallow) so we inherit Twitch's
