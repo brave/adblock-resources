@@ -53,7 +53,7 @@
  *   https://old.reddit.com/r/brave_browser/comments/1r8edg4/
  * ============================================================================ */
 (function() {
-  const VERSION = "v0.41-review-fixes+yt-thumbnail-fix+twitch-walk-fix+clone-id-strip+menu-guard";
+  const VERSION = "v0.41-review-fixes+yt-thumbnail-fix+clone-id-strip+menu-guard+native-default-yt-twitch-netflix+native-fallback+native-disable+twitch-walk-revert+twitch-row-sanity+top-frame-only+netflix-remount-fix";
 
   // ---------------------------------------------------------------------------
   // Tunables
@@ -86,6 +86,12 @@
     // Lets the watch-page player mount and avoids a brief flash when the
     // cursor is still at the previous hover target's coordinates.
     YT_NAV_GRACE_MS: 500,
+    // If a native injector (YouTube / Twitch / Netflix) keeps returning
+    // false for this many milliseconds after the first attempt, give up
+    // on native injection and install the generic overlay pill instead.
+    // Generous on purpose — slow player mounts (network-stalled iframes,
+    // long-running React hydration) shouldn't trip the fallback.
+    NATIVE_FALLBACK_MS: 10000,
   };
 
   // ---------------------------------------------------------------------------
@@ -364,6 +370,7 @@
   //     preserved and fullscreen stays in its row.
   // ---------------------------------------------------------------------------
   function addYouTubeButton(video) {
+    if (_siteDisabled) return false;
     const right = document.querySelector(".ytp-right-controls");
     if (!right) return false;
     if (right.querySelector(".brave-pip-btn")) return true;
@@ -379,6 +386,7 @@
       svg.style.cssText = "display:block;";
       btn.appendChild(svg);
       btn.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); togglePip(video); });
+      btn.addEventListener("contextmenu", _onNativeBtnContextMenu);
 
       const anchor = right.querySelector(".ytp-miniplayer-button, .ytp-settings-button, .ytp-size-button");
       if (anchor && anchor.parentNode) {
@@ -399,34 +407,41 @@
   // the same DOM level so spacing/sizing match.
   let twitchInjectCount = 0;
   function addTwitchButton(video) {
+    if (_siteDisabled) return false;
     // Anchor on the fullscreen / theatre row so we land alongside cast,
     // theatre and fullscreen — settings often lives in a separate row in
     // the popout player layout.
-    // Selector matching any of the known Twitch right-side controls. Used
-    // both to pick the anchor and as the loop's stop condition so we walk
-    // up to a parent that actually contains a *peer* control — not just
-    // any parent with >1 child (review feedback: the latter is fragile,
-    // a future stray sibling on an inner wrapper could mis-target).
-    const PEER_SEL =
-      '[data-a-target="player-fullscreen-button"],' +
-      '[data-a-target="player-theatre-mode-button"],' +
-      '[data-a-target="player-settings-button"]';
-    const anchorBtn = document.querySelector(PEER_SEL);
+    const anchorBtn =
+      document.querySelector('[data-a-target="player-fullscreen-button"]') ||
+      document.querySelector('[data-a-target="player-theatre-mode-button"]') ||
+      document.querySelector('[data-a-target="player-settings-button"]');
     if (!anchorBtn) return false;
 
-    // Walk up to the first ancestor whose parent contains another known
-    // Twitch control outside our subtree — that's the row container.
+    // Walk up from the anchor to a wrapper element (Twitch wraps buttons
+    // in a div for spacing). Stop when the parent contains other right-
+    // side control buttons — that's the row container. The native-→-
+    // generic fallback in tryNative() is the safety net if a future
+    // Twitch redesign makes this walk land in the wrong place.
     let anchorWrapper = anchorBtn;
     while (anchorWrapper.parentNode) {
-      const parent = anchorWrapper.parentNode;
-      if (parent.tagName === "BODY") return false;
-      const peer = parent.querySelector(PEER_SEL);
-      if (peer && !anchorWrapper.contains(peer)) break;
-      anchorWrapper = parent;
+      const sibs = anchorWrapper.parentNode.children;
+      if (sibs.length > 1) break;
+      anchorWrapper = anchorWrapper.parentNode;
+      if (anchorWrapper.tagName === "BODY") return false;
     }
     const row = anchorWrapper.parentNode;
     if (!row) return false;
     if (row.querySelector(".brave-pip-btn")) return true;
+    // Sanity check: a healthy Twitch right-controls row contains all
+    // three peer buttons (settings + theatre + fullscreen). If we only
+    // see one, the walk landed on a degenerate row (popout / detached
+    // player / future redesign) and we should bail rather than mis-
+    // target. Cheap — one querySelectorAll, no walking.
+    if (row.querySelectorAll(
+        '[data-a-target="player-fullscreen-button"],' +
+        '[data-a-target="player-theatre-mode-button"],' +
+        '[data-a-target="player-settings-button"]'
+      ).length < 2) return false;
 
     try {
       // Clone the anchor's outer wrapper (shallow) so we inherit Twitch's
@@ -463,6 +478,7 @@
       svg.style.cssText = "display:block;color:#fff;";
       btn.appendChild(svg);
       btn.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); togglePip(video); });
+      btn.addEventListener("contextmenu", _onNativeBtnContextMenu);
       wrapper.appendChild(btn);
 
       row.insertBefore(wrapper, anchorWrapper);
@@ -486,6 +502,7 @@
   // button gets the same styling and rhythm as native icons.
   let nflxInjectCount = 0;
   function addNetflixButton(video) {
+    if (_siteDisabled) return false;
     const bar = document.querySelector('[data-uia="controls-standard"]');
     if (!bar) return false;
     if (bar.querySelector(".brave-pip-btn")) return true;
@@ -527,6 +544,7 @@
       svg.style.cssText = "display:block;";
       btn.appendChild(svg);
       btn.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); togglePip(video); });
+      btn.addEventListener("contextmenu", _onNativeBtnContextMenu);
       wrapper.appendChild(btn);
 
       // Clone the spacer that precedes the fullscreen wrapper, so spacing
@@ -796,19 +814,30 @@
   // "0" / "false" / "no" / "off"). Wrapped in try/catch because
   // localStorage access throws in private / sandboxed contexts.
   //
+  // Exception: www.youtube.com, www.twitch.tv and www.netflix.com
+  // default to OFF (native injection) because their players already
+  // have first-class control bars where a native button looks at home.
+  // Only the exact desktop hostnames are targeted — m./music./mobile
+  // subdomains keep the generic-pill default. The user can flip the
+  // flag explicitly per origin to override.
+  //
   // Read lazily on first use (not at IIFE init) so that userscript
   // managers or polyfill shims that replace `localStorage` slightly
   // after our script loads still see a consistent value. After the
   // first read it's cached for the rest of the page lifetime — the
   // value can't change without a reload.
+  const NATIVE_DEFAULT_HOSTS = new Set(["www.youtube.com", "www.twitch.tv", "www.netflix.com"]);
+  function _defaultGenericForHost() {
+    return !NATIVE_DEFAULT_HOSTS.has(location.hostname.toLowerCase());
+  }
   function readGenericPipForced() {
     try {
       const v = localStorage.getItem("usegeneric_pip");
-      if (v == null) return true;
+      if (v == null) return _defaultGenericForHost();
       const s = String(v).toLowerCase().trim();
       if (s === "0" || s === "false" || s === "no" || s === "off") return false;
       return true;
-    } catch { return true; }
+    } catch { return _defaultGenericForHost(); }
   }
   let _genericPipForcedCache = null; // null = not yet read
   function genericPipForcedCached() {
@@ -835,10 +864,28 @@
   // Cached flag — updated on init and on mid-session disable.
   let _siteDisabled = false;
 
+  // Shared right-click handler attached to every native injected button
+  // (YouTube / Twitch / Netflix). Mirrors the generic pill's contextmenu
+  // wiring so users can disable PiP on the host site from any of our UIs.
+  function _onNativeBtnContextMenu(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    showDisableMenu(e.clientX, e.clientY);
+  }
+
+  // Removes any of our injected DOM (native buttons + cloned wrappers).
+  // Called when the user picks "Disable PiP icon on <site>" from the
+  // right-click menu so the page returns to its untouched state.
+  function _removeNativeButtons() {
+    const nodes = document.querySelectorAll(".brave-pip-btn, .brave-pip-wrapper");
+    for (let i = 0; i < nodes.length; i++) nodes[i].remove();
+  }
+
   // Single-instance custom context menu shown on right-click of the
-  // generic pill. We can't customise the browser's native context menu
-  // without an extension, so we cancel it (`preventDefault`) and render
-  // our own DOM. Auto-dismisses on click-outside, Escape, or scroll.
+  // generic pill or any native injected button. We can't customise the
+  // browser's native context menu without an extension, so we cancel it
+  // (`preventDefault`) and render our own DOM. Auto-dismisses on
+  // click-outside, Escape, or scroll.
   let activeMenu = null;
   // Timestamp when the active menu was opened. Outside-clicks within a
   // short window (~150 ms) of opening are ignored — defends against a
@@ -882,9 +929,13 @@
       e.stopPropagation();
       setSiteDisabled();
       _siteDisabled = true;
-      // Hide every active pill on this page immediately. The next
-      // `update()` tick will see the cached flag and keep them hidden.
+      // Hide every active generic pill on this page immediately. The
+      // next `update()` tick will see the cached flag and keep them
+      // hidden. Native injected buttons (YouTube / Twitch / Netflix)
+      // are removed from the DOM directly — their persistent observers
+      // will see `_siteDisabled` and stop re-injecting.
       _scheduleUpdateAll();
+      _removeNativeButtons();
       log("disabled on " + location.hostname);
       closeMenu();
     });
@@ -945,27 +996,47 @@
   // and re-mounts the controls bar. The observer starts on <html> if
   // the scoped container isn't in the DOM yet, then "promotes" itself
   // to the smaller subtree as soon as it appears — minimising churn.
+  //
+  // Resilience to host redesigns: if the injector keeps returning false
+  // for `NATIVE_FALLBACK_MS` after the first attempt, we disconnect the
+  // observer and install the generic overlay pill instead — so users
+  // always get *some* PiP control even if YouTube / Twitch / Netflix
+  // changes its DOM in a way that breaks our selectors. The fallback is
+  // armed only once per video and only triggers if the injector has
+  // *never* succeeded; intermittent failures during a re-mount don't
+  // count.
   function tryNative(video, injector, scopeSelector, teardowns) {
-    injector(video);
+    const startedAt = performance.now();
+    let everSucceeded = !!injector(video);
     let scheduled = false;
-    let target = scopeSelector ? document.querySelector(scopeSelector) : null;
+    let fellBack = false;
+    // Always observe at document level. We tried promoting to a scoped
+    // subtree (and to the scoped target's parent) for lower mutation
+    // volume, but Netflix re-mounts whole player subtrees on visibility
+    // changes — leaving any narrower observer attached to a detached
+    // node, with no way to detect detachment because no mutations fire
+    // on the detached node. The rAF-coalesced callback below caps work
+    // at one injector call per animation frame regardless of mutation
+    // volume, so document-level observation stays bounded.
     const obs = new MutationObserver(() => {
-      if (scheduled) return;
+      if (scheduled || fellBack) return;
       scheduled = true;
       requestAnimationFrame(() => {
         scheduled = false;
-        if (!target && scopeSelector) {
-          const found = document.querySelector(scopeSelector);
-          if (found) {
-            obs.disconnect();
-            target = found;
-            obs.observe(target, { childList: true, subtree: true });
-          }
+        if (fellBack) return;
+        if (injector(video)) {
+          everSucceeded = true;
+        } else if (!everSucceeded &&
+                   performance.now() - startedAt >= CONFIG.NATIVE_FALLBACK_MS) {
+          fellBack = true;
+          obs.disconnect();
+          warn("native injection unavailable on " + location.hostname +
+               "; falling back to generic pill");
+          addOverlayButton(video, teardowns);
         }
-        injector(video);
       });
     });
-    obs.observe(target || document.documentElement, { childList: true, subtree: true });
+    obs.observe(document.documentElement, { childList: true, subtree: true });
     if (teardowns) teardowns.push(() => obs.disconnect());
   }
 
@@ -1112,6 +1183,15 @@
   // Bail out early on browsers with no PiP API at all (extremely old or
   // exotic). Avoids registering listeners we'd never use.
   if (!PIP_SUPPORTED) return;
+
+  // Scope: only run in the top-level frame. Embedded players (e.g.
+  // www.youtube.com/embed/<id> iframes inside third-party pages) get
+  // neither native injection nor the generic-pill fallback — the host
+  // site is responsible for its own PiP UX inside iframes. This keeps
+  // the script focused on canonical desktop sessions and avoids
+  // double-injection when both the parent frame and the embed match
+  // a user's filter rule.
+  try { if (window.top !== window.self) return; } catch (e) { return; }
 
   // Per-origin opt-out: if the user previously selected "Disable PiP icon
   // on <site>" from the right-click menu, this flag persists in
