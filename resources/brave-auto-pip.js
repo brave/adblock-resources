@@ -53,7 +53,7 @@
  *   https://old.reddit.com/r/brave_browser/comments/1r8edg4/
  * ============================================================================ */
 (function() {
-  const VERSION = "v0.41-review-fixes+yt-thumbnail-fix+clone-id-strip+menu-guard+native-default-yt-twitch-netflix+native-fallback+native-disable+twitch-walk-peer-prefer+twitch-row-sanity+top-frame-only+netflix-remount-fix";
+  const VERSION = "v0.42-yt-autopip-target+conditional-resume";
 
   // ---------------------------------------------------------------------------
   // Tunables
@@ -259,6 +259,31 @@
   const TAG = "[brave-auto-pip " + VERSION + "]";
   const log = (...a) => console.log(TAG, ...a);
   const warn = (...a) => console.warn(TAG, ...a);
+
+  // Pick the best <video> for an auto-PiP intent fired by the OS /
+  // browser. Used by the global `mediaSession` action handler so the
+  // *last* registered video doesn't get PiP'd by default — see comment
+  // at the registration site for the YouTube black-screen rationale.
+  function pickAutoPipTarget() {
+    if (document.pictureInPictureElement) return document.pictureInPictureElement;
+    const vids = document.getElementsByTagName("video");
+    let bestPlaying = null, bestPlayingArea = 0;
+    let bestReady = null, bestReadyArea = 0;
+    for (let i = 0; i < vids.length; i++) {
+      const v = vids[i];
+      if (v.disablePictureInPicture) continue;
+      const r = v.getBoundingClientRect();
+      const a = Math.max(0, r.width) * Math.max(0, r.height);
+      if (a <= 0) continue;
+      if (!v.paused && !v.ended && v.readyState >= 2 && a > bestPlayingArea) {
+        bestPlaying = v; bestPlayingArea = a;
+      }
+      if (v.readyState >= 1 && a > bestReadyArea) {
+        bestReady = v; bestReadyArea = a;
+      }
+    }
+    return bestPlaying || bestReady;
+  }
 
   // ---------------------------------------------------------------------------
   // PiP icon factory
@@ -1102,11 +1127,20 @@
       video.removeAttribute('disablepictureinpicture');
     }
     // Wire automatic-PiP intent (browsers with auto-PiP feature, e.g.
-    // Chrome flag, fire this on tab switch). No-op on browsers that
-    // don't support it; the try/catch guards iOS / older browsers.
+    // Chrome flag, fire this on tab switch). The handler is global per
+    // document — last registration wins — so on pages with multiple
+    // <video> elements (YouTube watch: main player + hover-thumbnail
+    // previews + ad pre-roll) the *last* mounted video would be PiP'd,
+    // which is frequently a hidden/empty preview → black PiP window
+    // with no controls and a desynced duration.
+    // Pick the most plausible "active" video at fire time instead:
+    // the one currently in PiP (toggling out), else the largest playing
+    // video, else the largest video with metadata. No-op on browsers
+    // that don't support it; the try/catch guards iOS / older browsers.
     try {
       navigator.mediaSession.setActionHandler("enterpictureinpicture", async () => {
-        await video.requestPictureInPicture();
+        const v = pickAutoPipTarget() || video;
+        try { await v.requestPictureInPicture(); } catch (e) { warn("auto-PiP failed:", e.message || e); }
       });
     } catch (error) { /* not supported in this browser */ }
 
@@ -1114,7 +1148,27 @@
 
     addPipButton(video, teardowns);
 
-    const onEnterPip = () => { setTimeout(() => video.play(), 1000); };
+    // Only resume on entering PiP if the video was actually playing when
+    // the transition fired. The previous unconditional `video.play()`
+    // overrode user-initiated pauses (e.g. YouTube auto-PiP on tab-switch
+    // would un-pause a paused video). Capture state at handler attach
+    // time and refresh on play/pause events.
+    let wasPlaying = !video.paused && !video.ended;
+    const onPlayState = () => { wasPlaying = !video.paused && !video.ended; };
+    const PLAY_EVENTS = ["play", "playing", "pause", "ended"];
+    for (let i = 0; i < PLAY_EVENTS.length; i++) {
+      video.addEventListener(PLAY_EVENTS[i], onPlayState);
+    }
+    teardowns.push(() => {
+      for (let i = 0; i < PLAY_EVENTS.length; i++) {
+        video.removeEventListener(PLAY_EVENTS[i], onPlayState);
+      }
+    });
+
+    const onEnterPip = () => {
+      if (!wasPlaying) return;
+      setTimeout(() => { if (wasPlaying && video.paused) video.play(); }, 250);
+    };
     video.addEventListener("enterpictureinpicture", onEnterPip);
     teardowns.push(() => video.removeEventListener("enterpictureinpicture", onEnterPip));
 
