@@ -80,6 +80,14 @@
         "resourcePath": "brave-youtube-theater-fix.js"
     },
     {
+        "name": "brave-youtube-playback-speed-fix.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "brave-youtube-playback-speed-fix.js"
+    },
+    {
         "name": "de-amp.js",
         "aliases": [],
         "kind": {
