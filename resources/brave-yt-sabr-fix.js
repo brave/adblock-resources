@@ -5,15 +5,26 @@
 // backoff remains, causing a 4-16 second spinner.
 // From: https://iter.ca/post/yt-adblock/
 //
-// In the player JS, the backoffTimeMs value from the response is used to
-// set a timer: deadline = Date.now() + backoffTimeMs. New requests are
-// blocked while Date.now() < deadline. We zero backoffTimeMs in the
-// response bytes before the player parses them, so the deadline equals
-// Date.now() + 0 and requests begin immediately.
-
-// NOTE: There is still an issue with SPA related in-page navigation. When 
-// the user clicks on a recommeneded video, this script does not work yet.
-// Modifications are needed to detect this navigation and re-apply the fix.
+// Two-pronged fix:
+//
+// 1. SPA navigation: When clicking between videos without a page reload,
+//    the player reuses the old SABR session (which may already have a
+//    backoff). On yt-navigate-finish, we set isInlinePlaybackNoAd on the
+//    player's video data (telling it there's no ad slot), then call
+//    cancelPlayback() + loadVideoById() to force a new SABR session.
+//
+// 2. SABR response patching (full page loads): Intercept SABR streaming
+//    responses and zero out backoffTimeMs in the protobuf. This handles
+//    page reloads and direct navigations where the SABR session was
+//    already established before the scriptlet could intervene.
+//
+// To use this scriptlet:
+// 1. Go to brave://settings/shields/filters
+// 2. Enable Developer mode
+// 3. Click on create new scriptlet
+// 4. Add this content and name it `user-yt-sabr-fix.js`
+// 5. Add a custom filter: `www.youtube.com##+js(user-yt-sabr-fix.js)`
+// 6. Go to YouTube and test
 
 (function() {
     const DEBUG = true;
@@ -22,40 +33,59 @@
     const elapsed = () => ((Date.now() - startTime) / 1000).toFixed(2) + 's';
     const log = (...args) => { if (DEBUG) console.log(LOG_PREFIX, elapsed(), ...args); };
 
+    // Prong 1: On SPA navigation, force a new ad-free SABR session.
+    // Set isInlinePlaybackNoAd on the video data so the new session
+    // doesn't get an ad slot, then tear down the old session and start fresh.
+    let lastReloadedVid = '';
+    window.addEventListener('yt-navigate-finish', () => {
+        const vid = new URL(window.location.href).searchParams.get('v');
+        if (!vid || vid === lastReloadedVid) return;
+        lastReloadedVid = vid;
+
+        setTimeout(() => {
+            const player = document.querySelector('#movie_player');
+            if (!player?.cancelPlayback || !player?.loadVideoById) return;
+
+            // Set the no-ad flag before reloading so the new session picks it up
+            const vd = player.getVideoData?.();
+            if (vd) vd.isInlinePlaybackNoAd = true;
+
+            player.cancelPlayback();
+            player.loadVideoById(vid);
+            log('forced new SABR session for', vid);
+        }, 100);
+    });
+
+    // Prong 2: Intercept SABR responses and zero backoffTimeMs.
     const realFetch = window.fetch;
 
-    // Step 1: Intercept SABR fetch responses from googlevideo.com
     window.fetch = function(resource, init) {
         const url = typeof resource === 'string' ? resource : (resource?.url || '');
-        if (!url.includes('googlevideo.com') || !url.includes('sabr=1'))
-            return realFetch.apply(this, arguments);
 
-        let rn = '';
-        try { rn = new URL(url).searchParams.get('rn') || ''; } catch(e) {}
-        log('SABR fetch rn=' + rn);
+        if (url.includes('googlevideo.com') && url.includes('sabr=1')) {
+            let rn = '';
+            try { rn = new URL(url).searchParams.get('rn') || ''; } catch(e) {}
+            log('SABR fetch rn=' + rn);
 
-        return realFetch.apply(this, arguments).then(function(response) {
-            return readStream(response.body.getReader()).then(function(bytes) {
-                // Step 2: Small responses (<1KB) are backoff envelopes, not media.
-                //         Scan them for backoffTimeMs and zero it out.
-                if (bytes.length < 1000) {
-                    log('small response rn=' + rn, 'size=' + bytes.length);
-                    zeroBackoffField(bytes, rn);
-                }
-
-                // Step 3: Return the patched response. The player parses
-                //         backoffTimeMs as 0 and retries immediately.
-                log('SABR done rn=' + rn, 'size=' + bytes.length);
-                return new Response(bytes, {
-                    status: response.status,
-                    statusText: response.statusText,
-                    headers: response.headers,
+            return realFetch.apply(this, arguments).then(function(response) {
+                return readStream(response.body.getReader()).then(function(bytes) {
+                    if (bytes.length < 1000) {
+                        log('small response rn=' + rn, 'size=' + bytes.length);
+                        zeroBackoffField(bytes, rn);
+                    }
+                    log('SABR done rn=' + rn, 'size=' + bytes.length);
+                    return new Response(bytes, {
+                        status: response.status,
+                        statusText: response.statusText,
+                        headers: response.headers,
+                    });
                 });
             });
-        });
+        }
+
+        return realFetch.apply(this, arguments);
     };
 
-    // Read a ReadableStream to completion, return a single Uint8Array.
     function readStream(reader) {
         const chunks = [];
         return reader.read().then(function pump(result) {
@@ -73,34 +103,28 @@
     }
 
     // Scan for protobuf field 4 (backoffTimeMs) and zero values > 500ms.
-    //
     // Protobuf wire format: field 4, wire type 0 (varint) = tag byte 0x20
-    // (field_number << 3 | wire_type = 4 << 3 | 0). The varint encoding
-    // uses 7 bits per byte with bit 0x80 as a continuation flag.
+    // (field_number << 3 | wire_type = 4 << 3 | 0). The varint uses 7 bits
+    // per byte with 0x80 as continuation flag. We zero the varint in place,
+    // keeping the same byte count so the message structure stays valid.
     function zeroBackoffField(bytes, rn) {
         for (let i = 0; i < bytes.length - 2; i++) {
-            if (bytes[i] !== 0x20) continue; // not a field 4 tag
-
-            // Decode the varint that follows the tag byte
+            if (bytes[i] !== 0x20) continue;
             let val = 0, shift = 0, end = i + 1;
             while (end < bytes.length && shift < 35) {
-                val |= (bytes[end] & 0x7f) << shift; // low 7 bits contribute to value
-                if (!(bytes[end] & 0x80)) { end++; break; } // no continuation bit = last byte
+                val |= (bytes[end] & 0x7f) << shift;
+                if (!(bytes[end] & 0x80)) { end++; break; }
                 shift += 7;
                 end++;
             }
-
             if (val > 500 && val < 100000) {
                 log('PATCH backoff=' + val + 'ms at offset=' + i, 'rn=' + rn);
-                // Overwrite with a zero varint of the same byte length.
-                // All bytes except the last get 0x80 (continuation), last gets 0x00 (value=0, no continuation).
                 for (let j = i + 1; j < end; j++)
                     bytes[j] = (j < end - 1) ? 0x80 : 0x00;
             }
         }
     }
 
-    // Log video readyState changes
     if (DEBUG) {
         let lastRS = -1;
         setInterval(function() {
@@ -116,3 +140,4 @@
 
     log('loaded');
 })();
+
