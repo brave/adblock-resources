@@ -80,6 +80,14 @@
         "resourcePath": "brave-youtube-theater-fix.js"
     },
     {
+        "name": "brave-yt-sabr-fix.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "brave-yt-sabr-fix.js"
+    },
+    {
         "name": "de-amp.js",
         "aliases": [],
         "kind": {
