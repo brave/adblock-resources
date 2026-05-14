@@ -37,8 +37,7 @@
     // masthead logo (DOM signal) plus ytcfg (set inline in page HTML, so
     // available before any fetch). Either signal → skip.
     const isPremium = () =>
-        !!document.querySelector('a#logo[title*="Premium" i]') ||
-        window.ytcfg?.get?.('IS_PREMIUM') === true;
+        !!document.querySelector('a#logo[title*="Premium" i]');
 
     // Prong 1: On SPA navigation, force a new ad-free SABR session.
     // Set isInlinePlaybackNoAd on the video data so the new session
