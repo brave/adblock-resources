@@ -14,7 +14,7 @@
 //    cancelPlayback() + loadVideoById() to force a new SABR session.
 //
 // 2. SABR response patching (full page loads): Intercept SABR streaming
-//    responses and zero out backoffTimeMs in the protobuf. This handles
+//    responses and rewrite backoffTimeMs in the protobuf. This handles
 //    page reloads and direct navigations where the SABR session was
 //    already established before the scriptlet could intervene.
 //
@@ -27,16 +27,22 @@
 // 6. Go to YouTube and test
 
 (function() {
-    const DEBUG = true;
+    const DEBUG = false;
     const LOG_PREFIX = '[yt-sabr-fix]';
     const startTime = Date.now();
     const elapsed = () => ((Date.now() - startTime) / 1000).toFixed(2) + 's';
     const log = (...args) => { if (DEBUG) console.log(LOG_PREFIX, elapsed(), ...args); };
 
+    // Premium accounts have no ads and no backoff, nothing to do.
+    if (document.querySelector('a#logo[title*="Premium" i]')) return;
+
     // Prong 1: On SPA navigation, force a new ad-free SABR session.
     // Set isInlinePlaybackNoAd on the video data so the new session
     // doesn't get an ad slot, then tear down the old session and start fresh.
-    let lastReloadedVid = '';
+    // Initialize to the current vid so the initial yt-navigate-finish
+    // (which fires on page load completion, not just SPA nav) is treated
+    // as a duplicate and skipped. Avoids tearing down playback on refresh.
+    let lastReloadedVid = new URL(window.location.href).searchParams.get('v') || '';
     window.addEventListener('yt-navigate-finish', () => {
         const vid = new URL(window.location.href).searchParams.get('v');
         if (!vid || vid === lastReloadedVid) return;
@@ -56,7 +62,10 @@
         }, 100);
     });
 
-    // Prong 2: Intercept SABR responses and zero backoffTimeMs.
+    // Prong 2: Intercept SABR responses and patch backoffTimeMs.
+    // Tee the body so media chunks (>=1000 bytes) pass through untouched
+    // — only the small control messages carrying the backoff field get
+    // buffered and re-emitted as a synthesized Response.
     const realFetch = window.fetch;
 
     window.fetch = function(resource, init) {
@@ -68,17 +77,22 @@
             log('SABR fetch rn=' + rn);
 
             return realFetch.apply(this, arguments).then(function(response) {
-                return readStream(response.body.getReader()).then(function(bytes) {
-                    if (bytes.length < 1000) {
-                        log('small response rn=' + rn, 'size=' + bytes.length);
-                        zeroBackoffField(bytes, rn);
+                if (!response.body) return response;
+                const [pass, scan] = response.body.tee();
+                const reinit = { status: response.status, statusText: response.statusText, headers: response.headers };
+                return readStream(scan.getReader()).then(function(bytes) {
+                    if (bytes.length >= 1000) {
+                        log('SABR done rn=' + rn, 'size=' + bytes.length);
+                        return new Response(pass, reinit);
                     }
-                    log('SABR done rn=' + rn, 'size=' + bytes.length);
-                    return new Response(bytes, {
-                        status: response.status,
-                        statusText: response.statusText,
-                        headers: response.headers,
-                    });
+                    log('small response rn=' + rn, 'size=' + bytes.length);
+                    patchBackoffField(bytes, rn);
+                    const out = new Response(bytes, reinit);
+                    try {
+                        Object.defineProperty(out, 'url', { value: response.url, configurable: true });
+                        Object.defineProperty(out, 'type', { value: response.type, configurable: true });
+                    } catch(e) {}
+                    return out;
                 });
             });
         }
@@ -102,12 +116,14 @@
         });
     }
 
-    // Scan for protobuf field 4 (backoffTimeMs) and zero values > 500ms.
-    // Protobuf wire format: field 4, wire type 0 (varint) = tag byte 0x20
-    // (field_number << 3 | wire_type = 4 << 3 | 0). The varint uses 7 bits
-    // per byte with 0x80 as continuation flag. We zero the varint in place,
-    // keeping the same byte count so the message structure stays valid.
-    function zeroBackoffField(bytes, rn) {
+    // Scan for protobuf field 4 (backoffTimeMs) and rewrite values > 500ms
+    // to a small random value (50-150ms, looks like natural backoff noise
+    // rather than a clean zero). Protobuf wire format: field 4, wire type
+    // 0 (varint) = tag byte 0x20 (field_number << 3 | wire_type = 4 << 3
+    // | 0). The varint uses 7 bits per byte with 0x80 as continuation
+    // flag. We rewrite the varint in place, keeping the same byte count
+    // so the message structure stays valid.
+    function patchBackoffField(bytes, rn) {
         for (let i = 0; i < bytes.length - 2; i++) {
             if (bytes[i] !== 0x20) continue;
             let val = 0, shift = 0, end = i + 1;
@@ -118,9 +134,14 @@
                 end++;
             }
             if (val > 500 && val < 100000) {
-                log('PATCH backoff=' + val + 'ms at offset=' + i, 'rn=' + rn);
-                for (let j = i + 1; j < end; j++)
-                    bytes[j] = (j < end - 1) ? 0x80 : 0x00;
+                const target = 50 + Math.floor(Math.random() * 100);
+                log('PATCH backoff=' + val + 'ms → ' + target + 'ms at offset=' + i, 'rn=' + rn);
+                let pos = i + 1, remaining = target;
+                while (pos < end - 1) {
+                    bytes[pos++] = (remaining & 0x7f) | 0x80;
+                    remaining >>>= 7;
+                }
+                bytes[pos] = remaining & 0x7f;
             }
         }
     }
