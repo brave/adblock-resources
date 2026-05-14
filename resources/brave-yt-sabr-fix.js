@@ -33,6 +33,13 @@
     const elapsed = () => ((Date.now() - startTime) / 1000).toFixed(2) + 's';
     const log = (...args) => { if (DEBUG) console.log(LOG_PREFIX, elapsed(), ...args); };
 
+    // Premium users see no ads, so neither prong needs to run. Check the
+    // masthead logo (DOM signal) plus ytcfg (set inline in page HTML, so
+    // available before any fetch). Either signal → skip.
+    const isPremium = () =>
+        !!document.querySelector('a#logo[title*="Premium" i]') ||
+        window.ytcfg?.get?.('IS_PREMIUM') === true;
+
     // Prong 1: On SPA navigation, force a new ad-free SABR session.
     // Set isInlinePlaybackNoAd on the video data so the new session
     // doesn't get an ad slot, then tear down the old session and start fresh.
@@ -41,6 +48,7 @@
         const vid = new URL(window.location.href).searchParams.get('v');
         if (!vid || vid === lastReloadedVid) return;
         lastReloadedVid = vid;
+        if (isPremium()) { log('skip (premium)'); return; }
 
         setTimeout(() => {
             const player = document.querySelector('#movie_player');
@@ -62,7 +70,7 @@
     window.fetch = function(resource, init) {
         const url = typeof resource === 'string' ? resource : (resource?.url || '');
 
-        if (url.includes('googlevideo.com') && url.includes('sabr=1')) {
+        if (url.includes('googlevideo.com') && url.includes('sabr=1') && !isPremium()) {
             let rn = '';
             try { rn = new URL(url).searchParams.get('rn') || ''; } catch(e) {}
             log('SABR fetch rn=' + rn);
