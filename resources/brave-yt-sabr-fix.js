@@ -80,9 +80,9 @@
                 if (!response.body) return response;
                 const [pass, scan] = response.body.tee();
                 const reinit = { status: response.status, statusText: response.statusText, headers: response.headers };
-                return readStream(scan.getReader()).then(function(bytes) {
-                    if (bytes.length >= 1000) {
-                        log('SABR done rn=' + rn, 'size=' + bytes.length);
+                return readStream(scan.getReader(), 1000).then(function(bytes) {
+                    if (bytes === null) {
+                        log('SABR done rn=' + rn);
                         return new Response(pass, reinit);
                     }
                     log('small response rn=' + rn, 'size=' + bytes.length);
@@ -100,18 +100,26 @@
         return realFetch.apply(this, arguments);
     };
 
-    function readStream(reader) {
+    // Read a stream into a Uint8Array. If earlyExitThreshold is set and the
+    // accumulated bytes cross it, cancel the reader and return null — used
+    // to bail out of buffering when the response is clearly a media chunk
+    // and should stream straight to the player instead.
+    function readStream(reader, earlyExitThreshold) {
         const chunks = [];
+        let total = 0;
         return reader.read().then(function pump(result) {
             if (result.done) {
-                let total = 0;
-                for (let i = 0; i < chunks.length; i++) total += chunks[i].length;
                 const merged = new Uint8Array(total);
                 for (let i = 0, off = 0; i < chunks.length; off += chunks[i].length, i++)
                     merged.set(chunks[i], off);
                 return merged;
             }
             chunks.push(result.value);
+            total += result.value.length;
+            if (earlyExitThreshold && total >= earlyExitThreshold) {
+                try { reader.cancel(); } catch(e) {}
+                return null;
+            }
             return reader.read().then(pump);
         });
     }
