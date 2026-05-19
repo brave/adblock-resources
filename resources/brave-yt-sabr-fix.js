@@ -42,11 +42,14 @@
     // Initialize to the current vid so the initial yt-navigate-finish
     // (which fires on page load completion, not just SPA nav) is treated
     // as a duplicate and skipped. Avoids tearing down playback on refresh.
+    // We skip teardown when there's no prior session to clear.
     let lastReloadedVid = new URL(window.location.href).searchParams.get('v') || '';
     window.addEventListener('yt-navigate-finish', () => {
         const vid = new URL(window.location.href).searchParams.get('v');
         if (!vid || vid === lastReloadedVid) return;
+        const hadPriorSession = lastReloadedVid !== '';
         lastReloadedVid = vid;
+        if (!hadPriorSession) return;
 
         setTimeout(() => {
             const player = document.querySelector('#movie_player');
@@ -77,12 +80,19 @@
             log('SABR fetch rn=' + rn);
 
             return realFetch.apply(this, arguments).then(function(response) {
-                if (!response.body) return response;
-                const [pass, scan] = response.body.tee();
-                const reinit = { status: response.status, statusText: response.statusText, headers: response.headers };
-                return readStream(scan.getReader()).then(function(bytes) {
-                    if (bytes.length >= 1000) {
-                        log('SABR done rn=' + rn, 'size=' + bytes.length);
+                if (!response.ok || !response.body) return response;
+                // Tee defensively: if it throws (locked stream, browser quirk),
+                // hand the original response back to avoid breaking the video entirely.
+                let pass, scan, reinit;
+                try {
+                    [pass, scan] = response.body.tee();
+                    reinit = { status: response.status, statusText: response.statusText, headers: response.headers };
+                } catch (e) {
+                    return response;
+                }
+                return readStream(scan.getReader(), 1000).then(function(bytes) {
+                    if (bytes === null) {
+                        log('SABR done rn=' + rn);
                         return new Response(pass, reinit);
                     }
                     log('small response rn=' + rn, 'size=' + bytes.length);
@@ -93,6 +103,9 @@
                         Object.defineProperty(out, 'type', { value: response.type, configurable: true });
                     } catch(e) {}
                     return out;
+                }).catch(function(e) {
+                    // If anything goes wrong during streaming/patching, bail out and pass through the original response
+                    return new Response(pass, reinit);
                 });
             });
         }
@@ -100,18 +113,26 @@
         return realFetch.apply(this, arguments);
     };
 
-    function readStream(reader) {
+    // Read a stream into a Uint8Array. If earlyExitThreshold is set and the
+    // accumulated bytes cross it, cancel the reader and return null — used
+    // to bail out of buffering when the response is clearly a media chunk
+    // and should stream straight to the player instead.
+    function readStream(reader, earlyExitThreshold) {
         const chunks = [];
+        let total = 0;
         return reader.read().then(function pump(result) {
             if (result.done) {
-                let total = 0;
-                for (let i = 0; i < chunks.length; i++) total += chunks[i].length;
                 const merged = new Uint8Array(total);
                 for (let i = 0, off = 0; i < chunks.length; off += chunks[i].length, i++)
                     merged.set(chunks[i], off);
                 return merged;
             }
             chunks.push(result.value);
+            total += result.value.length;
+            if (earlyExitThreshold && total >= earlyExitThreshold) {
+                try { reader.cancel(); } catch(e) {}
+                return null;
+            }
             return reader.read().then(pump);
         });
     }
