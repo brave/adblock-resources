@@ -62,6 +62,21 @@
     document.addEventListener('keydown', () => { lastUserInput = Date.now(); }, true);
     document.addEventListener('click',   () => { lastUserInput = Date.now(); }, true);
 
+    // Media keys go through MediaSession, not keydown. Patch the prototype
+    // so pause/play handlers update lastUserInput.
+    try {
+      const origSet = MediaSession.prototype.setActionHandler;
+      MediaSession.prototype.setActionHandler = function(act, h) {
+        return origSet.call(this, act, (act !== 'pause' && act !== 'play') ? h : function(...a) {
+          lastUserInput = Date.now();
+          if (typeof h === 'function') return h.apply(this, a);
+          const v = getVideo();
+          if (v) act === 'pause' ? v.pause() : v.play().catch(() => {});
+        });
+      };
+      ['pause', 'play'].forEach(a => navigator.mediaSession.setActionHandler(a, null));
+    } catch (e) {}
+
     function onVideoNavigation() {
       refreshLact();
       if (IS_IOS) return;
