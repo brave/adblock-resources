@@ -103,9 +103,6 @@
                         Object.defineProperty(out, 'type', { value: response.type, configurable: true });
                     } catch(e) {}
                     return out;
-                }).catch(function(e) {
-                    // If anything goes wrong during streaming/patching, bail out and pass through the original response
-                    return new Response(pass, reinit);
                 });
             });
         }
