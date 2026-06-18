@@ -65,6 +65,31 @@
         }, 100);
     });
 
+    // Prong 1b: cold-load rescue. On a fresh page load the player already
+    // holds a SABR session carrying the ad-slot backoff, and Prong 1 (SPA nav
+    // only) won't fire. Prong 2 below can rewrite backoffTimeMs, but YouTube
+    // seems to be ignoring our rewritten value and enforcing a server-side
+    // ad-slot delay. The way to get around this is to force a fresh session 
+    // (same mechanism as Prong 1). So when Prong 2 first sees a real backoff 
+    // on the cold session, force a single fresh session here. If the new 
+    // session still returns a backoff, we break to avoid a reload loop.
+    let coldReloadDone = false;
+    function forceFreshSessionOnce() {
+        if (coldReloadDone) return;
+        coldReloadDone = true;
+        const player = document.querySelector('#movie_player');
+        if (!player?.cancelPlayback || !player?.loadVideoById) return;
+        const vid = new URL(window.location.href).searchParams.get('v');
+        if (!vid) return;
+
+        const vd = player.getVideoData?.();
+        if (vd) vd.isInlinePlaybackNoAd = true;
+
+        player.cancelPlayback();
+        player.loadVideoById(vid);
+        log('cold-load rescue: forced fresh ad-free session for', vid);
+    }
+
     // Prong 2: Intercept SABR responses and patch backoffTimeMs.
     // Tee the body so media chunks (>=1000 bytes) pass through untouched
     // — only the small control messages carrying the backoff field get
@@ -96,7 +121,10 @@
                         return new Response(pass, reinit);
                     }
                     log('small response rn=' + rn, 'size=' + bytes.length);
-                    patchBackoffField(bytes, rn);
+                    // To avoid the ad-slot wait, attempt to force a fresh session
+                    // after the first sign of a real backoff on the cold session. If the new
+                    // session still returns a backoff, break to avoid an infinite reload loop.
+                    if (patchBackoffField(bytes, rn)) forceFreshSessionOnce();
                     const out = new Response(bytes, reinit);
                     try {
                         Object.defineProperty(out, 'url', { value: response.url, configurable: true });
@@ -142,6 +170,7 @@
     // flag. We rewrite the varint in place, keeping the same byte count
     // so the message structure stays valid.
     function patchBackoffField(bytes, rn) {
+        let patched = false;
         for (let i = 0; i < bytes.length - 2; i++) {
             if (bytes[i] !== 0x20) continue;
             let val = 0, shift = 0, end = i + 1;
@@ -160,8 +189,10 @@
                     remaining >>>= 7;
                 }
                 bytes[pos] = remaining & 0x7f;
+                patched = true;
             }
         }
+        return patched;
     }
 
     if (DEBUG) {
