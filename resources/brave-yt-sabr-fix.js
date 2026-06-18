@@ -7,11 +7,11 @@
 //
 // Two-pronged fix:
 //
-// 1. SPA navigation: When clicking between videos without a page reload,
-//    the player reuses the old SABR session (which may already have a
-//    backoff). On yt-navigate-finish, we set isInlinePlaybackNoAd on the
-//    player's video data (telling it there's no ad slot), then call
-//    cancelPlayback() + loadVideoById() to force a new SABR session.
+// 1. Fresh ad-free session: When Prong 2 detects a real backoff, set
+//    isInlinePlaybackNoAd on the player's video data (telling it there's no
+//    ad slot), then call cancelPlayback() + loadVideoById() to force a new
+//    SABR session. Guarded per video and only before playback starts, so
+//    no-ad videos and mid-playback pacing backoffs are left alone.
 //
 // 2. SABR response patching (full page loads): Intercept SABR streaming
 //    responses and rewrite backoffTimeMs in the protobuf. This handles
@@ -36,58 +36,29 @@
     // Premium accounts have no ads and no backoff, nothing to do.
     if (document.querySelector('a#logo[title*="Premium" i]')) return;
 
-    // Prong 1: On SPA navigation, force a new ad-free SABR session.
-    // Set isInlinePlaybackNoAd on the video data so the new session
-    // doesn't get an ad slot, then tear down the old session and start fresh.
-    // Initialize to the current vid so the initial yt-navigate-finish
-    // (which fires on page load completion, not just SPA nav) is treated
-    // as a duplicate and skipped. Avoids tearing down playback on refresh.
-    // We skip teardown when there's no prior session to clear.
-    let lastReloadedVid = new URL(window.location.href).searchParams.get('v') || '';
-    window.addEventListener('yt-navigate-finish', () => {
+    // Prong 1: Force a fresh ad-free SABR session, driven by Prong 2 when it
+    // sees a real backoff. Set isInlinePlaybackNoAd so the new session gets no
+    // ad slot, then tear down the current session and reload. Guarded per video
+    // (one reload each, so a session that still backs off falls back to patching
+    // rather than looping) and skipped once playback has started — a no-ad video
+    // has no backoff, and a mid-playback backoff is normal pacing.
+    let reloadedVid = null;
+    function forceFreshSession() {
         const vid = new URL(window.location.href).searchParams.get('v');
-        if (!vid || vid === lastReloadedVid) return;
-        const hadPriorSession = lastReloadedVid !== '';
-        lastReloadedVid = vid;
-        if (!hadPriorSession) return;
-
-        setTimeout(() => {
-            const player = document.querySelector('#movie_player');
-            if (!player?.cancelPlayback || !player?.loadVideoById) return;
-
-            // Set the no-ad flag before reloading so the new session picks it up
-            const vd = player.getVideoData?.();
-            if (vd) vd.isInlinePlaybackNoAd = true;
-
-            player.cancelPlayback();
-            player.loadVideoById(vid);
-            log('forced new SABR session for', vid);
-        }, 100);
-    });
-
-    // Prong 1b: cold-load rescue. On a fresh page load the player already
-    // holds a SABR session carrying the ad-slot backoff, and Prong 1 (SPA nav
-    // only) won't fire. Prong 2 below can rewrite backoffTimeMs, but YouTube
-    // seems to be ignoring our rewritten value and enforcing a server-side
-    // ad-slot delay. The way to get around this is to force a fresh session 
-    // (same mechanism as Prong 1). So when Prong 2 first sees a real backoff 
-    // on the cold session, force a single fresh session here. If the new 
-    // session still returns a backoff, we break to avoid a reload loop.
-    let coldReloadDone = false;
-    function forceFreshSessionOnce() {
-        if (coldReloadDone) return;
-        coldReloadDone = true;
+        if (!vid || vid === reloadedVid) return;
+        const video = document.querySelector('video');
+        if (video && video.currentTime > 1) return;
+        reloadedVid = vid;
         const player = document.querySelector('#movie_player');
         if (!player?.cancelPlayback || !player?.loadVideoById) return;
-        const vid = new URL(window.location.href).searchParams.get('v');
-        if (!vid) return;
 
+        // Set the no-ad flag before reloading so the new session picks it up
         const vd = player.getVideoData?.();
         if (vd) vd.isInlinePlaybackNoAd = true;
 
         player.cancelPlayback();
         player.loadVideoById(vid);
-        log('cold-load rescue: forced fresh ad-free session for', vid);
+        log('forced fresh ad-free session for', vid);
     }
 
     // Prong 2: Intercept SABR responses and patch backoffTimeMs.
@@ -121,10 +92,9 @@
                         return new Response(pass, reinit);
                     }
                     log('small response rn=' + rn, 'size=' + bytes.length);
-                    // To avoid the ad-slot wait, attempt to force a fresh session
-                    // after the first sign of a real backoff on the cold session. If the new
-                    // session still returns a backoff, break to avoid an infinite reload loop.
-                    if (patchBackoffField(bytes, rn)) forceFreshSessionOnce();
+                    // A real backoff blocks initial playback; force a fresh
+                    // ad-free session (guarded per video, skipped mid-playback).
+                    if (patchBackoffField(bytes, rn)) forceFreshSession();
                     const out = new Response(bytes, reinit);
                     try {
                         Object.defineProperty(out, 'url', { value: response.url, configurable: true });
