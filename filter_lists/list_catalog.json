@@ -222,6 +222,60 @@
         ]
     },
     {
+        "uuid": "A5E6EC21-F01F-4547-9F0A-1EE1C3F2AE8D",
+        "title": "Allow Facebook Embeds",
+        "desc": "Enables Facebook embedded posts on all websites",
+        "langs": [],
+        "hidden": true,
+        "list_text_component": {
+            "component_id": "jmfhneobcdckobmonkfjkbknnjjnegoh",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0zuiHebZ7KOlcYxLb6eYLJQ0vi5LA+IpPggyIL05wy8jK8BHWJmusm8mwGZotXSxA1Wr5z45Nsiw39kY+JuExZqaQ1ysk2Gng+8qq36YcYo9HkmUPkJ5RO5xf/uVNK6Dh3B8tCuYGVph8NsTYS6woIgsST+qQysK1PeQDYzEisyhULZWL9ox5axJL3DJrsu+EKAGu1LcQpsSGF03V7HQPVOeo/W0wBYNAah5YT/gdXykXpV7CO2SdFDhtiPuzzVlkACWnBYSsQr983H25WRMdTexhMJiLrLOaBRnXia5XzQ/4XtKFuakEq5QqmVF0yo/FYcl3hoHPFIq8NGFGuCthQIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/embed-exceptions-facebook.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/brave/adblock-lists"
+            }
+        ]
+    },
+    {
+        "uuid": "84960ADD-1CC1-419F-81FC-9F116F5205CC",
+        "title": "Allow X/Twitter Embeds",
+        "desc": "Enables X (formerly Twitter) embedded posts on all websites",
+        "langs": [],
+        "hidden": true,
+        "list_text_component": {
+            "component_id": "dkpggglmbjhgjhachikgmohmecomjndo",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA12jyY9RXzkqxGRJc/VPsqub2MsRFv5fJPNQSuoPYAWzJ3PntVqLDgM9iVuHD7dx7qx84160CG9BXmExFtyW0Qv/5Rqg6QOpqquxXvHu1LpWiFrU5uZzsW3c3q7PTn8iQ464uHitPVWEh18jT1Joh/uAuGCzgr79eJ80VafzLZXEAjBV76F7GXV23BjThjhW8A0BXPffZK9oW4mhSX+bYNMgh76J2/uIMd8btq65XiXp9JIjEGF6aukd1Uc+nYBvrbGCYs59xkzcQpVW2Wy3y//NOc7LMCu0jerF1tK14tav9dDwcCIdJzNcQ+sd4msH7Fz8HlYjUKcvAreNM5fhCoQIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/embed-exceptions-twitter.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/brave/adblock-lists"
+            }
+        ]
+    },
+    {
+        "uuid": "FB626316-6CC8-4447-884B-F5A37C29B0AE",
+        "title": "Allow LinkedIn Embeds",
+        "desc": "Enables LinkedIn embedded posts on all websites",
+        "langs": [],
+        "hidden": true,
+        "list_text_component": {
+            "component_id": "omagkbhjmgdelnpnlllbjolojcibnifj",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArjI+6jFmXNYpfhDrqUGbLWYfAyXwPUFQXXeG4JRQ7nEcZuKF6tEe8moGGS8lDkxZhk/IOxtu243YW8zIgnbHN47W9DknsB9djtQUfg3xT99iEOYCvfkh65EgLyVv3eagUvX8jLBpll/Wiumjxjo+rVdv90M46doS0xJpigjZn5jUVsCPKWaaRp2Gq43bSfPLQpR/0bMjU61C7lj0CXDEzk1OUlpeskbFxbtkNnywcVmAfKowqogDistnMazMldJrK5c1gnfj1Cl4whrZ9MWOAUTU32P4ET5ClE97BP27G/1IT9qexowT/JS5mVsReodp3wSVdyHoAIZ9cNtjkJ4xVQIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/embed-exceptions-linkedin.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/brave/adblock-lists"
+            }
+        ]
+    },
+    {
         "uuid": "AC023D22-AE88-4060-A978-4FEEEC4221693",
         "title": "Cookie notice blocker",
         "desc": "EasyList Cookie",
