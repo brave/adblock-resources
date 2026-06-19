@@ -718,23 +718,6 @@
         ]
     },
     {
-        "uuid": "0783DBFD-B5E0-4982-9B4A-711BDDB925B7",
-        "title": "Estonian website ad blocker",
-        "desc": "Eesti saitidele kohandatud filter",
-        "langs": ["et"],
-        "list_text_component": {
-            "component_id": "dcfccddjfmckaigemleendolfmmaaiii",
-            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx9d8o+kM4IcgkHERTS82gnn8jdvOaTqJ8YPV+vbiOEzS3ntIawegkGeGB5ZQzxqBdV/v17L1cG9Ze5RvqdHw2eqiRPWREwUw5G3TvvH4NAteGtx8+9xv82s+Vt4skM4bUfvm75uroz4wpAFpCwgpHnR3w8m3cnq4vTog/z4xVd6Z2cR5VSbuH/9S9RoboyLrse95XxMlb4mLDi+vIf9xbLrOYTknw3LQNrSb89+LL90h/XeyDHuHkfeqfAZaJ3g3E50u45nFhgHQQEz4V0vg1jL2PMmQmm01MrZCeC6o3FbTZXHReH0X2EDgaxhi/nq4SSYlPLuCvuHIQAojGu0YFwIDAQAB"
-        },
-        "sources": [
-            {
-                "url": "https://ubo-et.lepik.io/list.txt",
-                "format": "Standard",
-                "support_url": "https://github.com/sander85/uBO-et"
-            }
-        ]
-    },
-    {
         "uuid": "1C6D8556-3400-4358-B9AD-72689D7B2C46",
         "title": "Finnish website ad blocker",
         "desc": "EasyList Finnish",
