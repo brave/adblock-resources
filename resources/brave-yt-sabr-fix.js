@@ -5,18 +5,18 @@
 // backoff remains, causing a 4-16 second spinner.
 // From: https://iter.ca/post/yt-adblock/
 //
-// Two-pronged fix:
+// The fix intercepts SABR streaming responses and looks for a real backoff
+// (backoffTimeMs in the protobuf). When one is found it does two things:
 //
-// 1. SPA navigation: When clicking between videos without a page reload,
-//    the player reuses the old SABR session (which may already have a
-//    backoff). On yt-navigate-finish, we set isInlinePlaybackNoAd on the
-//    player's video data (telling it there's no ad slot), then call
-//    cancelPlayback() + loadVideoById() to force a new SABR session.
+// 1. Fresh ad-free session: if the backoff is blocking initial playback,
+//    set isInlinePlaybackNoAd on the player's video data (telling it there's
+//    no ad slot), then call cancelPlayback() + loadVideoById() to force a new
+//    SABR session with no ad slot. Guarded per video and only before playback
+//    starts, so no-ad videos and mid-playback pacing backoffs are left alone.
 //
-// 2. SABR response patching (full page loads): Intercept SABR streaming
-//    responses and rewrite backoffTimeMs in the protobuf. This handles
-//    page reloads and direct navigations where the SABR session was
-//    already established before the scriptlet could intervene.
+// 2. Backoff patching: the backoffTimeMs value is rewritten regardless, as a
+//    fallback for when the fresh session still carries a backoff and to smooth
+//    the normal pacing backoffs that occur mid-playback.
 //
 // To use this scriptlet:
 // 1. Go to brave://settings/shields/filters
@@ -36,36 +36,34 @@
     // Premium accounts have no ads and no backoff, nothing to do.
     if (document.querySelector('a#logo[title*="Premium" i]')) return;
 
-    // Prong 1: On SPA navigation, force a new ad-free SABR session.
-    // Set isInlinePlaybackNoAd on the video data so the new session
-    // doesn't get an ad slot, then tear down the old session and start fresh.
-    // Initialize to the current vid so the initial yt-navigate-finish
-    // (which fires on page load completion, not just SPA nav) is treated
-    // as a duplicate and skipped. Avoids tearing down playback on refresh.
-    // We skip teardown when there's no prior session to clear.
-    let lastReloadedVid = new URL(window.location.href).searchParams.get('v') || '';
-    window.addEventListener('yt-navigate-finish', () => {
+    // Force a fresh ad-free SABR session. Called from the SABR interceptor
+    // below when it sees a real backoff. Set isInlinePlaybackNoAd so the new
+    // session gets no ad slot, then tear down the current session and reload.
+    // Guarded per video (one reload each, so a session that still backs off
+    // falls back to patching rather than looping) and skipped once playback has
+    // started — a no-ad video has no backoff, and a mid-playback backoff is
+    // normal pacing.
+    let reloadedVid = null;
+    function forceFreshSession() {
         const vid = new URL(window.location.href).searchParams.get('v');
-        if (!vid || vid === lastReloadedVid) return;
-        const hadPriorSession = lastReloadedVid !== '';
-        lastReloadedVid = vid;
-        if (!hadPriorSession) return;
+        if (!vid || vid === reloadedVid) return;
+        const video = document.querySelector('video');
+        if (video && video.currentTime > 1) return;
+        reloadedVid = vid;
+        const player = document.querySelector('#movie_player');
+        if (!player?.cancelPlayback || !player?.loadVideoById) return;
 
-        setTimeout(() => {
-            const player = document.querySelector('#movie_player');
-            if (!player?.cancelPlayback || !player?.loadVideoById) return;
+        // Set the no-ad flag before reloading so the new session picks it up
+        const vd = player.getVideoData?.();
+        if (vd) vd.isInlinePlaybackNoAd = true;
 
-            // Set the no-ad flag before reloading so the new session picks it up
-            const vd = player.getVideoData?.();
-            if (vd) vd.isInlinePlaybackNoAd = true;
+        player.cancelPlayback();
+        player.loadVideoById(vid);
+        log('forced fresh ad-free session for', vid);
+    }
 
-            player.cancelPlayback();
-            player.loadVideoById(vid);
-            log('forced new SABR session for', vid);
-        }, 100);
-    });
-
-    // Prong 2: Intercept SABR responses and patch backoffTimeMs.
+    // Intercept SABR responses: detect a real backoff, force a fresh ad-free
+    // session if needed (see forceFreshSession above), and patch backoffTimeMs.
     // Tee the body so media chunks (>=1000 bytes) pass through untouched
     // — only the small control messages carrying the backoff field get
     // buffered and re-emitted as a synthesized Response.
@@ -96,7 +94,9 @@
                         return new Response(pass, reinit);
                     }
                     log('small response rn=' + rn, 'size=' + bytes.length);
-                    patchBackoffField(bytes, rn);
+                    // A real backoff blocks initial playback; force a fresh
+                    // ad-free session (guarded per video, skipped mid-playback).
+                    if (patchBackoffField(bytes, rn)) forceFreshSession();
                     const out = new Response(bytes, reinit);
                     try {
                         Object.defineProperty(out, 'url', { value: response.url, configurable: true });
@@ -142,6 +142,7 @@
     // flag. We rewrite the varint in place, keeping the same byte count
     // so the message structure stays valid.
     function patchBackoffField(bytes, rn) {
+        let patched = false;
         for (let i = 0; i < bytes.length - 2; i++) {
             if (bytes[i] !== 0x20) continue;
             let val = 0, shift = 0, end = i + 1;
@@ -160,8 +161,10 @@
                     remaining >>>= 7;
                 }
                 bytes[pos] = remaining & 0x7f;
+                patched = true;
             }
         }
+        return patched;
     }
 
     if (DEBUG) {
