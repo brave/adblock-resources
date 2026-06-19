@@ -33,8 +33,20 @@
     const elapsed = () => ((Date.now() - startTime) / 1000).toFixed(2) + 's';
     const log = (...args) => { if (DEBUG) console.log(LOG_PREFIX, elapsed(), ...args); };
 
-    // Premium accounts have no ads and no backoff, nothing to do.
-    if (document.querySelector('a#logo[title*="Premium" i]')) return;
+    // Premium accounts have no ads and no backoff, nothing to do. We can't check
+    // this up front: the scriptlet runs at document_start (so it can wrap fetch
+    // before YouTube grabs its own reference), but the masthead logo doesn't
+    // exist yet, so the selector would always miss. Instead resolve it lazily and
+    // memoize — by the time any SABR fetch fires the logo is present. Stays null
+    // (unknown) until the DOM can answer, so we never cache a premature "false".
+    let premiumCached = null;
+    function isPremium() {
+        if (premiumCached !== null) return premiumCached;
+        const logo = document.querySelector('a#logo[title]');
+        if (!logo) return false; // DOM not ready — don't cache this answer
+        premiumCached = /premium/i.test(logo.getAttribute('title') || '');
+        return premiumCached;
+    }
 
     // Force a fresh ad-free SABR session. Called from the SABR interceptor
     // below when it sees a real backoff. Set isInlinePlaybackNoAd so the new
@@ -72,7 +84,9 @@
     window.fetch = function(resource, init) {
         const url = typeof resource === 'string' ? resource : (resource?.url || '');
 
-        if (url.includes('googlevideo.com') && url.includes('sabr=1')) {
+        // Premium has no ad backoff — skip the tee/scan entirely (re-checked
+        // cheaply per request; resolves once the masthead has rendered).
+        if (url.includes('googlevideo.com') && url.includes('sabr=1') && !isPremium()) {
             let rn = '';
             try { rn = new URL(url).searchParams.get('rn') || ''; } catch(e) {}
             log('SABR fetch rn=' + rn);
