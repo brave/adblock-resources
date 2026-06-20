@@ -36,7 +36,7 @@
         }
     }
     'use strict';
-    const ourTwitchAdSolutionsVersion = 84;// Used to prevent conflicts with outdated versions of the scripts
+    const ourTwitchAdSolutionsVersion = 85;// Used to prevent conflicts with outdated versions of the scripts
     console.log('[AD DEBUG] TwitchAdSolutions vaft v' + ourTwitchAdSolutionsVersion + ' loading');
     if (typeof window.twitchAdSolutionsVersion !== 'undefined' && window.twitchAdSolutionsVersion >= ourTwitchAdSolutionsVersion) {
         console.log('[AD DEBUG] CONFLICT: vaft v' + ourTwitchAdSolutionsVersion + ' skipped — another script already active (v' + window.twitchAdSolutionsVersion + '). Remove duplicate scripts.');
@@ -914,7 +914,12 @@
             if (!streamInfo.FreezeStartedAt) streamInfo.FreezeStartedAt = Date.now();
             // Primary: fresh full-playlist snapshot (< 1.5s old, must not itself contain ad markers)
             const snapshotAge = streamInfo.LastCleanNativePlaylistAt ? (Date.now() - streamInfo.LastCleanNativePlaylistAt) : Infinity;
-            if (streamInfo.LastCleanNativeM3U8 && snapshotAge <= 1500 && !hasAdTags(streamInfo.LastCleanNativeM3U8)) {
+            // Post-ad re-entry guard (mirrors TTV-AB v9.1.3): on a consecutive break that re-enters
+            // within the 8s post-ad reload window, the snapshot can straddle the end-of-break reload
+            // boundary and replay stale content from the previous cycle. Skip it and fall through to
+            // the per-segment recovery cache, which is rebuilt from the current break's polls.
+            const recentReloadReentry = streamInfo.LastPlayerReload && (Date.now() - streamInfo.LastPlayerReload) < 8000;
+            if (streamInfo.LastCleanNativeM3U8 && snapshotAge <= 1500 && !recentReloadReentry && !hasAdTags(streamInfo.LastCleanNativeM3U8)) {
                 console.log('[AD DEBUG] All segments stripped — reusing last clean native playlist (' + snapshotAge + 'ms old)');
                 streamInfo.IsStrippingAdSegments = hasStrippedAdSegments;
                 return streamInfo.LastCleanNativeM3U8;
@@ -2036,8 +2041,12 @@
         // lifecycle and stay visible afterwards. Running here on every monitor tick
         // (1-3s cadence) keeps them hidden without a dedicated interval.
         try { hideTwitchAdOverlays(); } catch {}
-        // Visibility-aware backoff: poll 3x slower when tab is hidden (but NOT during PiP — user is still watching)
-        const shouldThrottle = typeof document !== 'undefined' && document.hidden && !document.pictureInPictureElement;
+        // Visibility-aware backoff: poll 3x slower when tab is hidden (but NOT during PiP — user is still watching).
+        // Exception: don't back off during an active ad break — hidden-tab recovery (backup search → reload) is
+        // already slowed by browser timer clamping; the 3x backoff compounds the "stuck loading until refocus"
+        // stall some users hit when a break starts on a backgrounded tab (issue #129). Workaround, not a full fix:
+        // background media deprioritization is browser-level. Negligible cost — only polls faster while hidden + in-break.
+        const shouldThrottle = typeof document !== 'undefined' && document.hidden && !document.pictureInPictureElement && !playerBufferState.inAdBreak;
         const nextDelay = shouldThrottle ? PlayerBufferingDelay * 3 : PlayerBufferingDelay;
         setTimeout(monitorPlayerBuffering, nextDelay);
     }
@@ -2165,6 +2174,23 @@
             state: finalPlayerState
         };
     }
+    // Apple touch-device detection. iPadOS 13+ reports navigator.platform 'MacIntel' with a desktop
+    // Safari UA — distinguished from a real Mac only by touch support (real Macs report maxTouchPoints 0).
+    // iPhone/iPod/older iPadOS report platform directly.
+    const isAppleTouchDevice = (function() {
+        try {
+            const p = navigator.platform || '';
+            if (/^(iPhone|iPad|iPod)/.test(p)) return true;
+            return p === 'MacIntel' && (navigator.maxTouchPoints || 0) > 1;
+        } catch { return false; }
+    })();
+    // On Apple touch devices a hard reload re-instantiates the media element (setSrc isNewMediaPlayerInstance),
+    // which iOS/iPadOS treats as not user-gesture-"blessed" → play() is rejected → black frame + native play
+    // icon the user must tap (issue: iPad ad black-screen). Downgrade hard reloads to soft so the existing
+    // blessed element is reused and resumes without a tap. Opt-out: twitchAdSolutions_iosSoftReload=false.
+    const iosSoftReload = isAppleTouchDevice && (function() {
+        try { return localStorage.getItem('twitchAdSolutions_iosSoftReload') !== 'false'; } catch { return true; }
+    })();
     // Pause/play or fully reload the Twitch player, preserving quality/volume settings
     function doTwitchPlayerTask(isPausePlay, isReload, reloadKind) {
         const playerAndState = getPlayerAndState();
@@ -2280,7 +2306,11 @@
             // playerForMonitoringBuffering re-acquired fresh every tick — no manual invalidation needed
             // Hard reload for 'early' (mid-break escape — fresh session gets new ad-decision bucket).
             // Soft reload for 'post-ad' (smooth transition, no black screen teardown).
-            const hardReload = reloadKind === 'early';
+            // Apple touch devices: force soft — a new media instance needs a user tap to resume (black-screen + play icon).
+            const hardReload = reloadKind === 'early' && !iosSoftReload;
+            if (reloadKind === 'early' && iosSoftReload) {
+                console.log('[AD DEBUG] iOS/iPadOS: downgrading hard reload to soft — keeps media element user-gesture-blessed (avoids black-screen + play-icon stall). Opt-out: twitchAdSolutions_iosSoftReload=false');
+            }
             console.log('[AD DEBUG] Reloading Twitch player' + (hardReload ? ' (hard)' : ' (soft)'));
             // Pre-mute through hard reload to hide MSE-teardown audio click; restored on
             // `canplay` with 1500ms safety cap. Skipped if user already muted.
