@@ -609,9 +609,9 @@
         },
         "sources": [
             {
-                "url": "https://raw.githubusercontent.com/blocklistproject/Lists/master/adguard/porn-ags.txt",
+                "url": "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/nsfw.txt",
                 "format": "Standard",
-                "support_url": "https://github.com/blocklistproject/Lists"
+                "support_url": "https://github.com/hagezi/dns-blocklists#nsfw"
             }
         ]
     },
