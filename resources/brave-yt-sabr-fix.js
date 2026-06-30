@@ -70,7 +70,15 @@
         if (vd) vd.isInlinePlaybackNoAd = true;
 
         player.cancelPlayback();
-        player.loadVideoById(vid);
+
+        const realLoad = player.loadVideoById.bind(player);
+        
+        player.loadVideoById = () => {}; // suppress during patch
+        // Restore after a tick (give player time to settle)
+        setTimeout(() => { 
+            player.loadVideoById = realLoad; 
+            player.loadVideoById(vid);
+        }, 1000);
         log('forced fresh ad-free session for', vid);
     }
 
