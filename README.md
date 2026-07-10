@@ -106,3 +106,5 @@ It will generate:
 
 The script should be run with no arguments.
 The resulting PEM file will be named `ad-block-updater-<component_id>.pem`. This new PEM file has to be uploaded to 1Password. See instructions [here](https://github.com/brave/internal/wiki/Uploading-new-adblock-list-PEM-file-to-1Password).
+
+You'll probably also want to see https://github.com/brave/brave-core/blob/master/docs/ship_a_file_to_all_clients.md to have brave-core clients actually consume the new component.
