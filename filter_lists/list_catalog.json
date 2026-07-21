@@ -818,6 +818,11 @@
                 "url": "https://raw.githubusercontent.com/easylist/EasyListHebrew/master/EasyListHebrew.txt",
                 "format": "Standard",
                 "support_url": "https://github.com/easylist/EasyListHebrew"
+            },
+            {
+                "url": "https://raw.githubusercontent.com/easylist/EasyListHebrew/refs/heads/master/EasyListHebrew-uBO.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/easylist/EasyListHebrew"
             }
         ]
     },
