@@ -942,9 +942,9 @@
         },
         "sources": [
             {
-                "url": "https://cdn.jsdelivr.net/npm/@list-kr/filterslists@latest/dist/filterslist-uBlockOrigin-classic.txt",
+                "url": "https://cdn.jsdelivr.net/npm/@filteringdev/filterslists-ko@latest/dist/filterslist-uBlockOrigin-classic.txt",
                 "format": "Standard",
-                "support_url": "https://github.com/List-KR/List-KR"
+                "support_url": "https://github.com/FilteringDev/filterslists-KO"
             }
         ]
     },
