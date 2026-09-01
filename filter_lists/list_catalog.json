@@ -7,6 +7,7 @@
         "hidden": true,
         "default_enabled": true,
         "first_party_protections": true,
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "iodkpdagapdfkphljnddpjlldadblomo",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsD/B/MGdz0gh7WkcFARnZTBX9KAw2fuGeogijoI+fET38IK0L+P/trCT2NshqhRNmrDpLzV2+Dmes6PvkA+OdQkUV6VbChJG+baTfr3Oo5PdE0WxmP9Xh8XD7p85DQrk0jJilKuElxpK7Yq0JhcTSc3XNHeTwBVqCnHwWZZ+XysYQfjuDQ0MgQpS/s7U04OZ63NIPe/iCQm32stvS/pEya7KdBZXgRBQ59U6M1n1Ikkp3vfECShbBld6VrrmNrl59yKWlEPepJ9oqUc2Wf2Mq+SDNXROG554RnU4BnDJaNETTkDTZ0Pn+rmLmp1qY5Si0yGsfHkrv3FS3vdxVozOPQIDAQAB"
@@ -154,6 +155,7 @@
         "hidden": true,
         "default_enabled": true,
         "first_party_protections": true,
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "kihnoaefogbkmblfimmibknnmkllbhlf",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArTbJVQgtS0Ulo1pd72XT51mhFYXQowGJrrbIfCttxHFyasryxpYVc6835tSXUNddFlCr8sjdPyOc6kRxC3WzGAk0BNFF3bo1Ln93oUnqjwRQ571jojhe4ROu6JpLSwGGxiadp0RmfpYhZiNBzR5e1DZUbEmhRL4lI/OHznZKhSkqVsD3sZ3eF2p+qwT5kqSZvwoylgCuivE6S9hatKcx86Zda2uwj0BQoq04OPX+T+XmT23F50Vrns3p6W7vUxKZuE+EW2Uw/iIQGEIfuh0oa0XqX1C8ounw3KSuubJRV7dAV0EhFs2Gh1xXLR8nfJHs3AFR0GNpieW1xPllDGU5xwIDAQAB"
@@ -182,6 +184,7 @@
         "hidden": true,
         "default_enabled": true,
         "first_party_protections": true,
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "eaokkjgnlhceblfhbhpeoebmfldocmnc",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuP1aJWk8clHrWt6FdHvFo2khH8GG61XdoQrLJEBLhbp8wpPys9StgFdugsvFsOi4BV9mazauQxWFFSTBpac4IU98QmVc0e0EAZk5wkDzWFK1zK7NxLjrOsdtb32WK86p4dDy8acUJ5v6/crAPFO3cOlR7DQcereiYAS0XSeaQBxWRf68rT/KUv3gN92EAe1JDhPKv4jrAIrJscqfgsFjV5qBYKi0t4t3TybVsZaVEfXNWWj9n3xaDS54Dun+lQOGYekr0qJPWaqe4b/uKeguBqvbiPh7abKYZQOEIkHGjap0nIX8XICqQb2PNrnsuP52hZefqrfdW28kLSqIPPYW/QIDAQAB"
@@ -202,6 +205,7 @@
         "langs": [],
         "hidden": true,
         "default_enabled": true,
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "adcocjohghhfpidemphmcmlmhnfgikei",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtvmLp4MOseThuH/vFSc7kjr+CDCzR/ieGI8TJZyFQhzA1SKWRl4y0wB+HGkmoq0KPOzKNZq6hxK7jdm/r/nxxOjqutPoUEL+ysxePErMTse2XeWu3psGSTEjPFdQTPEwH8MF2SwXXneOraD0V/GSiCCvlx8yKIXNX7V9ujMo+QoD6hPGslKUZQJAg+OaZ7pAfq5cOuWXNN6jv12UL0eMt6Dhl31yEu4kZWeTkiccHqdlB/KvPiqXTrV+qd3Tjvsk6kmUlexu3/zlOwVDz5H/kPuOGvW7kYaW22NWQ9TH6fjffgVcSgHDbZETDiP8fHd76kyi1SZ5YJ09XHTE+i9ikQIDAQAB"
@@ -312,6 +316,7 @@
         "title": "Annoying distractions blocker",
         "desc": "Fanboy's Annoyances + uBO Annoyances",
         "langs": [],
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "omoaeaghhgmiojkeaemjkpkmelmalbgo",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy/xbKx4WIC1LApciemKEs4rUz8MspYGqLzmhQwIsp6qOqMKiYA9pqOtUXx2TYRPkZODISGSsoqvTZ6Uv7Aerq0Bu06UiDy+H4yU0jFZPVDKsMfj9Ky0DAy7ocuetTIps5Aewx5S0S8g9zeI14PluhqsXlTMLQAqkFeUSsML0qHo94Zgx4T1AwHH8IjvsHB1456OCRjxlTICGL0hEwZdEV2rVYWXtkLzEDZ6guPmvEVKZIhey1DG9fXV57SFCLmBC2eTlv0rYDqqgK6KSUeqyAIHV4eiaqIPMgsRFVnE9JD/Q9xrjeAuFc3pslx4YKI+iuXgfa/8jGpPuKqcDX51F/QIDAQAB"
@@ -347,6 +352,7 @@
         "title": "AI suggestions blocker",
         "desc": "Anti-AI suggestions Filters",
         "langs": [],
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "cijficcafkonlbfjfmjeejbjjipdadea",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxdtGogqtpPMKDw7xFgp/Q8pwufcVoiuwgRxuEBVVPrCBkuNBlbe8tnoZ6pS2rWPhlz1UAgZQEh+9Np62KWrFgGId1ryYq5+GSIFyNBfWZJhqBs5j8Kszjhh6ZPCuPveglFSmK9WqIUoEoS/k3E89zWA62c8wWtX4W4h0oQ/P/46TXUfEHMGn6vBhbRGDzOOBf/IwrtptTvyDenpvkE9/nBTOvzCJ5ZPuKUxhIGTOZQ3Rzp+75Wd0vcACGsJVK+1zk1hBWBqbuQhzdiKEgmAwSCCPaA646JCBfts7o+ZmUlu1wrykpuNIcUBZQViJM3C0ouCozxgl+wwVKvKtH5LQFQIDAQAB"
@@ -364,6 +370,7 @@
         "title": "Newsletter popup blocker",
         "desc": "Fanboy's Anti-Newsletter",
         "langs": [],
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "kdddfellohomdnfkdhombbddhojklibj",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr2V5xKHqddrLQr8mNlL4UQGUYfK62ftOlacYb23wPWfW1We4jIOHtYqHg81D7gYckSBejkLh2HqmGa6RxehFTQf8g/L8G1dgzQ10VrQF4STNJiva/EkhcEJHai279biESL6HLVTDun2BnXENxCUR7hc8hDM4xw2ZlaqMMUtFJwhQW96dzbLVG3yP7k8TDwX1dRaAa/Pe+Ie7OYhIUQp4I3rWn3GmhfKBxQalHce/7lQpZwCP8Q/Tz7D8GzvMu+dYm5LnP7LUfC2SdSM0jm3qqwKkWlT1W05tsce4vk2cnxwUUWOAh60TSzQ1d1DX/PfJBUzQG6gkWRMxGNLi+T4i9QIDAQAB"
@@ -382,6 +389,7 @@
         "desc": "Fanboy's Mobile Notifications",
         "langs": [],
         "default_enabled": true,
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "bfpgedeaaibpoidldhjcknekahbikncb",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA310+gKMk4QUl7K23eSXHDukkg1Ped5At02N11zRHJf52mTFy6jnUgA7vo1hkARNHHJDwI9dSyfYsAtrw9qgo/V9ygDBkgShHyYC7c08pgUkdlciaZepj633yuMyyFK9lo3PEF+f1kOodE/Vq4ybJTChDcotuT5bAi57d1Jiizgv5Rz4W9ZvqsWOVbiclQTY+28wTpfuCLznV7mrx7kvm1D2aQaLaJ2R/936DkXRqUn8Ty9GGGaHqx9HK2JgB5RjwFk0esarZyua0kRB5JwMUGu+TsEiGgDpCbRka3nfxItwhoWGBYPwdapkdUr7l3RdeTCLUWmCBdkpmDMhbrG3ctQIDAQAB"
@@ -399,6 +407,7 @@
         "title": "Social media blocker",
         "desc": "Fanboy's Social",
         "langs": [],
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "nbkknaieglghmocpollinelcggiehfco",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs6ib1E68QTHuz/TdEn+ck++Okbcf5xDfQjkhpTb59fnjm0rjII6MV3rWLEj5dkOvpAVzDzFCcyC/JJ/SYIY7nFRQl+ptttd1nLWNu7qewFGh2tezwuEMzPlzQr+KK93Yh0dooCC9KniR/0+kpYeGqBC8tBGz8f4KoV+/zTfkD/47pztflCxNJfrAj4P0GDQhvz8lBtnm6Pa7tGOMhksnMsYWRWsYs6uvjsfd+3uYbiCYa7lEMjZZKy7dHg8hPSUeGZo28kTqYFXufH5jY3q7Luk+dQey1+m1X97KLPOtmwaLFCFqWBha5qFMg/mgzczlaphReFUycwrYVjjOICKrYwIDAQAB"
@@ -416,6 +425,7 @@
         "title": "YouTube Shorts blocker",
         "desc": "YouTube Anti-Shorts",
         "langs": [],
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "almolcgbkikkhliiibfjkohebgklegam",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs+jKXsk0ynC51YEJWZa8PmrF7o73NQB+8KIkWB8kvSYzMFFtByWVGXhpfYbx9jyD/BJQN8kt4hgKofjfixLqzIfevkEeuyGtVN5KYoZpA5zF2X6jTY4ZKlqHc14ox306/FXjtsiLGg+9Y/ToCGWOTvfQsYEpKO+6BQEcBMMGzNhDR2MQaBMNcd3/o7RF7oUaF4Zye/X5WQD+2IrkrfOqHxd2dSstIQRvmGZH5Tuyehf3jNCRKRoQe7v1M0DGwYUJ7B2eO4PrQf+B1NTzxtPBQWUm3k7dAAHm6YTWfUvnwF7rbJs/Rv/jqRPpy+Z6qu3NyfJki7COtchwnqbbkUkAtQIDAQAB"
@@ -433,6 +443,7 @@
         "title": "YouTube Playables blocker",
         "desc": "Remove Youtube Playables",
         "langs": [],
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "abhafnnblaoofkgacbenbhhalbohmail",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAthWre55FJf09Q8sw9qgTKs3bYzv7NM6Rp+bupMQ7mLrXVFXb6n/FSJS2QOjxPD5vV/Zw+f6/eRK9NO5vD43LhczKTZgqxuuIzDtR4pRagCgqf7h1nHAxoF0xb3Qz+5lmbSdRV4WdGlfpldmuc23duZhZOAkA+cSxs1bTuVZOLPkxR0JGNuYLgI9E+R8YkiWDhmH/eRt1iqay3fJJQ2t0+kbmSAPoYYkjICnYm6GMfewzK41Dd3PRWMf/9trPwbxAop4dNK6Cs6D26yAIoTv+LJXC3hyXgZaXey6cqBRZIbU388vOZi9TnIjbYU411myTg8B6/9jp2lWPXBH6qpmkewIDAQAB"
@@ -450,6 +461,7 @@
         "title": "YouTube recommendations blocker (mobile-only)",
         "desc": "YouTube Mobile Recommendations",
         "langs": [],
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "phdmgpanpejkbmbljlhcehpadabljfbk",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv1vkW0NQdDtdNQt/BZ9M803R3dHx3ow0XN3rCh4vo9lXpiJot7RIxTSo2qKUWHype4g0MCL/NIiFq6jY0rdBpCP5hv6GmFf6r8uZsurWA/FVH7hzY1tcJ1t5zBZUufamlWQjeUdCkflsrP6p07JK3SR1WFi8xcTT2uQ8Yrkb6ioq5C1mBOljbVPJuYzk99acKu55lvWG2uKH9aDuHd0OuK8+CJycWVDdeFoGXuGHlTfURDbmgnv2P23jctE0viEH+vuk5ecofhmBG0rXpbF/fqJJYQu6DINIyc4E9NQ8W2ryutTBo7r9ZbW68uiAe+7UVrMkFagjl66xK0WXNcGBlwIDAQAB"
@@ -467,6 +479,7 @@
         "title": "YouTube autodubbed videos blocker",
         "desc": "Remove Youtube Autodubbed videos",
         "langs": [],
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "gdmleoblaklbnepkfgceepngljjmgfpg",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtLmBFZxKnvrqsIobmvpt7nIieqYlVqHu3AMVXS8YK8CDf6/Jiul5Vl3nqtVmF6pmrGZsJPmVARs7fgV7/EbQksIv/J9pxQ8632UZ3BgUVoy4Y9FuwbXxT9h8ywYiWRm/YuHkeXOCVyvN+l5X91sC5G/nsO8pHUOp9/Y2FS10MgDeywMty1X56HXMLAwqzoDycW0QH1wTTXGD8U/kt1yJrZaVntSIlcYp8iYKZWLiuRts9m9kbNm6bvUqTvqlYeb658rZBrbZVh792VZP0TNjxmB7oHjDL5hs5xulAzLj7M7eeanL4hyXiiBzoi7Rkhph+bV/wTXx9Ip7nH7aT6KI+QIDAQAB"
@@ -484,6 +497,7 @@
         "title": "YouTube end video elements blocker",
         "desc": "Remove Youtube End video elements",
         "langs": [],
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "kjdkgfbncofapgmdlnlfhnnnlmkndelp",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtt6G6ZY04k4utmx2Ay9ZVDI/ck5fdEf+MSQvV1i+YX86KeW5JtLijvbUtvjImVnd7KNuXiVWwTY4AIZbEU5RmYKlaDuQgrHHoxTInc/IZCiugapGJruBzgBp0LgFP01Mzchb6hwI5C7B5t0EHSIlJgSb4yLPUOczBynI+WBc2qu1CIIxFzMszyaxQt5+u7anZAw+FobWSEjmqP4yzSN8fjw7KOH/0+oBPK/H7f3BrTVsX2o2516tpHLeq60kwgq7LiNk/8ff5wFDvZXB/CnrpnY0g8psE6RKGpprfDKjeAlkBfwMj9mQeJGUdy10GDS4BF7BXeRergR7R22PvhQbXQIDAQAB"
@@ -501,6 +515,7 @@
         "title": "YouTube members-only video blocker",
         "desc": "Remove Youtube Members video advertisements",
         "langs": [],
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "pbkpnahgockepdffchhnmjfgocmdbdhc",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi+3kFflz/T/23jCZhh9hh4uFlHzAM8nFm+F5oP4MB6P6gboajLIP6X4xsgODxk4vbe6bPm59cgnT9gjKGgSbJM0sG9uYXMFTCCDvALu0ftekOHVUJm5WIwxzBbXfHWzbJm7HPtkiezFPfKvric7aI4oZdO6QSAwP8K57zxvK6UFZ0BFBCjCE+ryyOEMM/eEWpNnvtxw5gXWp/Ur7QPCrN/vYvFf2l6NlsYyc5ExFXToeSp6FByfSEvyhTuRwbM5RkCF2lPbkX5js1Hy46aqhJ+8FsfKpfEh3fNq34W55hHx3hHhAp/W3TvSJ+ZdMRQocatKpGwMSc1nl0WCcm8EpXQIDAQAB"
@@ -518,6 +533,7 @@
         "title": "YouTube distractions elements blocker (mobile-only)",
         "desc": "YouTube Mobile Distractions",
         "langs": [],
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "cpapfkpkeaajehipopnaiihfmbfbnkdp",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA11xzFtkVM4xI3AeJ281iUJUmDGSjWXdNDJkP0Mv7LNdc1fa8hQuc/gOKdU9S6UjxA3HEpHMucIFKMcQZ07A9MUjiP+B/fwxrTrfwqFKyePQkrd05HjhwDgzmfBpCgx9nQjDubEamzsb0yUKj+gL3D13f4tBi7pb5GHhGAY3smwZP0Dp+ydO5ec9fs1AdgLX6kK/mTuCr+oMf9ZOkTp8KxMS6MyN/NhsMG4Jis+mOuRdoBzvF7y7p/BUm3ewVJZ2KtMz2W6/v966kpaPX+PDdKK2qdGcIClq1nFgKB8dcjorPq6xjJhvflwAtXqYXfMD2h/7Pkdz6aHZc8NmVAg4R7wIDAQAB"
@@ -535,6 +551,7 @@
         "title": "YouTube thumbnail image blocker",
         "desc": "Remove Youtube thumbnail images",
         "langs": [],
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "ggcbgmjhlhfgmijeocidfaagohcldncn",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlouCSyvEBF9WSpX/BtlVQUrV3U6zcL/SU05bz+yIbf0EwH71jHqOg13pE+KWm0rrmdNx2KW7DBEb3BAe4n9pjDxSmqp3I4WPLBnC0DAY0OgMHHKEqfBIn8QIGVvLGY6ParKHa0a31vouyuV8rQVoMRVM/+o3dZMMX17/vTRNJBxBTIGIOxOidJ5GYEcW1jtDU8IzXBxPWdGE9RaxsWrdtnN+KWHfXmPqC7XvWZx4QH4oWtUlfICcaVed6gL5N58s37E5+0ou/q9zXOMfuxch+rX4yKdx4Sp5oCOZAcFnNFOhz/Xf1Fvtgl953T4vaoVEFhQJbbbrhO6ErEPwi6tXlwIDAQAB"
@@ -569,6 +586,7 @@
         "title": "Chat app blocker",
         "desc": "Fanboy's Anti-chat Apps",
         "langs": [],
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "cjoooeeofnfjohnalnghhmdlalopplja",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv1O0sayAdmrsaqTddCEZwwHvpjjCbR/2qYj0xh9FsFMS17yIHpZRTZw8F8b0NFDAb/hIuIpNeaBXZUN/oPG9eWv4GoV0fDIr9UST5WzB+zPBYgSV1S8TkqLnkDvE5sTmzG98sd3VL/L7PeijOCidcKnSyG5hkP+UNHmKUaRnLlUTM/ificlkjR8IKMNFrC+e4PjHkF+EtBFLKR9Qb9iEJHEjDbjEgtozDs3IrGGsrK3WF4A6iqD5zMX50FvUAqPkAhm9jnfyISarfwkI5WlhQ/mmA0c/U5lXFg5v7MoLR05ns9G40jqOc8jFmzVaayBVF/7RaR9wxVlxEzzMDoA37QIDAQAB"
@@ -1274,6 +1292,7 @@
         "langs": [],
         "hidden": true,
         "default_enabled": false,
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "abpgbgfjeilgidgbehnjbbompbcimfjl",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwm5dfbeDBwdYoKrXwFuz4sCzMAP4Cerm6HN47CGqZ8DsYWyKbZxpo+uITXbULItPWsle4GCTrzHhaTB4AdS3EyX/qeLPGSbqtsO9aR6VJbk32tJBwfI6pQtoKJTP1MOSZb0WWWnJFh3Uh0qmgIEsSCmSYWb3t2pNgIUjEuMam9PCmV9X5Ih4K9cQ352v24xe2Wv3LZgRvG5fAfQHDQC4ZBgyfvv4HIe7kthJKZV3E9oLBC7trQU/c5zxosVUOFPKr9RtvpBzBld8BOyBiWUiv4EQvuhhgo+qe+3VLFHFPfI1KXhgioWKBPTd9IUwKMQ7LvBxO9WmKiyX6eHByNSsIQIDAQAB"
@@ -1291,6 +1310,7 @@
         "title": "Experimental ad blocker",
         "desc": "Brave Experimental Adblock Rules",
         "langs": [],
+        "permission_mask": 1,
         "list_text_component": {
             "component_id": "jcfckfokjmopfomnoebdkdhbhcgjfnbi",
             "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7PoRxGM/LMWIvZGE8UxNv56MHvtMyR8Sg/Gj3ZSX/XUemGHd9RmYDX/uQqGA6KIwU+26aH4GZ/sMj3JETIdZvscCDMsAhILoPAMIDxWtqpsLCOXALo+UKDtrRLpogtG9WvQmdxApyT+BqnEhXIQ2PDs+eEHsmJD9xO3FR2++haWXAV0QVgAe0V6AqT26ukDaNEKfEWfWJl8gcoutVkqdvdl5RU1vEgbXNcXnYpsJ4aNlO7RG07J4JUHw9LZ7CasQMWpFEFifBjeKQpMDg7bKXOD83D5TZ+Csw9V67FGeQeLg3uFDUdp+rXMOeSxH/4l8PtemQj9O5mUPUlL+UGH/iwIDAQAB"
