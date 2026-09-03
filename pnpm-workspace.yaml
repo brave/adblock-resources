@@ -1,0 +1,5 @@
+allowBuilds:
+  adblock-rs: true
+minimumReleaseAge: 10080 # minutes; 7 days = 10080
+minimumReleaseAgeExclude:
+  - adblock-rs

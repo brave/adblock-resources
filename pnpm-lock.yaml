@@ -1,0 +1,30 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    devDependencies:
+      adblock-rs:
+        specifier: 0.12.1
+        version: 0.12.1
+
+packages:
+
+  adblock-rs@0.12.1:
+    resolution: {integrity: sha512-rzM9dOpnthqie748q3yWOQLGfPmvcP6nSY2ULvZQEXjIfSEu2SNkn32fe5YaEJZpRhJ5h01qRGlwEhgQVc6QTQ==}
+
+  cargo-cp-artifact@0.1.9:
+    resolution: {integrity: sha512-6F+UYzTaGB+awsTXg0uSJA1/b/B3DDJzpKVRu0UmyI7DmNeaAl2RFHuTGIN6fEgpadRxoXGb7gbC1xo4C3IdyA==}
+    hasBin: true
+
+snapshots:
+
+  adblock-rs@0.12.1:
+    dependencies:
+      cargo-cp-artifact: 0.1.9
+
+  cargo-cp-artifact@0.1.9: {}
