@@ -8,11 +8,11 @@ Custom resources should be added to the `resources` directory, and a correspondi
 
 This package can be imported as a library, exposing the function `readResources` which will produce the correctly formatted list of resources for use with [adblock-rust](https://github.com/brave/adblock-rust).
 
-Alternatively, `npm run build` will write all resources to `dist/resources.json` for future use.
+Alternatively, `pnpm build` will write all resources to `dist/resources.json` for future use.
 
-To generate `metadata.json` automatically from files in `resources/`, run `npm run generateMetadata`.
+To generate `metadata.json` automatically from files in `resources/`, run `pnpm generateMetadata`.
 
-Use `npm run test` after modifying the resources or metadata file to ensure the format can be accepted by `adblock-rust`.
+Use `pnpm test` after modifying the resources or metadata file to ensure the format can be accepted by `adblock-rust`.
 
 ## Metadata format
 

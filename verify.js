@@ -98,5 +98,5 @@ test('metadata.json matches resources/', t => {
 test('dist/resources.json is up to date', t => {
     const committed = JSON.parse(fs.readFileSync('dist/resources.json', 'utf8'))
     const generated = readResources()
-    assert.deepStrictEqual(committed, generated, 'dist/resources.json is out of date - run "npm run build"')
+    assert.deepStrictEqual(committed, generated, 'dist/resources.json is out of date - run "pnpm build"')
 })
