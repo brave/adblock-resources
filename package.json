@@ -19,7 +19,7 @@
     "url": "https://github.com/brave/adblock-resources/issues"
   },
   "homepage": "https://github.com/brave/adblock-resources#readme",
-  "packageManager": "pnpm@11.25.0",
+  "packageManager": "pnpm@12.1.0",
   "devDependencies": {
     "adblock-rs": "0.13.3"
   }
