@@ -24,6 +24,14 @@
         "resourcePath": "brave-auto-pip.js"
     },
     {
+        "name": "brave-disable-hdr-images.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "brave-disable-hdr-images.js"
+    },
+    {
         "name": "brave-disable-pageview-api.js",
         "aliases": [],
         "kind": {
