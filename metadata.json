@@ -1,5 +1,13 @@
 [
     {
+        "name": "ampconsent-reject-unblock.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "ampconsent-reject-unblock.js"
+    },
+    {
         "name": "async-sugarcoat-04394153a7ce417b88e3fe1790a4e6a269bfebe5.js",
         "aliases": [],
         "kind": {
@@ -72,6 +80,14 @@
         "resourcePath": "brave-youtube-navigation-fix.js"
     },
     {
+        "name": "brave-youtube-playback-speed-fix.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "brave-youtube-playback-speed-fix.js"
+    },
+    {
         "name": "brave-youtube-theater-fix.js",
         "aliases": [],
         "kind": {
@@ -88,14 +104,6 @@
         "resourcePath": "brave-yt-sabr-fix.js"
     },
     {
-        "name": "brave-youtube-playback-speed-fix.js",
-        "aliases": [],
-        "kind": {
-            "mime": "application/javascript"
-        },
-        "resourcePath": "brave-youtube-playback-speed-fix.js"
-    },
-    {
         "name": "de-amp.js",
         "aliases": [],
         "kind": {
@@ -104,12 +112,44 @@
         "resourcePath": "de-amp.js"
     },
     {
+        "name": "fundingchoices-reject.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "fundingchoices-reject.js"
+    },
+    {
+        "name": "ketch-reject-unblock.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "ketch-reject-unblock.js"
+    },
+    {
+        "name": "sourcepoint-reject.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "sourcepoint-reject.js"
+    },
+    {
         "name": "touch-fix.js",
         "aliases": [],
         "kind": {
             "mime": "application/javascript"
         },
         "resourcePath": "touch-fix.js"
+    },
+    {
+        "name": "transcend-reject.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "transcend-reject.js"
     },
     {
         "name": "trusted_types.js",
@@ -134,5 +174,21 @@
             "mime": "application/javascript"
         },
         "resourcePath": "video-swap-new-ublock-origin.js"
+    },
+    {
+        "name": "zdconsent-accept.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "zdconsent-accept.js"
+    },
+    {
+        "name": "zdconsent-reject.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "zdconsent-reject.js"
     }
 ]
