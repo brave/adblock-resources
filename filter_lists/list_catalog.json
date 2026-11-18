@@ -715,6 +715,11 @@
                 "url": "https://raw.githubusercontent.com/tomasko126/easylistczechandslovak/master/filters.txt",
                 "format": "Standard",
                 "support_url": "https://github.com/tomasko126/easylistczechandslovak"
+            },
+            {
+               "url": "https://raw.githubusercontent.com/tomasko126/easylistczechandslovak/master/filters_ublock.txt",
+               "format": "Standard",
+               "support_url": "https://github.com/tomasko126/easylistczechandslovak"
             }
         ]
     },
