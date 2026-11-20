@@ -107,4 +107,6 @@ It will generate:
 The script should be run with no arguments.
 The resulting PEM file will be named `ad-block-updater-<component_id>.pem`. This new PEM file has to be uploaded to 1Password. See instructions [here](https://github.com/brave/internal/wiki/Uploading-new-adblock-list-PEM-file-to-1Password).
 
-You'll probably also want to see https://github.com/brave/brave-core/blob/master/docs/ship_a_file_to_all_clients.md to have brave-core clients actually consume the new component.
+No browser changes are needed for the creation of a new adblock list. New entries in [`list_catalog.json`](filter_lists/list_catalog.json) are picked up automatically by [brave-core-crx-packager](https://github.com/brave/brave-core-crx-packager), which reads the catalog in [`scripts/generateAdBlockRustDataFiles.js`](https://github.com/brave/brave-core-crx-packager/blob/master/scripts/generateAdBlockRustDataFiles.js). Each list is packaged as its own CRX component and referenced in the adblock catalog component. Brave Browser downloads the catalog component and subsequently downloads each list component as appropriate.
+
+For more on how adblock lists are packaged, see the [brave-core-crx-packager packaging docs](https://github.com/brave/brave-core-crx-packager#component-extensions). For background on CRX component delivery in general, see [`ship_a_file_to_all_clients.md`](https://github.com/brave/brave-core/blob/master/docs/ship_a_file_to_all_clients.md).
