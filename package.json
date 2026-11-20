@@ -7,7 +7,8 @@
   "scripts": {
     "build": "node build",
     "test": "node verify",
-    "generateMetadata": "node generateMetadataJsonFromScriptResources.js"
+    "generateMetadata": "node generateMetadataJsonFromScriptResources.js",
+    "addScriptlet": "npm run generateMetadata && npm run build && npm run test"
   },
   "repository": {
     "type": "git",
