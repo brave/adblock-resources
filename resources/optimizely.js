@@ -4,8 +4,9 @@
 // Not a cookie-consent resource: it lives outside src/ and is not built
 // into dist/ by tools/build.mjs. Hand-maintained, ship as-is.
 // The page keeps a working window.optimizely - push, get, initialized and
-// the lifecycle listeners - so code that queues commands or waits on the
-// client proceeds. What it loses is everything the real client does with
+// the lifecycle listeners, plus the flat Classic api for the projects whose
+// snippet predates the migration - so code that queues commands or waits on
+// the client proceeds. What it loses is everything the real client does with
 // them: no experiment or campaign data, no variation DOM rewriting, no
 // redirect experiments, no visitor profile, no optimizelyEndUserId or
 // session cookies, no localStorage, and no beacons to logx.optimizely.com,
@@ -368,9 +369,11 @@
     };
     // get('visitor') is assembled from their profile providers, one per key,
     // each declaring what it provides. Fourteen appear in every snippet read;
-    // the seven marked below are bundled only when a project's audiences ask
+    // the eight marked below are bundled only when a project's audiences ask
     // for them, and they are here anyway so a page reading one does not meet
-    // undefined. Nothing about the visitor is measured: strings are empty,
+    // undefined. dcpData is the Dynamic Customer Profile key, registered with
+    // the dynamic_customer_profile audience matcher; theirs fetches it, so it
+    // is an empty object here for the same reason location is an object. Nothing about the visitor is measured: strings are empty,
     // maps are empty, and location is an object rather than absent, because
     // a property chain into it is exactly what their own geo.js walks.
     // campaign is singular and holds their utm_campaign value; campaigns,
@@ -385,6 +388,7 @@
         cookies: {},
         custom: {},
         customBehavior: [],
+        dcpData: {},
         device: '',
         device_type: '',
         events: [],
@@ -631,7 +635,17 @@
         waitForOriginSync: noop,
     };
     const commandTables = [ commandsV0, commandsV1, {} ];
-    const push = command => {
+    // Their push takes a second argument, used once while the client boots:
+    // window.optimizely = window.optimizely.filter(c => !push(c, true)) runs
+    // the six names below out of the queue early, before the opt-out and
+    // disable checks, and leaves everything else in the array for the normal
+    // drain. With the flag set, any other name is ignored and reports false,
+    // and that happens before the table is consulted, so an unknown name is
+    // refused quietly rather than warned about.
+    const HIGH_PRIORITY = [
+        'clientMetadata', 'cookieDomain', 'disable', 'load', 'optOut', 'rum',
+    ];
+    const push = (command, highPriorityOnly) => {
         let version;
         let name;
         let args;
@@ -651,6 +665,9 @@
             warn('API / Ignoring non-array/object/string argument:', command);
             return false;
         }
+        if ( highPriorityOnly && HIGH_PRIORITY.indexOf(name) === -1 ) {
+            return false;
+        }
         const table = commandTables[version];
         if ( table === undefined || hasOwn(table, name) === false ) {
             warn(
@@ -666,13 +683,105 @@
         }
         return true;
     };
+    // Optimizely Classic, the product before this one, is still served for
+    // projects last saved before the migration, from the same /js/<id>.js
+    // path. It puts its whole api straight on the object instead of behind
+    // push and get, and their own bundled mode ships both at once, so the
+    // two surfaces sit together here the way they do there. Every method is
+    // a no-op; the maps are the empty ones a project with no running
+    // experiment has. referrer stays empty for the reason it is empty in
+    // get('visitor'): theirs reads document.referrer and this does not.
+    const classicData = {
+        note: "Obsolete, use optimizely.get('data') instead",
+        audiences: {},
+        customTags: {},
+        experiments: {},
+        sections: {},
+        segments: {},
+        thirdParty: {},
+        variations: {},
+        state: {
+            activeExperiments: [],
+            enabled: true,
+            integrations: { activeOAuthClientIds: [] },
+            redirectExperiment: undefined,
+            variationIdsMap: {},
+            variationMap: {},
+            variationNamesMap: {},
+        },
+        visitor: {
+            audiences: {},
+            browser: '',
+            browserVersion: '',
+            device: '',
+            deviceType: '',
+            dimensions: {},
+            ip: '',
+            lists: {},
+            location: {},
+            matchingRules: {},
+            mobile: false,
+            mobileId: '',
+            os: '',
+            params: {},
+            platform: '',
+            referrer: '',
+            segments: {},
+        },
+    };
+    const classic = {
+        activeExperiments: [],
+        allExperiments: {},
+        all_experiments: {},
+        allVariations: {},
+        getElementsByClassName: name => doc.getElementsByClassName(name),
+        revision: identity.revision,
+        variationIdsMap: {},
+        variationMap: {},
+        variationNamesMap: {},
+        variation_map: {},
+        getAccountId: ( ) => identity.accountId,
+        getProjectId: ( ) => identity.projectId,
+    };
+    for ( const name of [
+        'activate', 'activateGeoDelayedExperiments', 'activateSiteCatalyst',
+        'activateUniversalAnalytics', 'addOAuthClientId', 'addToAudience',
+        'addToSegment', 'bindTrackElement', 'bucketUser', 'bucketVisitor',
+        'clickTalePlayback', 'clickTaleRecord', 'customTag',
+        'delayDomReadyEval', 'delayPageviewTracking', 'disable',
+        'googleAnalyticsCustomVariableScope', 'integrationPrefix', 'log',
+        'optOut', 'optOutThirdPartyCookies', 'overrideUrl',
+        'removeFromAllAudiences', 'removeFromAllSegments',
+        'removeFromAudience', 'removeFromReportableAudiences',
+        'removeFromSegment', 'sc_activate', 'sc_svar', 'setDimensionValue',
+        'setUserId', 'skipPageTracking', 'storeThirdPartyData', 'timeout',
+        'trackEvent', 'verbose',
+    ] ) {
+        // Eleven of these are also v0 push names, and in Classic the method
+        // and the pushed command are the same function, so a page gets the
+        // same behaviour whichever way it asks. log is the one that is not
+        // a no-op, and it was the one diverging: push(['log']) turned the
+        // console on while optimizely.log() did nothing.
+        classic[name] = hasOwn(commandsV0, name) ? commandsV0[name] : noop;
+    }
     const api = {
         push,
         get,
         initialized: true,
-        data: { note: "Obsolete, use optimizely.get('data') instead" },
+        data: classicData,
         state: {},
     };
+    for ( const name of Object.keys(classic) ) {
+        api[name] = classic[name];
+    }
+    // Their $ is the jQuery they bundled, read at the time it is asked for
+    // rather than captured, the same as get('jquery').
+    try {
+        Object.defineProperty(api, '$', {
+            configurable: true, enumerable: true, get: ( ) => w.$,
+        });
+    } catch ( ex ) {
+    }
     const queued = Array.isArray(existing) ? existing.slice() : [];
     w.optimizely = api;
     for ( const command of queued ) {
