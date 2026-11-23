@@ -128,14 +128,6 @@
         "resourcePath": "ketch-reject-unblock.js"
     },
     {
-        "name": "optimizely.js",
-        "aliases": [],
-        "kind": {
-            "mime": "application/javascript"
-        },
-        "resourcePath": "optimizely.js"
-    },
-    {
         "name": "sourcepoint-reject.js",
         "aliases": [],
         "kind": {
