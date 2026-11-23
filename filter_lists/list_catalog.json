@@ -282,7 +282,7 @@
     {
         "uuid": "AC023D22-AE88-4060-A978-4FEEEC4221693",
         "title": "Cookie notice blocker",
-        "desc": "EasyList Cookie",
+        "desc": "EasyList/uBO – Cookie List",
         "langs": [],
         "default_enabled": true,
         "permission_mask": 1,
