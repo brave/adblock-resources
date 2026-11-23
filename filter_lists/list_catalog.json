@@ -1165,6 +1165,23 @@
         ]
     },
     {
+        "uuid": "76b2ce0a-0590-4ece-8282-8cd4159a2eb6",
+        "title": "Serbo-Croatian List",
+        "desc": "Dandelion Sprout's Serbo-Croatian List",
+        "langs": ["hr", "rs"],
+        "list_text_component": {
+            "component_id": "pcdonpididceiegkbdldeiecimpibdjf",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvVCQk819o7mGi2SAiIvVlQbLGQRRw4BdDvXj8+5B5ic2IQ5XzXYLZEWVySN/5wkRXMYiDHwB7RCU0jjDv19WH3bHsKGbUag2U/X2Pa+neP1PayN9Hf5flEj+AcIHvExJb8mnbdx0rTQBw4ETopdLnI7L56dfSaiUheBM3nsCBk+lf0MIg4rl+5mAB8RMxo11aX03xSWEH3Ak52vX41GNh86j4Z1Kt5vKdux5PXPBwxRme17GUjLRFjTw8Q9xOd4aaRBgLLjA79NE3nwkIS8ata43cVCIM41qKefU7nHVrd3hp0MX1H/qlSlw1hGJICxAu+tb00EpJ31ae2X9Zsf2MwIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/SerboCroatianList.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/DandelionSprout/adfilt#readme"
+            }
+        ]
+    },
+    {
         "uuid": "418D293D-72A8-4A28-8718-A1EE40A45AAF",
         "title": "Slovenian website ad blocker",
         "desc": "Slovenian List",
