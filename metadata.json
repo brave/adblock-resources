@@ -112,12 +112,36 @@
         "resourcePath": "de-amp.js"
     },
     {
+        "name": "didomi-reject.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "didomi-reject.js"
+    },
+    {
         "name": "fundingchoices-reject.js",
         "aliases": [],
         "kind": {
             "mime": "application/javascript"
         },
         "resourcePath": "fundingchoices-reject.js"
+    },
+    {
+        "name": "inmobi-reject.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "inmobi-reject.js"
+    },
+    {
+        "name": "iubenda-reject-unblock.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "iubenda-reject-unblock.js"
     },
     {
         "name": "ketch-reject-unblock.js",
@@ -128,12 +152,60 @@
         "resourcePath": "ketch-reject-unblock.js"
     },
     {
+        "name": "onetrust-reject-unblock.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "onetrust-reject-unblock.js"
+    },
+    {
+        "name": "osano-reject.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "osano-reject.js"
+    },
+    {
+        "name": "pubtech-reject.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "pubtech-reject.js"
+    },
+    {
+        "name": "securiti-reject.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "securiti-reject.js"
+    },
+    {
         "name": "sourcepoint-reject.js",
         "aliases": [],
         "kind": {
             "mime": "application/javascript"
         },
         "resourcePath": "sourcepoint-reject.js"
+    },
+    {
+        "name": "tarteaucitron-reject-unblock.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "tarteaucitron-reject-unblock.js"
+    },
+    {
+        "name": "termly-reject.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "termly-reject.js"
     },
     {
         "name": "touch-fix.js",
@@ -174,6 +246,14 @@
             "mime": "application/javascript"
         },
         "resourcePath": "video-swap-new-ublock-origin.js"
+    },
+    {
+        "name": "webtoffee-reject-unblock.js",
+        "aliases": [],
+        "kind": {
+            "mime": "application/javascript"
+        },
+        "resourcePath": "webtoffee-reject-unblock.js"
     },
     {
         "name": "zdconsent-accept.js",
