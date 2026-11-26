@@ -1306,6 +1306,25 @@
         ]
     },
     {
+        "uuid": "9683A6F7-009D-46D9-AD66-E9CBCBDF06FB",
+        "title": "Brave cookie notice blocker exceptions",
+        "desc": "Default filters that enable cookie consent screens in limited cases",
+        "langs": [],
+        "permission_mask": 1,
+        "default_enabled": true,
+        "list_text_component": {
+            "component_id": "bbdbpabdgchlfdnodilcdnfhlkmggbaj",
+            "base64_public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1Pxr957A+F0DSdY0EyhHNk00i5KFzTATOQ+E79PZHAG1kRLgcVe8Ti4cUjSbs4dCVrJWwoet5tRl59f7K7SY0uiOHYuuRg8S1GMsCeMglNdqf2YEVroVfGLIxj9kkT1/5vr5XFSrIppPoZvr4/xzO8XhEgR2Hiy9emh8TJA9OOztnE8BxEwkHazBScEu/nj89CmzkzQ8dIJEROJoM1UqXBkApBK/BdUOl41yTs3sVhbj99rrHKhdYn+yd9bODuXy3IH1EoS1e8lHt1vnRgO/P55kTEXhQW8E6g5NK2ZNcrvX/pZb1DSjbxIRjfKyeqNyKsk8bff8G7jl+rBtMlvnewIDAQAB"
+        },
+        "sources": [
+            {
+                "url": "https://raw.githubusercontent.com/brave/adblock-lists/master/brave-lists/brave-cookie-notice-blocker-exceptions.txt",
+                "format": "Standard",
+                "support_url": "https://github.com/brave/adblock-lists"
+            }
+        ]
+    },
+    {
         "uuid": "564C3B75-8731-404C-AD7C-5683258BA0B0",
         "title": "Experimental ad blocker",
         "desc": "Brave Experimental Adblock Rules",
