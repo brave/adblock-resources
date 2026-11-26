@@ -9,13 +9,13 @@ importers:
   .:
     devDependencies:
       adblock-rs:
-        specifier: 0.13.3
-        version: 0.13.3
+        specifier: 0.13.6
+        version: 0.13.6
 
 packages:
 
-  adblock-rs@0.13.3:
-    resolution: {integrity: sha512-HX1Jjo1wyB1x/NSGAW37grXhcyIB1taAoUHsqodCn2hdQiQmgcVLzU5pvpcQ7B5PWEtL2xU2iO/DPr2f1Aq4ZQ==}
+  adblock-rs@0.13.6:
+    resolution: {integrity: sha512-wDZ7uUVzEelVdfQZRMzm3cqacbCscb5pkXPh8brXnlS/jj9tQyXlecvhwfDsjjK4N1vJ72BA6kWDZ0XFYsrDCw==}
 
   cargo-cp-artifact@0.1.9:
     resolution: {integrity: sha512-6F+UYzTaGB+awsTXg0uSJA1/b/B3DDJzpKVRu0UmyI7DmNeaAl2RFHuTGIN6fEgpadRxoXGb7gbC1xo4C3IdyA==}
@@ -23,7 +23,7 @@ packages:
 
 snapshots:
 
-  adblock-rs@0.13.3:
+  adblock-rs@0.13.6:
     dependencies:
       cargo-cp-artifact: 0.1.9
 
